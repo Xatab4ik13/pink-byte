@@ -7,3 +7,4 @@
 - [x] Remove the gray-white upper-left visor reflection, preserving chrome.
 - [x] Verify intermediate eyelid frames and the finished face.
 - [x] Replace top-down lids with smooth eye compression into a horizontal strip and verify intermediate frames.
+- [ ] Replace repetitive blinking with a 15-second curiosity cycle and verify its intermediate states.
