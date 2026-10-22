@@ -10,4 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Home page sections live in src/components/pinkbyte/ and are composed in src/routes/index.tsx; shared logo, buttons and reveal helpers are in primitives.tsx — keeps sections reusable for future pages.
-- Hero eye animation uses a transparent restored visor, original cropped eye layers shrinking around their centers and synchronized alpha-only glow; the robot body stays intact and opaque full-frame blend layers are avoided to prevent rectangular backgrounds.
+- Hero eye animation uses a clean visor baked into the original alpha-preserving robot base and emissive-only RGBA eye crops; a shared gaze wrapper translates both eyes while child layers blink, so neither old eyes nor visor texture can leave moving shadows. Preserve chrome pixels and silhouette outside the visor.
