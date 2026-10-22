@@ -1,7 +1,33 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import robotLean from "@/assets/robot-lean.png.asset.json";
+import robotBase from "@/assets/robot-base.png.asset.json";
+import robotEyesA from "@/assets/robot-eyes-a.png.asset.json";
+import robotEyesB from "@/assets/robot-eyes-b.png.asset.json";
 import { Logo, NAV, btn } from "./primitives";
+
+/* Глаза робота вынесены в отдельные слои над корпусом — так их можно анимировать.
+   Координаты заданы в процентах от размера корпуса, поэтому глаза остаются на месте
+   при любой ширине экрана. */
+const ROBOT_EYES = [
+  {
+    src: robotEyesA.url,
+    width: 210,
+    height: 265,
+    left: "48.73%",
+    top: "26.28%",
+    size: ["17.83%", "28.31%"],
+    origin: "50.5% 57.8%",
+  },
+  {
+    src: robotEyesB.url,
+    width: 192,
+    height: 300,
+    left: "38.37%",
+    top: "30.24%",
+    size: ["16.30%", "32.05%"],
+    origin: "51.3% 50.9%",
+  },
+];
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -82,14 +108,33 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <img
-          src={robotLean.url}
-          alt="Хромированный робот Pink Byte облокотился на край экрана"
-          width={900}
-          height={862}
-          fetchPriority="high"
-          className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[14%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]"
-        />
+        <div className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[4.5%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]">
+          <img
+            src={robotBase.url}
+            alt="Хромированный робот Pink Byte облокотился на край экрана"
+            width={1178}
+            height={936}
+            fetchPriority="high"
+            className="block h-auto w-full"
+          />
+          {ROBOT_EYES.map((eye) => (
+            <span
+              key={eye.src}
+              className="pb-eyes"
+              style={{ left: eye.left, top: eye.top, width: eye.size[0], height: eye.size[1] }}
+            >
+              <img
+                src={eye.src}
+                alt=""
+                aria-hidden="true"
+                width={eye.width}
+                height={eye.height}
+                className="pb-eyes-img"
+                style={{ transformOrigin: eye.origin }}
+              />
+            </span>
+          ))}
+        </div>
       </section>
     </div>
   );
