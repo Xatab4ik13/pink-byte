@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import robotLean from "@/assets/robot-lean.png.asset.json";
-import robotGlow from "@/assets/robot-eye-glow-alpha.png.asset.json";
-import robotDarkVisor from "@/assets/robot-dark-visor.png.asset.json";
-import robotEyeLeft from "@/assets/robot-blink-eye-left.png.asset.json";
-import robotEyeRight from "@/assets/robot-blink-eye-right.png.asset.json";
+import robotLean from "@/assets/robot-clean-face.png.asset.json";
+import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
+import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
 import { Logo, NAV } from "./primitives";
 
-/* Глаза сжимаются к центру поверх восстановленной панели.
-   Корпус робота остаётся неизменным. */
+/* The clean base has no baked-in eyes. Only emissive RGBA eye pixels move. */
 const EYES = [
   { src: robotEyeLeft.url, left: "39%", top: "36.4269%", width: "14%", height: "20.4176%" },
   { src: robotEyeRight.url, left: "49.7778%", top: "33.0626%", width: "14.1111%", height: "20.7657%" },
@@ -91,25 +88,17 @@ export function Hero() {
             fetchPriority="high"
             className="block h-auto w-full"
           />
-          <img src={robotDarkVisor.url} alt="" aria-hidden="true" className="pb-eye-panel" />
-          {EYES.map((eye) => (
-            <img
-              key={eye.src}
-              src={eye.src}
-              alt=""
-              aria-hidden="true"
-              className={`pb-eye ${eye.src === robotEyeLeft.url ? "pb-eye-curious" : "pb-eye-attentive"}`}
-              style={{ left: eye.left, top: eye.top, width: eye.width, height: eye.height }}
-            />
-          ))}
-          <img
-            src={robotGlow.url}
-            alt=""
-            aria-hidden="true"
-            width={900}
-            height={862}
-            className="pb-glow"
-          />
+          <div className="pb-gaze" aria-hidden="true">
+            {EYES.map((eye) => (
+              <img
+                key={eye.src}
+                src={eye.src}
+                alt=""
+                className="pb-eye"
+                style={{ left: eye.left, top: eye.top, width: eye.width, height: eye.height }}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </div>
