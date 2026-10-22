@@ -8,3 +8,5 @@
 - [x] Verify intermediate eyelid frames and the finished face.
 - [x] Replace top-down lids with smooth eye compression into a horizontal strip and verify intermediate frames.
 - [x] Replace repetitive blinking with a 15-second curiosity cycle and verify its intermediate states.
+- [ ] Replace squint with a smooth left/right gaze and centered blink in a 15-second loop.
+- [ ] Eliminate old eye shadows and verify gaze, closed eyes and mobile layout.
