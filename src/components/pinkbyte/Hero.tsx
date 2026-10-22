@@ -80,20 +80,20 @@ export function Hero() {
     <div id="top" className="relative z-10 bg-ink text-ink-foreground">
       <Header />
       <section className="container-pb relative pb-44 pt-12 md:pb-[10.75rem] md:pt-16">
-        <div className="grid gap-10 lg:grid-cols-[1fr_300px] lg:gap-8">
+        <div className="grid gap-10 lg:grid-cols-[1fr_340px] lg:gap-8">
           <div>
-            <h1 className="display text-[clamp(2.6rem,7.5vw,7rem)]">
-              <span className="block">Ваши идеи.</span>
-              <span className="block pl-[0.9em] sm:pl-[1.55em]">Наш код.</span>
-              <span className="block text-primary">Новый продукт.</span>
+            <h1 className="display text-[clamp(2.6rem,7.5vw,7rem)] lg:text-[96px] xl:text-[112px] 2xl:text-[128px]">
+              <span className="block">Сложное</span>
+              <span className="block pl-[1.8em] sm:pl-[2em]">делаем</span>
+              <span className="block text-primary">удобным.</span>
             </h1>
           </div>
-          <div className="relative z-10 max-w-[300px] text-ink-muted lg:pt-1">
-            <p className="text-lg leading-relaxed md:text-xl">Разрабатываем сайты, веб-сервисы и внутренние системы для бизнеса.</p>
+          <div className="relative z-10 max-w-[340px] text-ink-foreground lg:pt-1">
+            <p className="text-lg leading-[1.35] md:text-xl">Проектируем и разрабатываем сайты, веб-сервисы и CRM для бизнеса. От интерфейса до запуска и поддержки.</p>
             <a href="#projects" className="mt-5 inline-block text-lg text-ink-foreground underline underline-offset-4 md:text-xl">Смотреть проекты</a>
           </div>
         </div>
-        <div className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[14%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]">
+        <div className="pointer-events-none absolute bottom-0 right-4 w-[clamp(200px,24vw,240px)] translate-y-[14%] lg:w-[clamp(270px,25vw,360px)]">
           <img
             src={robotLean.url}
             alt="Хромированный робот Pink Byte облокотился на край экрана"
@@ -113,6 +113,9 @@ export function Hero() {
               />
             ))}
           </div>
+          <svg aria-hidden="true" viewBox="0 0 210 120" fill="none" className="absolute -left-[43%] bottom-[-13%] h-auto w-[60%] overflow-visible text-primary">
+            <path d="M205 17C139-5 55 20 20 104M15 77L20 108L43 93" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
       </section>
     </div>
