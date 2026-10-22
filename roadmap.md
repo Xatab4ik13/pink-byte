@@ -1,3 +1,5 @@
 - [x] Remove the complete right-hand hero text and links, keeping the headline and robot placement.
 - [x] Remove the rectangular glow background and refine eye-only blinking.
 - [x] Verify open/closed eye states and the page in the browser.
+- [x] Slow and smooth the blink; remove unwanted glow in the left corner of the face.
+- [x] Verify the revised blink and glow in the browser.
