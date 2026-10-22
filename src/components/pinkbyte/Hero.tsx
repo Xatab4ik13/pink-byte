@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import robotLean from "@/assets/robot-lean.png.asset.json";
-import robotGlow from "@/assets/robot-glow.png.asset.json";
+import robotGlow from "@/assets/robot-eye-glow-alpha.png.asset.json";
+import robotBlinkPanel from "@/assets/robot-blink-overlay.png.asset.json";
+import robotEyeLeft from "@/assets/robot-blink-eye-left.png.asset.json";
+import robotEyeRight from "@/assets/robot-blink-eye-right.png.asset.json";
 import { Logo, NAV } from "./primitives";
 
-/* Свечение и веки — отдельные слои над исходной картинкой робота: сам робот не
-   меняется, оживает только свет глаз. Координаты — в процентах от размера картинки. */
-const EYE_LIDS = [
-  { left: "56.77%", top: "43.32%", size: ["8.4%", "19.1%"] },
-  { left: "46.03%", top: "46.50%", size: ["8.2%", "18.6%"] },
+/* Прозрачная восстановленная панель закрывает только глаза; оригинальные
+   глаза отдельными слоями сжимаются при моргании, корпус остаётся неизменным. */
+const EYES = [
+  { src: robotEyeLeft.url, left: "39%", top: "36.4269%", width: "14%", height: "20.4176%" },
+  { src: robotEyeRight.url, left: "49.7778%", top: "33.0626%", width: "14.1111%", height: "20.7657%" },
 ];
 
 function Header() {
@@ -88,6 +91,18 @@ export function Hero() {
             fetchPriority="high"
             className="block h-auto w-full"
           />
+          <img src={robotBlinkPanel.url} alt="" aria-hidden="true" className="pb-eye-panel" />
+          {EYES.map((eye) => (
+            <img
+              key={eye.src}
+              src={eye.src}
+              alt=""
+              aria-hidden="true"
+              className="pb-eye"
+              style={{ left: eye.left, top: eye.top, width: eye.width, height: eye.height }}
+            />
+          ))}
+          <span className="pb-glow-blink">
           <img
             src={robotGlow.url}
             alt=""
@@ -96,13 +111,7 @@ export function Hero() {
             height={862}
             className="pb-glow"
           />
-          {EYE_LIDS.map((lid) => (
-            <span
-              key={lid.left}
-              className="pb-lid"
-              style={{ left: lid.left, top: lid.top, width: lid.size[0], height: lid.size[1] }}
-            />
-          ))}
+          </span>
         </div>
       </section>
     </div>
