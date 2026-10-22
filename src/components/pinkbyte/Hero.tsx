@@ -3,7 +3,8 @@ import { Menu, X } from "lucide-react";
 import robotLean from "@/assets/robot-clean-face.png.asset.json";
 import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
 import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
-import { Logo, NAV } from "./primitives";
+import { Button } from "@/components/ui/button";
+import { Logo, NAV, TELEGRAM_URL, btn } from "./primitives";
 
 /* The clean base has no baked-in eyes. Only emissive RGBA eye pixels move. */
 const EYES = [
@@ -13,6 +14,7 @@ const EYES = [
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("#projects");
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -22,43 +24,51 @@ function Header() {
 
   return (
     <header className="container-pb relative z-30">
-      <div className="flex items-center justify-between border-b border-ink-border py-5">
+      <div className="flex items-center justify-between gap-4 py-5">
         <a href="#top" aria-label="Pink Byte — на главную">
           <Logo className="w-36 md:w-40" />
         </a>
         <nav aria-label="Основная навигация" className="hidden md:block">
-          <ul className="flex gap-10 text-[15px] text-ink-foreground">
-            {NAV.map((n) => (
+          <ul className="flex gap-2 text-[15px] text-ink-foreground">
+            {NAV.filter((n) => n.href !== "#contact").map((n) => (
               <li key={n.href}>
-                <a href={n.href} className="opacity-85 transition-opacity hover:opacity-100">
-                  {n.label}
-                </a>
+                <Button asChild variant="ghost" className={`h-11 rounded-full px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${active === n.href ? "bg-ink-border" : ""}`}>
+                  <a href={n.href} onClick={() => setActive(n.href)} aria-current={active === n.href ? "location" : undefined}>{n.label}</a>
+                </Button>
               </li>
             ))}
           </ul>
         </nav>
-        <button
+        <Button asChild variant="secondary" className={`${btn.paper} hidden h-11 md:inline-flex hover:bg-background/90`}>
+          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">Обсудить проект</a>
+        </Button>
+        <Button
           type="button"
-          className="md:hidden rounded-full p-2 text-ink-foreground"
+          variant="ghost"
+          size="icon"
+          className="md:hidden rounded-full text-ink-foreground hover:bg-ink-border hover:text-ink-foreground"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Закрыть меню" : "Открыть меню"}
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X className="size-6" /> : <Menu className="size-6" />}
-        </button>
+        </Button>
       </div>
       {open && (
         <nav id="mobile-menu" aria-label="Мобильная навигация" className="tab-fade absolute inset-x-5 top-full mt-2 rounded-3xl border border-ink-border bg-ink p-3 md:hidden">
           <ul>
-            {NAV.map((n) => (
+            {NAV.filter((n) => n.href !== "#contact").map((n) => (
               <li key={n.href}>
-                <a href={n.href} onClick={() => setOpen(false)} className="block rounded-2xl px-4 py-3 text-lg text-ink-foreground hover:bg-ink-border">
+                <a href={n.href} onClick={() => { setActive(n.href); setOpen(false); }} className="block rounded-2xl px-4 py-3 text-lg text-ink-foreground hover:bg-ink-border">
                   {n.label}
                 </a>
               </li>
             ))}
           </ul>
+          <Button asChild variant="secondary" className={`${btn.paper} mt-3 w-full hover:bg-background/90`}>
+            <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">Обсудить проект</a>
+          </Button>
         </nav>
       )}
     </header>
@@ -69,7 +79,7 @@ export function Hero() {
   return (
     <div id="top" className="relative z-10 bg-ink text-ink-foreground">
       <Header />
-      <section className="container-pb relative pb-40 pt-8 md:pb-14 md:pt-10">
+      <section className="container-pb relative pb-44 pt-12 md:pb-[10.75rem] md:pt-16">
         <div className="grid gap-10 lg:grid-cols-[1fr_300px] lg:gap-8">
           <div>
             <h1 className="display text-[clamp(2.6rem,7.5vw,7rem)]">
@@ -77,6 +87,10 @@ export function Hero() {
               <span className="block pl-[0.9em] sm:pl-[1.55em]">Наш код.</span>
               <span className="block text-primary">Новый продукт.</span>
             </h1>
+          </div>
+          <div className="relative z-10 max-w-[300px] text-ink-muted lg:pt-1">
+            <p className="text-lg leading-relaxed md:text-xl">Разрабатываем сайты, веб-сервисы и внутренние системы для бизнеса.</p>
+            <a href="#projects" className="mt-5 inline-block text-lg text-ink-foreground underline underline-offset-4 md:text-xl">Смотреть проекты</a>
           </div>
         </div>
         <div className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[14%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]">
