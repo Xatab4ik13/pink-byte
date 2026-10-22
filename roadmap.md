@@ -9,4 +9,4 @@
 - [x] Replace top-down lids with smooth eye compression into a horizontal strip and verify intermediate frames.
 - [x] Replace repetitive blinking with a 15-second curiosity cycle and verify its intermediate states.
 - [x] Replace squint with a smooth left/right gaze and centered blink in a 15-second loop.
-- [x] Eliminate old eye shadows and verify gaze, closed eyes and mobile layout.
+- [x] Eliminate old eye shadows and verify gaze, closed eyes and mobile layout.- [x] Speed up the left/right glances into quick saccades and verify move timings in the browser.
