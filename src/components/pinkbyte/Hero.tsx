@@ -98,7 +98,7 @@ export function Hero() {
               src={eye.src}
               alt=""
               aria-hidden="true"
-              className="pb-eye"
+              className={`pb-eye ${eye.src === robotEyeLeft.url ? "pb-eye-curious" : "pb-eye-attentive"}`}
               style={{ left: eye.left, top: eye.top, width: eye.width, height: eye.height }}
             />
           ))}
