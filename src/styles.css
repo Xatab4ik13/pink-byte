@@ -185,13 +185,11 @@
   66%, 100% { transform: translate(0, 0); }
 }
 
-/* 10.5–13.2s blink: soft close, fully dark hold, slightly slower opening. */
+/* A quick continuous blink: 180ms down to a slit, 270ms back, no dark hold. */
 @keyframes pbeyeblink {
-  0%, 70% { transform: scaleY(1); opacity: 1; filter: brightness(1); }
-  74% { transform: scaleY(0.48); opacity: 1; filter: brightness(0.9); }
-  78%, 80% { transform: scaleY(0); opacity: 0; filter: brightness(0.8); }
-  84% { transform: scaleY(0.42); opacity: 1; filter: brightness(0.9); }
-  88%, 100% { transform: scaleY(1); opacity: 1; filter: brightness(1); }
+  0%, 73% { transform: scaleY(1); }
+  74.2% { transform: scaleY(0.12); }
+  76%, 100% { transform: scaleY(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
