@@ -12,3 +12,5 @@
 - [x] Eliminate old eye shadows and verify gaze, closed eyes and mobile layout.
 - [x] Speed up the left/right glances into quick saccades and verify move timings in the browser.
 - [x] Shorten the loop to 5 seconds: left, right, center, blink, then repeat, and verify in the browser.
+- [x] Increase the dark hero height by 25–30%, remove the header divider, match reference navigation and restore text above the robot.
+- [x] Verify desktop and mobile layout without changing eye animation.
