@@ -11,3 +11,4 @@
 - [x] Replace squint with a smooth left/right gaze and centered blink in a 15-second loop.
 - [x] Eliminate old eye shadows and verify gaze, closed eyes and mobile layout.
 - [x] Speed up the left/right glances into quick saccades and verify move timings in the browser.
+- [x] Shorten the loop to 5 seconds: left, right, center, blink, then repeat, and verify in the browser.
