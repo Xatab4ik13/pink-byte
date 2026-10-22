@@ -7,16 +7,11 @@ import robotEyeLeft from "@/assets/robot-blink-eye-left.png.asset.json";
 import robotEyeRight from "@/assets/robot-blink-eye-right.png.asset.json";
 import { Logo, NAV } from "./primitives";
 
-/* Тёмная панель убирает блик на лице; её копии работают как веки и плавно
-   закрывают глаза сверху вниз. Корпус робота остаётся неизменным. */
+/* Глаза сжимаются к центру поверх восстановленной панели.
+   Корпус робота остаётся неизменным. */
 const EYES = [
   { src: robotEyeLeft.url, left: "39%", top: "36.4269%", width: "14%", height: "20.4176%" },
   { src: robotEyeRight.url, left: "49.7778%", top: "33.0626%", width: "14.1111%", height: "20.7657%" },
-];
-
-const LIDS = [
-  { top: "35.4%", right: "46%", left: "38%", open: "64.6%", closed: "42.2%" },
-  { top: "32.1%", right: "35.1%", left: "48.8%", open: "67.9%", closed: "45.2%" },
 ];
 
 function Header() {
@@ -115,22 +110,6 @@ export function Hero() {
             height={862}
             className="pb-glow"
           />
-          {LIDS.map((lid) => (
-            <img
-              key={lid.left}
-              src={robotDarkVisor.url}
-              alt=""
-              aria-hidden="true"
-              className="pb-lid"
-              style={{
-                "--lid-top": lid.top,
-                "--lid-right": lid.right,
-                "--lid-left": lid.left,
-                "--lid-open": lid.open,
-                "--lid-closed": lid.closed,
-              } as React.CSSProperties}
-            />
-          ))}
         </div>
       </section>
     </div>
