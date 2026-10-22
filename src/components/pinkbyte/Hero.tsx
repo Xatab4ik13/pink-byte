@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import robotLean from "@/assets/robot-lean.png.asset.json";
+import robotGlow from "@/assets/robot-glow.png.asset.json";
 import { Logo, NAV, btn } from "./primitives";
+
+/* Свечение и веки — отдельные слои над исходной картинкой робота: сам робот не
+   меняется, оживает только свет глаз. Координаты — в процентах от размера картинки. */
+const EYE_LIDS = [
+  { left: "56.77%", top: "43.32%", size: ["8.4%", "19.1%"] },
+  { left: "46.03%", top: "46.50%", size: ["8.2%", "18.6%"] },
+];
 
 function Header() {
   const [open, setOpen] = useState(false);
@@ -82,14 +90,31 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <img
-          src={robotLean.url}
-          alt="Хромированный робот Pink Byte облокотился на край экрана"
-          width={900}
-          height={862}
-          fetchPriority="high"
-          className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[14%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]"
-        />
+        <div className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[14%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]">
+          <img
+            src={robotLean.url}
+            alt="Хромированный робот Pink Byte облокотился на край экрана"
+            width={900}
+            height={862}
+            fetchPriority="high"
+            className="block h-auto w-full"
+          />
+          <img
+            src={robotGlow.url}
+            alt=""
+            aria-hidden="true"
+            width={900}
+            height={862}
+            className="pb-glow"
+          />
+          {EYE_LIDS.map((lid) => (
+            <span
+              key={lid.left}
+              className="pb-lid"
+              style={{ left: lid.left, top: lid.top, width: lid.size[0], height: lid.size[1] }}
+            />
+          ))}
+        </div>
       </section>
     </div>
   );
