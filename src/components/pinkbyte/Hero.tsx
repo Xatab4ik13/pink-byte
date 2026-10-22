@@ -64,7 +64,7 @@ export function Hero() {
       <section className="container-pb relative pb-40 pt-8 md:pb-14 md:pt-10">
         <div className="grid gap-10 lg:grid-cols-[1fr_300px] lg:gap-8">
           <div>
-            <h1 className="display text-[clamp(2.6rem,8.2vw,7.5rem)]">
+            <h1 className="display text-[clamp(2.6rem,7.5vw,7rem)]">
               <span className="block">Ваши идеи.</span>
               <span className="block pl-[0.9em] sm:pl-[1.55em]">Наш код.</span>
               <span className="block text-primary">Новый продукт.</span>
