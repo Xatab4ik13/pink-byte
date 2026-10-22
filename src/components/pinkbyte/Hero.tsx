@@ -61,7 +61,7 @@ export function Hero() {
   return (
     <div id="top" className="relative z-10 bg-ink text-ink-foreground">
       <Header />
-      <section className="container-pb relative pb-40 pt-8 sm:pb-48 md:pt-10 lg:pb-14">
+      <section className="container-pb relative pb-40 pt-8 md:pb-14 md:pt-10">
         <div className="grid gap-10 lg:grid-cols-[1fr_300px] lg:gap-8">
           <div>
             <p className="mb-5 text-[11px] font-semibold tracking-[0.35em] text-ink-muted md:text-xs">
