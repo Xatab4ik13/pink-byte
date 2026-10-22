@@ -31,7 +31,7 @@ export function Services() {
   const onKey = (e: React.KeyboardEvent, i: number) => {
     const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
     if (!d) return;
-    const next = TABS[(i + d + TABS.length) % TABS.length];
+    const next = TABS[(i + d + TABS.length) % TABS.length]!;
     setActive(next.id);
     document.getElementById(`tab-${next.id}`)?.focus();
   };

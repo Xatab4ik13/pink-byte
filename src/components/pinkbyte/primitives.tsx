@@ -51,8 +51,8 @@ export function Reveal({ children, className, as: Tag = "div" }: { children: Rea
     if (!el) return;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
-          el.dataset.visible = "true";
+        if (e?.isIntersecting) {
+          el.dataset["visible"] = "true";
           io.disconnect();
         }
       },
