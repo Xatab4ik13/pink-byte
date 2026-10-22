@@ -174,6 +174,7 @@
   position: absolute;
   pointer-events: none;
   transform-origin: 50% 50%;
+  mask-image: radial-gradient(ellipse 48% 50% at 50% 50%, var(--graphite) 58%, transparent 100%);
   animation: pbblink 13.7s ease-in-out infinite;
 }
 
@@ -190,7 +191,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  clip-path: polygon(39% 34%, 59% 29%, 65% 51%, 44% 58%);
+  mask-image: radial-gradient(ellipse 7% 11% at 46.03% 46.5%, var(--graphite) 40%, transparent 100%), radial-gradient(ellipse 7% 11% at 56.77% 43.32%, var(--graphite) 40%, transparent 100%);
   animation: pbglow 5.6s ease-in-out infinite alternate;
 }
 
