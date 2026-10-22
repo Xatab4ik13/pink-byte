@@ -167,7 +167,6 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  animation: pbblinkpanel 13.7s linear infinite;
 }
 
 @utility pb-eye {
@@ -175,14 +174,16 @@
   pointer-events: none;
   transform-origin: 50% 50%;
   mask-image: radial-gradient(ellipse 48% 50% at 50% 50%, var(--graphite) 58%, transparent 100%);
-  animation: pbblink 13.7s ease-in-out infinite;
 }
 
-@utility pb-glow-blink {
+@utility pb-lid {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  animation: pbblinklight 13.7s ease-in-out infinite;
+  clip-path: inset(var(--lid-top) var(--lid-right) var(--lid-open) var(--lid-left));
+  animation: pbeyelid 9s infinite;
 }
 
 @utility pb-glow {
@@ -200,23 +201,20 @@
   to { opacity: 0.55; }
 }
 
-@keyframes pbblink {
-  0%, 20%, 27%, 63%, 70%, 100% { transform: scaleY(1); opacity: 1; }
-  22.5%, 24.5%, 65.5%, 67.5% { transform: scaleY(0.015); opacity: 0; }
-}
-
-@keyframes pbblinklight {
-  0%, 20%, 27%, 63%, 70%, 100% { opacity: 1; }
-  22.5%, 24.5%, 65.5%, 67.5% { opacity: 0; }
-}
-
-@keyframes pbblinkpanel {
-  0%, 20%, 27%, 63%, 70%, 100% { opacity: 0; }
-  20.01%, 26.99%, 63.01%, 69.99% { opacity: 1; }
+/* One complete blink: 1.1s close, 0.6s closed, 1.3s open. */
+@keyframes pbeyelid {
+  0%, 55% {
+    clip-path: inset(var(--lid-top) var(--lid-right) var(--lid-open) var(--lid-left));
+    animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1);
+  }
+  67.2%, 73.9% {
+    clip-path: inset(var(--lid-top) var(--lid-right) var(--lid-closed) var(--lid-left));
+    animation-timing-function: cubic-bezier(0.35, 0, 0.2, 1);
+  }
+  88.3%, 100% { clip-path: inset(var(--lid-top) var(--lid-right) var(--lid-open) var(--lid-left)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pb-eye, .pb-eye-panel, .pb-glow, .pb-glow-blink { animation: none !important; }
-  .pb-eye-panel { opacity: 0; }
+  .pb-lid, .pb-glow { animation: none !important; }
   .pb-glow { opacity: 0.1; }
 }
