@@ -14,3 +14,5 @@
 - [x] Shorten the loop to 5 seconds: left, right, center, blink, then repeat, and verify in the browser.
 - [x] Increase the dark hero height by 25–30%, remove the header divider, match reference navigation and restore text above the robot.
 - [x] Verify desktop and mobile layout without changing eye animation.
+- [ ] Match the latest reference headline and right-hand copy, add the curved arrow, and make robot sizing grow with screen width.
+- [ ] Verify the hero at wide desktop, standard desktop and mobile widths, preserving the eye animation.
