@@ -177,12 +177,12 @@
   animation: pbeyeblink 15s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
-/* Pauses give each glance intent. Translation follows the tilted visor plane. */
+/* Glances are quick saccades (~0.6s) with short holds; the visor plane stays fixed. */
 @keyframes pbgaze {
-  0%, 10% { transform: translate(0, 0); }
-  22%, 32% { transform: translate(-2.2%, 0.65%); }
-  46%, 56% { transform: translate(2.2%, -0.65%); }
-  66%, 100% { transform: translate(0, 0); }
+  0%, 6% { transform: translate(0, 0); }
+  10%, 18% { transform: translate(-2.2%, 0.65%); }
+  22%, 30% { transform: translate(2.2%, -0.65%); }
+  34%, 100% { transform: translate(0, 0); }
 }
 
 /* A quick continuous blink: 180ms down to a slit, 270ms back, no dark hold. */
