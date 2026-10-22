@@ -3,3 +3,6 @@
 - [x] Verify open/closed eye states and the page in the browser.
 - [x] Slow and smooth the blink; remove unwanted glow in the left corner of the face.
 - [x] Verify the revised blink and glow in the browser.
+- [x] Replace fading with a smooth three-second top-down eyelid.
+- [x] Remove the gray-white upper-left visor reflection, preserving chrome.
+- [x] Verify intermediate eyelid frames and the finished face.
