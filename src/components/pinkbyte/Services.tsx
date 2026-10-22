@@ -85,7 +85,7 @@ export function Services() {
             width={1536}
             height={1024}
             loading="lazy"
-            className="block w-full mix-blend-multiply lg:-mr-10 lg:w-[110%] lg:max-w-none"
+            className="block w-full lg:-mr-10 lg:w-[110%] lg:max-w-none"
           />
         </div>
       </Reveal>

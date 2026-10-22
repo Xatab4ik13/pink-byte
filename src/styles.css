@@ -74,7 +74,7 @@
   --lime: oklch(0.955 0.19 116);
   --background: var(--paper);
   --foreground: var(--graphite);
-  --card: oklch(0.955 0.003 106);
+  --card: oklch(0.959 0.002 84);
   --card-foreground: var(--graphite);
   --popover: var(--paper);
   --popover-foreground: var(--graphite);
