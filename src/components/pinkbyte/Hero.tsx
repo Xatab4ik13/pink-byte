@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import robotLean from "@/assets/robot-lean.png.asset.json";
 import robotGlow from "@/assets/robot-glow.png.asset.json";
-import { Logo, NAV, btn } from "./primitives";
+import { Logo, NAV } from "./primitives";
 
 /* Свечение и веки — отдельные слои над исходной картинкой робота: сам робот не
    меняется, оживает только свет глаз. Координаты — в процентах от размера картинки. */
@@ -77,17 +77,6 @@ export function Hero() {
               <span className="block pl-[0.9em] sm:pl-[1.55em]">Наш код.</span>
               <span className="block text-primary">Новый продукт.</span>
             </h1>
-          </div>
-          <div className="flex flex-col items-start gap-6 lg:pt-16">
-            <p className="max-w-xs text-lg leading-snug text-ink-foreground/90">
-              Проектируем и разрабатываем цифровые продукты для бизнеса.
-            </p>
-            <a href="#contact" className={btn.lime}>
-              Обсудить задачу
-            </a>
-            <a href="#projects" className="border-b border-ink-muted pb-1 text-[15px] text-ink-foreground/90 transition-colors hover:border-primary">
-              Смотреть проекты
-            </a>
           </div>
         </div>
         <div className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[14%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]">

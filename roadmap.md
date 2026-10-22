@@ -1,0 +1,3 @@
+- [ ] Remove the complete right-hand hero text and links, keeping the headline and robot placement.
+- [ ] Remove the rectangular glow background and refine eye-only blinking.
+- [ ] Verify open/closed eye states and the page in the browser.
