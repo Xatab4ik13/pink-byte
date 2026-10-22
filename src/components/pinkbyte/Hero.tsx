@@ -82,7 +82,7 @@ export function Hero() {
       <section className="container-pb relative pb-44 pt-12 md:pb-[10.75rem] md:pt-16">
         <div className="grid gap-10 lg:grid-cols-[1fr_340px] lg:gap-8">
           <div>
-            <h1 className="display text-[clamp(2.6rem,7.5vw,7rem)]">
+            <h1 className="display text-[clamp(2.6rem,7.5vw,7rem)] lg:text-[96px] xl:text-[112px] 2xl:text-[128px]">
               <span className="block">Сложное</span>
               <span className="block pl-[1.8em] sm:pl-[2em]">делаем</span>
               <span className="block text-primary">удобным.</span>
@@ -93,7 +93,7 @@ export function Hero() {
             <a href="#projects" className="mt-5 inline-block text-lg text-ink-foreground underline underline-offset-4 md:text-xl">Смотреть проекты</a>
           </div>
         </div>
-        <div className="pointer-events-none absolute bottom-0 right-4 w-[clamp(200px,24vw,240px)] translate-y-[14%] lg:right-2 lg:w-[clamp(270px,25vw,360px)] xl:-right-4">
+        <div className="pointer-events-none absolute bottom-0 right-4 w-[clamp(200px,24vw,240px)] translate-y-[14%] lg:w-[clamp(270px,25vw,360px)]">
           <img
             src={robotLean.url}
             alt="Хромированный робот Pink Byte облокотился на край экрана"
