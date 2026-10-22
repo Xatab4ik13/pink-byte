@@ -161,40 +161,34 @@
 }
 
 /*
- * Живые глаза робота: слой глаз лежит поверх корпуса и моргает,
- * медленно «дышит» свечением и изредка отводит взгляд.
+ * Живые глаза робота: над исходной картинкой лежат слой свечения (он «дышит»)
+ * и два мягких «века», которые на мгновение гасят свет — это и есть моргание.
  */
-@utility pb-eyes {
+@utility pb-glow {
   position: absolute;
-  pointer-events: none;
-  animation: pbgaze 27s ease-in-out infinite;
-}
-
-@utility pb-eyes-img {
-  display: block;
+  inset: 0;
   width: 100%;
   height: 100%;
-  transform-origin: 50% 50%;
-  animation: pbblink 13.7s linear infinite, pbglow 5.6s ease-in-out infinite alternate;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: pbglow 5.6s ease-in-out infinite alternate;
 }
 
-@keyframes pbgaze {
-  0%, 58%, 100% { transform: translate3d(0, 0, 0); }
-  66%, 80% { transform: translate3d(-5%, 3%, 0); }
-  88% { transform: translate3d(0, 0, 0); }
-}
-
-@keyframes pbblink {
-  0%, 21.9%, 23.5%, 63.4%, 66.4%, 100% { transform: scaleY(1); }
-  22.6%, 64.3%, 65.4% { transform: scaleY(0.08); }
-  64.9% { transform: scaleY(1); }
+@utility pb-lid {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background: radial-gradient(closest-side, oklch(0 0 0) 0%, oklch(0 0 0) 42%, oklch(0 0 0 / 0) 100%);
+  animation: pblid 13.7s linear infinite;
 }
 
 @keyframes pbglow {
-  from {
-    filter: brightness(0.96) drop-shadow(0 0 1px color-mix(in oklab, var(--lime) 40%, transparent));
-  }
-  to {
-    filter: brightness(1.22) drop-shadow(0 0 3px color-mix(in oklab, var(--lime) 60%, transparent));
-  }
+  from { opacity: 0.1; }
+  to { opacity: 0.55; }
+}
+
+@keyframes pblid {
+  0%, 21.9%, 23.5%, 63.4%, 66.4%, 100% { opacity: 0; }
+  22.6%, 64.3%, 65.4% { opacity: 0.96; }
+  64.9% { opacity: 0; }
 }

@@ -1,32 +1,14 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import robotBase from "@/assets/robot-base.png.asset.json";
-import robotEyesA from "@/assets/robot-eyes-a.png.asset.json";
-import robotEyesB from "@/assets/robot-eyes-b.png.asset.json";
+import robotLean from "@/assets/robot-lean.png.asset.json";
+import robotGlow from "@/assets/robot-glow.png.asset.json";
 import { Logo, NAV, btn } from "./primitives";
 
-/* Глаза робота вынесены в отдельные слои над корпусом — так их можно анимировать.
-   Координаты заданы в процентах от размера корпуса, поэтому глаза остаются на месте
-   при любой ширине экрана. */
-const ROBOT_EYES = [
-  {
-    src: robotEyesA.url,
-    width: 210,
-    height: 265,
-    left: "48.73%",
-    top: "26.28%",
-    size: ["17.83%", "28.31%"],
-    origin: "50.5% 57.8%",
-  },
-  {
-    src: robotEyesB.url,
-    width: 192,
-    height: 300,
-    left: "38.37%",
-    top: "30.24%",
-    size: ["16.30%", "32.05%"],
-    origin: "51.3% 50.9%",
-  },
+/* Свечение и веки — отдельные слои над исходной картинкой робота: сам робот не
+   меняется, оживает только свет глаз. Координаты — в процентах от размера картинки. */
+const EYE_LIDS = [
+  { left: "56.77%", top: "43.32%", size: ["13.1%", "29.2%"] },
+  { left: "46.03%", top: "46.50%", size: ["12.7%", "28.3%"] },
 ];
 
 function Header() {
@@ -108,31 +90,29 @@ export function Hero() {
             </a>
           </div>
         </div>
-        <div className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[4.5%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]">
+        <div className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[14%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]">
           <img
-            src={robotBase.url}
+            src={robotLean.url}
             alt="Хромированный робот Pink Byte облокотился на край экрана"
-            width={1178}
-            height={936}
+            width={900}
+            height={862}
             fetchPriority="high"
             className="block h-auto w-full"
           />
-          {ROBOT_EYES.map((eye) => (
+          <img
+            src={robotGlow.url}
+            alt=""
+            aria-hidden="true"
+            width={900}
+            height={862}
+            className="pb-glow"
+          />
+          {EYE_LIDS.map((lid) => (
             <span
-              key={eye.src}
-              className="pb-eyes"
-              style={{ left: eye.left, top: eye.top, width: eye.size[0], height: eye.size[1] }}
-            >
-              <img
-                src={eye.src}
-                alt=""
-                aria-hidden="true"
-                width={eye.width}
-                height={eye.height}
-                className="pb-eyes-img"
-                style={{ transformOrigin: eye.origin }}
-              />
-            </span>
+              key={lid.left}
+              className="pb-lid"
+              style={{ left: lid.left, top: lid.top, width: lid.size[0], height: lid.size[1] }}
+            />
           ))}
         </div>
       </section>
