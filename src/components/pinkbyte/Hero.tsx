@@ -1,0 +1,99 @@
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import robotLean from "@/assets/robot-lean.png.asset.json";
+import { Logo, NAV, btn } from "./primitives";
+
+function Header() {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  return (
+    <header className="container-pb relative z-30">
+      <div className="flex items-center justify-between border-b border-ink-border py-5">
+        <a href="#top" aria-label="Pink Byte — на главную">
+          <Logo className="w-36 md:w-40" />
+        </a>
+        <nav aria-label="Основная навигация" className="hidden md:block">
+          <ul className="flex gap-10 text-[15px] text-ink-foreground">
+            {NAV.map((n) => (
+              <li key={n.href}>
+                <a href={n.href} className="opacity-85 transition-opacity hover:opacity-100">
+                  {n.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <button
+          type="button"
+          className="md:hidden rounded-full p-2 text-ink-foreground"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? "Закрыть меню" : "Открыть меню"}
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X className="size-6" /> : <Menu className="size-6" />}
+        </button>
+      </div>
+      {open && (
+        <nav id="mobile-menu" aria-label="Мобильная навигация" className="tab-fade absolute inset-x-5 top-full mt-2 rounded-3xl border border-ink-border bg-ink p-3 md:hidden">
+          <ul>
+            {NAV.map((n) => (
+              <li key={n.href}>
+                <a href={n.href} onClick={() => setOpen(false)} className="block rounded-2xl px-4 py-3 text-lg text-ink-foreground hover:bg-ink-border">
+                  {n.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </header>
+  );
+}
+
+export function Hero() {
+  return (
+    <div id="top" className="relative z-10 bg-ink text-ink-foreground">
+      <Header />
+      <section className="container-pb relative pb-40 pt-8 md:pb-14 md:pt-10">
+        <div className="grid gap-10 lg:grid-cols-[1fr_300px] lg:gap-8">
+          <div>
+            <p className="mb-5 text-[11px] font-semibold tracking-[0.35em] text-ink-muted md:text-xs">
+              САЙТЫ · ВЕБ-СЕРВИСЫ · ИНТЕРФЕЙСЫ
+            </p>
+            <h1 className="display text-[clamp(3.4rem,11.5vw,10rem)]">
+              <span className="block">Сложное</span>
+              <span className="block pl-[0.9em] sm:pl-[1.55em]">делаем</span>
+              <span className="block text-primary">удобным.</span>
+            </h1>
+          </div>
+          <div className="flex flex-col items-start gap-6 lg:pt-16">
+            <p className="max-w-xs text-lg leading-snug text-ink-foreground/90">
+              Проектируем и разрабатываем цифровые продукты для бизнеса.
+            </p>
+            <a href="#contact" className={btn.lime}>
+              Обсудить задачу
+            </a>
+            <a href="#projects" className="border-b border-ink-muted pb-1 text-[15px] text-ink-foreground/90 transition-colors hover:border-primary">
+              Смотреть проекты
+            </a>
+          </div>
+        </div>
+        <img
+          src={robotLean.url}
+          alt="Хромированный робот Pink Byte облокотился на край экрана"
+          width={900}
+          height={862}
+          fetchPriority="high"
+          className="pointer-events-none absolute bottom-0 right-4 w-[200px] translate-y-[14%] sm:w-[240px] lg:right-2 lg:w-[250px] xl:-right-4 xl:w-[270px]"
+        />
+      </section>
+    </div>
+  );
+}
