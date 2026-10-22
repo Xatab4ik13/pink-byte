@@ -24,9 +24,10 @@ export function Projects() {
           loading="lazy"
           className="block w-full"
         />
-        <p className="absolute left-5 top-5 rounded-full bg-ink/70 px-3 py-1.5 text-[10px] font-semibold tracking-[0.3em] text-ink-foreground md:left-7 md:top-6">
+        <p className="hidden md:block absolute left-5 top-5 rounded-full bg-ink/70 px-3 py-1.5 text-[10px] font-semibold tracking-[0.3em] text-ink-foreground md:left-7 md:top-6">
           КОНЦЕПЦИЯ · ПЛАТФОРМА СООБЩЕСТВА
         </p>
+        <p className="px-5 pt-4 text-center text-[10px] font-semibold tracking-[0.3em] text-ink-muted md:hidden">КОНЦЕПЦИЯ · ПЛАТФОРМА СООБЩЕСТВА</p>
         <div className="flex justify-center p-4 md:absolute md:inset-x-0 md:bottom-6 md:p-0">
           <button type="button" onClick={() => dialog.current?.showModal()} className={btn.paper}>
             Смотреть кейс
