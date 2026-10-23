@@ -33,7 +33,7 @@ export function Projects() {
 
       <div className="relative mt-7 overflow-x-clip md:mt-9 [perspective:1600px]" role="region" aria-roledescription="карусель" aria-label="Проекты">
         <div
-          className="relative mx-auto aspect-[9/5] w-full touch-pan-y select-none [transform-style:preserve-3d]"
+          className="relative mx-auto aspect-[2/1] w-full touch-pan-y select-none [transform-style:preserve-3d]"
           onPointerDown={(e) => { startX.current = e.clientX; }}
           onPointerUp={(e) => {
             if (startX.current === null) return;
