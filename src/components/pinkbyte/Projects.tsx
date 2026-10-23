@@ -24,10 +24,7 @@ export function Projects() {
 
   return (
     <section id="projects" aria-labelledby="projects-title" className="mx-auto w-full max-w-[1560px] scroll-mt-6 px-5 pt-24 md:px-10 md:pt-28">
-      <Reveal className="relative text-center">
-        <svg aria-hidden="true" viewBox="0 0 210 120" className="absolute -top-14 right-0 h-14 w-24 text-primary md:-top-16 md:h-16 md:w-28" fill="none">
-          <path d="M205 17C139-5 55 20 20 104M15 77L20 108L43 93" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+      <Reveal className="text-center">
         <h2 id="projects-title" className="text-[36px] font-extrabold leading-[1.05] md:text-[56px] xl:text-[72px]">
           Проекты крупным планом.
         </h2>
