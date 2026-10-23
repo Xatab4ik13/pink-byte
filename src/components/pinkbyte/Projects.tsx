@@ -19,10 +19,10 @@ function ArcArrow({ dir, onClick }: { dir: "prev" | "next"; onClick: () => void 
       type="button"
       onClick={onClick}
       aria-label={dir === "prev" ? "Предыдущий проект" : "Следующий проект"}
-      className="absolute top-1/2 z-20 -translate-y-1/2 rounded-full p-2 text-primary transition-transform duration-300 hover:scale-110"
-      style={dir === "prev" ? { left: "0.5rem" } : { right: "0.5rem" }}
+      className="absolute top-1/2 z-30 -translate-y-1/2 rounded-full p-2 text-primary transition-transform duration-300 hover:scale-110"
+      style={dir === "prev" ? { left: "max(0.5rem, calc(50% - 560px))" } : { right: "max(0.5rem, calc(50% - 560px))" }}
     >
-      <svg viewBox="0 0 210 120" fill="none" className="h-auto w-16 md:w-24 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" style={dir === "next" ? { transform: "scaleX(-1)" } : undefined}>
+      <svg viewBox="0 0 210 120" fill="none" className="h-auto w-16 md:w-28 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" style={dir === "next" ? { transform: "scaleX(-1)" } : undefined}>
         <path d="M205 17C139-5 55 20 20 104M15 77L20 108L43 93" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </button>
