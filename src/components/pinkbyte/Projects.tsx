@@ -24,7 +24,7 @@ export function Projects() {
   if (!cur) return null;
 
   return (
-    <section id="projects" aria-labelledby="projects-title" className="mx-auto w-full max-w-[1560px] scroll-mt-6 px-5 pt-24 md:px-10 md:pt-28">
+    <section id="projects" aria-labelledby="projects-title" className="container-pb scroll-mt-6 pt-24 md:pt-28">
       <Reveal className="text-center">
         <h2 id="projects-title" className="text-[36px] font-extrabold leading-[1.05] md:text-[56px] xl:text-[72px]">
           Проекты крупным планом.
@@ -33,7 +33,7 @@ export function Projects() {
 
       <div className="relative mt-7 overflow-x-clip md:mt-9 [perspective:1600px]" role="region" aria-roledescription="карусель" aria-label="Проекты">
         <div
-          className="relative mx-auto aspect-[2/1] w-full max-w-[1480px] touch-pan-y select-none [transform-style:preserve-3d]"
+          className="relative mx-auto aspect-[9/5] w-full touch-pan-y select-none [transform-style:preserve-3d]"
           onPointerDown={(e) => { startX.current = e.clientX; }}
           onPointerUp={(e) => {
             if (startX.current === null) return;
@@ -70,7 +70,7 @@ export function Projects() {
           })}
         </div>
 
-        <div className="mx-auto mt-5 flex w-full max-w-[1480px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-5 flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div aria-live="polite" className="min-h-[76px] md:min-h-[72px]">
             <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
             <p className="mt-1 text-muted-foreground">{cur.desc}</p>
