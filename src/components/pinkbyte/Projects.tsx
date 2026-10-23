@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import citymebel from "@/assets/slide-citymebel.webp.asset.json";
 import nikitsky from "@/assets/slide-nikitsky.webp.asset.json";
 import chinar from "@/assets/slide-chinar.webp.asset.json";
@@ -7,27 +7,11 @@ import gold from "@/assets/slide-gold.webp.asset.json";
 import { Reveal } from "./primitives";
 
 const SLIDES = [
-  { src: citymebel.url, title: "CityMebel" },
-  { src: nikitsky.url, title: "Никитский, 6" },
-  { src: chinar.url, title: "CHINAR" },
-  { src: gold.url, title: "Проект" },
+  { src: citymebel.url, title: "CityMebel", desc: "Интернет-витрина мебельной фабрики", scope: "Дизайн · Разработка" },
+  { src: nikitsky.url, title: "Никитский, 6", desc: "Многостраничный сайт клубного дома", scope: "Дизайн · Разработка" },
+  { src: chinar.url, title: "CHINAR", desc: "Сайт с расписанием и фирменным талисманом", scope: "Дизайн · Разработка" },
+  { src: gold.url, title: "Проект", desc: "Адаптивный сайт для компьютера и смартфона", scope: "Дизайн · Разработка" },
 ];
-
-function ArcArrow({ dir, onClick }: { dir: "prev" | "next"; onClick: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={dir === "prev" ? "Предыдущий проект" : "Следующий проект"}
-      className="absolute top-1/2 z-30 -translate-y-1/2 rounded-full p-1 text-primary transition-transform duration-300 hover:scale-110"
-      style={dir === "prev" ? { left: "calc(-1 * clamp(0px, 10vw - 6rem, 13rem))" } : { right: "calc(-1 * clamp(0px, 10vw - 6rem, 13rem))" }}
-    >
-      <svg viewBox="0 0 210 120" fill="none" className="h-auto w-20 md:w-32 xl:w-40 drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]" style={dir === "next" ? { transform: "scaleX(-1)" } : undefined}>
-        <path d="M205 17C139-5 55 20 20 104M15 77L20 108L43 93" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </button>
-  );
-}
 
 export function Projects() {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -39,13 +23,13 @@ export function Projects() {
   return (
     <section id="projects" aria-labelledby="projects-title" className="container-pb scroll-mt-6 pt-24 md:pt-28">
       <Reveal className="text-center">
-        <h2 id="projects-title" className="display text-[clamp(2.6rem,7.5vw,7rem)]">
+        <h2 id="projects-title" className="display text-[clamp(2.2rem,6vw,5.6rem)]">
           Проекты крупным планом.
         </h2>
       </Reveal>
 
       <Reveal className="relative mt-12 [perspective:1800px]">
-        <div className="relative mx-auto aspect-[16/9] w-full max-w-[1200px] [transform-style:preserve-3d]">
+        <div className="relative mx-auto aspect-[16/9] w-full max-w-[1480px] [transform-style:preserve-3d]">
           {SLIDES.map((s, k) => {
             let off = k - i;
             if (off > n / 2) off -= n;
@@ -55,7 +39,7 @@ export function Projects() {
               <div
                 key={s.src}
                 aria-hidden={off !== 0}
-                className="absolute inset-0 overflow-hidden rounded-[2rem] bg-ink shadow-showcase transition-all duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)]"
+                className="absolute inset-0 overflow-hidden rounded-[2rem] bg-ink shadow-md transition-all duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)]"
                 style={{
                   transform: `translateX(${off * 18}%) translateZ(${-abs * 200}px) rotateY(${-off * 22}deg)`,
                   opacity: abs === 0 ? 1 : 0,
@@ -67,20 +51,33 @@ export function Projects() {
               </div>
             );
           })}
-          <div className="absolute bottom-6 right-6 z-20 md:bottom-9 md:right-9">
-            <button
-              type="button"
-              onClick={() => dialog.current?.showModal()}
-              className="group inline-flex items-center gap-3 rounded-full border border-ink-foreground/25 bg-ink/85 py-2.5 pl-7 pr-2.5 text-sm font-semibold text-ink-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-ink-foreground/45 hover:bg-ink"
-            >
+        </div>
+
+        <div className="mx-auto mt-6 flex w-full max-w-[1480px] flex-col gap-5 md:flex-row md:items-center md:justify-between">
+          <div aria-live="polite">
+            <p className="text-2xl font-bold tracking-tight md:text-3xl">{cur.title}</p>
+            <p className="mt-1 text-muted-foreground">{cur.desc}</p>
+            <p className="mt-2 text-sm font-medium text-muted-foreground">{cur.scope}</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="mr-2 flex items-center gap-1.5" aria-label={`Проект ${i + 1} из ${n}`}>
+              {SLIDES.map((s, k) => (
+                <button key={s.src} type="button" aria-label={s.title} aria-current={k === i} onClick={() => setI(k)} className={`h-1.5 rounded-full transition-all duration-300 ${k === i ? "w-8 bg-foreground" : "w-3 bg-foreground/25 hover:bg-foreground/50"}`} />
+              ))}
+            </div>
+            <button type="button" aria-label="Предыдущий проект" onClick={() => go(-1)} className="grid size-11 place-items-center rounded-full border border-foreground/20 transition-colors hover:border-foreground/60">
+              <ArrowLeft className="size-4" />
+            </button>
+            <button type="button" aria-label="Следующий проект" onClick={() => go(1)} className="grid size-11 place-items-center rounded-full border border-foreground/20 transition-colors hover:border-foreground/60">
+              <ArrowRight className="size-4" />
+            </button>
+            <button type="button" onClick={() => dialog.current?.showModal()} className="group inline-flex items-center gap-3 rounded-full bg-foreground py-2 pl-6 pr-2 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5">
               Смотреть проект
-              <span className="grid size-10 place-items-center rounded-full bg-ink-foreground/15 text-ink-foreground transition-transform duration-300 group-hover:rotate-[-45deg]">
+              <span className="grid size-8 place-items-center rounded-full bg-background/15 transition-transform duration-300 group-hover:rotate-[-45deg]">
                 <ArrowRight className="size-4" />
               </span>
             </button>
           </div>
-          <ArcArrow dir="prev" onClick={() => go(-1)} />
-          <ArcArrow dir="next" onClick={() => go(1)} />
         </div>
       </Reveal>
 
