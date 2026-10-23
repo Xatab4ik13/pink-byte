@@ -20,3 +20,4 @@
 - [x] Verify Journal navigation on desktop and mobile.
 - [x] Enlarge the project slide and arc arrows, and make the "Смотреть проект" button dark without lime.
 - [x] Match the approved project reference and verify smooth rapid switching, captions and project opening.
+- [x] Remove the second curved arrow above the projects heading, keeping only the hero arrow.
