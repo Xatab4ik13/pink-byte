@@ -53,9 +53,12 @@ export function Projects() {
               <div
                 key={s.src}
                 aria-hidden={off !== 0}
-                className="absolute inset-0 overflow-hidden rounded-[1.25rem] bg-ink [backface-visibility:hidden] will-change-[transform,opacity] transition-[transform,opacity] duration-[400ms] ease-[cubic-bezier(0.22,0.8,0.2,1)] motion-reduce:transition-none"
+                className="absolute inset-0 overflow-hidden rounded-[1.25rem] bg-ink [backface-visibility:hidden] will-change-[transform,opacity] motion-reduce:!transition-none"
                 style={{
-                  transform: abs === 0 ? "translate3d(0,0,0) rotateY(0deg)" : `translate3d(${sign * 10}%,0,-140px) rotateY(${-sign * 18}deg)`,
+                  transition: abs === 0
+                    ? "transform 900ms cubic-bezier(0.16,1,0.3,1), opacity 600ms cubic-bezier(0.33,1,0.68,1)"
+                    : "transform 900ms cubic-bezier(0.16,1,0.3,1), opacity 450ms cubic-bezier(0.32,0,0.67,0)",
+                  transform: abs === 0 ? "translate3d(0,0,0) rotateY(0deg) scale(1)" : `translate3d(${sign * 14}%,0,-180px) rotateY(${-sign * 16}deg) scale(0.96)`,
                   opacity: abs === 0 ? 1 : 0,
                   zIndex: 10 - abs,
                   pointerEvents: off === 0 ? "auto" : "none",
