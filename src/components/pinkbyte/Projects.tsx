@@ -1,64 +1,93 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { X } from "lucide-react";
-import motohub from "@/assets/motohub.jpg";
+import citymebel from "@/assets/slide-citymebel.webp.asset.json";
+import nikitsky from "@/assets/slide-nikitsky.webp.asset.json";
+import chinar from "@/assets/slide-chinar.webp.asset.json";
+import gold from "@/assets/slide-gold.webp.asset.json";
 import { Reveal, btn } from "./primitives";
+
+const SLIDES = [
+  { src: citymebel.url, title: "CityMebel" },
+  { src: nikitsky.url, title: "Никитский, 6" },
+  { src: chinar.url, title: "CHINAR" },
+  { src: gold.url, title: "Проект" },
+];
+
+function ArcArrow({ dir, onClick }: { dir: "prev" | "next"; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={dir === "prev" ? "Предыдущий проект" : "Следующий проект"}
+      className="absolute top-1/2 z-30 -translate-y-1/2 rounded-full p-2 text-primary transition-transform duration-300 hover:scale-110"
+      style={dir === "prev" ? { left: "max(0.5rem, calc(50% - 560px))" } : { right: "max(0.5rem, calc(50% - 560px))" }}
+    >
+      <svg viewBox="0 0 210 120" fill="none" className="h-auto w-16 md:w-28 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" style={dir === "next" ? { transform: "scaleX(-1)" } : undefined}>
+        <path d="M205 17C139-5 55 20 20 104M15 77L20 108L43 93" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </button>
+  );
+}
 
 export function Projects() {
   const dialog = useRef<HTMLDialogElement>(null);
+  const [i, setI] = useState(0);
+  const n = SLIDES.length;
+  const go = (d: number) => setI((v) => (v + d + n) % n);
+  const cur = SLIDES[i]!;
 
   return (
     <section id="projects" aria-labelledby="projects-title" className="container-pb scroll-mt-6 pt-24 md:pt-28">
       <Reveal className="text-center">
-        <h2 id="projects-title" className="text-[clamp(2.2rem,5vw,3.6rem)] font-semibold tracking-[-0.04em]">
+        <h2 id="projects-title" className="display text-[clamp(2.6rem,7.5vw,7rem)]">
           Проекты крупным планом.
         </h2>
-        <p className="mt-2 text-muted-foreground">Демонстрационная подача портфолио</p>
       </Reveal>
 
-      <Reveal className="relative mt-10 overflow-hidden rounded-[2rem] bg-ink shadow-showcase">
-        <img
-          src={motohub}
-          alt="Концепция MOTOHUB: десктопный интерфейс сообщества и мобильный экран события"
-          width={1920}
-          height={1088}
-          loading="lazy"
-          className="block w-full"
-        />
-        <p className="hidden md:block absolute left-5 top-5 rounded-full bg-ink/70 px-3 py-1.5 text-[10px] font-semibold tracking-[0.3em] text-ink-foreground md:left-7 md:top-6">
-          КОНЦЕПЦИЯ · ПЛАТФОРМА СООБЩЕСТВА
-        </p>
-        <p className="px-5 pt-4 text-center text-[10px] font-semibold tracking-[0.3em] text-ink-muted md:hidden">КОНЦЕПЦИЯ · ПЛАТФОРМА СООБЩЕСТВА</p>
-        <div className="flex justify-center p-4 md:absolute md:inset-x-0 md:bottom-6 md:p-0">
-          <button type="button" onClick={() => dialog.current?.showModal()} className={btn.paper}>
-            Смотреть кейс
-          </button>
+      <Reveal className="relative mt-12 [perspective:1800px]">
+        <div className="relative mx-auto aspect-[16/9] w-full max-w-[1000px] [transform-style:preserve-3d]">
+          {SLIDES.map((s, k) => {
+            let off = k - i;
+            if (off > n / 2) off -= n;
+            if (off < -n / 2) off += n;
+            const abs = Math.abs(off);
+            return (
+              <div
+                key={s.src}
+                aria-hidden={off !== 0}
+                className="absolute inset-0 overflow-hidden rounded-[2rem] bg-ink shadow-showcase transition-all duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)]"
+                style={{
+                  transform: `translateX(${off * 42}%) translateZ(${-abs * 260}px) rotateY(${-off * 28}deg)`,
+                  opacity: abs > 1 ? 0 : abs === 1 ? 0.55 : 1,
+                  zIndex: 10 - abs,
+                  pointerEvents: off === 0 ? "auto" : "none",
+                }}
+              >
+                <img src={s.src} alt={`${s.title} — слайд проекта`} width={1600} height={900} loading={k === 0 ? "eager" : "lazy"} className="block h-full w-full object-cover" />
+              </div>
+            );
+          })}
+          <div className="absolute inset-x-0 bottom-5 z-20 flex justify-center md:bottom-8">
+            <button type="button" onClick={() => dialog.current?.showModal()} className={`${btn.lime} shadow-showcase`}>
+              Смотреть проект
+            </button>
+          </div>
         </div>
+        <ArcArrow dir="prev" onClick={() => go(-1)} />
+        <ArcArrow dir="next" onClick={() => go(1)} />
       </Reveal>
-      <p className="mt-4 text-center text-sm text-muted-foreground">Дизайн · Разработка · Личный кабинет</p>
 
       <dialog
         ref={dialog}
-        aria-labelledby="case-title"
+        aria-label={cur.title}
         onClick={(e) => e.target === dialog.current && dialog.current?.close()}
-        className="m-auto w-[min(1100px,94vw)] rounded-[1.75rem] bg-ink p-0 text-ink-foreground backdrop:bg-ink/80"
+        className="m-auto w-[min(1100px,94vw)] overflow-hidden rounded-[1.75rem] bg-ink p-0 text-ink-foreground backdrop:bg-ink/80"
       >
         <div className="relative">
-          <img src={motohub} alt="MOTOHUB — увеличенный вид концепции" width={1920} height={1088} className="block w-full" />
-          <button
-            type="button"
-            autoFocus
-            aria-label="Закрыть"
-            onClick={() => dialog.current?.close()}
-            className="absolute right-4 top-4 rounded-full bg-background p-2 text-foreground"
-          >
+          <img src={cur.src} alt={`${cur.title} — увеличенный вид`} width={1600} height={900} className="block w-full" />
+          <button type="button" autoFocus aria-label="Закрыть" onClick={() => dialog.current?.close()} className="absolute right-4 top-4 rounded-full bg-background p-2 text-foreground">
             <X className="size-5" />
           </button>
-        </div>
-        <div className="p-6 md:p-8">
-          <h3 id="case-title" className="text-2xl font-semibold tracking-tight">MOTOHUB</h3>
-          <p className="mt-2 max-w-2xl text-ink-muted">
-            MOTOHUB — концепция платформы сообщества. Объединяет участников, события и материалы клуба в одном интерфейсе.
-          </p>
         </div>
       </dialog>
     </section>
