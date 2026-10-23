@@ -16,5 +16,5 @@
 - [x] Verify desktop and mobile layout without changing eye animation.
 - [x] Match the latest reference headline and right-hand copy, add the curved arrow, and make robot sizing grow with screen width.
 - [x] Verify the hero at wide desktop, standard desktop and mobile widths, preserving the eye animation.
-- [ ] Match the requested menu order, include Contacts and add a Journal page without invented publications.
-- [ ] Verify Journal navigation on desktop and mobile.
+- [x] Match the requested menu order, include Contacts and add a Journal page without invented publications.
+- [x] Verify Journal navigation on desktop and mobile.
