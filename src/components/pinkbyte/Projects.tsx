@@ -17,6 +17,7 @@ const SLIDES = [
 export function Projects() {
   const dialog = useRef<HTMLDialogElement>(null);
   const [i, setI] = useState(0);
+  const startX = useRef<number | null>(null);
   const n = SLIDES.length;
   const go = (d: number) => setI((v) => (v + d + n) % n);
   const cur = SLIDES[i] ?? SLIDES[0];
@@ -30,20 +31,31 @@ export function Projects() {
         </h2>
       </Reveal>
 
-      <div className="relative mt-7 overflow-x-clip md:mt-9 [perspective:1800px]" role="region" aria-roledescription="карусель" aria-label="Проекты">
-        <div className="relative mx-auto aspect-[2/1] w-full max-w-[1480px] [transform-style:preserve-3d]">
+      <div className="relative mt-7 overflow-x-clip md:mt-9 [perspective:1600px]" role="region" aria-roledescription="карусель" aria-label="Проекты">
+        <div
+          className="relative mx-auto aspect-[2/1] w-full max-w-[1480px] touch-pan-y select-none [transform-style:preserve-3d]"
+          onPointerDown={(e) => { startX.current = e.clientX; }}
+          onPointerUp={(e) => {
+            if (startX.current === null) return;
+            const dx = e.clientX - startX.current;
+            startX.current = null;
+            if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+          }}
+          onPointerCancel={() => { startX.current = null; }}
+        >
           {SLIDES.map((s, k) => {
             let off = k - i;
             if (off > n / 2) off -= n;
             if (off < -n / 2) off += n;
             const abs = Math.abs(off);
+            const sign = Math.sign(off);
             return (
               <div
                 key={s.src}
                 aria-hidden={off !== 0}
-                className="absolute inset-0 overflow-hidden rounded-[1.25rem] bg-ink [backface-visibility:hidden] transition-[transform,opacity] duration-300 ease-out motion-reduce:transition-none"
+                className="absolute inset-0 overflow-hidden rounded-[1.25rem] bg-ink [backface-visibility:hidden] will-change-[transform,opacity] transition-[transform,opacity] duration-[400ms] ease-[cubic-bezier(0.22,0.8,0.2,1)] motion-reduce:transition-none"
                 style={{
-                  transform: `translateX(${off * 4}%) translateZ(${-abs * 60}px) rotateY(${-off * 6}deg)`,
+                  transform: abs === 0 ? "translate3d(0,0,0) rotateY(0deg)" : `translate3d(${sign * 10}%,0,-140px) rotateY(${-sign * 18}deg)`,
                   opacity: abs === 0 ? 1 : 0,
                   zIndex: 10 - abs,
                   pointerEvents: off === 0 ? "auto" : "none",
