@@ -33,7 +33,7 @@ export function Projects() {
         </h2>
       </Reveal>
 
-      <div className="relative mt-7 md:mt-9 [perspective:1800px]" role="region" aria-roledescription="карусель" aria-label="Проекты">
+      <div className="relative mt-7 overflow-x-clip md:mt-9 [perspective:1800px]" role="region" aria-roledescription="карусель" aria-label="Проекты">
         <div className="relative mx-auto aspect-[2/1] w-full max-w-[1480px] [transform-style:preserve-3d]">
           {SLIDES.map((s, k) => {
             let off = k - i;
@@ -59,7 +59,7 @@ export function Projects() {
         </div>
 
         <div className="mx-auto mt-5 flex w-full max-w-[1480px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div aria-live="polite">
+          <div aria-live="polite" className="min-h-[76px] md:min-h-[72px]">
             <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
             <p className="mt-1 text-muted-foreground">{cur.desc}</p>
           </div>
