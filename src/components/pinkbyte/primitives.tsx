@@ -3,10 +3,11 @@ import logo from "@/assets/logo.png.asset.json";
 import { cn } from "@/lib/utils";
 
 export const NAV = [
-  { href: "#projects", label: "Проекты" },
-  { href: "#services", label: "Услуги" },
-  { href: "#studio", label: "Студия" },
-  { href: "#contact", label: "Контакты" },
+  { href: "/#services", label: "Услуги" },
+  { href: "/#projects", label: "Проекты" },
+  { href: "/#studio", label: "Студия" },
+  { href: "/journal", label: "Журнал" },
+  { href: "/#contact", label: "Контакты" },
 ];
 
 export const TELEGRAM_URL = "https://t.me/noirdig";

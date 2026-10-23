@@ -12,9 +12,9 @@ const EYES = [
   { src: robotEyeRight.url, left: "49.7778%", top: "33.0626%", width: "14.1111%", height: "20.7657%" },
 ];
 
-function Header() {
+export function Header({ initialActive = "/#projects" }: { initialActive?: string }) {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#projects");
+  const [active, setActive] = useState(initialActive);
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -25,28 +25,28 @@ function Header() {
   return (
     <header className="container-pb relative z-30">
       <div className="flex items-center justify-between gap-4 py-5">
-        <a href="#top" aria-label="Pink Byte — на главную">
+        <a href="/#top" aria-label="Pink Byte — на главную">
           <Logo className="w-36 md:w-40" />
         </a>
-        <nav aria-label="Основная навигация" className="hidden md:block">
+        <nav aria-label="Основная навигация" className="hidden lg:block">
           <ul className="flex gap-2 text-[15px] text-ink-foreground">
-            {NAV.filter((n) => n.href !== "#contact").map((n) => (
+            {NAV.map((n) => (
               <li key={n.href}>
-                <Button asChild variant="ghost" className={`h-11 rounded-full px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${active === n.href ? "bg-ink-border" : ""}`}>
+                <Button asChild variant="ghost" className={`h-11 rounded-full px-3 xl:px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${active === n.href ? "bg-ink-border" : ""}`}>
                   <a href={n.href} onClick={() => setActive(n.href)} aria-current={active === n.href ? "location" : undefined}>{n.label}</a>
                 </Button>
               </li>
             ))}
           </ul>
         </nav>
-        <Button asChild variant="secondary" className={`${btn.paper} hidden h-11 md:inline-flex hover:bg-background/90`}>
+        <Button asChild variant="secondary" className={`${btn.paper} hidden h-11 lg:inline-flex hover:bg-background/90`}>
           <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">Обсудить проект</a>
         </Button>
         <Button
           type="button"
           variant="ghost"
           size="icon"
-          className="md:hidden rounded-full text-ink-foreground hover:bg-ink-border hover:text-ink-foreground"
+          className="lg:hidden rounded-full text-ink-foreground hover:bg-ink-border hover:text-ink-foreground"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Закрыть меню" : "Открыть меню"}
@@ -56,9 +56,9 @@ function Header() {
         </Button>
       </div>
       {open && (
-        <nav id="mobile-menu" aria-label="Мобильная навигация" className="tab-fade absolute inset-x-5 top-full mt-2 rounded-3xl border border-ink-border bg-ink p-3 md:hidden">
+        <nav id="mobile-menu" aria-label="Мобильная навигация" className="tab-fade absolute inset-x-5 top-full mt-2 rounded-3xl border border-ink-border bg-ink p-3 lg:hidden">
           <ul>
-            {NAV.filter((n) => n.href !== "#contact").map((n) => (
+            {NAV.map((n) => (
               <li key={n.href}>
                 <a href={n.href} onClick={() => { setActive(n.href); setOpen(false); }} className="block rounded-2xl px-4 py-3 text-lg text-ink-foreground hover:bg-ink-border">
                   {n.label}
