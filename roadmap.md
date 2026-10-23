@@ -22,3 +22,4 @@
 - [x] Match the approved project reference and verify smooth rapid switching, captions and project opening.
 - [x] Remove the second curved arrow above the projects heading, keeping only the hero arrow.
 - [x] Make the project slide shorter and align its width with the "Что создадим для вас?" card below.
+- [x] Put the studio mark as a watermark inside the "Смотреть проект" button, kept to that button only.
