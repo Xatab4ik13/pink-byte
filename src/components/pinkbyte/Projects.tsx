@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
-import { X } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import citymebel from "@/assets/slide-citymebel.webp.asset.json";
 import nikitsky from "@/assets/slide-nikitsky.webp.asset.json";
 import chinar from "@/assets/slide-chinar.webp.asset.json";
 import gold from "@/assets/slide-gold.webp.asset.json";
-import { Reveal, btn } from "./primitives";
+import { Reveal } from "./primitives";
 
 const SLIDES = [
   { src: citymebel.url, title: "CityMebel" },
@@ -57,8 +57,8 @@ export function Projects() {
                 aria-hidden={off !== 0}
                 className="absolute inset-0 overflow-hidden rounded-[2rem] bg-ink shadow-showcase transition-all duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)]"
                 style={{
-                  transform: `translateX(${off * 42}%) translateZ(${-abs * 260}px) rotateY(${-off * 28}deg)`,
-                  opacity: abs > 1 ? 0 : abs === 1 ? 0.55 : 1,
+                  transform: `translateX(${off * 18}%) translateZ(${-abs * 200}px) rotateY(${-off * 22}deg)`,
+                  opacity: abs === 0 ? 1 : 0,
                   zIndex: 10 - abs,
                   pointerEvents: off === 0 ? "auto" : "none",
                 }}
@@ -67,9 +67,16 @@ export function Projects() {
               </div>
             );
           })}
-          <div className="absolute inset-x-0 bottom-5 z-20 flex justify-center md:bottom-8">
-            <button type="button" onClick={() => dialog.current?.showModal()} className={`${btn.lime} shadow-showcase`}>
+          <div className="absolute bottom-5 right-5 z-20 md:bottom-8 md:right-8">
+            <button
+              type="button"
+              onClick={() => dialog.current?.showModal()}
+              className="group inline-flex items-center gap-3 rounded-full border border-ink-foreground/70 bg-ink/35 py-2 pl-6 pr-2 text-sm font-semibold text-ink-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-ink/60"
+            >
               Смотреть проект
+              <span className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:rotate-[-45deg]">
+                <ArrowRight className="size-4" />
+              </span>
             </button>
           </div>
         </div>
