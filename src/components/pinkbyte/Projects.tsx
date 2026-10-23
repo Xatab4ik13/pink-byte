@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import citymebel from "@/assets/slide-citymebel.webp.asset.json";
 import nikitsky from "@/assets/slide-nikitsky.webp.asset.json";
 import chinar from "@/assets/slide-chinar.webp.asset.json";
@@ -18,18 +19,22 @@ export function Projects() {
   const [i, setI] = useState(0);
   const n = SLIDES.length;
   const go = (d: number) => setI((v) => (v + d + n) % n);
-  const cur = SLIDES[i]!;
+  const cur = SLIDES[i] ?? SLIDES[0];
+  if (!cur) return null;
 
   return (
-    <section id="projects" aria-labelledby="projects-title" className="container-pb scroll-mt-6 pt-24 md:pt-28">
-      <Reveal className="text-center">
-        <h2 id="projects-title" className="display text-[clamp(2.2rem,6vw,5.6rem)]">
+    <section id="projects" aria-labelledby="projects-title" className="mx-auto w-full max-w-[1560px] scroll-mt-6 px-5 pt-24 md:px-10 md:pt-28">
+      <Reveal className="relative text-center">
+        <svg aria-hidden="true" viewBox="0 0 210 120" className="absolute -top-14 right-0 h-14 w-24 text-primary md:-top-16 md:h-16 md:w-28" fill="none">
+          <path d="M205 17C139-5 55 20 20 104M15 77L20 108L43 93" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        <h2 id="projects-title" className="text-[36px] font-extrabold leading-[1.05] md:text-[56px] xl:text-[72px]">
           Проекты крупным планом.
         </h2>
       </Reveal>
 
-      <Reveal className="relative mt-12 [perspective:1800px]">
-        <div className="relative mx-auto aspect-[16/9] w-full max-w-[1480px] [transform-style:preserve-3d]">
+      <div className="relative mt-7 md:mt-9 [perspective:1800px]" role="region" aria-roledescription="карусель" aria-label="Проекты">
+        <div className="relative mx-auto aspect-[2/1] w-full max-w-[1480px] [transform-style:preserve-3d]">
           {SLIDES.map((s, k) => {
             let off = k - i;
             if (off > n / 2) off -= n;
@@ -39,47 +44,45 @@ export function Projects() {
               <div
                 key={s.src}
                 aria-hidden={off !== 0}
-                className="absolute inset-0 overflow-hidden rounded-[2rem] bg-ink shadow-md transition-all duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)]"
+                className="absolute inset-0 overflow-hidden rounded-[1.25rem] bg-ink [backface-visibility:hidden] transition-[transform,opacity] duration-300 ease-out motion-reduce:transition-none"
                 style={{
-                  transform: `translateX(${off * 18}%) translateZ(${-abs * 200}px) rotateY(${-off * 22}deg)`,
+                  transform: `translateX(${off * 4}%) translateZ(${-abs * 60}px) rotateY(${-off * 6}deg)`,
                   opacity: abs === 0 ? 1 : 0,
                   zIndex: 10 - abs,
                   pointerEvents: off === 0 ? "auto" : "none",
                 }}
               >
-                <img src={s.src} alt={`${s.title} — слайд проекта`} width={1600} height={900} loading={k === 0 ? "eager" : "lazy"} className="block h-full w-full object-cover" />
+                <img src={s.src} alt={`${s.title} — слайд проекта`} width={1600} height={900} loading="eager" decoding="async" draggable={false} className="block h-full w-full object-cover" />
               </div>
             );
           })}
         </div>
 
-        <div className="mx-auto mt-6 flex w-full max-w-[1480px] flex-col gap-5 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto mt-5 flex w-full max-w-[1480px] flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div aria-live="polite">
-            <p className="text-2xl font-bold tracking-tight md:text-3xl">{cur.title}</p>
+            <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
             <p className="mt-1 text-muted-foreground">{cur.desc}</p>
-            <p className="mt-2 text-sm font-medium text-muted-foreground">{cur.scope}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="mr-2 flex items-center gap-1.5" aria-label={`Проект ${i + 1} из ${n}`}>
+          <Button variant="secondary" type="button" onClick={() => dialog.current?.showModal()} className="h-12 shrink-0 self-start rounded-full px-8 font-semibold shadow-none sm:self-auto">
+            Смотреть проект
+          </Button>
+        </div>
+        <div className="mx-auto mt-4 flex w-fit items-center gap-2 rounded-full bg-muted px-2 py-1" aria-label="Управление проектами">
+            <Button variant="ghost" size="icon" type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="size-9 rounded-full hover:bg-foreground/10 hover:text-foreground">
+              <ChevronLeft />
+            </Button>
+            <div className="flex items-center gap-2" aria-label={`Проект ${i + 1} из ${n}`}>
               {SLIDES.map((s, k) => (
-                <button key={s.src} type="button" aria-label={s.title} aria-current={k === i} onClick={() => setI(k)} className={`h-1.5 rounded-full transition-all duration-300 ${k === i ? "w-8 bg-foreground" : "w-3 bg-foreground/25 hover:bg-foreground/50"}`} />
+                <Button variant="ghost" size="icon" key={s.src} type="button" title={s.title} aria-label={s.title} aria-current={k === i} onClick={() => setI(k)} className="h-8 w-5 rounded-full p-0 hover:bg-transparent">
+                  <span className={`block h-2 rounded-full ${k === i ? "w-5 bg-primary" : "w-2 bg-foreground/30"}`} />
+                </Button>
               ))}
             </div>
-            <button type="button" aria-label="Предыдущий проект" onClick={() => go(-1)} className="grid size-11 place-items-center rounded-full border border-foreground/20 transition-colors hover:border-foreground/60">
-              <ArrowLeft className="size-4" />
-            </button>
-            <button type="button" aria-label="Следующий проект" onClick={() => go(1)} className="grid size-11 place-items-center rounded-full border border-foreground/20 transition-colors hover:border-foreground/60">
-              <ArrowRight className="size-4" />
-            </button>
-            <button type="button" onClick={() => dialog.current?.showModal()} className="group inline-flex items-center gap-3 rounded-full bg-foreground py-2 pl-6 pr-2 text-sm font-semibold text-background transition-transform duration-300 hover:-translate-y-0.5">
-              Смотреть проект
-              <span className="grid size-8 place-items-center rounded-full bg-background/15 transition-transform duration-300 group-hover:rotate-[-45deg]">
-                <ArrowRight className="size-4" />
-              </span>
-            </button>
-          </div>
+            <Button variant="ghost" size="icon" type="button" title="Следующий проект" aria-label="Следующий проект" onClick={() => go(1)} className="size-9 rounded-full hover:bg-foreground/10 hover:text-foreground">
+              <ChevronRight />
+            </Button>
         </div>
-      </Reveal>
+      </div>
 
       <dialog
         ref={dialog}
@@ -89,9 +92,9 @@ export function Projects() {
       >
         <div className="relative">
           <img src={cur.src} alt={`${cur.title} — увеличенный вид`} width={1600} height={900} className="block w-full" />
-          <button type="button" autoFocus aria-label="Закрыть" onClick={() => dialog.current?.close()} className="absolute right-4 top-4 rounded-full bg-background p-2 text-foreground">
+          <Button variant="secondary" size="icon" type="button" autoFocus aria-label="Закрыть" onClick={() => dialog.current?.close()} className="absolute right-4 top-4 rounded-full">
             <X className="size-5" />
-          </button>
+          </Button>
         </div>
       </dialog>
     </section>

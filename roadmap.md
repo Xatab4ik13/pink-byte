@@ -19,3 +19,4 @@
 - [x] Match the requested menu order, include Contacts and add a Journal page without invented publications.
 - [x] Verify Journal navigation on desktop and mobile.
 - [x] Enlarge the project slide and arc arrows, and make the "Смотреть проект" button dark without lime.
+- [ ] Match the approved project reference and verify smooth rapid switching, captions and project opening.
