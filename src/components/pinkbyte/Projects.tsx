@@ -19,10 +19,10 @@ function ArcArrow({ dir, onClick }: { dir: "prev" | "next"; onClick: () => void 
       type="button"
       onClick={onClick}
       aria-label={dir === "prev" ? "Предыдущий проект" : "Следующий проект"}
-      className="absolute top-1/2 z-30 -translate-y-1/2 rounded-full p-2 text-primary transition-transform duration-300 hover:scale-110"
-      style={dir === "prev" ? { left: "max(0.5rem, calc(50% - 560px))" } : { right: "max(0.5rem, calc(50% - 560px))" }}
+      className="absolute top-1/2 z-30 -translate-y-1/2 rounded-full p-1 text-primary transition-transform duration-300 hover:scale-110"
+      style={dir === "prev" ? { left: "calc(-1 * clamp(0px, 10vw - 6rem, 13rem))" } : { right: "calc(-1 * clamp(0px, 10vw - 6rem, 13rem))" }}
     >
-      <svg viewBox="0 0 210 120" fill="none" className="h-auto w-16 md:w-28 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" style={dir === "next" ? { transform: "scaleX(-1)" } : undefined}>
+      <svg viewBox="0 0 210 120" fill="none" className="h-auto w-20 md:w-32 xl:w-40 drop-shadow-[0_2px_8px_rgba(0,0,0,0.55)]" style={dir === "next" ? { transform: "scaleX(-1)" } : undefined}>
         <path d="M205 17C139-5 55 20 20 104M15 77L20 108L43 93" stroke="currentColor" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </button>
@@ -45,7 +45,7 @@ export function Projects() {
       </Reveal>
 
       <Reveal className="relative mt-12 [perspective:1800px]">
-        <div className="relative mx-auto aspect-[16/9] w-full max-w-[1000px] [transform-style:preserve-3d]">
+        <div className="relative mx-auto aspect-[16/9] w-full max-w-[1200px] [transform-style:preserve-3d]">
           {SLIDES.map((s, k) => {
             let off = k - i;
             if (off > n / 2) off -= n;
@@ -67,21 +67,21 @@ export function Projects() {
               </div>
             );
           })}
-          <div className="absolute bottom-5 right-5 z-20 md:bottom-8 md:right-8">
+          <div className="absolute bottom-6 right-6 z-20 md:bottom-9 md:right-9">
             <button
               type="button"
               onClick={() => dialog.current?.showModal()}
-              className="group inline-flex items-center gap-3 rounded-full border border-ink-foreground/70 bg-ink/35 py-2 pl-6 pr-2 text-sm font-semibold text-ink-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-ink/60"
+              className="group inline-flex items-center gap-3 rounded-full border border-ink-foreground/25 bg-ink/85 py-2.5 pl-7 pr-2.5 text-sm font-semibold text-ink-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-ink-foreground/45 hover:bg-ink"
             >
               Смотреть проект
-              <span className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:rotate-[-45deg]">
+              <span className="grid size-10 place-items-center rounded-full bg-ink-foreground/15 text-ink-foreground transition-transform duration-300 group-hover:rotate-[-45deg]">
                 <ArrowRight className="size-4" />
               </span>
             </button>
           </div>
+          <ArcArrow dir="prev" onClick={() => go(-1)} />
+          <ArcArrow dir="next" onClick={() => go(1)} />
         </div>
-        <ArcArrow dir="prev" onClick={() => go(-1)} />
-        <ArcArrow dir="next" onClick={() => go(1)} />
       </Reveal>
 
       <dialog
