@@ -5,6 +5,7 @@ import citymebel from "@/assets/slide-citymebel.webp.asset.json";
 import nikitsky from "@/assets/slide-nikitsky.webp.asset.json";
 import chinar from "@/assets/slide-chinar.webp.asset.json";
 import gold from "@/assets/slide-gold.webp.asset.json";
+import mark from "@/assets/mark-pb.png.asset.json";
 import { Reveal } from "./primitives";
 
 const SLIDES = [
@@ -75,8 +76,9 @@ export function Projects() {
             <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
             <p className="mt-1 text-muted-foreground">{cur.desc}</p>
           </div>
-          <Button variant="secondary" type="button" onClick={() => dialog.current?.showModal()} className="h-12 shrink-0 self-start rounded-full px-8 font-semibold shadow-none sm:self-auto">
-            Смотреть проект
+          <Button variant="secondary" type="button" onClick={() => dialog.current?.showModal()} className="group relative h-12 shrink-0 self-start overflow-hidden rounded-full pl-8 pr-[4.75rem] font-semibold shadow-none sm:self-auto">
+            <img src={mark.url} alt="" aria-hidden width={900} height={692} draggable={false} className="pointer-events-none absolute right-1 top-1/2 h-[135%] w-auto -translate-y-1/2 select-none opacity-[0.16] transition-opacity duration-300 ease-out group-hover:opacity-[0.34] motion-reduce:transition-none" />
+            <span className="relative">Смотреть проект</span>
           </Button>
         </div>
         <div className="mx-auto mt-4 flex w-fit items-center gap-2 rounded-full bg-muted px-2 py-1" aria-label="Управление проектами">
