@@ -17,7 +17,7 @@ import {
   usePromptInputAttachments,
   type PromptInputMessage,
 } from "@/components/ai-elements/prompt-input";
-import robot from "@/assets/robot-brief-seated.png";
+import robot from "@/assets/robot-brief-seated.webp";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
 import { Logo, TELEGRAM_URL } from "./primitives";
 import { BriefContext } from "./brief-context";
