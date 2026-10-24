@@ -21,7 +21,6 @@ import robot from "@/assets/robot-brief-seated.png";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
 import { TELEGRAM_URL } from "./primitives";
 import { BriefContext } from "./brief-context";
-import { BriefQuestion } from "./BriefQuestion";
 
 function ComposerTools({ text }: { text: string }) {
   const attachments = usePromptInputAttachments();
@@ -32,10 +31,9 @@ function ComposerTools({ text }: { text: string }) {
           tooltip="Прикрепить бриф, примеры или схемы"
           aria-label="Прикрепить файл"
           onClick={() => attachments.openFileDialog()}
-          className="size-10 rounded-full"
+          className="size-9 rounded-lg"
         >
           <Paperclip />
-          <span className="text-xs">Файлы</span>
         </PromptInputButton>
         {attachments.files.map((file) => (
           <span
@@ -62,8 +60,8 @@ function ComposerTools({ text }: { text: string }) {
         disabled={
           !canSubmitAnswer({ text, files: attachments.files.map((f) => f.filename || "Файл") })
         }
-        variant="secondary"
-        className="size-10 shrink-0 rounded-full"
+        variant="default"
+        className="size-10 shrink-0 rounded-lg"
       >
         <ArrowUp />
       </PromptInputSubmit>
@@ -120,23 +118,22 @@ export function BriefProvider({ children }: { children: ReactNode }) {
             <img src={robot} alt="" width={768} height={832} className="block h-auto w-full" />
             <span key={`mouth-${step}`} className="pb-brief-mouth" />
           </div>
-          {!done && <BriefQuestion key={step} question={current?.question ?? ""} />}
           <div className="pb-brief-heading relative shrink-0">
             <div className="pb-brief-intro">
               <div className="flex flex-wrap items-center gap-3 pr-6">
-                <DialogTitle className="text-2xl font-extrabold tracking-normal md:text-3xl">
+                <DialogTitle className="text-xl font-bold tracking-normal md:text-2xl">
                   Обсудим ваш проект
                 </DialogTitle>
-                <span className="text-xs font-medium text-muted-foreground">ТЗ бесплатно</span>
+                <span className="flex items-center gap-2 text-xs font-medium text-primary"><span className="size-1.5 rounded-full bg-primary" />ТЗ бесплатно</span>
               </div>
-              <DialogDescription className="mt-2 text-xs text-muted-foreground">
-                Помощник Pink Byte · пробный диалог
+              <DialogDescription className="mt-2 text-xs text-ink-muted">
+                Pink Byte / Помощник по проекту
               </DialogDescription>
             </div>
           </div>
           <div className="pb-brief-layout">
             <div className="pb-brief-main flex min-h-0 flex-1 flex-col">
-              <div className="flex shrink-0 items-center justify-between gap-4 pb-3">
+              <div className="flex shrink-0 items-center justify-between gap-4 border-b border-border pb-4">
                 <span className="text-xs font-medium text-muted-foreground">
                   {done
                     ? "Ваш черновик ТЗ"
@@ -155,7 +152,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                 </div>
               </div>
               <Conversation className="min-h-0" key={done ? "result" : "conversation"}>
-                <ConversationContent className={`gap-5 p-1 ${done ? "pb-5" : "pb-brief-history"}`}>
+                <ConversationContent className="gap-6 px-1 py-5">
                   {done ? (
                     <Message from="assistant" className="max-w-full">
                       <MessageContent className="w-full">
@@ -164,12 +161,15 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                     </Message>
                   ) : answers.length ? (
                     answers.map((answer, index) => (
-                      <div key={index} className="space-y-2">
-                        <p className="text-xs text-muted-foreground">
-                          {BRIEF_QUESTIONS[index]?.title}
-                        </p>
+                      <div key={index} className="space-y-4">
+                        <Message from="assistant">
+                          <span className="text-[11px] font-medium text-muted-foreground">Pink Byte</span>
+                          <MessageContent className="pb-chat-question">
+                            <p>{BRIEF_QUESTIONS[index]?.question}</p>
+                          </MessageContent>
+                        </Message>
                         <Message from="user">
-                          <MessageContent className="group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground">
+                          <MessageContent className="leading-relaxed group-[.is-user]:rounded-lg group-[.is-user]:bg-secondary group-[.is-user]:text-secondary-foreground">
                             <p className="whitespace-pre-wrap break-words">{answer.text}</p>
                             {answer.files.map((name, k) => (
                               <span key={k} className="flex items-center gap-2 text-xs">
@@ -182,6 +182,14 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                       </div>
                     ))
                   ) : null}
+                  {!done && (
+                    <Message key={step} from="assistant" className="pb-chat-current" aria-live="polite">
+                      <span className="flex items-center gap-2 text-[11px] font-medium text-muted-foreground"><span className="size-1.5 rounded-full bg-primary" />Pink Byte</span>
+                      <MessageContent className="pb-chat-question">
+                        <p>{current?.question}</p>
+                      </MessageContent>
+                    </Message>
+                  )}
                 </ConversationContent>
                 <ConversationScrollButton />
               </Conversation>
@@ -212,7 +220,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                   <PromptInput
                     onSubmit={submit}
                     multiple
-                    className="[&>[data-slot=input-group]]:rounded-xl [&>[data-slot=input-group]]:bg-background"
+                    className="[&>[data-slot=input-group]]:rounded-lg [&>[data-slot=input-group]]:border-border [&>[data-slot=input-group]]:bg-background [&>[data-slot=input-group]]:shadow-none"
                   >
                     <PromptInputTextarea
                       ref={textarea}
@@ -220,7 +228,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                       placeholder={current?.placeholder}
                       value={text}
                       onChange={(event) => setText(event.target.value)}
-                      className="min-h-12 max-h-24 px-4 text-base"
+                      className="min-h-12 max-h-24 px-4 text-sm"
                     />
                     <ComposerTools text={text} />
                   </PromptInput>
@@ -241,19 +249,20 @@ export function BriefProvider({ children }: { children: ReactNode }) {
               </div>
             </div>
             <aside className="pb-brief-summary" aria-label="Уже в брифе">
+              <div className="mb-5 flex items-center justify-between gap-3"><FileText className="size-5 text-primary" /><span className="text-[11px] text-ink-muted">{step} / {BRIEF_QUESTIONS.length}</span></div>
               <h3 className="text-base font-bold">Уже в брифе</h3>
               {answers.length ? (
                 <div className="mt-5 space-y-4">
                   {answers.map((answer, index) => (
-                    <div key={index} className="border-b border-border pb-4 last:border-0">
-                      <p className="mb-2 text-[11px] text-muted-foreground">
+                    <div key={index} className="border-b border-ink-border pb-4 last:border-0">
+                      <p className="mb-2 text-[11px] text-ink-muted">
                         {BRIEF_QUESTIONS[index]?.title}
                       </p>
                       <p className="line-clamp-4 break-words text-sm leading-relaxed">
                         {answer.text || "Материалы приложены"}
                       </p>
                       {answer.files.length > 0 && (
-                        <p className="mt-2 break-words text-xs text-muted-foreground">
+                        <p className="mt-2 break-words text-xs text-ink-muted">
                           {answer.files.join(", ")}
                         </p>
                       )}
@@ -261,7 +270,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                   ))}
                 </div>
               ) : (
-                <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-xs leading-relaxed text-ink-muted">
                   Пока начисто. Начнём с вашей идеи.
                 </p>
               )}
