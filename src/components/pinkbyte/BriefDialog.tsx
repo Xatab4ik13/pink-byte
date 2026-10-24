@@ -19,7 +19,7 @@ import {
 } from "@/components/ai-elements/prompt-input";
 import robot from "@/assets/robot-brief-seated.png";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
-import { TELEGRAM_URL } from "./primitives";
+import { Logo, TELEGRAM_URL } from "./primitives";
 import { BriefContext } from "./brief-context";
 
 function ComposerTools({ text }: { text: string }) {
@@ -121,16 +121,16 @@ export function BriefProvider({ children }: { children: ReactNode }) {
           </div>
           <div className="pb-brief-layout">
             <aside className="pb-brief-stage" aria-label="Уже в брифе">
-              <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted">
-                Pink Byte · ТЗ бесплатно
-              </span>
-              <DialogTitle className="display mt-5 text-[44px]">
+              <Logo className="w-28" />
+              <DialogTitle className="display mt-6 text-[44px]">
                 Обсудим
                 <br />
                 ваш <span className="text-primary">проект.</span>
               </DialogTitle>
               <DialogDescription className="mt-4 text-sm leading-relaxed text-ink-muted">
-                Пять коротких вопросов — и у вас черновик технического задания.
+                Нет ТЗ — не страшно. Расскажите задачу своими словами: наш агент задаст
+                нужные вопросы, а мы оценим проект и назовём цену.{" "}
+                <span className="text-ink-foreground">Черновик ТЗ — бесплатно.</span>
               </DialogDescription>
               <div className="pb-brief-notes mt-7 min-h-0 flex-1 overflow-y-auto border-t border-ink-border pt-5">
                 {answers.length ? (
@@ -154,23 +154,11 @@ export function BriefProvider({ children }: { children: ReactNode }) {
               </div>
             </aside>
             <div className="pb-brief-main flex min-h-0 flex-1 flex-col">
-              <div className="flex shrink-0 items-center justify-between gap-4 border-b border-border pb-4 pr-10">
-                <span className="text-xs font-medium text-muted-foreground">
-                  {done
-                    ? "Ваш черновик ТЗ"
-                    : `${step + 1} из ${BRIEF_QUESTIONS.length} · ${current?.title}`}
+              <div className="flex shrink-0 items-center gap-2 border-b border-border pb-4 pr-10">
+                <span className="pb-live-dot" />
+                <span className="text-xs font-medium text-foreground">
+                  {done ? "Ваш черновик ТЗ" : "Агент Pink Byte · онлайн"}
                 </span>
-                <div
-                  className="flex gap-1.5"
-                  aria-label={`Отвечено на ${step} из ${BRIEF_QUESTIONS.length} вопросов`}
-                >
-                  {BRIEF_QUESTIONS.map((q, i) => (
-                    <span
-                      key={q.title}
-                      className={`h-1 w-6 rounded-full ${i < step ? "bg-foreground" : i === step ? "bg-primary" : "bg-border"}`}
-                    />
-                  ))}
-                </div>
               </div>
               <Conversation className="min-h-0" key={done ? "result" : "conversation"}>
                 <ConversationContent className="gap-6 px-1 py-5">
@@ -184,17 +172,14 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                     answers.map((answer, index) => (
                       <div key={index} className="space-y-4">
                         <Message from="assistant">
-                          <span className="text-[11px] font-medium text-muted-foreground">
-                            Pink Byte
-                          </span>
-                          <MessageContent className="pb-chat-question">
+                          <MessageContent className="pb-bubble-bot">
                             <MessageResponse>
                               {BRIEF_QUESTIONS[index]?.question ?? ""}
                             </MessageResponse>
                           </MessageContent>
                         </Message>
                         <Message from="user">
-                          <MessageContent className="leading-relaxed group-[.is-user]:rounded-lg group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground">
+                          <MessageContent className="pb-bubble-user">
                             <p className="whitespace-pre-wrap break-words">{answer.text}</p>
                             {answer.files.map((name, k) => (
                               <span key={k} className="flex items-center gap-2 text-xs">
@@ -214,11 +199,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                       className="pb-chat-current"
                       aria-live="polite"
                     >
-                      <span className="flex items-center gap-2 text-[11px] font-medium text-muted-foreground">
-                        <span className="size-1.5 rounded-full bg-primary" />
-                        Pink Byte
-                      </span>
-                      <MessageContent className="pb-chat-question">
+                      <MessageContent className="pb-bubble-bot">
                         <MessageResponse>{current?.question ?? ""}</MessageResponse>
                       </MessageContent>
                     </Message>
@@ -253,7 +234,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                   <PromptInput
                     onSubmit={submit}
                     multiple
-                    className="[&>[data-slot=input-group]]:rounded-lg [&>[data-slot=input-group]]:border-border [&>[data-slot=input-group]]:bg-background [&>[data-slot=input-group]]:shadow-none"
+                    className="pb-composer-box"
                   >
                     <PromptInputTextarea
                       ref={textarea}
@@ -266,19 +247,6 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                     <ComposerTools text={text} />
                   </PromptInput>
                 )}
-                <p className="mt-2 text-[10px] leading-relaxed text-muted-foreground">
-                  {done
-                    ? "Черновик составлен по вашим ответам, без анализа вложений."
-                    : "Набросок без ИИ. Ответы и файлы не отправляются команде."}
-                </p>
-                <a
-                  href={TELEGRAM_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-1 inline-block text-[11px] text-muted-foreground underline underline-offset-4"
-                >
-                  Написать команде
-                </a>
               </div>
             </div>
           </div>
