@@ -281,38 +281,6 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                 </a>
               </div>
             </div>
-            <aside className="pb-brief-summary" aria-label="Уже в брифе">
-              <div className="mb-5 flex items-center justify-between gap-3">
-                <FileText className="size-5 text-muted-foreground" />
-                <span className="text-[11px] text-muted-foreground">
-                  {step} / {BRIEF_QUESTIONS.length}
-                </span>
-              </div>
-              <h3 className="text-base font-bold">Уже в брифе</h3>
-              {answers.length ? (
-                <div className="mt-5 space-y-4">
-                  {answers.map((answer, index) => (
-                    <div key={index} className="border-b border-border pb-4 last:border-0">
-                      <p className="mb-2 text-[11px] text-muted-foreground">
-                        {BRIEF_QUESTIONS[index]?.title}
-                      </p>
-                      <p className="line-clamp-4 break-words text-sm leading-relaxed">
-                        {answer.text || "Материалы приложены"}
-                      </p>
-                      {answer.files.length > 0 && (
-                        <p className="mt-2 break-words text-xs text-muted-foreground">
-                          {answer.files.join(", ")}
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-                  Пока начисто. Начнём с вашей идеи.
-                </p>
-              )}
-            </aside>
           </div>
         </DialogContent>
       </Dialog>
