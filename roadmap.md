@@ -25,3 +25,5 @@
 - [x] Put the studio mark as a watermark inside the "Смотреть проект" button, kept to that button only.
 - [x] Add the mock robot brief dialog to project discussion buttons.
 - [x] Verify sequential answers, attachments, final brief and mobile layout.
+- [ ] Match the supplied light brief window with a live summary sidebar, seat the robot precisely on its bottom edge, and preview a digital talking mouth.
+- [ ] Verify the complete brief flow and robot placement on desktop and mobile.
