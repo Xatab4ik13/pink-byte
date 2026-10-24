@@ -36,3 +36,4 @@
 - [x] Replace the 100% result with a contact form, consent and a saved-submission download gate.
 - [x] Verify the full completion flow and remove only the test submission.
 - [ ] Finalize legal consent documents: awaiting the studio's legal operator details from the owner.
+- [ ] Replace brief download with a single submit button and server email delivery: awaiting the owner's verified email sender domain.
