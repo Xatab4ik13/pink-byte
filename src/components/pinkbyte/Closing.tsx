@@ -1,6 +1,7 @@
 import robotSit from "@/assets/robot-sit.png.asset.json";
-import { cn } from "@/lib/utils";
-import { Logo, NAV, Reveal, TELEGRAM_URL, btn } from "./primitives";
+import { Button } from "@/components/ui/button";
+import { Logo, NAV, Reveal, btn } from "./primitives";
+import { useOpenBrief } from "./BriefDialog";
 
 export function Studio() {
   return (
@@ -20,6 +21,7 @@ export function Studio() {
 }
 
 export function Contact() {
+  const openBrief = useOpenBrief();
   return (
     <section id="contact" aria-labelledby="contact-title" className="container-pb scroll-mt-6 pt-10">
       <Reveal className="grid items-end overflow-hidden rounded-[2rem] bg-ink text-ink-foreground md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
@@ -39,9 +41,9 @@ export function Contact() {
             <br />
             что вы задумали.
           </h2>
-          <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className={cn(btn.lime, "mt-8")}>
+          <Button onClick={openBrief} className={`${btn.lime} mt-8 h-auto`}>
             Обсудить проект
-          </a>
+          </Button>
         </div>
       </Reveal>
     </section>
