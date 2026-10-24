@@ -17,7 +17,7 @@ import {
   usePromptInputAttachments,
   type PromptInputMessage,
 } from "@/components/ai-elements/prompt-input";
-import robot from "@/assets/robot-sit.png.asset.json";
+import robot from "@/assets/robot-brief-seated.png";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
 import { TELEGRAM_URL } from "./primitives";
 import { BriefContext } from "./brief-context";
@@ -28,12 +28,13 @@ function ComposerTools({ text }: { text: string }) {
     <PromptInputFooter className="flex-wrap gap-2">
       <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2">
         <PromptInputButton
-          tooltip="Прикрепить файл"
+          tooltip="Прикрепить бриф, примеры или схемы"
           aria-label="Прикрепить файл"
           onClick={() => attachments.openFileDialog()}
           className="size-10 rounded-full"
         >
           <Paperclip />
+          <span className="text-xs">Файлы</span>
         </PromptInputButton>
         {attachments.files.map((file) => (
           <span
@@ -60,6 +61,7 @@ function ComposerTools({ text }: { text: string }) {
         disabled={
           !canSubmitAnswer({ text, files: attachments.files.map((f) => f.filename || "Файл") })
         }
+        variant="secondary"
         className="size-10 shrink-0 rounded-full"
       >
         <ArrowUp />
@@ -104,149 +106,178 @@ export function BriefProvider({ children }: { children: ReactNode }) {
       {children}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
-          className="pb-brief-dialog gap-0 overflow-visible border-ink-border bg-ink p-0 text-ink-foreground [&>button]:text-ink-foreground"
+          className="pb-brief-dialog gap-0 overflow-visible border-border bg-background p-0 text-foreground"
           onOpenAutoFocus={(event) => {
             event.preventDefault();
             textarea.current?.focus();
           }}
         >
-          <img
-            src={robot.url}
-            alt="Робот Pink Byte сидит на нижнем краю окна"
-            width={900}
-            height={639}
+          <div
             className="pb-brief-robot pointer-events-none absolute z-20"
-          />
+            aria-label="Робот Pink Byte сидит на нижней кромке, ноги свисают наружу"
+          >
+            <img src={robot} alt="" width={768} height={832} className="block h-auto w-full" />
+            <span key={`mouth-${step}`} className="pb-brief-mouth" />
+          </div>
           <div className="pb-brief-heading relative shrink-0">
             <div className="pb-brief-intro">
               <div className="flex flex-wrap items-center gap-3 pr-6">
-                <DialogTitle className="text-lg font-semibold tracking-normal">
-                  Давайте создадим ваш проект.
+                <DialogTitle className="text-2xl font-extrabold tracking-normal md:text-3xl">
+                  Обсудим ваш проект
                 </DialogTitle>
-                <span className="text-xs text-primary">ТЗ бесплатно</span>
+                <span className="text-xs font-medium text-muted-foreground">ТЗ бесплатно</span>
               </div>
-              <DialogDescription className="mt-2 text-xs text-ink-muted">
-                Пробный диалог · без ИИ · файлы не отправляются
+              <DialogDescription className="mt-2 text-xs text-muted-foreground">
+                Помощник Pink Byte · пробный диалог
               </DialogDescription>
-              <div
-                key={step}
-                className="pb-question relative mt-5 rounded-[20px] bg-primary px-5 py-4 text-primary-foreground"
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                <Message from="assistant" className="max-w-full">
-                  <MessageContent className="text-base font-semibold leading-snug">
-                    <MessageResponse>
-                      {done
-                        ? "Готово! Собрал ваши ответы в черновик ТЗ. Его можно скачать и обсудить с командой."
-                        : (current?.question ?? "")}
-                    </MessageResponse>
-                  </MessageContent>
-                </Message>
-              </div>
             </div>
           </div>
-          <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-b-[24px] bg-background text-foreground">
-            <div className="flex shrink-0 items-center justify-between gap-4 border-b border-border px-5 py-3 md:px-8">
-              <span className="text-xs font-medium text-muted-foreground">
-                {done
-                  ? "Ваш черновик ТЗ"
-                  : `${step + 1} из ${BRIEF_QUESTIONS.length} · ${current?.title}`}
-              </span>
-              <div
-                className="flex gap-1.5"
-                aria-label={`Отвечено на ${step} из ${BRIEF_QUESTIONS.length} вопросов`}
-              >
-                {BRIEF_QUESTIONS.map((q, i) => (
-                  <span
-                    key={q.title}
-                    className={`h-1 w-6 rounded-full ${i < step ? "bg-foreground" : i === step ? "bg-primary" : "bg-border"}`}
-                  />
-                ))}
+          <div className="pb-brief-layout">
+            <div className="pb-brief-main flex min-h-0 flex-1 flex-col">
+              <div className="flex shrink-0 items-center justify-between gap-4 pb-3">
+                <span className="text-xs font-medium text-muted-foreground">
+                  {done
+                    ? "Ваш черновик ТЗ"
+                    : `${step + 1} из ${BRIEF_QUESTIONS.length} · ${current?.title}`}
+                </span>
+                <div
+                  className="flex gap-1.5"
+                  aria-label={`Отвечено на ${step} из ${BRIEF_QUESTIONS.length} вопросов`}
+                >
+                  {BRIEF_QUESTIONS.map((q, i) => (
+                    <span
+                      key={q.title}
+                      className={`h-1 w-6 rounded-full ${i < step ? "bg-foreground" : i === step ? "bg-primary" : "bg-border"}`}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-            <Conversation className="min-h-0" key={done ? "result" : "conversation"}>
-              <ConversationContent className="gap-5 px-5 py-5 md:px-8">
-                {done ? (
-                  <Message from="assistant" className="max-w-full">
-                    <MessageContent className="w-full">
-                      <MessageResponse>{brief}</MessageResponse>
-                    </MessageContent>
-                  </Message>
-                ) : answers.length ? (
-                  answers.map((answer, index) => (
-                    <div key={index} className="space-y-2">
-                      <p className="text-xs text-muted-foreground">
-                        {BRIEF_QUESTIONS[index]?.title}
-                      </p>
-                      <Message from="user">
-                        <MessageContent className="group-[.is-user]:bg-foreground group-[.is-user]:text-background">
-                          <p className="whitespace-pre-wrap break-words">{answer.text}</p>
-                          {answer.files.map((name, k) => (
-                            <span key={k} className="flex items-center gap-2 text-xs">
-                              <FileText className="size-3 shrink-0" />
-                              {name}
-                            </span>
-                          ))}
+              <Conversation className="min-h-0" key={done ? "result" : "conversation"}>
+                <ConversationContent className="gap-5 p-1 pb-5">
+                  {done ? (
+                    <Message from="assistant" className="max-w-full">
+                      <MessageContent className="w-full">
+                        <MessageResponse>{brief}</MessageResponse>
+                      </MessageContent>
+                    </Message>
+                  ) : answers.length ? (
+                    answers.map((answer, index) => (
+                      <div key={index} className="space-y-2">
+                        <p className="text-xs text-muted-foreground">
+                          {BRIEF_QUESTIONS[index]?.title}
+                        </p>
+                        <Message from="user">
+                          <MessageContent className="group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground">
+                            <p className="whitespace-pre-wrap break-words">{answer.text}</p>
+                            {answer.files.map((name, k) => (
+                              <span key={k} className="flex items-center gap-2 text-xs">
+                                <FileText className="size-3 shrink-0" />
+                                {name}
+                              </span>
+                            ))}
+                          </MessageContent>
+                        </Message>
+                      </div>
+                    ))
+                  ) : null}
+                  {!done && (
+                    <div
+                      key={step}
+                      className="pb-question relative mr-3 rounded-[20px] border border-border bg-muted px-5 py-4"
+                      aria-live="polite"
+                      aria-atomic="true"
+                    >
+                      <Message from="assistant" className="max-w-full">
+                        <MessageContent className="text-lg font-bold leading-snug">
+                          <MessageResponse>{current?.question ?? ""}</MessageResponse>
                         </MessageContent>
                       </Message>
                     </div>
-                  ))
-                ) : (
-                  <div className="flex items-center gap-3 py-3 text-sm text-muted-foreground">
-                    <FileText className="size-5 shrink-0" />
-                    <p>Начнём с вашей идеи.</p>
+                  )}
+                </ConversationContent>
+                <ConversationScrollButton />
+              </Conversation>
+              <div className="pb-brief-composer shrink-0 pt-3">
+                {done ? (
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button onClick={download} className="h-11 rounded-full px-5">
+                      <Download />
+                      Скачать ТЗ
+                    </Button>
+                    <Button asChild variant="secondary" className="h-11 rounded-full px-5">
+                      <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">
+                        <Check />
+                        Обсудить с командой
+                      </a>
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      aria-label="Начать заново"
+                      title="Начать заново"
+                      onClick={restart}
+                    >
+                      <RotateCcw />
+                    </Button>
                   </div>
-                )}
-              </ConversationContent>
-              <ConversationScrollButton />
-            </Conversation>
-            <div className="pb-brief-composer shrink-0 border-t border-border p-4 md:px-8 md:py-5">
-              {done ? (
-                <div className="flex flex-wrap items-center gap-3">
-                  <Button onClick={download} className="h-11 rounded-full px-5">
-                    <Download />
-                    Скачать ТЗ
-                  </Button>
-                  <Button asChild variant="secondary" className="h-11 rounded-full px-5">
-                    <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">
-                      <Check />
-                      Обсудить с командой
-                    </a>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    aria-label="Начать заново"
-                    title="Начать заново"
-                    onClick={restart}
+                ) : (
+                  <PromptInput
+                    onSubmit={submit}
+                    multiple
+                    className="[&>[data-slot=input-group]]:rounded-xl [&>[data-slot=input-group]]:bg-background"
                   >
-                    <RotateCcw />
-                  </Button>
+                    <PromptInputTextarea
+                      ref={textarea}
+                      aria-label="Ваш ответ"
+                      placeholder={current?.placeholder}
+                      value={text}
+                      onChange={(event) => setText(event.target.value)}
+                      className="min-h-12 max-h-24 px-4 text-base"
+                    />
+                    <ComposerTools text={text} />
+                  </PromptInput>
+                )}
+                <p className="mt-2 text-[10px] leading-relaxed text-muted-foreground">
+                  {done
+                    ? "Черновик составлен по вашим ответам, без анализа вложений."
+                    : "Набросок без ИИ. Ответы и файлы не отправляются команде."}
+                </p>
+                <a
+                  href={TELEGRAM_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-1 inline-block text-[11px] text-muted-foreground underline underline-offset-4"
+                >
+                  Написать команде
+                </a>
+              </div>
+            </div>
+            <aside className="pb-brief-summary" aria-label="Уже в брифе">
+              <h3 className="text-base font-bold">Уже в брифе</h3>
+              {answers.length ? (
+                <div className="mt-5 space-y-4">
+                  {answers.map((answer, index) => (
+                    <div key={index} className="border-b border-border pb-4 last:border-0">
+                      <p className="mb-2 text-[11px] text-muted-foreground">
+                        {BRIEF_QUESTIONS[index]?.title}
+                      </p>
+                      <p className="line-clamp-4 break-words text-sm leading-relaxed">
+                        {answer.text || "Материалы приложены"}
+                      </p>
+                      {answer.files.length > 0 && (
+                        <p className="mt-2 break-words text-xs text-muted-foreground">
+                          {answer.files.join(", ")}
+                        </p>
+                      )}
+                    </div>
+                  ))}
                 </div>
               ) : (
-                <PromptInput
-                  onSubmit={submit}
-                  multiple
-                  className="[&>[data-slot=input-group]]:rounded-xl [&>[data-slot=input-group]]:bg-background"
-                >
-                  <PromptInputTextarea
-                    ref={textarea}
-                    aria-label="Ваш ответ"
-                    placeholder={current?.placeholder}
-                    value={text}
-                    onChange={(event) => setText(event.target.value)}
-                    className="min-h-20 max-h-36 px-4 text-base"
-                  />
-                  <ComposerTools text={text} />
-                </PromptInput>
+                <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
+                  Пока начисто. Начнём с вашей идеи.
+                </p>
               )}
-              <p className="mt-3 text-[11px] leading-relaxed text-muted-foreground">
-                {done
-                  ? "Черновик составлен по вашим ответам, без анализа вложений."
-                  : "Ответы останутся в этом окне до обновления страницы. Вложения — только для наброска."}
-              </p>
-            </div>
+            </aside>
           </div>
         </DialogContent>
       </Dialog>
