@@ -217,6 +217,7 @@
 @keyframes pb-mouth-talk { 0%, 100% { transform: rotate(16deg) scaleY(0.25) scaleX(1); } 45% { transform: rotate(16deg) scaleY(1.8) scaleX(0.65); } 75% { transform: rotate(16deg) scaleY(0.7) scaleX(0.9); } }
 .pb-chat-question { background: var(--muted); border-radius: 8px; padding: 14px 16px; font-size: 14px; line-height: 1.65; }
 .pb-chat-current { animation: tabfade 250ms ease both; }
+.pb-brief-composer [data-slot="input-group"] { border-radius: 8px; }
 @media (max-width: 640px) {
   .pb-brief-dialog { width: calc(100vw - 24px); height: min(670px, calc(100dvh - 150px)); border-radius: 16px; }
   .pb-brief-heading { padding: 20px 18px; }
