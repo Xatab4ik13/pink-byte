@@ -105,7 +105,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
       {children}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
-          className="pb-brief-dialog gap-0 overflow-visible border-border bg-background p-0 text-foreground"
+          className={`pb-brief-dialog gap-0 overflow-visible border-border bg-background p-0 text-foreground${done ? " pb-brief-complete" : ""}`}
           onOpenAutoFocus={(event) => {
             event.preventDefault();
             textarea.current?.focus();
@@ -134,14 +134,14 @@ export function BriefProvider({ children }: { children: ReactNode }) {
               <div className="pb-brief-notes mt-7 border-t border-ink-border pt-5">
                 <div className="mb-3 flex items-baseline justify-between">
                   <span className="text-xs text-ink-muted">
-                    {done ? "Объём работы оценён" : "Робот оценивает объём работы"}
+                    {done ? "Исходные данные собраны" : "Робот оценивает объём работы"}
                   </span>
                   <span className="text-2xl font-extrabold tabular-nums text-primary">
                     {progress}%
                   </span>
                 </div>
                 <div
-                  className="relative"
+                  className={`relative${done ? " pb-progress-complete" : ""}`}
                   role="progressbar"
                   aria-valuemin={0}
                   aria-valuemax={100}
@@ -156,6 +156,11 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                     />
                   </div>
                 </div>
+                {done && (
+                  <p role="status" className="pb-progress-ready mt-3 text-sm font-medium text-primary">
+                    Черновик вашего ТЗ готов
+                  </p>
+                )}
               </div>
             </aside>
             <div className="pb-brief-main flex min-h-0 flex-1 flex-col">
@@ -164,7 +169,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                   <img src={mark.url} alt="" width={28} height={28} />
                 </span>
                 <span className="text-sm font-semibold text-foreground">
-                  {done ? "Ваш черновик ТЗ" : "Агент Pink Byte"}
+                  {done ? "Контакты для связи" : "Агент Pink Byte"}
                 </span>
               </div>
               {done ? (

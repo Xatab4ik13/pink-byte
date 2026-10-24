@@ -21,7 +21,7 @@ export function BriefContactForm({ brief, onDownload }: { brief: string; onDownl
 
   return (
     <form
-      className="flex min-h-0 flex-1 flex-col"
+      className="pb-brief-contact flex min-h-0 flex-1 flex-col"
       onSubmit={async (event) => {
         event.preventDefault();
         if (!valid || pending || saved) return;
@@ -37,13 +37,9 @@ export function BriefContactForm({ brief, onDownload }: { brief: string; onDownl
         }
       }}
     >
-      <div className="min-h-0 flex-1 overflow-y-auto px-1 py-6">
-        <div className="mb-5 flex items-center gap-2 text-xs font-semibold text-muted-foreground">
-          <Check className="size-4" /> Черновик готов
-        </div>
+      <div className="pb-brief-contact-fields min-h-0 flex-1 px-1 py-6">
         <h3 className="text-3xl font-extrabold leading-tight">
-          От идеи
-          <br />к вашему проекту.
+          Получите ТЗ бесплатно.
         </h3>
         <p className="mb-6 mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
           Оставьте контакты и скачайте бесплатный черновик ТЗ. Мы изучим задачу и свяжемся с вами в
