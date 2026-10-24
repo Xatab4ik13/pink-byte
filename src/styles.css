@@ -246,23 +246,25 @@
 .pb-brief-composer [data-slot="input-group"] { border-radius: 8px; }
 .pb-agent-mark { width: 30px; height: 30px; border-radius: 50%; background: var(--ink); display: grid; place-items: center; flex-shrink: 0; }
 .pb-agent-mark img { width: 20px; height: 20px; object-fit: contain; }
-.pb-msg-in-left { transform-origin: 0 100%; animation: pb-msg-left 900ms cubic-bezier(0.22, 0.8, 0.3, 1) both; }
-.pb-msg-in-right { transform-origin: 100% 100%; animation: pb-msg-right 900ms cubic-bezier(0.22, 0.8, 0.3, 1) both; }
+.pb-msg-in-left { transform-origin: 0 100%; animation: pb-msg-left 1300ms linear both; }
+.pb-msg-in-right { transform-origin: 100% 100%; animation: pb-msg-right 1300ms linear both; }
 /* Slides in from its side, overshoots, then settles with a small shake. */
 @keyframes pb-msg-left {
-  0% { opacity: 0; transform: translateX(-120px) rotate(-2deg); }
-  45% { opacity: 1; transform: translateX(10px) rotate(1deg); }
-  60% { transform: translateX(-6px) rotate(-1.2deg); }
-  74% { transform: translateX(4px) rotate(0.8deg); }
-  87% { transform: translateX(-2px) rotate(-0.3deg); }
+  0% { opacity: 0; transform: translateX(-160px) scale(0.9); animation-timing-function: cubic-bezier(0.3, 0, 0.4, 1); }
+  40% { opacity: 1; transform: translateX(14px) scale(1.03, 0.97); animation-timing-function: ease-in-out; }
+  52% { transform: translateX(-9px) rotate(-1.5deg); }
+  63% { transform: translateX(6px) rotate(1.2deg); }
+  74% { transform: translateX(-3px) rotate(-0.6deg); }
+  86% { transform: translateX(1px) rotate(0deg); }
   100% { opacity: 1; transform: none; }
 }
 @keyframes pb-msg-right {
-  0% { opacity: 0; transform: translateX(120px) rotate(2deg); }
-  45% { opacity: 1; transform: translateX(-10px) rotate(-1deg); }
-  60% { transform: translateX(6px) rotate(1.2deg); }
-  74% { transform: translateX(-4px) rotate(-0.8deg); }
-  87% { transform: translateX(2px) rotate(0.3deg); }
+  0% { opacity: 0; transform: translateX(160px) scale(0.9); animation-timing-function: cubic-bezier(0.3, 0, 0.4, 1); }
+  40% { opacity: 1; transform: translateX(-14px) scale(1.03, 0.97); animation-timing-function: ease-in-out; }
+  52% { transform: translateX(9px) rotate(1.5deg); }
+  63% { transform: translateX(-6px) rotate(-1.2deg); }
+  74% { transform: translateX(3px) rotate(0.6deg); }
+  86% { transform: translateX(-1px) rotate(0deg); }
   100% { opacity: 1; transform: none; }
 }
 .pb-brief-main * { scrollbar-width: thin; scrollbar-color: var(--ink) transparent; }
