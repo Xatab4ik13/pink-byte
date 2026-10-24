@@ -33,3 +33,5 @@
 - [x] Verify the redesigned conversation, attachments and download across desktop and mobile.
 - [x] Match the latest light chat reference without comic clouds and verify the complete flow.
 - [x] Remove em dashes from all visible copy, alt labels and page titles.
+- [ ] Replace the 100% result with a contact form, consent and a saved-submission download gate.
+- [ ] Verify the full completion flow and remove only the test submission.
