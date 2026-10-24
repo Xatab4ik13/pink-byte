@@ -19,7 +19,7 @@ import {
 } from "@/components/ai-elements/prompt-input";
 import robot from "@/assets/robot-brief-seated.png";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
-import { TELEGRAM_URL } from "./primitives";
+import { Logo, TELEGRAM_URL } from "./primitives";
 import { BriefContext } from "./brief-context";
 
 function ComposerTools({ text }: { text: string }) {
