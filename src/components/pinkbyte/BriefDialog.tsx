@@ -110,14 +110,14 @@ export function BriefProvider({ children }: { children: ReactNode }) {
             textarea.current?.focus();
           }}
         >
+          <img
+            src={robot.url}
+            alt="Робот Pink Byte сидит на нижнем краю окна"
+            width={900}
+            height={639}
+            className="pb-brief-robot pointer-events-none absolute z-20"
+          />
           <div className="pb-brief-heading relative shrink-0">
-            <img
-              src={robot.url}
-              alt="Робот Pink Byte сидит на краю окна"
-              width={900}
-              height={639}
-              className="pb-brief-robot pointer-events-none absolute z-20"
-            />
             <div className="pb-brief-intro">
               <div className="flex flex-wrap items-center gap-3 pr-6">
                 <DialogTitle className="text-lg font-semibold tracking-normal">
@@ -201,7 +201,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
               </ConversationContent>
               <ConversationScrollButton />
             </Conversation>
-            <div className="shrink-0 border-t border-border p-4 md:px-8 md:py-5">
+            <div className="pb-brief-composer shrink-0 border-t border-border p-4 md:px-8 md:py-5">
               {done ? (
                 <div className="flex flex-wrap items-center gap-3">
                   <Button onClick={download} className="h-11 rounded-full px-5">
