@@ -31,9 +31,10 @@ function ComposerTools({ text }: { text: string }) {
           tooltip="Прикрепить бриф, примеры или схемы"
           aria-label="Прикрепить файл"
           onClick={() => attachments.openFileDialog()}
-          className="size-9 rounded-lg"
+          className="pb-brief-attach h-9 rounded-lg px-2"
         >
           <Paperclip />
+          <span className="text-xs">Прикрепить файл</span>
         </PromptInputButton>
         {attachments.files.map((file) => (
           <span
@@ -60,7 +61,7 @@ function ComposerTools({ text }: { text: string }) {
         disabled={
           !canSubmitAnswer({ text, files: attachments.files.map((f) => f.filename || "Файл") })
         }
-        variant="default"
+        variant="secondary"
         className="size-10 shrink-0 rounded-lg"
       >
         <ArrowUp />
@@ -121,12 +122,12 @@ export function BriefProvider({ children }: { children: ReactNode }) {
           <div className="pb-brief-heading relative shrink-0">
             <div className="pb-brief-intro">
               <div className="flex flex-wrap items-center gap-3 pr-6">
-                <DialogTitle className="text-xl font-bold tracking-normal md:text-2xl">
+                <DialogTitle className="text-2xl font-extrabold tracking-normal md:text-3xl">
                   Обсудим ваш проект
                 </DialogTitle>
-                <span className="flex items-center gap-2 text-xs font-medium text-primary"><span className="size-1.5 rounded-full bg-primary" />ТЗ бесплатно</span>
+                <span className="text-xs font-medium text-muted-foreground">ТЗ бесплатно</span>
               </div>
-              <DialogDescription className="mt-2 text-xs text-ink-muted">
+              <DialogDescription className="mt-2 text-xs text-muted-foreground">
                 Pink Byte / Помощник по проекту
               </DialogDescription>
             </div>
@@ -165,11 +166,11 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                         <Message from="assistant">
                           <span className="text-[11px] font-medium text-muted-foreground">Pink Byte</span>
                           <MessageContent className="pb-chat-question">
-                            <p>{BRIEF_QUESTIONS[index]?.question}</p>
+                            <MessageResponse>{BRIEF_QUESTIONS[index]?.question ?? ""}</MessageResponse>
                           </MessageContent>
                         </Message>
                         <Message from="user">
-                          <MessageContent className="leading-relaxed group-[.is-user]:rounded-lg group-[.is-user]:bg-secondary group-[.is-user]:text-secondary-foreground">
+                          <MessageContent className="leading-relaxed group-[.is-user]:rounded-lg group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground">
                             <p className="whitespace-pre-wrap break-words">{answer.text}</p>
                             {answer.files.map((name, k) => (
                               <span key={k} className="flex items-center gap-2 text-xs">
@@ -186,7 +187,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                     <Message key={step} from="assistant" className="pb-chat-current" aria-live="polite">
                       <span className="flex items-center gap-2 text-[11px] font-medium text-muted-foreground"><span className="size-1.5 rounded-full bg-primary" />Pink Byte</span>
                       <MessageContent className="pb-chat-question">
-                        <p>{current?.question}</p>
+                        <MessageResponse>{current?.question ?? ""}</MessageResponse>
                       </MessageContent>
                     </Message>
                   )}
@@ -249,20 +250,20 @@ export function BriefProvider({ children }: { children: ReactNode }) {
               </div>
             </div>
             <aside className="pb-brief-summary" aria-label="Уже в брифе">
-              <div className="mb-5 flex items-center justify-between gap-3"><FileText className="size-5 text-primary" /><span className="text-[11px] text-ink-muted">{step} / {BRIEF_QUESTIONS.length}</span></div>
+              <div className="mb-5 flex items-center justify-between gap-3"><FileText className="size-5 text-muted-foreground" /><span className="text-[11px] text-muted-foreground">{step} / {BRIEF_QUESTIONS.length}</span></div>
               <h3 className="text-base font-bold">Уже в брифе</h3>
               {answers.length ? (
                 <div className="mt-5 space-y-4">
                   {answers.map((answer, index) => (
-                    <div key={index} className="border-b border-ink-border pb-4 last:border-0">
-                      <p className="mb-2 text-[11px] text-ink-muted">
+                    <div key={index} className="border-b border-border pb-4 last:border-0">
+                      <p className="mb-2 text-[11px] text-muted-foreground">
                         {BRIEF_QUESTIONS[index]?.title}
                       </p>
                       <p className="line-clamp-4 break-words text-sm leading-relaxed">
                         {answer.text || "Материалы приложены"}
                       </p>
                       {answer.files.length > 0 && (
-                        <p className="mt-2 break-words text-xs text-ink-muted">
+                        <p className="mt-2 break-words text-xs text-muted-foreground">
                           {answer.files.join(", ")}
                         </p>
                       )}
@@ -270,7 +271,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                   ))}
                 </div>
               ) : (
-                <p className="mt-4 text-xs leading-relaxed text-ink-muted">
+                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
                   Пока начисто. Начнём с вашей идеи.
                 </p>
               )}

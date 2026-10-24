@@ -206,16 +206,16 @@
   border-radius: 16px;
   box-shadow: var(--shadow-showcase);
 }
-.pb-brief-heading { padding: 25px 32px; background: var(--ink); color: var(--ink-foreground); border-radius: 15px 15px 0 0; }
-.pb-brief-dialog > button { color: var(--ink-foreground); background: transparent; }
+.pb-brief-heading { padding: 25px 32px 18px; background: var(--background); color: var(--foreground); border-radius: 15px 15px 0 0; }
+.pb-brief-dialog > button { color: var(--foreground); background: var(--muted); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; }
 .pb-brief-intro { margin-left: 0; }
 .pb-brief-robot { width: 220px; aspect-ratio: 768 / 832; left: -26px; bottom: -91px; }
 .pb-brief-layout { display: flex; flex: 1; min-height: 0; gap: 28px; padding: 0 0 0 156px; }
-.pb-brief-main { min-width: 0; padding-top: 20px; padding-bottom: 22px; }
-.pb-brief-summary { width: 224px; flex-shrink: 0; background: var(--ink); color: var(--ink-foreground); padding: 26px 24px; overflow-y: auto; border-radius: 0 0 15px 0; }
+.pb-brief-main { min-width: 0; padding-top: 8px; padding-bottom: 22px; }
+.pb-brief-summary { width: 224px; flex-shrink: 0; background: var(--background); color: var(--foreground); border-left: 1px solid var(--border); padding: 16px 24px; margin-bottom: 24px; overflow-y: auto; }
 .pb-brief-mouth { position: absolute; left: 46%; top: 32%; width: 7%; height: 1.5%; background: var(--lime); border-radius: 50%; transform: rotate(16deg); animation: pb-mouth-talk 260ms ease-in-out 10; }
 @keyframes pb-mouth-talk { 0%, 100% { transform: rotate(16deg) scaleY(0.25) scaleX(1); } 45% { transform: rotate(16deg) scaleY(1.8) scaleX(0.65); } 75% { transform: rotate(16deg) scaleY(0.7) scaleX(0.9); } }
-.pb-chat-question { background: var(--muted); border-radius: 8px; padding: 14px 16px; font-size: 14px; line-height: 1.65; }
+.pb-chat-question { padding: 0; font-size: 14px; line-height: 1.65; }
 .pb-chat-current { animation: tabfade 250ms ease both; }
 .pb-brief-composer [data-slot="input-group"] { border-radius: 8px; }
 @media (max-width: 640px) {
@@ -226,4 +226,5 @@
   .pb-brief-layout { padding: 0 16px; }
   .pb-brief-summary { display: none; }
   .pb-brief-composer { margin-left: 99px; }
+  .pb-brief-attach span { display: none; }
 }
