@@ -154,7 +154,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
               </div>
             </aside>
             <div className="pb-brief-main flex min-h-0 flex-1 flex-col">
-              <div className="flex shrink-0 items-center justify-between gap-4 border-b border-border pb-4">
+              <div className="flex shrink-0 items-center justify-between gap-4 border-b border-border pb-4 pr-10">
                 <span className="text-xs font-medium text-muted-foreground">
                   {done
                     ? "Ваш черновик ТЗ"
