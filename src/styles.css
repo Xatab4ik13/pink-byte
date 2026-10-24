@@ -241,9 +241,9 @@
   box-shadow: var(--thought-dot-shadow);
   animation: pb-thought-appear 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.pb-thought-dot-first { width: 10px; height: 10px; left: -63px; bottom: 25px; }
-.pb-thought-dot-second { width: 17px; height: 17px; left: -43px; bottom: 46px; animation-delay: 220ms; }
-.pb-thought-dot-third { width: 26px; height: 26px; left: -20px; bottom: 69px; animation-delay: 440ms; }
+.pb-thought-dot-first { width: 10px; height: 10px; left: -63px; bottom: -35px; }
+.pb-thought-dot-second { width: 17px; height: 17px; left: -43px; bottom: -12px; animation-delay: 220ms; }
+.pb-thought-dot-third { width: 26px; height: 26px; left: -20px; bottom: 14px; animation-delay: 440ms; }
 @keyframes pb-thought-appear {
   from { opacity: 0; transform: translateY(6px) scale(0.15); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -259,11 +259,11 @@
   .pb-brief-layout { padding: 0 16px 16px; }
   .pb-brief-summary { display: none; }
   .pb-brief-composer { margin-left: 99px; }
-  .pb-brief-thought { left: 76px; bottom: 152px; width: calc(100% - 100px); }
+  .pb-brief-thought { left: 76px; bottom: 214px; width: calc(100% - 100px); }
   .pb-thought-cloud { padding: 23px 24px; }
   .pb-thought-text { font-size: 15px; line-height: 1.5; }
-  .pb-thought-dot-first { left: -14px; bottom: -50px; }
-  .pb-thought-dot-second { left: 2px; bottom: -32px; }
-  .pb-thought-dot-third { left: 23px; bottom: -12px; }
-  .pb-brief-history { padding-bottom: 216px; }
+  .pb-thought-dot-first { left: -14px; bottom: -104px; }
+  .pb-thought-dot-second { left: 2px; bottom: -76px; }
+  .pb-thought-dot-third { left: 23px; bottom: -43px; }
+  .pb-brief-history { padding-bottom: 278px; }
 }
