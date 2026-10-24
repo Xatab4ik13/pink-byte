@@ -128,9 +128,9 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                 ваш <span className="text-primary">проект.</span>
               </DialogTitle>
               <DialogDescription className="mt-4 text-sm leading-relaxed text-ink-muted">
-                Нет ТЗ — не страшно. Расскажите задачу своими словами: наш агент задаст
+                Нет ТЗ? Не страшно. Расскажите задачу своими словами: наш агент задаст
                 нужные вопросы, а мы оценим проект и назовём цену.{" "}
-                <span className="text-ink-foreground">Черновик ТЗ — бесплатно.</span>
+                <span className="text-ink-foreground">Черновик ТЗ сделаем бесплатно.</span>
               </DialogDescription>
               <div className="pb-brief-notes mt-7 min-h-0 flex-1 overflow-y-auto border-t border-ink-border pt-5">
                 {answers.length ? (

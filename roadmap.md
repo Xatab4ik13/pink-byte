@@ -32,3 +32,4 @@
 - [x] Remove comic clouds and redesign the chat modal in the studio palette, preserving the seated robot and brief flow.
 - [x] Verify the redesigned conversation, attachments and download across desktop and mobile.
 - [x] Match the latest light chat reference without comic clouds and verify the complete flow.
+- [x] Remove em dashes from all visible copy, alt labels and page titles.

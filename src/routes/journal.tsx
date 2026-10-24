@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/pinkbyte/Hero";
 import { Footer } from "@/components/pinkbyte/Closing";
 
-const TITLE = "Журнал — Pink Byte";
+const TITLE = "Журнал · Pink Byte";
 const DESC = "Журнал веб-студии Pink Byte о дизайне и разработке цифровых продуктов.";
 
 export const Route = createFileRoute("/journal")({
