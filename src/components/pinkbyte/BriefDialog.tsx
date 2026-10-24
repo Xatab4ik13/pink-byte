@@ -177,7 +177,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                           </MessageContent>
                         </Message>
                         <Message from="user">
-                          <MessageContent className="pb-bubble-user">
+                          <MessageContent className="pb-bubble-user pb-msg-in-right">
                             <p className="whitespace-pre-wrap break-words">{answer.text}</p>
                             {answer.files.map((name, k) => (
                               <span key={k} className="flex items-center gap-2 text-xs">
@@ -197,7 +197,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                       className="pb-chat-current"
                       aria-live="polite"
                     >
-                      <MessageContent className="pb-bubble-bot">
+                      <MessageContent className="pb-bubble-bot pb-msg-in-left">
                         <MessageResponse>{current?.question ?? ""}</MessageResponse>
                       </MessageContent>
                     </Message>
