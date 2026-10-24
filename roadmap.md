@@ -29,3 +29,5 @@
 - [x] Verify the complete brief flow and robot placement on desktop and mobile.
 - [x] Add sequential diagonal thought circles, a floating dimensional cloud and typewritten questions without moving the robot.
 - [x] Verify opening, next question, completed brief and mobile placement.
+- [ ] Remove comic clouds and redesign the chat modal in the studio palette, preserving the seated robot and brief flow.
+- [ ] Verify the redesigned conversation, attachments and download across desktop and mobile.
