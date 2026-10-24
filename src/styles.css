@@ -109,6 +109,10 @@
   --sidebar-border: var(--border);
   --sidebar-ring: var(--graphite);
   --shadow-showcase: 0 40px 80px -40px oklch(0.185 0.008 150 / 45%);
+  --thought-surface: oklch(1 0 0);
+  --thought-edge: oklch(0.9 0.005 106);
+  --thought-shadow: 0 6px 0 var(--thought-edge), 0 18px 30px -10px oklch(0.185 0.008 150 / 24%), inset 0 2px 0 var(--thought-surface);
+  --thought-dot-shadow: 0 3px 0 var(--thought-edge), 0 7px 12px oklch(0.185 0.008 150 / 12%);
 }
 
 @layer base {
@@ -214,22 +218,38 @@
 .pb-brief-summary { width: 185px; flex-shrink: 0; border-left: 1px solid var(--border); padding-left: 24px; overflow-y: auto; }
 .pb-brief-mouth { position: absolute; left: 46%; top: 32%; width: 7%; height: 1.5%; background: var(--lime); border-radius: 50%; transform: rotate(16deg); animation: pb-mouth-talk 260ms ease-in-out 10; }
 @keyframes pb-mouth-talk { 0%, 100% { transform: rotate(16deg) scaleY(0.25) scaleX(1); } 45% { transform: rotate(16deg) scaleY(1.8) scaleX(0.65); } 75% { transform: rotate(16deg) scaleY(0.7) scaleX(0.9); } }
-.pb-question { animation: pb-question-enter 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-.pb-question::before {
-  content: "";
-  position: absolute;
-  left: -12px;
-  bottom: 12px;
-  width: 20px;
-  height: 16px;
-  background: var(--muted);
-  border-left: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  transform: skewY(-35deg);
+.pb-brief-history { padding-bottom: 224px; }
+.pb-brief-thought { left: 176px; bottom: 180px; width: min(408px, calc(100% - 416px)); }
+.pb-thought-cloud {
+  position: relative;
+  padding: 27px 29px;
+  border: 1px solid var(--thought-edge);
+  border-radius: 46% 42% 40% 38% / 28% 32% 30% 35%;
+  background: var(--thought-surface);
+  box-shadow: var(--thought-shadow);
+  transform-origin: 8% 85%;
+  animation: pb-thought-appear 480ms cubic-bezier(0.16, 1, 0.3, 1) 720ms both;
 }
-@keyframes pb-question-enter {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+.pb-thought-text { position: relative; margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; }
+.pb-thought-typed { position: absolute; inset: 0; }
+.pb-thought-caret { display: inline-block; width: 2px; height: 1em; margin-left: 3px; vertical-align: -0.12em; background: var(--foreground); }
+.pb-thought-dot {
+  position: absolute;
+  background: var(--thought-surface);
+  border: 1px solid var(--thought-edge);
+  border-radius: 50%;
+  box-shadow: var(--thought-dot-shadow);
+  animation: pb-thought-appear 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.pb-thought-dot-first { width: 10px; height: 10px; left: -63px; bottom: -35px; }
+.pb-thought-dot-second { width: 17px; height: 17px; left: -43px; bottom: -12px; animation-delay: 220ms; }
+.pb-thought-dot-third { width: 26px; height: 26px; left: -20px; bottom: 14px; animation-delay: 440ms; }
+@keyframes pb-thought-appear {
+  from { opacity: 0; transform: translateY(6px) scale(0.15); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pb-thought-dot, .pb-thought-cloud { animation: none; }
 }
 @media (max-width: 640px) {
   .pb-brief-dialog { width: calc(100vw - 24px); height: min(670px, calc(100dvh - 150px)); border-radius: 20px; }
@@ -239,5 +259,11 @@
   .pb-brief-layout { padding: 0 16px 16px; }
   .pb-brief-summary { display: none; }
   .pb-brief-composer { margin-left: 99px; }
-  .pb-question { margin-top: 14px; padding: 14px 16px; }
+  .pb-brief-thought { left: 76px; bottom: 214px; width: calc(100% - 100px); }
+  .pb-thought-cloud { padding: 23px 24px; }
+  .pb-thought-text { font-size: 15px; line-height: 1.5; }
+  .pb-thought-dot-first { left: -14px; bottom: -104px; }
+  .pb-thought-dot-second { left: 2px; bottom: -76px; }
+  .pb-thought-dot-third { left: 23px; bottom: -43px; }
+  .pb-brief-history { padding-bottom: 278px; }
 }

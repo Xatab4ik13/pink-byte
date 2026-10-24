@@ -27,3 +27,5 @@
 - [x] Verify sequential answers, attachments, final brief and mobile layout.
 - [x] Match the supplied light brief window with a live summary sidebar, seat the robot precisely on its bottom edge, and preview a digital talking mouth.
 - [x] Verify the complete brief flow and robot placement on desktop and mobile.
+- [x] Add sequential diagonal thought circles, a floating dimensional cloud and typewritten questions without moving the robot.
+- [x] Verify opening, next question, completed brief and mobile placement.
