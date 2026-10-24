@@ -24,6 +24,9 @@ export function BriefQuestion({ question }: { question: string }) {
       <span className="pb-thought-dot pb-thought-dot-second" aria-hidden="true" />
       <span className="pb-thought-dot pb-thought-dot-third" aria-hidden="true" />
       <div className="pb-thought-cloud">
+        <svg className="pb-thought-silhouette" viewBox="0 0 320 166" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M42 127C15 133 2 114 15 99C-2 82 8 61 29 58C23 35 48 22 69 29C76 8 109 5 126 18C146 0 173 7 182 19C205 5 236 15 241 32C268 21 291 37 289 56C317 60 328 83 308 98C325 121 299 140 276 135C264 158 235 157 220 145C202 166 173 160 158 147C139 165 109 158 101 144C76 157 49 149 42 127Z" />
+        </svg>
         <p className="sr-only" role="status">{question}</p>
         <p className="pb-thought-text" aria-hidden="true">
           <span className="invisible">{question}</span>
