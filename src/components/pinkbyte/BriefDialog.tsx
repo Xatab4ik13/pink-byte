@@ -80,6 +80,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
   const done = step === BRIEF_QUESTIONS.length;
   const current = BRIEF_QUESTIONS[step];
   const brief = createBrief(answers);
+  const progress = Math.round((answers.length / BRIEF_QUESTIONS.length) * 100);
   function submit(message: PromptInputMessage) {
     const answer = {
       text: message.text.trim(),
@@ -133,25 +134,19 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                 нужные вопросы, а мы оценим проект и назовём цену.{" "}
                 <span className="text-ink-foreground">Черновик ТЗ сделаем бесплатно.</span>
               </DialogDescription>
-              <div className="pb-brief-notes mt-7 min-h-0 flex-1 overflow-y-auto border-t border-ink-border pt-5">
-                {answers.length ? (
-                  <div className="space-y-4">
-                    {answers.map((answer, index) => (
-                      <div key={index}>
-                        <p className="mb-1 text-[11px] text-primary">
-                          {BRIEF_QUESTIONS[index]?.title}
-                        </p>
-                        <p className="line-clamp-2 break-words text-sm leading-relaxed">
-                          {answer.text || "Материалы приложены"}
-                        </p>
-                      </div>
-                    ))}
+              <div className="pb-brief-notes mt-7 border-t border-ink-border pt-5">
+                <div className="mb-3 flex items-baseline justify-between">
+                  <span className="text-xs text-ink-muted">
+                    {done ? "Объём работы оценён" : "Робот оценивает объём работы"}
+                  </span>
+                  <span className="text-2xl font-extrabold tabular-nums text-primary">{progress}%</span>
+                </div>
+                <div className="relative" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress} aria-label="Оценка объёма работы">
+                  <span className="pb-progress-glow" style={{ right: `${100 - progress}%` }} />
+                  <div className="pb-progress-track">
+                    <div className="pb-progress-fill" style={{ transform: `scaleX(${progress / 100})` }} />
                   </div>
-                ) : (
-                  <p className="text-xs leading-relaxed text-ink-muted">
-                    Здесь будет собираться ваш бриф.
-                  </p>
-                )}
+                </div>
               </div>
             </aside>
             <div className="pb-brief-main flex min-h-0 flex-1 flex-col">
