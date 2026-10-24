@@ -259,7 +259,7 @@
 .pb-progress-ready { animation: pb-progress-ready 450ms ease-out 1.1s both; }
 @keyframes pb-progress-finish { 0% { opacity: 0; transform: translateX(-100%); } 35% { opacity: .5; } 100% { opacity: 0; transform: translateX(100%); } }
 @keyframes pb-progress-ready { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-.pb-brief-contact-fields { overflow-y: auto; scrollbar-width: none; }
+.pb-brief-main .pb-brief-contact-fields { overflow-y: auto; scrollbar-width: none; }
 .pb-brief-main .pb-brief-contact-fields::-webkit-scrollbar { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .pb-progress-complete .pb-progress-track::after { animation: none; }
@@ -298,6 +298,13 @@
   .pb-brief-complete .pb-progress-ready { margin-top: 8px; }
   .pb-brief-contact-fields { padding-top: 16px; padding-bottom: 16px; }
   .pb-brief-contact-fields h3 { font-size: 24px; }
+  .pb-brief-contact-fields > p { margin-top: 8px; margin-bottom: 16px; font-size: 12px; }
+  .pb-brief-contact-fields > .space-y-4 { display: flex; flex-direction: column; gap: 12px; }
+  .pb-brief-contact-fields > .space-y-4 > * { margin-top: 0; }
+  .pb-brief-contact-fields .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .pb-brief-contact-fields label { font-size: 12px; }
+  .pb-brief-contact-fields input { margin-top: 6px; height: 40px; }
+  .pb-brief-contact-fields label > span { font-size: 10px; }
   .pb-brief-contact .pb-brief-composer { padding-left: 110px !important; gap: 8px; }
   .pb-brief-contact .pb-brief-composer button { width: 100%; height: 38px; padding-inline: 8px; font-size: 12px; }
 }
