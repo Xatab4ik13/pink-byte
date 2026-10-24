@@ -37,4 +37,4 @@
 - [x] Verify the full completion flow and remove only the test submission.
 - [ ] Finalize legal consent documents: awaiting the studio's legal operator details from the owner.
 - [ ] Replace brief download with a single submit button and server email delivery: awaiting the owner's verified email sender domain.
-- [ ] Redesign project slides with horizontal motion, captions above, side arrows and an inset CTA; enlarge mobile images without cropping and verify navigation.
+- [x] Redesign project slides with horizontal motion, captions above, side arrows and an inset CTA; enlarge mobile images without cropping and verify navigation.
