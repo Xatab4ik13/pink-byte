@@ -164,9 +164,13 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                     answers.map((answer, index) => (
                       <div key={index} className="space-y-4">
                         <Message from="assistant">
-                          <span className="text-[11px] font-medium text-muted-foreground">Pink Byte</span>
+                          <span className="text-[11px] font-medium text-muted-foreground">
+                            Pink Byte
+                          </span>
                           <MessageContent className="pb-chat-question">
-                            <MessageResponse>{BRIEF_QUESTIONS[index]?.question ?? ""}</MessageResponse>
+                            <MessageResponse>
+                              {BRIEF_QUESTIONS[index]?.question ?? ""}
+                            </MessageResponse>
                           </MessageContent>
                         </Message>
                         <Message from="user">
@@ -184,8 +188,16 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                     ))
                   ) : null}
                   {!done && (
-                    <Message key={step} from="assistant" className="pb-chat-current" aria-live="polite">
-                      <span className="flex items-center gap-2 text-[11px] font-medium text-muted-foreground"><span className="size-1.5 rounded-full bg-primary" />Pink Byte</span>
+                    <Message
+                      key={step}
+                      from="assistant"
+                      className="pb-chat-current"
+                      aria-live="polite"
+                    >
+                      <span className="flex items-center gap-2 text-[11px] font-medium text-muted-foreground">
+                        <span className="size-1.5 rounded-full bg-primary" />
+                        Pink Byte
+                      </span>
                       <MessageContent className="pb-chat-question">
                         <MessageResponse>{current?.question ?? ""}</MessageResponse>
                       </MessageContent>
@@ -250,7 +262,12 @@ export function BriefProvider({ children }: { children: ReactNode }) {
               </div>
             </div>
             <aside className="pb-brief-summary" aria-label="Уже в брифе">
-              <div className="mb-5 flex items-center justify-between gap-3"><FileText className="size-5 text-muted-foreground" /><span className="text-[11px] text-muted-foreground">{step} / {BRIEF_QUESTIONS.length}</span></div>
+              <div className="mb-5 flex items-center justify-between gap-3">
+                <FileText className="size-5 text-muted-foreground" />
+                <span className="text-[11px] text-muted-foreground">
+                  {step} / {BRIEF_QUESTIONS.length}
+                </span>
+              </div>
               <h3 className="text-base font-bold">Уже в брифе</h3>
               {answers.length ? (
                 <div className="mt-5 space-y-4">
