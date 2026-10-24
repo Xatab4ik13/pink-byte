@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import robotLean from "@/assets/robot-clean-face.png.asset.json";
+import robotLeanSrc from "@/assets/robot-hero.webp";
 import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
 import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
 import { Button } from "@/components/ui/button";
@@ -97,7 +97,7 @@ export function Hero() {
         </div>
         <div className="pointer-events-none absolute bottom-0 right-4 w-[clamp(200px,24vw,240px)] translate-y-[14%] lg:w-[clamp(270px,25vw,360px)]">
           <img
-            src={robotLean.url}
+            src={robotLeanSrc}
             alt="Хромированный робот Pink Byte облокотился на край экрана"
             width={900}
             height={862}

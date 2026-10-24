@@ -1,4 +1,4 @@
-import robotSit from "@/assets/robot-sit.png.asset.json";
+import robotSitSrc from "@/assets/robot-sit.webp";
 import { Button } from "@/components/ui/button";
 import { Logo, NAV, Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
@@ -27,7 +27,7 @@ export function Contact() {
       <Reveal className="grid items-end overflow-hidden rounded-[2rem] bg-ink text-ink-foreground md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
         <div className="order-2 px-6 pt-2 md:order-1 md:px-10 md:pt-10">
           <img
-            src={robotSit.url}
+            src={robotSitSrc}
             alt="Сидящий робот Pink Byte приглашает к разговору жестом ладони"
             width={900}
             height={639}
