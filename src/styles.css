@@ -196,40 +196,48 @@
   .pb-eye, .pb-gaze { animation: none !important; }
 }
 
-/* The sitting robot stays still; only each new speech bubble enters. */
+/* The seat line is 62% down the cropped robot; the remaining legs hang outside. */
 .pb-brief-dialog {
   width: min(920px, calc(100vw - 48px));
   max-width: 920px;
-  height: min(720px, calc(100dvh - 160px));
+  height: min(590px, calc(100dvh - 190px));
   display: flex;
   flex-direction: column;
   border-radius: 24px;
   box-shadow: var(--shadow-showcase);
 }
-.pb-brief-heading { padding: 26px 32px 25px; }
+.pb-brief-heading { padding: 26px 32px 20px; }
 .pb-brief-intro { margin-left: 0; }
-.pb-brief-robot { width: 230px; height: auto; left: -30px; bottom: -44px; }
-.pb-brief-composer { padding-left: 208px; }
+.pb-brief-robot { width: 220px; aspect-ratio: 768 / 832; left: -26px; bottom: -91px; }
+.pb-brief-layout { display: flex; flex: 1; min-height: 0; gap: 24px; padding: 0 28px 20px 156px; }
+.pb-brief-main { min-width: 0; }
+.pb-brief-summary { width: 185px; flex-shrink: 0; border-left: 1px solid var(--border); padding-left: 24px; overflow-y: auto; }
+.pb-brief-mouth { position: absolute; left: 46%; top: 32%; width: 7%; height: 1.5%; background: var(--lime); border-radius: 50%; transform: rotate(16deg); animation: pb-mouth-talk 260ms ease-in-out 10; }
+@keyframes pb-mouth-talk { 0%, 100% { transform: rotate(16deg) scaleY(0.25) scaleX(1); } 45% { transform: rotate(16deg) scaleY(1.8) scaleX(0.65); } 75% { transform: rotate(16deg) scaleY(0.7) scaleX(0.9); } }
 .pb-question { animation: pb-question-enter 380ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .pb-question::before {
   content: "";
   position: absolute;
   left: -12px;
-  top: 24px;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-right: 14px solid var(--primary);
+  bottom: 12px;
+  width: 20px;
+  height: 16px;
+  background: var(--muted);
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transform: skewY(-35deg);
 }
 @keyframes pb-question-enter {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 @media (max-width: 640px) {
-  .pb-brief-dialog { width: calc(100vw - 24px); height: calc(100dvh - 100px); max-height: 850px; border-radius: 20px; }
-  .pb-brief-heading { padding: 20px 18px 18px; }
+  .pb-brief-dialog { width: calc(100vw - 24px); height: min(670px, calc(100dvh - 150px)); border-radius: 20px; }
+  .pb-brief-heading { padding: 20px 18px 16px; }
   .pb-brief-intro { margin-left: 0; }
-  .pb-brief-robot { width: 135px; left: -12px; bottom: -26px; }
-  .pb-brief-composer { padding-left: 124px; }
+  .pb-brief-robot { width: 128px; left: -10px; bottom: -53px; }
+  .pb-brief-layout { padding: 0 16px 16px; }
+  .pb-brief-summary { display: none; }
+  .pb-brief-composer { margin-left: 99px; }
   .pb-question { margin-top: 14px; padding: 14px 16px; }
-  .pb-question::before { left: 36px; top: -12px; border-top: 0; border-left: 9px solid transparent; border-right: 9px solid transparent; border-bottom: 14px solid var(--primary); }
 }
