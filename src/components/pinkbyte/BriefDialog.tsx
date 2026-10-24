@@ -1,5 +1,5 @@
 import { useRef, useState, type ReactNode } from "react";
-import { ArrowUp, Check, Download, FileText, Paperclip, RotateCcw, X } from "lucide-react";
+import { ArrowUp, FileText, Paperclip, X } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,8 +20,9 @@ import {
 import robot from "@/assets/robot-brief-seated.webp";
 import mark from "@/assets/mark-pb.png.asset.json";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
-import { Logo, TELEGRAM_URL } from "./primitives";
+import { Logo } from "./primitives";
 import { BriefContext } from "./brief-context";
+import { BriefContactForm } from "./BriefContactForm";
 
 function ComposerTools({ text }: { text: string }) {
   const attachments = usePromptInputAttachments();
@@ -91,10 +92,6 @@ export function BriefProvider({ children }: { children: ReactNode }) {
     setText("");
     requestAnimationFrame(() => textarea.current?.focus());
   }
-  function restart() {
-    setAnswers([]);
-    setText("");
-  }
   function download() {
     const url = URL.createObjectURL(new Blob([brief], { type: "text/plain;charset=utf-8" }));
     const link = document.createElement("a");
@@ -130,8 +127,8 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                 ваш <span className="text-primary">проект.</span>
               </DialogTitle>
               <DialogDescription className="mt-4 text-sm leading-relaxed text-ink-muted">
-                Нет ТЗ? Не страшно. Расскажите задачу своими словами: наш агент задаст
-                нужные вопросы, а мы оценим проект и назовём цену.{" "}
+                Нет ТЗ? Не страшно. Расскажите задачу своими словами: наш агент задаст нужные
+                вопросы, а мы оценим проект и назовём цену.{" "}
                 <span className="text-ink-foreground">Черновик ТЗ сделаем бесплатно.</span>
               </DialogDescription>
               <div className="pb-brief-notes mt-7 border-t border-ink-border pt-5">
@@ -139,12 +136,24 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                   <span className="text-xs text-ink-muted">
                     {done ? "Объём работы оценён" : "Робот оценивает объём работы"}
                   </span>
-                  <span className="text-2xl font-extrabold tabular-nums text-primary">{progress}%</span>
+                  <span className="text-2xl font-extrabold tabular-nums text-primary">
+                    {progress}%
+                  </span>
                 </div>
-                <div className="relative" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progress} aria-label="Оценка объёма работы">
+                <div
+                  className="relative"
+                  role="progressbar"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={progress}
+                  aria-label="Оценка объёма работы"
+                >
                   <span className="pb-progress-glow" style={{ right: `${100 - progress}%` }} />
                   <div className="pb-progress-track">
-                    <div className="pb-progress-fill" style={{ transform: `scaleX(${progress / 100})` }} />
+                    <div
+                      className="pb-progress-fill"
+                      style={{ transform: `scaleX(${progress / 100})` }}
+                    />
                   </div>
                 </div>
               </div>
@@ -158,94 +167,72 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                   {done ? "Ваш черновик ТЗ" : "Агент Pink Byte"}
                 </span>
               </div>
-              <Conversation className="min-h-0" key={done ? "result" : "conversation"}>
-                <ConversationContent className="gap-6 px-1 py-5">
-                  {done ? (
-                    <Message from="assistant" className="max-w-full">
-                      <MessageContent className="w-full">
-                        <MessageResponse>{brief}</MessageResponse>
-                      </MessageContent>
-                    </Message>
-                  ) : answers.length ? (
-                    answers.map((answer, index) => (
-                      <div key={index} className="space-y-4">
-                        <Message from="assistant">
-                          <MessageContent className="pb-bubble-bot">
-                            <MessageResponse>
-                              {BRIEF_QUESTIONS[index]?.question ?? ""}
-                            </MessageResponse>
+              {done ? (
+                <BriefContactForm brief={brief} onDownload={download} />
+              ) : (
+                <>
+                  <Conversation className="min-h-0" key="conversation">
+                    <ConversationContent className="gap-6 px-1 py-5">
+                      {done ? (
+                        <Message from="assistant" className="max-w-full">
+                          <MessageContent className="w-full">
+                            <MessageResponse>{brief}</MessageResponse>
                           </MessageContent>
                         </Message>
-                        <Message from="user">
-                          <MessageContent className="pb-bubble-user pb-msg-in-right">
-                            <p className="whitespace-pre-wrap break-words">{answer.text}</p>
-                            {answer.files.map((name, k) => (
-                              <span key={k} className="flex items-center gap-2 text-xs">
-                                <FileText className="size-3 shrink-0" />
-                                {name}
-                              </span>
-                            ))}
+                      ) : answers.length ? (
+                        answers.map((answer, index) => (
+                          <div key={index} className="space-y-4">
+                            <Message from="assistant">
+                              <MessageContent className="pb-bubble-bot">
+                                <MessageResponse>
+                                  {BRIEF_QUESTIONS[index]?.question ?? ""}
+                                </MessageResponse>
+                              </MessageContent>
+                            </Message>
+                            <Message from="user">
+                              <MessageContent className="pb-bubble-user pb-msg-in-right">
+                                <p className="whitespace-pre-wrap break-words">{answer.text}</p>
+                                {answer.files.map((name, k) => (
+                                  <span key={k} className="flex items-center gap-2 text-xs">
+                                    <FileText className="size-3 shrink-0" />
+                                    {name}
+                                  </span>
+                                ))}
+                              </MessageContent>
+                            </Message>
+                          </div>
+                        ))
+                      ) : null}
+                      {!done && (
+                        <Message
+                          key={step}
+                          from="assistant"
+                          className="pb-chat-current"
+                          aria-live="polite"
+                        >
+                          <MessageContent className="pb-bubble-bot pb-msg-in-left">
+                            <MessageResponse>{current?.question ?? ""}</MessageResponse>
                           </MessageContent>
                         </Message>
-                      </div>
-                    ))
-                  ) : null}
-                  {!done && (
-                    <Message
-                      key={step}
-                      from="assistant"
-                      className="pb-chat-current"
-                      aria-live="polite"
-                    >
-                      <MessageContent className="pb-bubble-bot pb-msg-in-left">
-                        <MessageResponse>{current?.question ?? ""}</MessageResponse>
-                      </MessageContent>
-                    </Message>
-                  )}
-                </ConversationContent>
-                <ConversationScrollButton />
-              </Conversation>
-              <div className="pb-brief-composer shrink-0 pt-3">
-                {done ? (
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Button onClick={download} className="h-11 rounded-full px-5">
-                      <Download />
-                      Скачать ТЗ
-                    </Button>
-                    <Button asChild variant="secondary" className="h-11 rounded-full px-5">
-                      <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">
-                        <Check />
-                        Обсудить с командой
-                      </a>
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      aria-label="Начать заново"
-                      title="Начать заново"
-                      onClick={restart}
-                    >
-                      <RotateCcw />
-                    </Button>
+                      )}
+                    </ConversationContent>
+                    <ConversationScrollButton />
+                  </Conversation>
+                  <div className="pb-brief-composer shrink-0 pt-3">
+                    <PromptInput onSubmit={submit} multiple className="pb-composer-box">
+                      <PromptInputTextarea
+                        ref={textarea}
+                        aria-label="Ваш ответ"
+                        placeholder={current?.placeholder}
+                        value={text}
+                        onChange={(event) => setText(event.target.value)}
+                        className="min-h-12 max-h-24 px-4 text-sm"
+                      />
+                      <ComposerTools text={text} />
+                    </PromptInput>
                   </div>
-                ) : (
-                  <PromptInput
-                    onSubmit={submit}
-                    multiple
-                    className="pb-composer-box"
-                  >
-                    <PromptInputTextarea
-                      ref={textarea}
-                      aria-label="Ваш ответ"
-                      placeholder={current?.placeholder}
-                      value={text}
-                      onChange={(event) => setText(event.target.value)}
-                      className="min-h-12 max-h-24 px-4 text-sm"
-                    />
-                    <ComposerTools text={text} />
-                  </PromptInput>
-                )}
-              </div>
+                </>
+              )}
             </div>
           </div>
         </DialogContent>

@@ -17,3 +17,4 @@
 - Hero eye animation uses a clean visor baked into the original alpha-preserving robot base and emissive-only RGBA eye crops; a shared gaze wrapper translates both eyes while child layers blink, so neither old eyes nor visor texture can leave moving shadows. Preserve chrome pixels and silhouette outside the visor.
 - Brief robot uses a dedicated edited sitting render, separate from home assets, with its seat line aligned to the modal bottom; a CSS mouth layer animates briefly per question without moving the body.
 - Brief questions and answers stay inside the scrollable AI Elements conversation, with the composer and summary separate; this keeps the transcript readable without overlays or moving the seated robot.
+- Brief completion uses a separate contact form and a public validated server function; contact details and the brief are stored in an RLS-locked table, and downloading unlocks only after a successful submission with consent.
