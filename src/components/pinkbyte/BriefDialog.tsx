@@ -21,6 +21,7 @@ import robot from "@/assets/robot-brief-seated.png";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
 import { TELEGRAM_URL } from "./primitives";
 import { BriefContext } from "./brief-context";
+import { BriefQuestion } from "./BriefQuestion";
 
 function ComposerTools({ text }: { text: string }) {
   const attachments = usePromptInputAttachments();
@@ -119,6 +120,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
             <img src={robot} alt="" width={768} height={832} className="block h-auto w-full" />
             <span key={`mouth-${step}`} className="pb-brief-mouth" />
           </div>
+          {!done && <BriefQuestion key={step} question={current?.question ?? ""} />}
           <div className="pb-brief-heading relative shrink-0">
             <div className="pb-brief-intro">
               <div className="flex flex-wrap items-center gap-3 pr-6">
@@ -153,7 +155,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                 </div>
               </div>
               <Conversation className="min-h-0" key={done ? "result" : "conversation"}>
-                <ConversationContent className="gap-5 p-1 pb-5">
+                <ConversationContent className={`gap-5 p-1 ${done ? "pb-5" : "pb-brief-history"}`}>
                   {done ? (
                     <Message from="assistant" className="max-w-full">
                       <MessageContent className="w-full">
@@ -180,20 +182,6 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                       </div>
                     ))
                   ) : null}
-                  {!done && (
-                    <div
-                      key={step}
-                      className="pb-question relative mr-3 rounded-[20px] border border-border bg-muted px-5 py-4"
-                      aria-live="polite"
-                      aria-atomic="true"
-                    >
-                      <Message from="assistant" className="max-w-full">
-                        <MessageContent className="text-lg font-bold leading-snug">
-                          <MessageResponse>{current?.question ?? ""}</MessageResponse>
-                        </MessageContent>
-                      </Message>
-                    </div>
-                  )}
                 </ConversationContent>
                 <ConversationScrollButton />
               </Conversation>
