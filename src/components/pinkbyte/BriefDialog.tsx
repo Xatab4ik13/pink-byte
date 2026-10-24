@@ -18,6 +18,7 @@ import {
   type PromptInputMessage,
 } from "@/components/ai-elements/prompt-input";
 import robot from "@/assets/robot-brief-seated.webp";
+import mark from "@/assets/mark-pb.png.asset.json";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
 import { Logo, TELEGRAM_URL } from "./primitives";
 import { BriefContext } from "./brief-context";
@@ -154,10 +155,12 @@ export function BriefProvider({ children }: { children: ReactNode }) {
               </div>
             </aside>
             <div className="pb-brief-main flex min-h-0 flex-1 flex-col">
-              <div className="flex shrink-0 items-center gap-2 border-b border-border pb-4 pr-10">
-                <span className="pb-live-dot" />
-                <span className="text-xs font-medium text-foreground">
-                  {done ? "Ваш черновик ТЗ" : "Агент Pink Byte · онлайн"}
+              <div className="flex shrink-0 items-center gap-2.5 border-b border-border pb-4 pr-10">
+                <span className="pb-agent-mark" aria-hidden="true">
+                  <img src={mark.url} alt="" width={28} height={28} />
+                </span>
+                <span className="text-sm font-semibold text-foreground">
+                  {done ? "Ваш черновик ТЗ" : "Агент Pink Byte"}
                 </span>
               </div>
               <Conversation className="min-h-0" key={done ? "result" : "conversation"}>
