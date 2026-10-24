@@ -1,5 +1,5 @@
 import { useRef, useState, type ReactNode } from "react";
-import { ArrowUp, Check, Download, FileText, Paperclip, RotateCcw, X } from "lucide-react";
+import { ArrowUp, FileText, Paperclip, X } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,8 +20,9 @@ import {
 import robot from "@/assets/robot-brief-seated.webp";
 import mark from "@/assets/mark-pb.png.asset.json";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
-import { Logo, TELEGRAM_URL } from "./primitives";
+import { Logo } from "./primitives";
 import { BriefContext } from "./brief-context";
+import { BriefContactForm } from "./BriefContactForm";
 
 function ComposerTools({ text }: { text: string }) {
   const attachments = usePromptInputAttachments();
@@ -91,10 +92,6 @@ export function BriefProvider({ children }: { children: ReactNode }) {
     setText("");
     requestAnimationFrame(() => textarea.current?.focus());
   }
-  function restart() {
-    setAnswers([]);
-    setText("");
-  }
   function download() {
     const url = URL.createObjectURL(new Blob([brief], { type: "text/plain;charset=utf-8" }));
     const link = document.createElement("a");
@@ -158,7 +155,8 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                   {done ? "Ваш черновик ТЗ" : "Агент Pink Byte"}
                 </span>
               </div>
-              <Conversation className="min-h-0" key={done ? "result" : "conversation"}>
+              {done ? <BriefContactForm brief={brief} onDownload={download} /> : <>
+              <Conversation className="min-h-0" key="conversation">
                 <ConversationContent className="gap-6 px-1 py-5">
                   {done ? (
                     <Message from="assistant" className="max-w-full">
@@ -206,29 +204,6 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                 <ConversationScrollButton />
               </Conversation>
               <div className="pb-brief-composer shrink-0 pt-3">
-                {done ? (
-                  <div className="flex flex-wrap items-center gap-3">
-                    <Button onClick={download} className="h-11 rounded-full px-5">
-                      <Download />
-                      Скачать ТЗ
-                    </Button>
-                    <Button asChild variant="secondary" className="h-11 rounded-full px-5">
-                      <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">
-                        <Check />
-                        Обсудить с командой
-                      </a>
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      aria-label="Начать заново"
-                      title="Начать заново"
-                      onClick={restart}
-                    >
-                      <RotateCcw />
-                    </Button>
-                  </div>
-                ) : (
                   <PromptInput
                     onSubmit={submit}
                     multiple
@@ -244,8 +219,8 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                     />
                     <ComposerTools text={text} />
                   </PromptInput>
-                )}
               </div>
+              </>}
             </div>
           </div>
         </DialogContent>
