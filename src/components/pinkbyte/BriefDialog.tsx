@@ -119,20 +119,40 @@ export function BriefProvider({ children }: { children: ReactNode }) {
             <img src={robot} alt="" width={768} height={832} className="block h-auto w-full" />
             <span key={`mouth-${step}`} className="pb-brief-mouth" />
           </div>
-          <div className="pb-brief-heading relative shrink-0">
-            <div className="pb-brief-intro">
-              <div className="flex flex-wrap items-center gap-3 pr-6">
-                <DialogTitle className="text-2xl font-extrabold tracking-normal md:text-3xl">
-                  Обсудим ваш проект
-                </DialogTitle>
-                <span className="text-xs font-medium text-muted-foreground">ТЗ бесплатно</span>
-              </div>
-              <DialogDescription className="mt-2 text-xs text-muted-foreground">
-                Pink Byte / Помощник по проекту
-              </DialogDescription>
-            </div>
-          </div>
           <div className="pb-brief-layout">
+            <aside className="pb-brief-stage" aria-label="Уже в брифе">
+              <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted">
+                Pink Byte · ТЗ бесплатно
+              </span>
+              <DialogTitle className="display mt-5 text-[44px]">
+                Обсудим
+                <br />
+                ваш <span className="text-primary">проект.</span>
+              </DialogTitle>
+              <DialogDescription className="mt-4 text-sm leading-relaxed text-ink-muted">
+                Пять коротких вопросов — и у вас черновик технического задания.
+              </DialogDescription>
+              <div className="pb-brief-notes mt-7 min-h-0 flex-1 overflow-y-auto border-t border-ink-border pt-5">
+                {answers.length ? (
+                  <div className="space-y-4">
+                    {answers.map((answer, index) => (
+                      <div key={index}>
+                        <p className="mb-1 text-[11px] text-primary">
+                          {BRIEF_QUESTIONS[index]?.title}
+                        </p>
+                        <p className="line-clamp-2 break-words text-sm leading-relaxed">
+                          {answer.text || "Материалы приложены"}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs leading-relaxed text-ink-muted">
+                    Здесь будет собираться ваш бриф.
+                  </p>
+                )}
+              </div>
+            </aside>
             <div className="pb-brief-main flex min-h-0 flex-1 flex-col">
               <div className="flex shrink-0 items-center justify-between gap-4 border-b border-border pb-4">
                 <span className="text-xs font-medium text-muted-foreground">
