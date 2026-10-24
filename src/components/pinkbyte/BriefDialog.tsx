@@ -1,4 +1,4 @@
-import { createContext, useContext, useRef, useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { ArrowUp, Check, Download, FileText, Paperclip, RotateCcw, X } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -20,13 +20,7 @@ import {
 import robot from "@/assets/robot-sit.png.asset.json";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
 import { TELEGRAM_URL } from "./primitives";
-
-const BriefContext = createContext<(() => void) | null>(null);
-export function useOpenBrief() {
-  const open = useContext(BriefContext);
-  if (!open) throw new Error("BriefProvider is required");
-  return open;
-}
+import { BriefContext } from "./brief-context";
 
 function ComposerTools({ text }: { text: string }) {
   const attachments = usePromptInputAttachments();

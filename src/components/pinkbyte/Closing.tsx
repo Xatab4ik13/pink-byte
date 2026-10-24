@@ -1,7 +1,7 @@
 import robotSit from "@/assets/robot-sit.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { Logo, NAV, Reveal, btn } from "./primitives";
-import { useOpenBrief } from "./BriefDialog";
+import { useOpenBrief } from "./brief-context";
 
 export function Studio() {
   return (

@@ -5,7 +5,7 @@ import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
 import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { Logo, NAV, btn } from "./primitives";
-import { useOpenBrief } from "./BriefDialog";
+import { useOpenBrief } from "./brief-context";
 
 /* The clean base has no baked-in eyes. Only emissive RGBA eye pixels move. */
 const EYES = [
