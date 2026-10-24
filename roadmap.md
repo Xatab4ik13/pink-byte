@@ -23,3 +23,5 @@
 - [x] Remove the second curved arrow above the projects heading, keeping only the hero arrow.
 - [x] Make the project slide shorter and align its width with the "Что создадим для вас?" card below.
 - [x] Put the studio mark as a watermark inside the "Смотреть проект" button, kept to that button only.
+- [ ] Add the mock robot brief dialog to project discussion buttons.
+- [ ] Verify sequential answers, attachments, final brief and mobile layout.
