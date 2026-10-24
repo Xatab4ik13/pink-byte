@@ -121,16 +121,16 @@ export function BriefProvider({ children }: { children: ReactNode }) {
           </div>
           <div className="pb-brief-layout">
             <aside className="pb-brief-stage" aria-label="Уже в брифе">
-              <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-ink-muted">
-                Pink Byte · ТЗ бесплатно
-              </span>
-              <DialogTitle className="display mt-5 text-[44px]">
+              <Logo className="w-28" />
+              <DialogTitle className="display mt-6 text-[44px]">
                 Обсудим
                 <br />
                 ваш <span className="text-primary">проект.</span>
               </DialogTitle>
               <DialogDescription className="mt-4 text-sm leading-relaxed text-ink-muted">
-                Пять коротких вопросов — и у вас черновик технического задания.
+                Нет ТЗ — не страшно. Расскажите задачу своими словами: наш агент задаст
+                нужные вопросы, а мы оценим проект и назовём цену.{" "}
+                <span className="text-ink-foreground">Черновик ТЗ — бесплатно.</span>
               </DialogDescription>
               <div className="pb-brief-notes mt-7 min-h-0 flex-1 overflow-y-auto border-t border-ink-border pt-5">
                 {answers.length ? (
@@ -154,23 +154,11 @@ export function BriefProvider({ children }: { children: ReactNode }) {
               </div>
             </aside>
             <div className="pb-brief-main flex min-h-0 flex-1 flex-col">
-              <div className="flex shrink-0 items-center justify-between gap-4 border-b border-border pb-4 pr-10">
-                <span className="text-xs font-medium text-muted-foreground">
-                  {done
-                    ? "Ваш черновик ТЗ"
-                    : `${step + 1} из ${BRIEF_QUESTIONS.length} · ${current?.title}`}
+              <div className="flex shrink-0 items-center gap-2 border-b border-border pb-4 pr-10">
+                <span className="pb-live-dot" />
+                <span className="text-xs font-medium text-foreground">
+                  {done ? "Ваш черновик ТЗ" : "Агент Pink Byte · онлайн"}
                 </span>
-                <div
-                  className="flex gap-1.5"
-                  aria-label={`Отвечено на ${step} из ${BRIEF_QUESTIONS.length} вопросов`}
-                >
-                  {BRIEF_QUESTIONS.map((q, i) => (
-                    <span
-                      key={q.title}
-                      className={`h-1 w-6 rounded-full ${i < step ? "bg-foreground" : i === step ? "bg-primary" : "bg-border"}`}
-                    />
-                  ))}
-                </div>
               </div>
               <Conversation className="min-h-0" key={done ? "result" : "conversation"}>
                 <ConversationContent className="gap-6 px-1 py-5">
