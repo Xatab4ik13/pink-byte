@@ -198,9 +198,9 @@
 
 /* The seat line is 62% down the cropped robot; the remaining legs hang outside. */
 .pb-brief-dialog {
-  width: min(960px, calc(100vw - 48px));
-  max-width: 960px;
-  height: min(620px, calc(100dvh - 190px));
+  width: min(1056px, calc(100vw - 48px));
+  max-width: 1056px;
+  height: min(682px, calc(100dvh - 190px));
   display: flex;
   flex-direction: column;
   border-radius: 16px;
@@ -255,6 +255,16 @@
 .pb-progress-fill { position: absolute; inset: 0; border-radius: inherit; background: var(--lime); transform-origin: 0 50%; transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; overflow: hidden; }
 .pb-progress-fill::after { display: none; }
 .pb-progress-glow { display: none; }
+.pb-progress-complete .pb-progress-track::after { content: ""; position: absolute; inset: 0; background: var(--ink-foreground); opacity: 0; transform: translateX(-100%); animation: pb-progress-finish 900ms ease-out 1.1s both; }
+.pb-progress-ready { animation: pb-progress-ready 450ms ease-out 1.1s both; }
+@keyframes pb-progress-finish { 0% { opacity: 0; transform: translateX(-100%); } 35% { opacity: .5; } 100% { opacity: 0; transform: translateX(100%); } }
+@keyframes pb-progress-ready { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.pb-brief-contact-fields { overflow-y: auto; scrollbar-width: none; }
+.pb-brief-main .pb-brief-contact-fields::-webkit-scrollbar { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .pb-progress-complete .pb-progress-track::after { animation: none; }
+  .pb-progress-ready { animation: none; }
+}
 @keyframes pb-progress-shine { to { transform: translateX(100%); } }
 .pb-brief-main * { scrollbar-width: thin; scrollbar-color: var(--ink) transparent; }
 .pb-brief-main *::-webkit-scrollbar { width: 6px; }
@@ -272,7 +282,7 @@
 .pb-send svg { transition: transform .25s ease; }
 .pb-send:disabled { opacity: .35 !important; color: var(--ink-foreground) !important; }
 @media (max-width: 640px) {
-  .pb-brief-dialog { width: calc(100vw - 24px); height: min(670px, calc(100dvh - 150px)); border-radius: 16px; }
+  .pb-brief-dialog { width: calc(100vw - 24px); height: min(737px, calc(100dvh - 120px)); border-radius: 16px; }
   .pb-brief-robot { width: 128px; left: -10px; bottom: -53px; }
   .pb-brief-layout { flex-direction: column; }
   .pb-brief-stage { width: auto; padding: 20px 18px 16px; }
@@ -281,4 +291,13 @@
   .pb-brief-main { padding: 14px 16px 16px; }
   .pb-brief-composer { margin: 0 -16px -16px; padding: 10px 12px 12px 110px !important; }
   .pb-brief-attach span { display: none; }
+  .pb-brief-complete .pb-brief-stage { padding: 14px 18px; }
+  .pb-brief-complete .pb-brief-stage h2 { display: none; }
+  .pb-brief-complete .pb-brief-notes { display: block; margin-top: 12px; padding-top: 12px; }
+  .pb-brief-complete .pb-brief-notes > div:first-child { margin-bottom: 6px; }
+  .pb-brief-complete .pb-progress-ready { margin-top: 8px; }
+  .pb-brief-contact-fields { padding-top: 16px; padding-bottom: 16px; }
+  .pb-brief-contact-fields h3 { font-size: 24px; }
+  .pb-brief-contact .pb-brief-composer { padding-left: 110px !important; gap: 8px; }
+  .pb-brief-contact .pb-brief-composer button { width: 100%; height: 38px; padding-inline: 8px; font-size: 12px; }
 }
