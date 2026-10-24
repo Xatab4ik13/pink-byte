@@ -4,7 +4,8 @@ import robotLean from "@/assets/robot-clean-face.png.asset.json";
 import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
 import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
 import { Button } from "@/components/ui/button";
-import { Logo, NAV, TELEGRAM_URL, btn } from "./primitives";
+import { Logo, NAV, btn } from "./primitives";
+import { useOpenBrief } from "./BriefDialog";
 
 /* The clean base has no baked-in eyes. Only emissive RGBA eye pixels move. */
 const EYES = [
@@ -13,6 +14,7 @@ const EYES = [
 ];
 
 export function Header({ initialActive = "/#projects" }: { initialActive?: string }) {
+  const openBrief = useOpenBrief();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(initialActive);
   useEffect(() => {
@@ -39,8 +41,8 @@ export function Header({ initialActive = "/#projects" }: { initialActive?: strin
             ))}
           </ul>
         </nav>
-        <Button asChild variant="secondary" className={`${btn.paper} hidden h-11 lg:inline-flex hover:bg-background/90`}>
-          <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">Обсудить проект</a>
+        <Button onClick={openBrief} variant="secondary" className={`${btn.paper} hidden h-11 lg:inline-flex hover:bg-background/90`}>
+          Обсудить проект
         </Button>
         <Button
           type="button"
@@ -66,8 +68,8 @@ export function Header({ initialActive = "/#projects" }: { initialActive?: strin
               </li>
             ))}
           </ul>
-          <Button asChild variant="secondary" className={`${btn.paper} mt-3 w-full hover:bg-background/90`}>
-            <a href={TELEGRAM_URL} target="_blank" rel="noreferrer">Обсудить проект</a>
+          <Button onClick={() => { setOpen(false); openBrief(); }} variant="secondary" className={`${btn.paper} mt-3 w-full hover:bg-background/90`}>
+            Обсудить проект
           </Button>
         </nav>
       )}
