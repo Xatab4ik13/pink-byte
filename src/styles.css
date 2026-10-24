@@ -160,6 +160,20 @@
   to { opacity: 1; transform: none; }
 }
 
+.pb-project-track { transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
+@media (min-width: 640px) {
+  .pb-project-frame, .pb-project-caption { margin-inline: 56px; }
+  .pb-project-prev { left: 0; }
+  .pb-project-next { right: 0; }
+}
+@media (max-width: 639px) {
+  .pb-projects { padding-inline: 8px; }
+  .pb-projects > .reveal, .pb-project-caption { padding-inline: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pb-project-track { transition-duration: 1ms !important; }
+}
+
 /* A clean baked-in visor prevents alpha leakage from the original eyes. */
 @utility pb-gaze {
   position: absolute;
