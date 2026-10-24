@@ -66,7 +66,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
             </div>
             <DialogDescription className="mt-2 text-xs text-ink-muted">Пробный диалог · без ИИ · файлы не отправляются</DialogDescription>
             <div key={step} className="pb-question relative mt-5 rounded-[20px] bg-primary px-5 py-4 text-primary-foreground" aria-live="polite" aria-atomic="true">
-              <Message from="assistant" className="max-w-full"><MessageContent className="text-base font-semibold leading-snug"><MessageResponse>{done ? "Готово! Собрал ваши ответы в черновик ТЗ. Его можно скачать и обсудить с командой." : current?.question}</MessageResponse></MessageContent></Message>
+              <Message from="assistant" className="max-w-full"><MessageContent className="text-base font-semibold leading-snug"><MessageResponse>{done ? "Готово! Собрал ваши ответы в черновик ТЗ. Его можно скачать и обсудить с командой." : current?.question ?? ""}</MessageResponse></MessageContent></Message>
             </div>
           </div>
         </div>
