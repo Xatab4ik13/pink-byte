@@ -54,7 +54,7 @@ export function Footer() {
   return (
     <footer className="container-pb mt-16">
       <div className="flex flex-col gap-6 border-t border-border py-8 md:flex-row md:items-center md:justify-between">
-        <a href="#top" aria-label="Pink Byte — наверх">
+        <a href="#top" aria-label="Pink Byte, наверх">
           <Logo tone="dark" className="w-32" />
         </a>
         <nav aria-label="Навигация в подвале">

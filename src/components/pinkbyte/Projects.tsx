@@ -65,7 +65,7 @@ export function Projects() {
                   pointerEvents: off === 0 ? "auto" : "none",
                 }}
               >
-                <img src={s.src} alt={`${s.title} — слайд проекта`} width={1600} height={900} loading="eager" decoding="async" draggable={false} className="block h-full w-full object-cover" />
+                <img src={s.src} alt={`${s.title}, слайд проекта`} width={1600} height={900} loading="eager" decoding="async" draggable={false} className="block h-full w-full object-cover" />
               </div>
             );
           })}

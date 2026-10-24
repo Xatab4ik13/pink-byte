@@ -80,7 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Pink Byte — разработка сайтов и веб-сервисов" },
+      { title: "Pink Byte · разработка сайтов и веб-сервисов" },
       { name: "theme-color", content: "#121613" },
     ],
     links: [

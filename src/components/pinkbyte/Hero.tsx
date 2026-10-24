@@ -27,7 +27,7 @@ export function Header({ initialActive = "/#projects" }: { initialActive?: strin
   return (
     <header className="container-pb relative z-30">
       <div className="flex items-center justify-between gap-4 py-5">
-        <a href="/#top" aria-label="Pink Byte — на главную">
+        <a href="/#top" aria-label="Pink Byte, на главную">
           <Logo className="w-36 md:w-40" />
         </a>
         <nav aria-label="Основная навигация" className="hidden lg:block">

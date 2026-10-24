@@ -4,7 +4,7 @@ import { Projects } from "@/components/pinkbyte/Projects";
 import { Services } from "@/components/pinkbyte/Services";
 import { Contact, Footer, Studio } from "@/components/pinkbyte/Closing";
 
-const TITLE = "Pink Byte — разработка сайтов и веб-сервисов";
+const TITLE = "Pink Byte · разработка сайтов и веб-сервисов";
 const DESC =
   "Проектируем и разрабатываем сайты, личные кабинеты, CRM и веб-сервисы для бизнеса. Обсудите свой проект с командой Pink Byte.";
 
