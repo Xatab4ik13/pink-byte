@@ -105,7 +105,7 @@ export function Projects() {
         className="m-auto w-[min(1100px,94vw)] overflow-hidden rounded-[1.75rem] bg-ink p-0 text-ink-foreground backdrop:bg-ink/80"
       >
         <div className="relative">
-          <img src={cur.src} alt={`${cur.title} — увеличенный вид`} width={1600} height={900} className="block w-full" />
+          <img src={cur.src} alt={`${cur.title}, увеличенный вид`} width={1600} height={900} className="block w-full" />
           <Button variant="secondary" size="icon" type="button" autoFocus aria-label="Закрыть" onClick={() => dialog.current?.close()} className="absolute right-4 top-4 rounded-full">
             <X className="size-5" />
           </Button>
