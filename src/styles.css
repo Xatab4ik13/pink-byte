@@ -164,7 +164,7 @@
 
 .pb-project-track { transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
 .pb-service-tabs { display: flex; flex-wrap: wrap; gap: 12px 32px; }
-.pb-service-tab { border-radius: 0; border-bottom-width: 3px; background: transparent !important; height: auto; padding: 8px 0 14px; font-size: 17px; }
+.pb-service-tab { border-radius: 0; background: transparent !important; height: auto; padding: 8px 0 14px; font-size: 17px; }
 .pb-service-stage { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); min-height: 520px; isolation: isolate; }
 .pb-service-backdrop { position: absolute; inset: 14px 0 24px; z-index: -1; border-radius: 32px; background: var(--ink); }
 .pb-service-copy { display: flex; flex-direction: column; justify-content: center; padding: 46px 12px 54px 46px; z-index: 2; }
