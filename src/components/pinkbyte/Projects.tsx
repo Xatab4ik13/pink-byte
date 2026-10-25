@@ -58,13 +58,20 @@ export function Projects() {
         if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
         if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
       }}>
-        <div aria-live="polite" className="pb-project-caption min-w-0 pb-5">
-          <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
-          <p className="mt-2 text-sm text-muted-foreground md:text-base">{cur.desc}</p>
-          <p className="mt-2 text-xs text-muted-foreground">{cur.scope}</p>
+        <div aria-live="polite" className="pb-project-caption flex min-w-0 flex-wrap items-end justify-between gap-x-6 gap-y-3 pb-5">
+          <div className="min-w-0">
+            <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
+            <p className="mt-2 text-sm text-muted-foreground md:text-base">{cur.desc}</p>
+            <p className="mt-2 text-xs text-muted-foreground">{cur.scope}</p>
+          </div>
+          <div className="flex shrink-0 items-center gap-2 pb-1.5" aria-label={`Проект ${i + 1} из ${n}`}>
+            {SLIDES.map((s, k) => (
+              <span key={s.src} aria-current={k === i} className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ${k === i ? "w-5 bg-primary" : "w-1.5 bg-ink-foreground/30"}`} />
+            ))}
+          </div>
         </div>
         <div className="relative">
-        <div className="pb-project-frame overflow-hidden rounded-2xl bg-ink">
+        <div className="pb-project-frame relative overflow-hidden rounded-2xl bg-ink">
         <div
           className="relative w-full touch-pan-y select-none overflow-hidden"
           onPointerDown={(e) => { if (e.pointerType !== "mouse") startX.current = e.clientX; }}
@@ -90,24 +97,17 @@ export function Projects() {
           ))}
           </div>
         </div>
-        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 py-3 sm:px-6 sm:py-4">
-          <div className="flex min-w-0 items-center gap-2" aria-label={`Проект ${i + 1} из ${n}`}>
-            {SLIDES.map((s, k) => (
-              <span key={s.src} aria-current={k === i} className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ${k === i ? "w-5 bg-primary" : "w-1.5 bg-ink-foreground/30"}`} />
-            ))}
-          </div>
-          <Button variant="secondary" type="button" onClick={() => dialog.current?.showModal()} className="group relative h-11 shrink-0 overflow-hidden rounded-full border border-ink-border pl-5 pr-14 text-xs font-semibold shadow-none sm:h-12 sm:pl-8 sm:pr-[4.75rem] sm:text-sm">
-            <img src={mark.url} alt="" aria-hidden width={900} height={692} draggable={false} className="pointer-events-none absolute right-1 top-1/2 h-[135%] w-auto -translate-y-1/2 select-none opacity-[0.16] transition-opacity duration-300 ease-out group-hover:opacity-[0.34] motion-reduce:transition-none" />
-            <span className="relative">Смотреть проект</span>
-          </Button>
+        <button type="button" onClick={() => dialog.current?.showModal()} className="group absolute bottom-4 right-4 z-10 h-11 overflow-hidden rounded-full border border-ink-border bg-ink/80 pl-5 pr-14 text-xs font-semibold text-ink-foreground backdrop-blur-sm transition-colors duration-300 hover:bg-ink/90 motion-reduce:transition-none sm:bottom-6 sm:right-6 sm:h-12 sm:pl-8 sm:pr-[4.75rem] sm:text-sm">
+          <img src={mark.url} alt="" aria-hidden width={900} height={692} draggable={false} className="pointer-events-none absolute right-1 top-1/2 h-[135%] w-auto -translate-y-1/2 select-none opacity-[0.16] transition-opacity duration-300 ease-out group-hover:opacity-[0.34] motion-reduce:transition-none" />
+          <span className="relative">Смотреть проект</span>
+        </button>
         </div>
-        </div>
-            <Button variant="secondary" size="icon" type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="pb-project-prev absolute left-2 top-[calc((100%-68px)/2)] size-8 -translate-y-1/2 rounded-full border border-ink-border sm:size-11">
-              <ChevronLeft />
-            </Button>
-            <Button variant="secondary" size="icon" type="button" title="Следующий проект" aria-label="Следующий проект" onClick={() => go(1)} className="pb-project-next absolute right-2 top-[calc((100%-68px)/2)] size-8 -translate-y-1/2 rounded-full border border-ink-border sm:size-11">
-              <ChevronRight />
-            </Button>
+            <button type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="pb-project-prev absolute left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink-foreground/85 transition-[translate,opacity,color] duration-300 hover:opacity-100 hover:-translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12 sm:text-foreground/75 sm:hover:text-foreground">
+              <ChevronLeft className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
+            </button>
+            <button type="button" title="Следующий проект" aria-label="Следующий проект" onClick={() => go(1)} className="pb-project-next absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink-foreground/85 transition-[translate,opacity,color] duration-300 hover:opacity-100 hover:translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12 sm:text-foreground/75 sm:hover:text-foreground">
+              <ChevronRight className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
+            </button>
         </div>
       </div>
 
