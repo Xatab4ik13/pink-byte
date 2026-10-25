@@ -1,4 +1,4 @@
-import { useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { ArrowUp, FileText, Paperclip, X } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import {
   ConversationContent,
   ConversationScrollButton,
 } from "@/components/ai-elements/conversation";
-import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
+import { Message, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
   PromptInputButton,
@@ -72,16 +72,59 @@ function ComposerTools({ text }: { text: string }) {
   );
 }
 
+function BriefComposer({
+  textarea,
+  placeholder,
+  onSubmit,
+}: {
+  textarea: React.RefObject<HTMLTextAreaElement | null>;
+  placeholder?: string;
+  onSubmit: (message: PromptInputMessage) => void;
+}) {
+  const [text, setText] = useState("");
+  return (
+    <div className="pb-brief-composer shrink-0 pt-3">
+      <PromptInput
+        onSubmit={(message) => {
+          onSubmit(message);
+          setText("");
+        }}
+        multiple
+        className="pb-composer-box"
+      >
+        <PromptInputTextarea
+          ref={textarea}
+          aria-label="Ваш ответ"
+          placeholder={placeholder}
+          value={text}
+          onChange={(event) => setText(event.target.value)}
+          className="min-h-12 max-h-24 px-4 text-sm"
+        />
+        <ComposerTools text={text} />
+      </PromptInput>
+    </div>
+  );
+}
+
 export function BriefProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [answers, setAnswers] = useState<BriefAnswer[]>([]);
-  const [text, setText] = useState("");
+  const openBrief = useCallback(() => setOpen(true), []);
   const textarea = useRef<HTMLTextAreaElement>(null);
   const step = answers.length;
   const done = step === BRIEF_QUESTIONS.length;
   const current = BRIEF_QUESTIONS[step];
-  const brief = createBrief(answers);
+  const brief = useMemo(() => createBrief(answers), [answers]);
   const progress = Math.round((answers.length / BRIEF_QUESTIONS.length) * 100);
+  useEffect(() => {
+    // Decode before the first open, without delaying the initial page paint.
+    const timer = window.setTimeout(() => {
+      const image = new Image();
+      image.src = robot;
+      void image.decode().catch(() => {});
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, []);
   function submit(message: PromptInputMessage) {
     const answer = {
       text: message.text.trim(),
@@ -89,7 +132,6 @@ export function BriefProvider({ children }: { children: ReactNode }) {
     };
     if (!canSubmitAnswer(answer) || done) return;
     setAnswers((previous) => [...previous, answer]);
-    setText("");
     requestAnimationFrame(() => textarea.current?.focus());
   }
   function download() {
@@ -101,7 +143,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   return (
-    <BriefContext.Provider value={() => setOpen(true)}>
+    <BriefContext.Provider value={openBrief}>
       {children}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
@@ -181,7 +223,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                       {done ? (
                         <Message from="assistant" className="max-w-full">
                           <MessageContent className="w-full">
-                            <MessageResponse>{brief}</MessageResponse>
+                            <p className="whitespace-pre-wrap break-words">{brief}</p>
                           </MessageContent>
                         </Message>
                       ) : answers.length ? (
@@ -189,9 +231,9 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                           <div key={index} className="space-y-4">
                             <Message from="assistant">
                               <MessageContent className="pb-bubble-bot">
-                                <MessageResponse>
+                                <p className="whitespace-pre-wrap break-words">
                                   {BRIEF_QUESTIONS[index]?.question ?? ""}
-                                </MessageResponse>
+                                </p>
                               </MessageContent>
                             </Message>
                             <Message from="user">
@@ -216,26 +258,14 @@ export function BriefProvider({ children }: { children: ReactNode }) {
                           aria-live="polite"
                         >
                           <MessageContent className="pb-bubble-bot pb-msg-in-left">
-                            <MessageResponse>{current?.question ?? ""}</MessageResponse>
+                            <p className="whitespace-pre-wrap break-words">{current?.question ?? ""}</p>
                           </MessageContent>
                         </Message>
                       )}
                     </ConversationContent>
                     <ConversationScrollButton />
                   </Conversation>
-                  <div className="pb-brief-composer shrink-0 pt-3">
-                    <PromptInput onSubmit={submit} multiple className="pb-composer-box">
-                      <PromptInputTextarea
-                        ref={textarea}
-                        aria-label="Ваш ответ"
-                        placeholder={current?.placeholder}
-                        value={text}
-                        onChange={(event) => setText(event.target.value)}
-                        className="min-h-12 max-h-24 px-4 text-sm"
-                      />
-                      <ComposerTools text={text} />
-                    </PromptInput>
-                  </div>
+                  <BriefComposer textarea={textarea} placeholder={current?.placeholder} onSubmit={submit} />
                 </>
               )}
             </div>
