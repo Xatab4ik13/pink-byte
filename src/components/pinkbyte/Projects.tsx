@@ -58,13 +58,20 @@ export function Projects() {
         if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
         if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
       }}>
-        <div aria-live="polite" className="pb-project-caption min-w-0 pb-5">
-          <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
-          <p className="mt-2 text-sm text-muted-foreground md:text-base">{cur.desc}</p>
-          <p className="mt-2 text-xs text-muted-foreground">{cur.scope}</p>
+        <div aria-live="polite" className="pb-project-caption flex min-w-0 flex-wrap items-end justify-between gap-x-6 gap-y-3 pb-5">
+          <div className="min-w-0">
+            <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
+            <p className="mt-2 text-sm text-muted-foreground md:text-base">{cur.desc}</p>
+            <p className="mt-2 text-xs text-muted-foreground">{cur.scope}</p>
+          </div>
+          <div className="flex shrink-0 items-center gap-2 pb-1.5" aria-label={`Проект ${i + 1} из ${n}`}>
+            {SLIDES.map((s, k) => (
+              <span key={s.src} aria-current={k === i} className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ${k === i ? "w-5 bg-primary" : "w-1.5 bg-ink-foreground/30"}`} />
+            ))}
+          </div>
         </div>
         <div className="relative">
-        <div className="pb-project-frame overflow-hidden rounded-2xl bg-ink">
+        <div className="pb-project-frame relative overflow-hidden rounded-2xl bg-ink">
         <div
           className="relative w-full touch-pan-y select-none overflow-hidden"
           onPointerDown={(e) => { if (e.pointerType !== "mouse") startX.current = e.clientX; }}
