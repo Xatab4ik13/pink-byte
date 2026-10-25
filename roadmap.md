@@ -54,5 +54,5 @@
 - [x] Mobile: project CTA below a near full-width slide without dots/arrows; service tabs as pill buttons with device above copy and full-width CTA.
 - [x] Mobile services: horizontal card with copy left, overhanging device and CTA right; selected pill light with dark outline.
 - [x] Mobile services redesign: device breaks out of card top/right edge, full text, full-width CTA; verified all tabs at 393/360.
-- [ ] Add process, cost and FAQ sections after Services using the supplied layout and three compressed assets; keep the seated contact robot below them.
-- [ ] Verify new sections, FAQ and discussion buttons on desktop and mobile.
+- [x] Add process, cost and FAQ sections after Services using the supplied layout and three compressed assets; keep the seated contact robot below them.
+- [x] Verify new sections, FAQ and discussion buttons on desktop and mobile.
