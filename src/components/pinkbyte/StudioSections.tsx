@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import process from "@/assets/studio-process.webp.asset.json";
+import process from "@/assets/studio-process-seamless.webp.asset.json";
 import cost from "@/assets/studio-cost.webp.asset.json";
 import questions from "@/assets/studio-questions.webp.asset.json";
 import { useOpenBrief } from "./brief-context";
