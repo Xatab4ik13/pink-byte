@@ -46,3 +46,4 @@
 - [x] Replace only the ecommerce tablet with a static premium image containing an authentic RUSDOORS capture, remove unsolicited source links and verify the result.
 - [x] Rebalance the approved tablet composition: clearer service tabs, concise copy, more breathing room and a distinct overhang; verify desktop and mobile.
 - [x] Remove the lime underline from the active service tab, keeping bold and darker text as its only marker; verify all four tabs.
+- [x] Connect the supplied monitor render to the CRM tab with its own size, clear top margin, overhang and readable concept label; verify desktop and mobile.
