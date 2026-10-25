@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -19,14 +19,71 @@ const DEVICES = [
 
 export function Services() {
   const [active, setActive] = useState(0);
-  const dirRef = useRef(1);
+  const layers = useRef<Array<HTMLDivElement | null>>([]);
+  const current = useRef(0);
+  const requested = useRef(0);
+  const running = useRef(false);
+  const mounted = useRef(true);
   const openBrief = useOpenBrief();
   const tab = SERVICES[active] ?? SERVICES[0];
 
-  const go = (i: number) => {
-    if (i === active) return;
-    dirRef.current = i > active ? 1 : -1;
-    setActive(i);
+  useEffect(() => {
+    mounted.current = true;
+    // Decode the small renders before the first switch, not during its frames.
+    layers.current.forEach((layer) => {
+      void layer?.querySelector("img")?.decode().catch(() => undefined);
+    });
+    return () => {
+      mounted.current = false;
+      layers.current.forEach((layer) => {
+        layer?.querySelector(".pb-device-motion")?.getAnimations().forEach((animation) => animation.cancel());
+      });
+    };
+  }, []);
+
+  const go = async (i: number) => {
+    requested.current = i;
+    if (running.current || i === current.current) return;
+    running.current = true;
+    try {
+      // Finish one movement, then take only the latest choice. Never restart
+      // four large layers midway through their transition on every click.
+      while (mounted.current && requested.current !== current.current) {
+        const next = requested.current;
+        const incoming = layers.current[next];
+        const outgoing = layers.current[current.current];
+        const enter = incoming?.querySelector<HTMLElement>(".pb-device-motion");
+        const exit = outgoing?.querySelector<HTMLElement>(".pb-device-motion");
+        if (!incoming || !outgoing || !enter || !exit) break;
+        await incoming.querySelector("img")?.decode().catch(() => undefined);
+        if (!mounted.current) break;
+        if (requested.current !== next) continue;
+        const direction = next > current.current ? 1 : -1;
+        const distance = window.matchMedia("(max-width: 900px)").matches ? 14 : 90;
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        incoming.hidden = false;
+        enter.style.willChange = exit.style.willChange = "transform, opacity";
+        const options = { duration: reduced ? 0 : 650, easing: "cubic-bezier(.22, 1, .36, 1)", fill: "both" as const };
+        const entering = enter.animate([
+          { transform: `translate3d(${direction * distance}px, 0, 0) scale(.94)`, opacity: 0 },
+          { transform: "translate3d(0, 0, 0) scale(1)", opacity: 1 },
+        ], options);
+        const leaving = exit.animate([
+          { transform: "translate3d(0, 0, 0) scale(1)", opacity: 1 },
+          { transform: `translate3d(${-direction * distance}px, 0, 0) scale(.94)`, opacity: 0 },
+        ], options);
+        setActive(next);
+        await Promise.all([entering.finished, leaving.finished]).catch(() => undefined);
+        if (!mounted.current) break;
+        outgoing.hidden = true;
+        entering.cancel();
+        leaving.cancel();
+        enter.style.willChange = exit.style.willChange = "";
+        current.current = next;
+      }
+    } finally {
+      running.current = false;
+    }
   };
 
   const onKey = (e: React.KeyboardEvent, i: number) => {
@@ -84,21 +141,17 @@ export function Services() {
         </div>
         <div className="pb-service-device" role="img" aria-label={`${tab.device === "phone" ? "Смартфон" : tab.device === "laptop" ? "Ноутбук" : tab.device === "desktop" ? "Монитор" : "Планшет"}: ${tab.project}${tab.concept ? ", концепция интерфейса" : ", реальный сайт"}`}>
           {DEVICES.map((d, i) => (
-            <img
+            <div
               key={d.src}
-              src={d.src}
-              width={d.width}
-              height={d.height}
-              loading={i === 0 ? "eager" : "lazy"}
-              decoding="async"
-              alt=""
+              ref={(node) => { layers.current[i] = node; }}
+              hidden={i !== 0}
               aria-hidden={i !== active}
-              className={cn(
-                "pb-service-tablet",
-                d.cls,
-                i !== active && (dirRef.current > 0 ? "pb-device-off-r" : "pb-device-off-l"),
-              )}
-            />
+              className={cn("pb-service-tablet", d.cls)}
+            >
+              <div className="pb-device-motion">
+                <img src={d.src} width={d.width} height={d.height} loading="eager" decoding="async" alt="" />
+              </div>
+            </div>
           ))}
         </div>
       </div>

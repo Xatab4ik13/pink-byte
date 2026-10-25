@@ -49,3 +49,4 @@
 - [x] Connect the supplied monitor render to the CRM tab with its own size, clear top margin, overhang and readable concept label; verify desktop and mobile.
 - [x] Connect the supplied iPhone render to the mobile app tab, compress all four device renders to WebP, restore the slide-out/slide-in device transition with text change, and verify desktop and mobile.
 - [x] Remove the "CRM · концепция" caption from the service stage and its unused styles; verify all four tabs on desktop and mobile.
+- [ ] Remove service-switching frame drops while preserving the approved device composition; verify rapid clicks, both directions and mobile.
