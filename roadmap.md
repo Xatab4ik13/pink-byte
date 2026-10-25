@@ -43,4 +43,4 @@
 - [x] Research Russian agency service copy and search demand before writing four service texts.
 - [x] Replace service choices with ecommerce, corporate website, CRM and mobile app, using real site screens and replaceable CRM/app concepts.
 - [x] Add device depth and turn-based transitions, connect discussion CTA to existing brief and verify desktop/mobile flows.
-- [ ] Replace only the ecommerce tablet with a static premium image containing an authentic RUSDOORS capture, remove unsolicited source links and verify the result.
+- [x] Replace only the ecommerce tablet with a static premium image containing an authentic RUSDOORS capture, remove unsolicited source links and verify the result.
