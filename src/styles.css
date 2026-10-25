@@ -215,9 +215,10 @@
   .pb-service-text h3 { font-size: 20px; margin-top: 8px; }
   .pb-service-text h3 + p { font-size: 12px; margin-top: 10px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 9; -webkit-box-orient: vertical; overflow: hidden; }
   .pb-service-device { grid-area: device; order: 0; height: auto; min-height: 190px; margin: 0 -40px 0 0; }
-  .pb-service-copy > button { grid-area: cta; margin: 0 14px 18px 0 !important; width: auto; height: 42px; font-size: 13px; padding-inline: 12px; }
+  .pb-services { overflow-x: clip; }
+  .pb-service-copy > button { grid-area: cta; margin: 0 12px 18px 0 !important; width: auto; height: 42px; font-size: 12px; gap: 6px; padding-inline: 10px; justify-self: stretch; }
   .pb-service-tablet, .pb-service-stage-tablet .pb-service-tablet, .pb-service-stage-tablet .pb-service-monitor { width: 150%; left: 8px; --ty: -50%; transform: translate(0, var(--ty)); }
-  .pb-service-stage-tablet .pb-service-phone { width: auto; height: 94%; left: 22%; }
+  .pb-service-stage-tablet .pb-service-phone { width: auto; height: 86%; left: 24%; --ty: -54%; }
 }
 @media (min-width: 640px) {
   .pb-project-frame, .pb-project-caption { margin-inline: 56px; }
