@@ -47,7 +47,7 @@ export function Services() {
               onKeyDown={(e) => onKey(e, i)}
               className={cn(
                 "pb-service-tab",
-                active === i ? "border-foreground font-semibold text-foreground" : "border-transparent text-muted-foreground hover:text-foreground",
+                active === i ? "border-primary font-semibold text-foreground" : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
               {t.label}
@@ -56,7 +56,7 @@ export function Services() {
         </div>
       </Reveal>
 
-      <div className="pb-service-stage mt-7">
+      <div className={cn("pb-service-stage mt-9", active === 0 && "pb-service-stage-tablet")}>
         <div className="pb-service-backdrop" aria-hidden="true" />
         <div className="pb-service-copy">
           {SERVICES.map((service, i) => (
