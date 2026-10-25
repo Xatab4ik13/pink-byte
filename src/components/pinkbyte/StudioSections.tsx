@@ -3,6 +3,7 @@ import { Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import process from "@/assets/studio-process-seamless.webp.asset.json";
 import cost from "@/assets/studio-cost.webp.asset.json";
+import costMobile from "@/assets/studio-cost-mobile.webp.asset.json";
 import questions from "@/assets/studio-questions.webp.asset.json";
 import { useOpenBrief } from "./brief-context";
 import { btn } from "./primitives";
@@ -46,7 +47,10 @@ export function StudioSections() {
 
       <section aria-labelledby="cost-title" className="container-pb pb-studio-cost">
         <div className="pb-cost-layout">
-          <img src={cost.url} alt="Объёмные слои проекта: интерфейс, функции и интеграции" width={1600} height={616} loading="lazy" decoding="async" className="pb-cost-image" />
+          <picture className="pb-cost-image">
+            <source media="(max-width: 700px)" srcSet={costMobile.url} width={820} height={1640} />
+            <img src={cost.url} alt="Объёмные слои проекта: интерфейс, функции и интеграции" width={1600} height={616} loading="lazy" decoding="async" />
+          </picture>
           <div className="pb-cost-copy">
             <h2 id="cost-title" className="pb-studio-title">Покажем, из чего<br />складывается<br />стоимость.</h2>
             <p className="pb-cost-description">Определяем функции, этапы и интеграции.<br className="hidden lg:block" /> Объясняем расчёт до начала разработки.</p>

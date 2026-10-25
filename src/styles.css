@@ -401,6 +401,7 @@
 .pb-studio-cost { padding-top: 72px; }
 .pb-cost-layout { position: relative; isolation: isolate; aspect-ratio: 1600 / 616; }
 .pb-cost-image { position: absolute; inset: auto 0 0; z-index: -1; display: block; width: 100%; height: auto; }
+.pb-cost-image img { display: block; width: 100%; height: auto; }
 .pb-cost-copy { width: 49%; padding: 100px 0 28px 44px; color: var(--ink-foreground); }
 .pb-cost-copy .pb-studio-title { font-size: 44px; }
 .pb-cost-description { font-size: 16px; line-height: 1.4; margin-top: 16px; color: var(--ink-muted); }
@@ -437,31 +438,43 @@
 }
 @media (max-width: 700px) {
   .pb-studio-process { padding-top: 64px; }
-  .pb-studio-title { font-size: 32px; }
+  .pb-studio-title { font-size: 38px; }
   .pb-studio-heading { display: block; }
-  .pb-studio-heading > p { font-size: 16px; margin-top: 18px; }
-  .pb-studio-heading > p br { display: none; }
+  .pb-studio-heading > p { font-size: 19px; margin-top: 18px; }
   .pb-process-image { margin: 24px -12px 0; width: calc(100% + 24px); max-width: none; }
-  .pb-process-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; margin-top: 28px; }
-  .pb-process-steps li { padding: 0 0 0 16px; }
+  .pb-process-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; margin-top: 24px; }
+  .pb-process-steps li { padding: 0 0 20px 18px; }
   .pb-process-steps li:nth-child(odd) { border-left: 0; padding-left: 0; }
-  .pb-process-steps h3 { font-size: 21px; }
-  .pb-process-steps p { font-size: 14px; }
+  .pb-process-steps li:nth-child(n + 3) { padding-top: 20px; border-top: 1px solid var(--border); }
+  .pb-process-steps li:nth-child(2) h3::after { content: ""; display: block; width: 34px; height: 5px; border-radius: 999px; margin-top: 7px; background: var(--primary); }
+  .pb-process-steps h3 { font-size: 23px; }
+  .pb-process-steps p { font-size: 16px; padding-right: 10px; }
   .pb-studio-cost { padding-top: 48px; }
-  .pb-cost-layout { aspect-ratio: auto; display: flex; flex-direction: column; }
-  .pb-cost-copy { order: -1; width: 100%; padding: 0; color: var(--foreground); }
-  .pb-cost-copy .pb-cost-description { color: var(--muted-foreground); }
-  .pb-cost-button { background: var(--ink); color: var(--ink-foreground); }
+  .pb-cost-layout { aspect-ratio: 1 / 2; max-width: 430px; margin-inline: auto; }
+  .pb-cost-copy { position: absolute; top: 43%; left: 0; width: 100%; padding: 0 28px 28px; color: var(--ink-foreground); }
+  .pb-cost-copy .pb-cost-description { color: var(--ink-muted); }
+  .pb-cost-button { width: 100%; justify-content: center; min-height: 52px; background: var(--ink-foreground); color: var(--ink); }
   .pb-cost-copy .pb-studio-title { font-size: 32px; }
-  .pb-cost-description { font-size: 15px; }
+  .pb-cost-description { font-size: 16px; }
   .pb-cost-button { margin-top: 22px; }
-  .pb-cost-image { position: relative; inset: auto; width: 100%; height: auto; margin-top: 24px; }
-  .pb-studio-faq { grid-template-columns: minmax(0, 1fr); gap: 8px; padding-top: 56px; padding-bottom: 40px; }
-  .pb-faq-art { position: relative; min-height: 178px; padding-right: 112px; }
-  .pb-faq-art .pb-studio-title { font-size: 30px; }
-  .pb-faq-art img { position: absolute; width: 160px; right: -10px; bottom: -2px; margin: 0; }
-  .pb-faq-toggle { font-size: 16px; min-height: 64px; }
-  .pb-faq-answer { font-size: 15px; padding-right: 28px; }
+  .pb-cost-image { position: absolute; inset: 0; width: 100%; height: auto; margin: 0; }
+  .pb-studio-faq { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-top: 56px; padding-bottom: 40px; }
+  .pb-faq-art { min-width: 0; padding: 0; }
+  .pb-faq-art .pb-studio-title { font-size: 36px; }
+  .pb-faq-art img { position: static; width: 100%; max-width: 400px; margin: 8px auto 0; }
+  .pb-faq-toggle { font-size: 19px; font-weight: 700; min-height: 64px; line-height: 1.2; }
+  .pb-faq-toggle > span:first-child { min-width: 0; }
+  .pb-faq-answer { font-size: 16px; padding-right: 40px; line-height: 1.4; }
+}
+@media (max-width: 374px) {
+  .pb-studio-heading .pb-studio-title { font-size: 34px; }
+  .pb-faq-art .pb-studio-title { font-size: 32px; }
+  .pb-cost-copy { padding-inline: 22px; }
+  .pb-cost-copy .pb-studio-title { font-size: 30px; }
+  .pb-cost-description { font-size: 15px; }
+}
+@media (min-width: 390px) and (max-width: 700px) {
+  .pb-cost-copy .pb-studio-title { font-size: 36px; }
 }
 .pb-contact-seat,
 .pb-contact-robot { width: min(300px, 62vw); }
