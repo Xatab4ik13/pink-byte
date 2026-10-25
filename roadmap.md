@@ -56,4 +56,4 @@
 - [x] Mobile services redesign: device breaks out of card top/right edge, full text, full-width CTA; verified all tabs at 393/360.
 - [x] Add process, cost and FAQ sections after Services using the supplied layout and three compressed assets; keep the seated contact robot below them.
 - [x] Verify new sections, FAQ and discussion buttons on desktop and mobile.
-- [ ] Match the three mobile studio reference layouts with the compressed portrait cost asset; verify FAQ, cost CTA and unchanged desktop layout.
+- [x] Match the three mobile studio reference layouts with the compressed portrait cost asset; verify FAQ, cost CTA and unchanged desktop layout.
