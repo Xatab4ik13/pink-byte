@@ -166,7 +166,7 @@
 .pb-service-tabs { display: flex; flex-wrap: wrap; gap: 10px 28px; }
 .pb-service-tab { border-radius: 0; border-bottom-width: 2px; background: transparent !important; height: auto; padding: 0 0 10px; font-size: 15px; }
 .pb-service-stage { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); min-height: 520px; isolation: isolate; }
-.pb-service-backdrop { position: absolute; inset: 14px 0 24px; z-index: -1; border-radius: 32px; background: var(--card); }
+.pb-service-backdrop { position: absolute; inset: 14px 0 24px; z-index: -1; border-radius: 32px; background: var(--ink); }
 .pb-service-copy { display: flex; flex-direction: column; justify-content: center; padding: 46px 12px 54px 46px; z-index: 2; }
 .pb-service-text { animation: pb-service-text 650ms cubic-bezier(.22, 1, .36, 1) both; }
 .pb-service-text h3 { max-width: 420px; letter-spacing: 0; }

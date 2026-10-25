@@ -61,12 +61,12 @@ export function Services() {
         <div className="pb-service-copy">
           {SERVICES.map((service, i) => (
             <div key={service.id} id={`service-panel-${service.id}`} role="tabpanel" aria-labelledby={`tab-${service.id}`} hidden={i !== active} className="pb-service-text">
-              <p className="text-xs font-medium text-muted-foreground md:text-sm">{service.keyword}</p>
-              <h3 className="mt-4 text-3xl font-medium leading-[1.1] md:text-4xl">{service.title}</h3>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground md:text-base">{service.text}</p>
+              <p className="text-xs font-medium text-ink-muted md:text-sm">{service.keyword}</p>
+              <h3 className="mt-4 text-3xl font-medium leading-[1.1] text-ink-foreground md:text-4xl">{service.title}</h3>
+              <p className="mt-5 text-sm leading-relaxed text-ink-muted md:text-base">{service.text}</p>
             </div>
           ))}
-          <Button onClick={openBrief} variant="secondary" className={cn(btn.ink, "mt-7 h-auto self-start")}>
+          <Button onClick={openBrief} className={cn(btn.paper, "mt-7 h-auto self-start hover:opacity-90")}>
             Обсудить решение <ArrowUpRight className="size-4" />
           </Button>
         </div>
@@ -79,7 +79,7 @@ export function Services() {
             </ClientOnly>
           )}
         </div>
-        {tab.concept && <div className="pb-service-credit text-xs text-muted-foreground">{tab.project} · концепция</div>}
+        {tab.concept && <div className="pb-service-credit text-xs text-ink-muted">{tab.project} · концепция</div>}
       </div>
     </section>
   );
