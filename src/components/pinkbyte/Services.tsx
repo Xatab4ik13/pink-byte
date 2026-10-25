@@ -61,8 +61,8 @@ export function Services() {
         const direction = next > current.current ? 1 : -1;
         const distance = window.matchMedia("(max-width: 900px)").matches ? 14 : 90;
         const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        incoming.hidden = false;
-        enter.style.willChange = exit.style.willChange = "transform, opacity";
+        // All layers stay painted on their own GPU layers (opacity 0 when idle),
+        // so a switch never triggers layout, decode or shadow rasterization.
         const options = { duration: reduced ? 0 : 650, easing: "cubic-bezier(.22, 1, .36, 1)", fill: "both" as const };
         const entering = enter.animate([
           { transform: `translate3d(${direction * distance}px, 0, 0) scale(.94)`, opacity: 0 },
@@ -75,10 +75,10 @@ export function Services() {
         setActive(next);
         await Promise.all([entering.finished, leaving.finished]).catch(() => undefined);
         if (!mounted.current) break;
-        outgoing.hidden = true;
+        enter.style.opacity = "1";
+        exit.style.opacity = "0";
         entering.cancel();
         leaving.cancel();
-        enter.style.willChange = exit.style.willChange = "";
         current.current = next;
       }
     } finally {
@@ -144,11 +144,10 @@ export function Services() {
             <div
               key={d.src}
               ref={(node) => { layers.current[i] = node; }}
-              hidden={i !== 0}
               aria-hidden={i !== active}
               className={cn("pb-service-tablet", d.cls)}
             >
-              <div className="pb-device-motion">
+              <div className="pb-device-motion" style={{ opacity: i === 0 ? 1 : 0 }}>
                 <img src={d.src} width={d.width} height={d.height} loading="eager" decoding="async" alt="" />
               </div>
             </div>
