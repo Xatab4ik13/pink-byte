@@ -90,8 +90,7 @@ export function Projects() {
           ))}
           </div>
         </div>
-        <button type="button" onClick={() => dialog.current?.showModal()} className="group absolute max-sm:hidden bottom-4 right-4 z-10 h-11 overflow-hidden rounded-full border border-ink-border bg-ink/80 pl-5 pr-14 text-xs font-semibold text-ink-foreground backdrop-blur-sm transition-colors duration-300 hover:bg-ink/90 motion-reduce:transition-none sm:bottom-6 sm:right-6 sm:h-12 sm:pl-8 sm:pr-[4.75rem] sm:text-sm">
-          <img src={mark.url} alt="" aria-hidden width={900} height={692} draggable={false} className="pointer-events-none absolute right-1 top-1/2 h-[135%] w-auto -translate-y-1/2 select-none opacity-[0.16] transition-opacity duration-300 ease-out group-hover:opacity-[0.34] motion-reduce:transition-none" />
+        <button type="button" onClick={() => dialog.current?.showModal()} className="pb-project-cta absolute max-sm:hidden bottom-4 right-4 z-10 h-11 rounded-full px-5 text-xs font-semibold text-ink-foreground transition-opacity duration-300 hover:opacity-90 motion-reduce:transition-none sm:bottom-6 sm:right-6 sm:h-12 sm:px-8 sm:text-sm">
           <span className="relative">Смотреть проект</span>
         </button>
         </div>
@@ -102,8 +101,7 @@ export function Projects() {
               <ChevronRight className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
             </button>
         </div>
-        <button type="button" onClick={() => dialog.current?.showModal()} className="group relative mt-3 flex h-12 w-full items-center justify-center overflow-hidden rounded-full bg-ink text-sm font-semibold text-ink-foreground sm:hidden">
-          <img src={mark.url} alt="" aria-hidden width={900} height={692} draggable={false} className="pointer-events-none absolute right-3 top-1/2 h-[135%] w-auto -translate-y-1/2 select-none opacity-[0.16]" />
+        <button type="button" onClick={() => dialog.current?.showModal()} className="pb-project-cta mt-3 flex h-12 w-full items-center justify-center rounded-full text-sm font-semibold text-ink-foreground transition-opacity duration-300 hover:opacity-90 motion-reduce:transition-none sm:hidden">
           <span className="relative">Смотреть проект</span>
         </button>
       </div>
