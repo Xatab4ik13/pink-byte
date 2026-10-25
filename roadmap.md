@@ -39,3 +39,4 @@
 - [ ] Replace brief download with a single submit button and server email delivery: awaiting the owner's verified email sender domain.
 - [x] Redesign project slides with horizontal motion, captions above, side arrows and an inset CTA; enlarge mobile images without cropping and verify navigation.
 - [x] Replace the contact block robot with the mouthless seated brief robot, sized large with legs hanging over the card edge, and verify desktop and mobile.
+- [x] Remove brief opening and typing bottlenecks without changing its appearance or animations; verify opening, answers and reopening.
