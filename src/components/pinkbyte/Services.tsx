@@ -99,7 +99,7 @@ export function Services() {
   return (
     <section id="services" aria-labelledby="services-title" className="container-pb pb-services scroll-mt-6 pt-24 md:pt-28">
       <Reveal>
-        <h2 id="services-title" className="text-4xl font-semibold leading-tight md:text-5xl">
+        <h2 id="services-title" className="text-4xl font-extrabold leading-tight md:text-5xl">
           Что создадим для вас?
         </h2>
         <div role="tablist" aria-label="Услуги" className="pb-service-tabs mt-6">
