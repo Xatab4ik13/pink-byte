@@ -8,6 +8,7 @@ import { useOpenBrief } from "./brief-context";
 import { SERVICES } from "./service-data";
 import tablet from "@/assets/service-tablet-ipad.png.asset.json";
 import macbook from "@/assets/macbook-lsystems.png.asset.json";
+import monitor from "@/assets/service-crm-monitor.png.asset.json";
 
 const DeviceScene = lazy(() => import("./ServiceDeviceScene"));
 
@@ -57,7 +58,7 @@ export function Services() {
         </div>
       </Reveal>
 
-      <div className={cn("pb-service-stage mt-9", (active === 0 || active === 1) && "pb-service-stage-tablet")}>
+      <div className={cn("pb-service-stage mt-9", (active === 0 || active === 1 || active === 2) && "pb-service-stage-tablet")}>
         <div className="pb-service-backdrop" aria-hidden="true" />
         <div className="pb-service-copy">
           {SERVICES.map((service, i) => (
@@ -72,11 +73,11 @@ export function Services() {
           </Button>
         </div>
         <div className="pb-service-device" role="img" aria-label={`${tab.device === "phone" ? "Смартфон" : tab.device === "laptop" ? "Ноутбук" : tab.device === "desktop" ? "Монитор" : "Планшет"}: ${tab.project}${tab.concept ? ", концепция интерфейса" : ", реальный сайт"}`}>
-          {(active === 0 || active === 1) ? (
+          {(active === 0 || active === 1 || active === 2) ? (
             <img
-              src={active === 0 ? tablet.url : macbook.url}
-              width={1513}
-              height={1039}
+              src={active === 0 ? tablet.url : active === 1 ? macbook.url : monitor.url}
+              width={active === 2 ? 1536 : 1513}
+              height={active === 2 ? 1024 : 1039}
               loading="lazy"
               decoding="async"
               alt=""
