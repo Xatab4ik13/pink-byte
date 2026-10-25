@@ -392,7 +392,7 @@
 .pb-studio-title { font-size: 52px; font-weight: 800; line-height: 1.06; letter-spacing: 0; }
 .pb-studio-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
 .pb-studio-heading > p { color: var(--muted-foreground); font-size: 18px; line-height: 1.4; padding-bottom: 4px; }
-.pb-process-image { display: block; width: 100%; height: auto; margin-top: 28px; mix-blend-mode: multiply; }
+.pb-process-image { display: block; width: 100%; height: auto; margin-top: 28px; }
 .pb-process-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 24px; }
 .pb-process-steps li { padding: 0 28px; border-left: 1px solid var(--border); }
 .pb-process-steps li:first-child { border-left: 0; padding-left: 0; }
