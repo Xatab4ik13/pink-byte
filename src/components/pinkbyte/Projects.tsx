@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import citymebel from "@/assets/slide-citymebel.webp.asset.json";
 import nikitsky from "@/assets/slide-nikitsky.webp.asset.json";
 import chinar from "@/assets/slide-chinar.webp.asset.json";
 import gold from "@/assets/slide-gold.webp.asset.json";
-import { Reveal } from "./primitives";
+import { Reveal, btn } from "./primitives";
 
 const SLIDES = [
   { src: citymebel.url, title: "CityMebel", desc: "Интернет-витрина мебельной фабрики" },
@@ -90,9 +91,9 @@ export function Projects() {
           ))}
           </div>
         </div>
-        <button type="button" onClick={() => dialog.current?.showModal()} className="pb-project-cta absolute max-sm:hidden bottom-4 right-4 z-10 h-11 rounded-full px-5 text-xs font-semibold text-ink-foreground transition-opacity duration-300 hover:opacity-90 motion-reduce:transition-none sm:bottom-6 sm:right-6 sm:h-12 sm:px-8 sm:text-sm">
-          <span className="relative">Смотреть проект</span>
-        </button>
+        <Button type="button" variant="secondary" onClick={() => dialog.current?.showModal()} className={cn(btn.paper, "pb-project-cta absolute bottom-4 right-4 z-10 h-auto max-sm:hidden hover:opacity-90 sm:bottom-6 sm:right-6")}>
+          Смотреть проект
+        </Button>
         </div>
             <button type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="pb-project-prev absolute max-sm:hidden left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink-foreground/85 transition-[translate,opacity,color] duration-300 hover:opacity-100 hover:-translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12 sm:text-foreground/75 sm:hover:text-foreground">
               <ChevronLeft className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
@@ -101,9 +102,9 @@ export function Projects() {
               <ChevronRight className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
             </button>
         </div>
-        <button type="button" onClick={() => dialog.current?.showModal()} className="pb-project-cta mt-3 flex h-12 w-full items-center justify-center rounded-full text-sm font-semibold text-ink-foreground transition-opacity duration-300 hover:opacity-90 motion-reduce:transition-none sm:hidden">
-          <span className="relative">Смотреть проект</span>
-        </button>
+        <Button type="button" variant="secondary" onClick={() => dialog.current?.showModal()} className={cn(btn.paper, "pb-project-cta mt-3 w-full hover:opacity-90 sm:hidden")}>
+          Смотреть проект
+        </Button>
       </div>
 
       <dialog
