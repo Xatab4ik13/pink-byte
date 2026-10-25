@@ -10,7 +10,7 @@
 <!-- LOVABLE:END -->
 
 - Home page sections live in src/components/pinkbyte/ and are composed in src/routes/index.tsx; shared logo, buttons and reveal helpers are in primitives.tsx — keeps sections reusable for future pages.
-- Service content and screenshot pointers live in a browser-safe data module; devices are a lazy client-only Three.js scene with on-demand rendering and latest-choice queuing, so SSR remains safe and idle animation does not consume frames.
+- Service content and screenshot pointers live in a browser-safe data module; ecommerce uses a static composited tablet asset for visual approval, while the remaining devices retain the lazy client-only on-demand Three.js scene, keeping SSR safe and avoiding idle frames. Composite real website captures into device screens without generating or altering their content.
 - Journal is a separate content route that reuses Header and Footer; shared navigation uses root-qualified home anchors so sections remain reachable from other pages.
 - Project discussion buttons share a root-mounted BriefProvider; the prototype uses session-only sequential questions and AI Elements for messages, scrolling and composition, with no AI calls or file uploads. Keep brief generation in a pure model for testing and later replacement.
 - Keep BriefContext and its consumer hook in a separate non-component module so refreshing the dialog does not recreate the context used by mounted navigation buttons.
