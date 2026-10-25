@@ -91,7 +91,7 @@ export function Projects() {
           ))}
           </div>
         </div>
-        <Button type="button" variant="secondary" onClick={() => dialog.current?.showModal()} className={cn(btn.paper, "pb-project-cta absolute bottom-4 right-4 z-10 h-auto max-sm:hidden hover:opacity-90 sm:bottom-6 sm:right-6")}>
+        <Button type="button" onClick={() => dialog.current?.showModal()} className={cn(btn.paper, "pb-project-cta absolute bottom-4 right-4 z-10 h-auto max-sm:hidden hover:opacity-90 sm:bottom-6 sm:right-6")}>
           Смотреть проект
         </Button>
         </div>
@@ -102,7 +102,7 @@ export function Projects() {
               <ChevronRight className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
             </button>
         </div>
-        <Button type="button" variant="secondary" onClick={() => dialog.current?.showModal()} className={cn(btn.paper, "pb-project-cta mt-3 w-full hover:opacity-90 sm:hidden")}>
+        <Button type="button" onClick={() => dialog.current?.showModal()} className={cn(btn.paper, "pb-project-cta mt-3 w-full hover:opacity-90 sm:hidden")}>
           Смотреть проект
         </Button>
       </div>
