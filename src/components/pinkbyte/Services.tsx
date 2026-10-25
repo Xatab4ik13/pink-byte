@@ -101,7 +101,6 @@ export function Services() {
             />
           ))}
         </div>
-        {tab.concept && <div className="pb-service-credit text-xs text-ink-muted">{tab.project} · концепция</div>}
       </div>
     </section>
   );
