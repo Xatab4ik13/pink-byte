@@ -57,3 +57,4 @@
 - [x] Add process, cost and FAQ sections after Services using the supplied layout and three compressed assets; keep the seated contact robot below them.
 - [x] Verify new sections, FAQ and discussion buttons on desktop and mobile.
 - [x] Match the three mobile studio reference layouts with the compressed portrait cost asset; verify FAQ, cost CTA and unchanged desktop layout.
+- [x] Keep both phone CTAs white with dark text, add a thin soft graphite outline and a soft shadow so they stop blending into the page, and verify on phone and desktop.
