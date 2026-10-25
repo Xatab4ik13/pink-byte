@@ -47,7 +47,7 @@ export function Services() {
               onKeyDown={(e) => onKey(e, i)}
               className={cn(
                 "pb-service-tab",
-                active === i ? "border-primary font-semibold text-foreground" : "border-transparent text-muted-foreground hover:text-foreground",
+                active === i ? "font-semibold text-foreground" : "text-muted-foreground hover:text-foreground",
               )}
             >
               {t.label}
