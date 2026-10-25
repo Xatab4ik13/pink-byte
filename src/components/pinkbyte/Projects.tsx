@@ -9,10 +9,10 @@ import mark from "@/assets/mark-pb.png.asset.json";
 import { Reveal } from "./primitives";
 
 const SLIDES = [
-  { src: citymebel.url, title: "CityMebel", desc: "Интернет-витрина мебельной фабрики", scope: "Дизайн · Разработка" },
-  { src: nikitsky.url, title: "Никитский, 6", desc: "Многостраничный сайт клубного дома", scope: "Дизайн · Разработка" },
-  { src: chinar.url, title: "CHINAR", desc: "Сайт с расписанием и фирменным талисманом", scope: "Дизайн · Разработка" },
-  { src: gold.url, title: "Проект", desc: "Адаптивный сайт для компьютера и смартфона", scope: "Дизайн · Разработка" },
+  { src: citymebel.url, title: "CityMebel", desc: "Интернет-витрина мебельной фабрики" },
+  { src: nikitsky.url, title: "Никитский, 6", desc: "Многостраничный сайт клубного дома" },
+  { src: chinar.url, title: "CHINAR", desc: "Сайт с расписанием и фирменным талисманом" },
+  { src: gold.url, title: "Проект", desc: "Адаптивный сайт для компьютера и смартфона" },
 ];
 
 export function Projects() {
@@ -62,7 +62,6 @@ export function Projects() {
           <div className="min-w-0">
             <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
             <p className="mt-2 text-sm text-muted-foreground md:text-base">{cur.desc}</p>
-            <p className="mt-2 text-xs text-muted-foreground">{cur.scope}</p>
           </div>
           <div className="flex shrink-0 items-center gap-2 pb-1.5" aria-label={`Проект ${i + 1} из ${n}`}>
             {SLIDES.map((s, k) => (
