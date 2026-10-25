@@ -192,7 +192,7 @@
 @media (max-width: 900px) {
   .pb-service-tabs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
   .pb-service-tab { justify-content: center; min-height: 48px; padding: 10px 14px; border: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent); border-radius: 999px; font-size: 14px; white-space: normal; text-align: center; line-height: 1.2; transition: background-color .25s, color .25s, border-color .25s; }
-  .pb-service-tab[aria-selected="true"] { background: var(--ink) !important; border-color: var(--ink); color: var(--ink-foreground); }
+  .pb-service-tab[aria-selected="true"] { background: var(--ink) !important; border-color: var(--ink); color: var(--ink-foreground) !important; }
   .pb-service-stage, .pb-service-stage-tablet { grid-template-columns: minmax(0, 1fr); min-height: 0; margin-top: 20px; }
   .pb-service-backdrop, .pb-service-stage-tablet .pb-service-backdrop { inset: 0; border-radius: 24px; }
   .pb-service-device { order: -1; height: 300px; margin: 0 16px; }
