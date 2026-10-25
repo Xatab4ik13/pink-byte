@@ -53,3 +53,4 @@
 - [x] Keep all device layers pre-rasterized at opacity 0 so switches avoid layout and shadow repaint; verify frame times under CPU throttling.
 - [x] Mobile: project CTA below a near full-width slide without dots/arrows; service tabs as pill buttons with device above copy and full-width CTA.
 - [x] Mobile services: horizontal card with copy left, overhanging device and CTA right; selected pill light with dark outline.
+- [x] Mobile services redesign: device breaks out of card top/right edge, full text, full-width CTA; verified all tabs at 393/360.
