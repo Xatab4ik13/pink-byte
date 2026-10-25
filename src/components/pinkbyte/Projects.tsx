@@ -63,11 +63,6 @@ export function Projects() {
             <p className="text-2xl font-extrabold md:text-4xl">{cur.title}</p>
             <p className="mt-2 text-sm text-muted-foreground md:text-base">{cur.desc}</p>
           </div>
-          <div className="flex shrink-0 items-center gap-2 pb-1.5" aria-label={`Проект ${i + 1} из ${n}`}>
-            {SLIDES.map((s, k) => (
-              <span key={s.src} aria-current={k === i} className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ${k === i ? "w-5 bg-primary" : "w-1.5 bg-ink-foreground/30"}`} />
-            ))}
-          </div>
         </div>
         <div className="relative">
         <div className="pb-project-frame relative overflow-hidden rounded-2xl bg-ink">
@@ -96,18 +91,22 @@ export function Projects() {
           ))}
           </div>
         </div>
-        <button type="button" onClick={() => dialog.current?.showModal()} className="group absolute bottom-4 right-4 z-10 h-11 overflow-hidden rounded-full border border-ink-border bg-ink/80 pl-5 pr-14 text-xs font-semibold text-ink-foreground backdrop-blur-sm transition-colors duration-300 hover:bg-ink/90 motion-reduce:transition-none sm:bottom-6 sm:right-6 sm:h-12 sm:pl-8 sm:pr-[4.75rem] sm:text-sm">
+        <button type="button" onClick={() => dialog.current?.showModal()} className="group absolute max-sm:hidden bottom-4 right-4 z-10 h-11 overflow-hidden rounded-full border border-ink-border bg-ink/80 pl-5 pr-14 text-xs font-semibold text-ink-foreground backdrop-blur-sm transition-colors duration-300 hover:bg-ink/90 motion-reduce:transition-none sm:bottom-6 sm:right-6 sm:h-12 sm:pl-8 sm:pr-[4.75rem] sm:text-sm">
           <img src={mark.url} alt="" aria-hidden width={900} height={692} draggable={false} className="pointer-events-none absolute right-1 top-1/2 h-[135%] w-auto -translate-y-1/2 select-none opacity-[0.16] transition-opacity duration-300 ease-out group-hover:opacity-[0.34] motion-reduce:transition-none" />
           <span className="relative">Смотреть проект</span>
         </button>
         </div>
-            <button type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="pb-project-prev absolute left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink-foreground/85 transition-[translate,opacity,color] duration-300 hover:opacity-100 hover:-translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12 sm:text-foreground/75 sm:hover:text-foreground">
+            <button type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="pb-project-prev absolute max-sm:hidden left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink-foreground/85 transition-[translate,opacity,color] duration-300 hover:opacity-100 hover:-translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12 sm:text-foreground/75 sm:hover:text-foreground">
               <ChevronLeft className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
             </button>
-            <button type="button" title="Следующий проект" aria-label="Следующий проект" onClick={() => go(1)} className="pb-project-next absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink-foreground/85 transition-[translate,opacity,color] duration-300 hover:opacity-100 hover:translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12 sm:text-foreground/75 sm:hover:text-foreground">
+            <button type="button" title="Следующий проект" aria-label="Следующий проект" onClick={() => go(1)} className="pb-project-next absolute max-sm:hidden right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink-foreground/85 transition-[translate,opacity,color] duration-300 hover:opacity-100 hover:translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12 sm:text-foreground/75 sm:hover:text-foreground">
               <ChevronRight className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
             </button>
         </div>
+        <button type="button" onClick={() => dialog.current?.showModal()} className="group relative mt-3 flex h-12 w-full items-center justify-center overflow-hidden rounded-full bg-ink text-sm font-semibold text-ink-foreground sm:hidden">
+          <img src={mark.url} alt="" aria-hidden width={900} height={692} draggable={false} className="pointer-events-none absolute right-3 top-1/2 h-[135%] w-auto -translate-y-1/2 select-none opacity-[0.16]" />
+          <span className="relative">Смотреть проект</span>
+        </button>
       </div>
 
       <dialog
