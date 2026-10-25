@@ -1,94 +1,83 @@
-import { useState } from "react";
-import serviceUi from "@/assets/service-ui.jpg";
+import { lazy, Suspense, useState } from "react";
+import { ClientOnly } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Reveal, btn } from "./primitives";
+import { useOpenBrief } from "./brief-context";
+import { SERVICES } from "./service-data";
 
-const TABS = [
-  {
-    id: "site",
-    label: "Сайт",
-    title: "Сайт, который помогает выбрать вас.",
-    text: "Корпоративные сайты и интернет-магазины с понятной структурой, выразительным дизайном и удобным управлением.",
-  },
-  {
-    id: "service",
-    label: "Веб-сервис",
-    title: "Когда готового решения недостаточно.",
-    text: "Личные кабинеты, CRM и внутренние системы под процессы вашей компании.",
-  },
-  {
-    id: "growth",
-    label: "Развитие продукта",
-    title: "Развиваем продукт вместе с бизнесом.",
-    text: "Добавляем функции, улучшаем интерфейс и поддерживаем работу вашего сервиса.",
-  },
-];
+const DeviceScene = lazy(() => import("./ServiceDeviceScene"));
 
 export function Services() {
-  const [active, setActive] = useState("service");
-  const tab = TABS.find((t) => t.id === active)!;
+  const [active, setActive] = useState(0);
+  const openBrief = useOpenBrief();
+  const tab = SERVICES[active] ?? SERVICES[0];
 
   const onKey = (e: React.KeyboardEvent, i: number) => {
     const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
     if (!d) return;
-    const next = TABS[(i + d + TABS.length) % TABS.length]!;
-    setActive(next.id);
+    e.preventDefault();
+    const nextIndex = (i + d + SERVICES.length) % SERVICES.length;
+    const next = SERVICES[nextIndex];
+    if (!next) return;
+    setActive(nextIndex);
     document.getElementById(`tab-${next.id}`)?.focus();
   };
 
   return (
-    <section id="services" aria-labelledby="services-title" className="container-pb scroll-mt-6 pt-24 md:pt-28">
+    <section id="services" aria-labelledby="services-title" className="container-pb pb-services scroll-mt-6 pt-24 md:pt-28">
       <Reveal>
-        <h2 id="services-title" className="text-[clamp(2.2rem,5vw,3.6rem)] font-semibold tracking-[-0.04em]">
+        <h2 id="services-title" className="text-4xl font-semibold leading-tight md:text-5xl">
           Что создадим для вас?
         </h2>
-        <div role="tablist" aria-label="Услуги" className="mt-5 flex flex-wrap gap-x-8 gap-y-2">
-          {TABS.map((t, i) => (
-            <button
+        <div role="tablist" aria-label="Услуги" className="pb-service-tabs mt-6">
+          {SERVICES.map((t, i) => (
+            <Button
               key={t.id}
               id={`tab-${t.id}`}
               role="tab"
               type="button"
-              aria-selected={active === t.id}
-              aria-controls="services-panel"
-              tabIndex={active === t.id ? 0 : -1}
-              onClick={() => setActive(t.id)}
+              variant="ghost"
+              aria-selected={active === i}
+              aria-controls={`service-panel-${t.id}`}
+              tabIndex={active === i ? 0 : -1}
+              onClick={() => setActive(i)}
               onKeyDown={(e) => onKey(e, i)}
               className={cn(
-                "border-b-2 pb-2 text-[15px] transition-colors",
-                active === t.id ? "border-foreground font-semibold text-foreground" : "border-transparent text-muted-foreground hover:text-foreground",
+                "pb-service-tab",
+                active === i ? "border-foreground font-semibold text-foreground" : "border-transparent text-muted-foreground hover:text-foreground",
               )}
             >
               {t.label}
-            </button>
+            </Button>
           ))}
         </div>
       </Reveal>
 
-      <Reveal className="mt-6 overflow-hidden rounded-[2rem] bg-card">
-        <div
-          id="services-panel"
-          role="tabpanel"
-          aria-labelledby={`tab-${active}`}
-          className="grid items-center lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"
-        >
-          <div key={active} className="tab-fade flex min-h-[300px] flex-col justify-center p-7 md:p-12 lg:min-h-[380px]">
-            <h3 className="text-[clamp(1.8rem,3.2vw,2.6rem)] font-medium leading-[1.08] tracking-[-0.035em]">{tab.title}</h3>
-            <p className="mt-4 max-w-md text-muted-foreground">{tab.text}</p>
-            <a href="#contact" className={cn(btn.ink, "mt-8 self-start")}>
-              Обсудить решение
-            </a>
-          </div>
-          <img
-            src={serviceUi}
-            alt="Пример интерфейса веб-сервиса: план проекта и карточка задачи"
-            width={1536}
-            height={1024}
-            loading="lazy"
-            className="block w-full lg:-mr-10 lg:w-[110%] lg:max-w-none"
-          />
+      <div className="pb-service-stage mt-7">
+        <div className="pb-service-backdrop" aria-hidden="true" />
+        <div className="pb-service-copy">
+          {SERVICES.map((service, i) => (
+            <div key={service.id} id={`service-panel-${service.id}`} role="tabpanel" aria-labelledby={`tab-${service.id}`} hidden={i !== active} className="pb-service-text">
+              <p className="text-xs font-medium text-muted-foreground md:text-sm">{service.keyword}</p>
+              <h3 className="mt-4 text-3xl font-medium leading-[1.1] md:text-4xl">{service.title}</h3>
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground md:text-base">{service.text}</p>
+            </div>
+          ))}
+          <Button onClick={openBrief} variant="secondary" className={cn(btn.ink, "mt-7 h-auto self-start")}>
+            Обсудить решение <ArrowUpRight className="size-4" />
+          </Button>
         </div>
-      </Reveal>
+        <div className="pb-service-device" role="img" aria-label={`${tab.device === "phone" ? "Смартфон" : tab.device === "laptop" ? "Ноутбук" : tab.device === "desktop" ? "Монитор" : "Планшет"}: ${tab.project}${tab.concept ? ", концепция интерфейса" : ", реальный сайт"}`}>
+          <ClientOnly fallback={<div className="pb-service-canvas" />}>
+            <Suspense fallback={<div className="pb-service-canvas" />}><DeviceScene active={active} /></Suspense>
+          </ClientOnly>
+        </div>
+        <div className="pb-service-credit text-xs text-muted-foreground">
+          {"source" in tab ? <a href={tab.source} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-foreground">{tab.project} <ArrowUpRight className="size-3" /></a> : <span>{tab.project} · концепция</span>}
+        </div>
+      </div>
     </section>
   );
 }
