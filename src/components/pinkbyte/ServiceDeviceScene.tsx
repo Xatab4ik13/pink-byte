@@ -164,6 +164,7 @@ export default function ServiceDeviceScene({ active }: { active: number }) {
       if (!w || !h) return;
       renderer.setSize(w, h);
       const aspect = w / h;
+      devices.forEach((d, i) => d.scale.setScalar(w > 500 ? 1.15 : SERVICES[i]?.device === "phone" ? 1.2 : 1));
       const halfHeight = Math.max(2.8, 3.45 / aspect);
       camera.left = -halfHeight * aspect; camera.right = halfHeight * aspect;
       camera.top = halfHeight; camera.bottom = -halfHeight; camera.updateProjectionMatrix(); render();
