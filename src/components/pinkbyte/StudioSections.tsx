@@ -54,7 +54,7 @@ export function StudioSections() {
           <div className="pb-cost-copy">
             <h2 id="cost-title" className="pb-studio-title">Покажем, из чего<br />складывается<br />стоимость.</h2>
             <p className="pb-cost-description">Определяем функции, этапы и интеграции.<br className="hidden lg:block" /> Объясняем расчёт до начала разработки.</p>
-            <Button onClick={openBrief} className={`${btn.paper} pb-cost-button h-auto`}>О стоимости</Button>
+            <Button onClick={openBrief} className={`${btn.paper} pb-cost-button h-auto`}>Узнать стоимость</Button>
           </div>
         </div>
       </section>
