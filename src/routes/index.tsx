@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/pinkbyte/Hero";
 import { Projects } from "@/components/pinkbyte/Projects";
 import { Services } from "@/components/pinkbyte/Services";
-import { Contact, Footer, Studio } from "@/components/pinkbyte/Closing";
+import { Contact, Footer } from "@/components/pinkbyte/Closing";
+import { StudioSections } from "@/components/pinkbyte/StudioSections";
 
 const TITLE = "Pink Byte · разработка сайтов и веб-сервисов";
 const DESC =
@@ -29,7 +30,7 @@ function Index() {
       <main>
         <Projects />
         <Services />
-        <Studio />
+        <StudioSections />
         <Contact />
       </main>
       <Footer />
