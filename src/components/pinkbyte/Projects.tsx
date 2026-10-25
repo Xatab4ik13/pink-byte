@@ -91,7 +91,7 @@ export function Projects() {
           ))}
           </div>
         </div>
-        <Button type="button" variant="secondary" onClick={() => dialog.current?.showModal()} className={cn(btn.paper, "pb-project-cta absolute bottom-4 right-4 z-10 max-sm:hidden hover:opacity-90 sm:bottom-6 sm:right-6")}>
+        <Button type="button" variant="secondary" onClick={() => dialog.current?.showModal()} className={cn(btn.paper, "pb-project-cta absolute bottom-4 right-4 z-10 h-auto max-sm:hidden hover:opacity-90 sm:bottom-6 sm:right-6")}>
           Смотреть проект
         </Button>
         </div>
