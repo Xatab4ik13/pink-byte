@@ -11,8 +11,8 @@ import { Reveal, btn } from "./primitives";
 const SLIDES = [
   { src: citymebel.url, title: "CityMebel", desc: "Интернет-витрина мебельной фабрики" },
   { src: nikitsky.url, title: "Никитский, 6", desc: "Многостраничный сайт клубного дома" },
-  { src: chinar.url, title: "CHINAR", desc: "Сайт с расписанием и фирменным талисманом" },
-  { src: gold.url, title: "Проект", desc: "Адаптивный сайт для компьютера и смартфона" },
+  { src: chinar.url, title: "CHINAR", desc: "Сайт центра китайского языка" },
+  { src: gold.url, title: "Brionilux", desc: "Интернет-магазин розеток и выключателей" },
 ];
 
 export function Projects() {
