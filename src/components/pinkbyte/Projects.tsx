@@ -102,11 +102,11 @@ export function Projects() {
           <span className="relative">Смотреть проект</span>
         </button>
         </div>
-            <button type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="pb-project-prev absolute left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-foreground/75 transition-[translate,opacity,color] duration-300 hover:text-foreground hover:opacity-100 hover:-translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12">
-              <ChevronLeft className="size-6 drop-shadow-[0_0_6px_rgba(250,250,248,0.5)] sm:size-7" strokeWidth={1.75} />
+            <button type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="pb-project-prev absolute left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink-foreground/85 transition-[translate,opacity,color] duration-300 hover:opacity-100 hover:-translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12 sm:text-foreground/75 sm:hover:text-foreground">
+              <ChevronLeft className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
             </button>
-            <button type="button" title="Следующий проект" aria-label="Следующий проект" onClick={() => go(1)} className="pb-project-next absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-foreground/75 transition-[translate,opacity,color] duration-300 hover:text-foreground hover:opacity-100 hover:translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12">
-              <ChevronRight className="size-6 drop-shadow-[0_0_6px_rgba(250,250,248,0.5)] sm:size-7" strokeWidth={1.75} />
+            <button type="button" title="Следующий проект" aria-label="Следующий проект" onClick={() => go(1)} className="pb-project-next absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-ink-foreground/85 transition-[translate,opacity,color] duration-300 hover:opacity-100 hover:translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12 sm:text-foreground/75 sm:hover:text-foreground">
+              <ChevronRight className="size-6 drop-shadow-[0_0_8px_rgba(18,22,19,0.45)] sm:size-7 sm:drop-shadow-none" strokeWidth={1.75} />
             </button>
         </div>
       </div>
