@@ -1,4 +1,4 @@
-import robotSitSrc from "@/assets/robot-sit.webp";
+import robotBrief from "@/assets/robot-brief-seated.webp";
 import { Button } from "@/components/ui/button";
 import { Logo, NAV, Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
@@ -23,16 +23,18 @@ export function Studio() {
 export function Contact() {
   const openBrief = useOpenBrief();
   return (
-    <section id="contact" aria-labelledby="contact-title" className="container-pb scroll-mt-6 pt-10">
-      <Reveal className="grid items-end overflow-hidden rounded-[2rem] bg-ink text-ink-foreground md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
-        <div className="order-2 px-6 pt-2 md:order-1 md:px-10 md:pt-10">
+    <section id="contact" aria-labelledby="contact-title" className="container-pb scroll-mt-6 pt-10 pb-[130px] md:pb-[200px]">
+      <Reveal className="grid items-end rounded-[2rem] bg-ink text-ink-foreground md:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+        <div className="relative order-2 px-6 pt-2 md:order-1 md:px-10 md:pt-10">
+          <div aria-hidden className="pb-contact-seat" />
           <img
-            src={robotSitSrc}
-            alt="Сидящий робот Pink Byte приглашает к разговору жестом ладони"
-            width={900}
-            height={639}
+            src={robotBrief}
+            alt="Робот Pink Byte сидит на нижней кромке блока, ноги свисают вниз"
+            width={768}
+            height={832}
             loading="lazy"
-            className="mx-auto block w-full max-w-[460px]"
+            decoding="async"
+            className="pb-contact-robot pointer-events-none"
           />
         </div>
         <div className="order-1 flex flex-col items-center px-6 pt-12 text-center md:order-2 md:items-start md:self-center md:py-14 md:pr-12 md:text-left">
