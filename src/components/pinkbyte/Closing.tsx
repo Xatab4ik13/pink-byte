@@ -3,23 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Logo, NAV, Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
 
-export function Studio() {
-  return (
-    <section id="studio" aria-labelledby="studio-title" className="container-pb scroll-mt-6 pt-24 md:pt-28">
-      <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-        <h2 id="studio-title" className="text-[clamp(2rem,4.2vw,3rem)] font-medium leading-[1.05] tracking-[-0.035em]">
-          Внимание к деталям.
-          <br />
-          На каждом этапе.
-        </h2>
-        <p className="max-w-sm text-lg leading-snug text-muted-foreground">
-          От обсуждения задачи до интерфейса, которым удобно пользоваться.
-        </p>
-      </Reveal>
-    </section>
-  );
-}
-
 export function Contact() {
   const openBrief = useOpenBrief();
   return (
