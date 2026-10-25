@@ -97,24 +97,17 @@ export function Projects() {
           ))}
           </div>
         </div>
-        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 px-4 py-3 sm:px-6 sm:py-4">
-          <div className="flex min-w-0 items-center gap-2" aria-label={`Проект ${i + 1} из ${n}`}>
-            {SLIDES.map((s, k) => (
-              <span key={s.src} aria-current={k === i} className={`h-1.5 rounded-full transition-[width,background-color] duration-300 ${k === i ? "w-5 bg-primary" : "w-1.5 bg-ink-foreground/30"}`} />
-            ))}
-          </div>
-          <Button variant="secondary" type="button" onClick={() => dialog.current?.showModal()} className="group relative h-11 shrink-0 overflow-hidden rounded-full border border-ink-border pl-5 pr-14 text-xs font-semibold shadow-none sm:h-12 sm:pl-8 sm:pr-[4.75rem] sm:text-sm">
-            <img src={mark.url} alt="" aria-hidden width={900} height={692} draggable={false} className="pointer-events-none absolute right-1 top-1/2 h-[135%] w-auto -translate-y-1/2 select-none opacity-[0.16] transition-opacity duration-300 ease-out group-hover:opacity-[0.34] motion-reduce:transition-none" />
-            <span className="relative">Смотреть проект</span>
-          </Button>
+        <button type="button" onClick={() => dialog.current?.showModal()} className="group absolute bottom-4 right-4 z-10 h-11 overflow-hidden rounded-full border border-ink-border bg-ink/80 pl-5 pr-14 text-xs font-semibold text-ink-foreground backdrop-blur-sm transition-colors duration-300 hover:bg-ink/90 motion-reduce:transition-none sm:bottom-6 sm:right-6 sm:h-12 sm:pl-8 sm:pr-[4.75rem] sm:text-sm">
+          <img src={mark.url} alt="" aria-hidden width={900} height={692} draggable={false} className="pointer-events-none absolute right-1 top-1/2 h-[135%] w-auto -translate-y-1/2 select-none opacity-[0.16] transition-opacity duration-300 ease-out group-hover:opacity-[0.34] motion-reduce:transition-none" />
+          <span className="relative">Смотреть проект</span>
+        </button>
         </div>
-        </div>
-            <Button variant="secondary" size="icon" type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="pb-project-prev absolute left-2 top-[calc((100%-68px)/2)] size-8 -translate-y-1/2 rounded-full border border-ink-border sm:size-11">
-              <ChevronLeft />
-            </Button>
-            <Button variant="secondary" size="icon" type="button" title="Следующий проект" aria-label="Следующий проект" onClick={() => go(1)} className="pb-project-next absolute right-2 top-[calc((100%-68px)/2)] size-8 -translate-y-1/2 rounded-full border border-ink-border sm:size-11">
-              <ChevronRight />
-            </Button>
+            <button type="button" title="Предыдущий проект" aria-label="Предыдущий проект" onClick={() => go(-1)} className="pb-project-prev absolute left-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-foreground/75 transition-[translate,opacity,color] duration-300 hover:text-foreground hover:opacity-100 hover:-translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12">
+              <ChevronLeft className="size-6 drop-shadow-[0_0_6px_rgba(250,250,248,0.5)] sm:size-7" strokeWidth={1.75} />
+            </button>
+            <button type="button" title="Следующий проект" aria-label="Следующий проект" onClick={() => go(1)} className="pb-project-next absolute right-2 top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full text-foreground/75 transition-[translate,opacity,color] duration-300 hover:text-foreground hover:opacity-100 hover:translate-x-1 motion-reduce:transition-none opacity-90 sm:size-12">
+              <ChevronRight className="size-6 drop-shadow-[0_0_6px_rgba(250,250,248,0.5)] sm:size-7" strokeWidth={1.75} />
+            </button>
         </div>
       </div>
 
