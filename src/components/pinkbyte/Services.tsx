@@ -1,21 +1,33 @@
-import { lazy, Suspense, useState } from "react";
-import { ClientOnly } from "@tanstack/react-router";
+import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
 import { SERVICES } from "./service-data";
-import tablet from "@/assets/service-tablet-ipad.png.asset.json";
-import macbook from "@/assets/macbook-lsystems.png.asset.json";
-import monitor from "@/assets/service-crm-monitor.png.asset.json";
+import tablet from "@/assets/service-tablet-ipad.webp.asset.json";
+import macbook from "@/assets/macbook-lsystems.webp.asset.json";
+import monitor from "@/assets/service-crm-monitor.webp.asset.json";
+import phone from "@/assets/service-app-iphone.webp.asset.json";
 
-const DeviceScene = lazy(() => import("./ServiceDeviceScene"));
+const DEVICES = [
+  { src: tablet.url, width: 1280, height: 879, cls: "" },
+  { src: macbook.url, width: 1280, height: 879, cls: "" },
+  { src: monitor.url, width: 1280, height: 853, cls: "pb-service-monitor" },
+  { src: phone.url, width: 768, height: 1152, cls: "pb-service-phone" },
+] as const;
 
 export function Services() {
   const [active, setActive] = useState(0);
+  const dirRef = useRef(1);
   const openBrief = useOpenBrief();
   const tab = SERVICES[active] ?? SERVICES[0];
+
+  const go = (i: number) => {
+    if (i === active) return;
+    dirRef.current = i > active ? 1 : -1;
+    setActive(i);
+  };
 
   const onKey = (e: React.KeyboardEvent, i: number) => {
     const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
@@ -24,7 +36,7 @@ export function Services() {
     const nextIndex = (i + d + SERVICES.length) % SERVICES.length;
     const next = SERVICES[nextIndex];
     if (!next) return;
-    setActive(nextIndex);
+    go(nextIndex);
     document.getElementById(`tab-${next.id}`)?.focus();
   };
 
@@ -45,7 +57,7 @@ export function Services() {
               aria-selected={active === i}
               aria-controls={`service-panel-${t.id}`}
               tabIndex={active === i ? 0 : -1}
-              onClick={() => setActive(i)}
+              onClick={() => go(i)}
               onKeyDown={(e) => onKey(e, i)}
               className={cn(
                 "pb-service-tab",
@@ -58,36 +70,36 @@ export function Services() {
         </div>
       </Reveal>
 
-      <div className={cn("pb-service-stage mt-9", (active === 0 || active === 1 || active === 2) && "pb-service-stage-tablet")}>
+      <div className="pb-service-stage pb-service-stage-tablet mt-9">
         <div className="pb-service-backdrop" aria-hidden="true" />
         <div className="pb-service-copy">
-          {SERVICES.map((service, i) => (
-            <div key={service.id} id={`service-panel-${service.id}`} role="tabpanel" aria-labelledby={`tab-${service.id}`} hidden={i !== active} className="pb-service-text">
-              <p className="text-xs font-medium text-ink-muted md:text-sm">{service.keyword}</p>
-              <h3 className="mt-4 text-3xl font-medium leading-[1.1] text-ink-foreground md:text-4xl">{service.title}</h3>
-              <p className="mt-5 text-sm leading-relaxed text-ink-muted md:text-base">{service.text}</p>
-            </div>
-          ))}
+          <div key={tab.id} id={`service-panel-${tab.id}`} role="tabpanel" aria-labelledby={`tab-${tab.id}`} className="pb-service-text">
+            <p className="text-xs font-medium text-ink-muted md:text-sm">{tab.keyword}</p>
+            <h3 className="mt-4 text-3xl font-medium leading-[1.1] text-ink-foreground md:text-4xl">{tab.title}</h3>
+            <p className="mt-5 text-sm leading-relaxed text-ink-muted md:text-base">{tab.text}</p>
+          </div>
           <Button onClick={openBrief} className={cn(btn.paper, "mt-7 h-auto self-start hover:opacity-90")}>
             Обсудить решение <ArrowUpRight className="size-4" />
           </Button>
         </div>
         <div className="pb-service-device" role="img" aria-label={`${tab.device === "phone" ? "Смартфон" : tab.device === "laptop" ? "Ноутбук" : tab.device === "desktop" ? "Монитор" : "Планшет"}: ${tab.project}${tab.concept ? ", концепция интерфейса" : ", реальный сайт"}`}>
-          {(active === 0 || active === 1 || active === 2) ? (
+          {DEVICES.map((d, i) => (
             <img
-              src={active === 0 ? tablet.url : active === 1 ? macbook.url : monitor.url}
-              width={active === 2 ? 1536 : 1513}
-              height={active === 2 ? 1024 : 1039}
-              loading="lazy"
+              key={d.src}
+              src={d.src}
+              width={d.width}
+              height={d.height}
+              loading={i === 0 ? "eager" : "lazy"}
               decoding="async"
               alt=""
-              className={cn("pb-service-tablet", active === 2 && "pb-service-monitor")}
+              aria-hidden={i !== active}
+              className={cn(
+                "pb-service-tablet",
+                d.cls,
+                i !== active && (dirRef.current > 0 ? "pb-device-off-r" : "pb-device-off-l"),
+              )}
             />
-          ) : (
-            <ClientOnly fallback={<div className="pb-service-canvas" />}>
-              <Suspense fallback={<div className="pb-service-canvas" />}><DeviceScene active={active} /></Suspense>
-            </ClientOnly>
-          )}
+          ))}
         </div>
         {tab.concept && <div className="pb-service-credit text-xs text-ink-muted">{tab.project} · концепция</div>}
       </div>
