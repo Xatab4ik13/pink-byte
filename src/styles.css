@@ -204,7 +204,7 @@
   .pb-service-stage-tablet .pb-service-phone { width: min(58%, 280px); }
   .pb-service-canvas { inset: -8px -16px -8px; }
   .pb-service-credit { bottom: 4px; right: 28px; }
-  .pb-service-stage-tablet .pb-service-credit { left: auto; right: 24px; top: 20px; bottom: auto; }
+  .pb-service-stage-tablet .pb-service-credit { left: auto; right: 24px; top: auto; bottom: 66px; }
 }
 @media (max-width: 480px) {
   .pb-service-tabs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px 14px; }
