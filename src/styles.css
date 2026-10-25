@@ -199,6 +199,8 @@
   .pb-service-text h3, .pb-service-text p { max-width: 650px; }
   .pb-service-device { height: 350px; }
   .pb-service-tablet, .pb-service-stage-tablet .pb-service-tablet { width: min(100%, 650px); left: 50%; right: auto; --ty: -50%; transform: translate(calc(-50% + var(--tx, 0%)), var(--ty, -50%)) scale(var(--s, 1)); }
+  .pb-device-off-r { --tx: 14px; }
+  .pb-device-off-l { --tx: -14px; }
   .pb-service-stage-tablet .pb-service-phone { width: min(58%, 280px); }
   .pb-service-canvas { inset: -8px -16px -8px; }
   .pb-service-credit { bottom: 4px; right: 28px; }
