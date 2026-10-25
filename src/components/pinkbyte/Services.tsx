@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
 import { SERVICES } from "./service-data";
+import tablet from "@/assets/service-tablet-rusdoors.webp.asset.json";
 
 const DeviceScene = lazy(() => import("./ServiceDeviceScene"));
 
@@ -70,13 +71,15 @@ export function Services() {
           </Button>
         </div>
         <div className="pb-service-device" role="img" aria-label={`${tab.device === "phone" ? "Смартфон" : tab.device === "laptop" ? "Ноутбук" : tab.device === "desktop" ? "Монитор" : "Планшет"}: ${tab.project}${tab.concept ? ", концепция интерфейса" : ", реальный сайт"}`}>
-          <ClientOnly fallback={<div className="pb-service-canvas" />}>
-            <Suspense fallback={<div className="pb-service-canvas" />}><DeviceScene active={active} /></Suspense>
-          </ClientOnly>
+          {active === 0 ? (
+            <img src={tablet.url} width={1536} height={1024} loading="lazy" decoding="async" alt="" className="pb-service-tablet" />
+          ) : (
+            <ClientOnly fallback={<div className="pb-service-canvas" />}>
+              <Suspense fallback={<div className="pb-service-canvas" />}><DeviceScene active={active} /></Suspense>
+            </ClientOnly>
+          )}
         </div>
-        <div className="pb-service-credit text-xs text-muted-foreground">
-          {"source" in tab ? <a href={tab.source} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-foreground">{tab.project} <ArrowUpRight className="size-3" /></a> : <span>{tab.project} · концепция</span>}
-        </div>
+        {tab.concept && <div className="pb-service-credit text-xs text-muted-foreground">{tab.project} · концепция</div>}
       </div>
     </section>
   );
