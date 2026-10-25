@@ -199,13 +199,13 @@
   .pb-service-copy { color: var(--foreground); }
   .pb-service-text h3 { color: var(--foreground); }
   .pb-service-text p { color: color-mix(in oklab, var(--foreground) 66%, transparent); }
-  .pb-service-copy > button { background: var(--ink) !important; color: var(--ink-foreground) !important; }
-  .pb-project-cta { background: var(--ink) !important; color: var(--ink-foreground) !important; height: 52px; }
+  .pb-service-copy > button { background: var(--ink-foreground) !important; color: var(--ink) !important; box-shadow: 0 14px 30px -16px color-mix(in oklab, var(--ink) 55%, transparent); }
+  .pb-project-cta { background: var(--ink-foreground) !important; color: var(--ink) !important; height: 52px; box-shadow: 0 14px 30px -16px color-mix(in oklab, var(--ink) 55%, transparent); }
   .pb-service-device { order: -1; height: 300px; margin: 0 16px; }
   .pb-service-copy, .pb-service-stage-tablet .pb-service-copy { padding: 8px 24px 24px; min-height: 0; justify-content: flex-start; }
-  .pb-service-text { min-height: 270px; }
+  .pb-service-text { min-height: 0; }
   .pb-service-text h3, .pb-service-text p { max-width: 650px; }
-  .pb-service-copy > button { width: 100%; justify-content: center; align-self: stretch; height: 52px; }
+  .pb-service-copy > button { width: 100%; justify-content: center; align-self: stretch; height: 52px; margin-top: 12px !important; }
   .pb-service-tablet, .pb-service-stage-tablet .pb-service-tablet, .pb-service-stage-tablet .pb-service-monitor { width: min(100%, 560px); left: 50%; right: auto; --ty: -50%; transform: translate(-50%, var(--ty, -50%)); }
   .pb-service-stage-tablet .pb-service-phone { width: auto; height: 92%; }
   .pb-service-stage-tablet .pb-service-phone img { width: auto; height: 100%; }
@@ -220,10 +220,10 @@
   .pb-service-tablet, .pb-service-stage-tablet .pb-service-tablet, .pb-service-stage-tablet .pb-service-monitor { width: 100%; left: 0; --ty: -50%; transform: translate(0, var(--ty)); }
   .pb-service-stage-tablet .pb-service-phone { width: auto; height: 290px; left: auto; right: 22%; --ty: -54%; transform: translate(0, var(--ty)); }
   .pb-service-copy, .pb-service-stage-tablet .pb-service-copy { padding: 18px 22px 22px; }
-  .pb-service-text { min-height: 318px; }
+  .pb-service-text { min-height: 0; }
   .pb-service-text h3 { font-size: 26px; }
   .pb-service-text h3 + p { font-size: 15px; }
-  .pb-service-copy > button { width: 100%; height: 52px; justify-content: center; align-self: stretch; margin-top: 18px !important; }
+  .pb-service-copy > button { width: 100%; height: 52px; justify-content: center; align-self: stretch; margin-top: 12px !important; }
 }
 @media (min-width: 640px) {
   .pb-project-frame, .pb-project-caption { margin-inline: 56px; }
