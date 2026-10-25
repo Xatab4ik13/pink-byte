@@ -42,14 +42,12 @@ export function StudioSections() {
             </li>
           ))}
         </ol>
-        <Button variant="link" onClick={openBrief} className="pb-process-link">Как мы работаем</Button>
       </section>
 
       <section aria-labelledby="cost-title" className="container-pb pb-studio-cost">
         <div className="pb-cost-layout">
           <img src={cost.url} alt="Объёмные слои проекта: интерфейс, функции и интеграции" width={1600} height={616} loading="lazy" decoding="async" className="pb-cost-image" />
           <div className="pb-cost-copy">
-            <p className="pb-cost-label">Стоимость разработки</p>
             <h2 id="cost-title" className="pb-studio-title">Покажем, из чего<br />складывается<br />стоимость.</h2>
             <p className="pb-cost-description">Определяем функции, этапы и интеграции.<br className="hidden lg:block" /> Объясняем расчёт до начала разработки.</p>
             <Button onClick={openBrief} className={`${btn.paper} pb-cost-button h-auto`}>О стоимости</Button>
@@ -71,7 +69,11 @@ export function StudioSections() {
                   <span className="pb-faq-icon" aria-hidden="true">{expanded === index ? <Minus /> : <Plus />}</span>
                 </Button>
               </h3>
-              <div id={`studio-answer-${index}`} hidden={expanded !== index} className="pb-faq-answer">{item.answer}</div>
+              <div id={`studio-answer-${index}`} aria-hidden={expanded !== index} data-open={expanded === index} className="pb-faq-reveal">
+                <div className="pb-faq-answer-clip">
+                  <p className="pb-faq-answer">{item.answer}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
