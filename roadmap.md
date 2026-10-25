@@ -50,3 +50,4 @@
 - [x] Connect the supplied iPhone render to the mobile app tab, compress all four device renders to WebP, restore the slide-out/slide-in device transition with text change, and verify desktop and mobile.
 - [x] Remove the "CRM · концепция" caption from the service stage and its unused styles; verify all four tabs on desktop and mobile.
 - [x] Remove service-switching frame drops while preserving the approved device composition; verify rapid clicks, both directions and mobile.
+- [x] Keep all device layers pre-rasterized at opacity 0 so switches avoid layout and shadow repaint; verify frame times under CPU throttling.
