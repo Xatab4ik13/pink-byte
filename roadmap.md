@@ -44,3 +44,4 @@
 - [x] Replace service choices with ecommerce, corporate website, CRM and mobile app, using real site screens and replaceable CRM/app concepts.
 - [x] Add device depth and turn-based transitions, connect discussion CTA to existing brief and verify desktop/mobile flows.
 - [x] Replace only the ecommerce tablet with a static premium image containing an authentic RUSDOORS capture, remove unsolicited source links and verify the result.
+- [ ] Rebalance the approved tablet composition: clearer service tabs, concise copy, more breathing room and a distinct overhang; verify desktop and mobile.
