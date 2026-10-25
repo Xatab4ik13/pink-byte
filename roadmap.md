@@ -52,3 +52,4 @@
 - [x] Remove service-switching frame drops while preserving the approved device composition; verify rapid clicks, both directions and mobile.
 - [x] Keep all device layers pre-rasterized at opacity 0 so switches avoid layout and shadow repaint; verify frame times under CPU throttling.
 - [x] Mobile: project CTA below a near full-width slide without dots/arrows; service tabs as pill buttons with device above copy and full-width CTA.
+- [x] Mobile services: horizontal card with copy left, overhanging device and CTA right; selected pill light with dark outline.

@@ -205,9 +205,20 @@
   .pb-service-stage-tablet .pb-service-phone img { width: auto; height: 100%; }
   .pb-service-stage-tablet .pb-service-phone .pb-device-motion { height: 100%; }
 }
-@media (max-width: 480px) {
-  .pb-service-device { height: 240px; margin: 0 8px; }
-  .pb-service-text { min-height: 290px; }
+@media (max-width: 640px) {
+  .pb-service-tab[aria-selected="true"] { background: var(--background) !important; border-color: var(--foreground); color: var(--foreground) !important; box-shadow: inset 0 0 0 1px var(--foreground); }
+  .pb-service-stage, .pb-service-stage-tablet { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "text device" "text cta"; grid-template-rows: 1fr auto; column-gap: 10px; margin-right: 28px; min-height: 300px; }
+  .pb-service-backdrop, .pb-service-stage-tablet .pb-service-backdrop { inset: 0; border-radius: 22px; }
+  .pb-service-copy, .pb-service-stage-tablet .pb-service-copy { display: contents; }
+  .pb-service-text { grid-area: text; min-height: 0; padding: 22px 0 22px 18px; }
+  .pb-service-text > p:first-child { font-size: 10px; }
+  .pb-service-text h3 { font-size: 20px; margin-top: 8px; }
+  .pb-service-text h3 + p { font-size: 12px; margin-top: 10px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 9; -webkit-box-orient: vertical; overflow: hidden; }
+  .pb-service-device { grid-area: device; order: 0; height: auto; min-height: 190px; margin: 0 -40px 0 0; }
+  .pb-services { overflow-x: clip; }
+  .pb-service-copy > button { grid-area: cta; margin: 0 12px 18px 0 !important; width: auto; height: 42px; font-size: 12px; gap: 6px; padding-inline: 10px; justify-self: stretch; }
+  .pb-service-tablet, .pb-service-stage-tablet .pb-service-tablet, .pb-service-stage-tablet .pb-service-monitor { width: 150%; left: 8px; --ty: -50%; transform: translate(0, var(--ty)); }
+  .pb-service-stage-tablet .pb-service-phone { width: auto; height: 86%; left: 24%; --ty: -54%; }
 }
 @media (min-width: 640px) {
   .pb-project-frame, .pb-project-caption { margin-inline: 56px; }
