@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
 import { SERVICES } from "./service-data";
-import tablet from "@/assets/service-tablet-rusdoors.webp.asset.json";
+import tablet from "@/assets/service-tablet-ipad.png.asset.json";
 
 const DeviceScene = lazy(() => import("./ServiceDeviceScene"));
 
@@ -72,7 +72,7 @@ export function Services() {
         </div>
         <div className="pb-service-device" role="img" aria-label={`${tab.device === "phone" ? "Смартфон" : tab.device === "laptop" ? "Ноутбук" : tab.device === "desktop" ? "Монитор" : "Планшет"}: ${tab.project}${tab.concept ? ", концепция интерфейса" : ", реальный сайт"}`}>
           {active === 0 ? (
-            <img src={tablet.url} width={1536} height={1024} loading="lazy" decoding="async" alt="" className="pb-service-tablet" />
+            <img src={tablet.url} width={1513} height={1039} loading="lazy" decoding="async" alt="" className="pb-service-tablet" />
           ) : (
             <ClientOnly fallback={<div className="pb-service-canvas" />}>
               <Suspense fallback={<div className="pb-service-canvas" />}><DeviceScene active={active} /></Suspense>
