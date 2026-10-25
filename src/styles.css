@@ -322,3 +322,12 @@
   .pb-brief-contact .pb-brief-composer { padding-left: 110px !important; gap: 8px; }
   .pb-brief-contact .pb-brief-composer button { width: 100%; height: 38px; padding-inline: 8px; font-size: 12px; }
 }
+/* Seated brief robot perched on the contact card's bottom edge, legs hanging below it. */
+.pb-contact-seat,
+.pb-contact-robot { width: min(300px, 62vw); }
+.pb-contact-seat { aspect-ratio: 768 / 510; margin-inline: auto; }
+.pb-contact-robot { position: absolute; z-index: 10; bottom: 0; left: 50%; translate: -50% 38.7%; }
+@media (min-width: 768px) {
+  .pb-contact-seat,
+  .pb-contact-robot { width: min(440px, 82%); }
+}
