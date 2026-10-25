@@ -92,7 +92,6 @@ export function Hero() {
           </div>
           <div className="relative z-10 max-w-[340px] text-ink-foreground lg:pt-1">
             <p className="text-lg leading-[1.35] md:text-xl">Проектируем и разрабатываем сайты, веб-сервисы и CRM для бизнеса. От интерфейса до запуска и поддержки.</p>
-            <a href="#projects" className="mt-5 inline-block text-lg text-ink-foreground underline underline-offset-4 md:text-xl">Смотреть проекты</a>
           </div>
         </div>
         <div className="pointer-events-none absolute bottom-0 right-4 w-[clamp(200px,24vw,240px)] translate-y-[14%] lg:w-[clamp(270px,25vw,360px)]">
