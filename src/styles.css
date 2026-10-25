@@ -206,19 +206,19 @@
   .pb-service-stage-tablet .pb-service-phone .pb-device-motion { height: 100%; }
 }
 @media (max-width: 640px) {
-  .pb-service-tab[aria-selected="true"] { background: var(--background) !important; border-color: var(--foreground); color: var(--foreground) !important; box-shadow: inset 0 0 0 1px var(--foreground); }
-  .pb-service-stage, .pb-service-stage-tablet { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "text device" "text cta"; grid-template-rows: 1fr auto; column-gap: 10px; margin-right: 12px; min-height: 320px; }
-  .pb-service-backdrop, .pb-service-stage-tablet .pb-service-backdrop { inset: 0; border-radius: 22px; }
-  .pb-service-copy, .pb-service-stage-tablet .pb-service-copy { display: contents; }
-  .pb-service-text { grid-area: text; min-height: 0; padding: 22px 0 22px 18px; }
-  .pb-service-text > p:first-child { font-size: 10px; }
-  .pb-service-text h3 { font-size: 22px; margin-top: 8px; }
-  .pb-service-text h3 + p { font-size: 14px; margin-top: 10px; line-height: 1.45; }
-  .pb-service-device { grid-area: device; order: 0; height: auto; min-height: 220px; margin: 0 -12px 0 0; }
   .pb-services { overflow-x: clip; }
-  .pb-service-copy > button { grid-area: cta; margin: 0 12px 18px 0 !important; width: auto; height: 42px; font-size: 12px; gap: 6px; padding-inline: 10px; justify-self: stretch; }
-  .pb-service-tablet, .pb-service-stage-tablet .pb-service-tablet, .pb-service-stage-tablet .pb-service-monitor { width: calc(100% + 4px); left: 0; --ty: -50%; transform: translate(0, var(--ty)); }
-  .pb-service-stage-tablet .pb-service-phone { width: auto; height: min(86%, 280px); left: 50%; --ty: -50%; transform: translate(-50%, var(--ty)); }
+  .pb-service-tab[aria-selected="true"] { background: var(--background) !important; border-color: var(--foreground); color: var(--foreground) !important; box-shadow: inset 0 0 0 1px var(--foreground); }
+  /* Device breaks out of the card's top and right edges: the mobile take on the desktop overhang. */
+  .pb-service-stage, .pb-service-stage-tablet { display: flex; flex-direction: column; margin-top: 44px; min-height: 0; }
+  .pb-service-backdrop, .pb-service-stage-tablet .pb-service-backdrop { inset: 92px 0 0 0; border-radius: 24px; }
+  .pb-service-device { order: -1; height: 250px; margin: 0 -18px 0 18px; }
+  .pb-service-tablet, .pb-service-stage-tablet .pb-service-tablet, .pb-service-stage-tablet .pb-service-monitor { width: 100%; left: 0; --ty: -50%; transform: translate(0, var(--ty)); }
+  .pb-service-stage-tablet .pb-service-phone { width: auto; height: 290px; left: auto; right: 22%; --ty: -54%; transform: translate(0, var(--ty)); }
+  .pb-service-copy, .pb-service-stage-tablet .pb-service-copy { padding: 18px 22px 22px; }
+  .pb-service-text { min-height: 318px; }
+  .pb-service-text h3 { font-size: 26px; }
+  .pb-service-text h3 + p { font-size: 15px; }
+  .pb-service-copy > button { width: 100%; height: 52px; justify-content: center; align-self: stretch; margin-top: 18px !important; }
 }
 @media (min-width: 640px) {
   .pb-project-frame, .pb-project-caption { margin-inline: 56px; }
