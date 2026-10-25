@@ -81,7 +81,7 @@ export function Services() {
               loading="lazy"
               decoding="async"
               alt=""
-              className="pb-service-tablet"
+              className={cn("pb-service-tablet", active === 2 && "pb-service-monitor")}
             />
           ) : (
             <ClientOnly fallback={<div className="pb-service-canvas" />}>
