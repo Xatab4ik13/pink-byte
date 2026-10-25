@@ -5,7 +5,6 @@ import citymebel from "@/assets/slide-citymebel.webp.asset.json";
 import nikitsky from "@/assets/slide-nikitsky.webp.asset.json";
 import chinar from "@/assets/slide-chinar.webp.asset.json";
 import gold from "@/assets/slide-gold.webp.asset.json";
-import mark from "@/assets/mark-pb.png.asset.json";
 import { Reveal } from "./primitives";
 
 const SLIDES = [

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Reveal, btn } from "./primitives";
@@ -136,7 +135,7 @@ export function Services() {
             <p className="mt-5 text-sm leading-relaxed text-ink-muted md:text-base">{tab.text}</p>
           </div>
           <Button onClick={openBrief} className={cn(btn.paper, "mt-7 h-auto self-start hover:opacity-90")}>
-            Обсудить решение <ArrowUpRight className="size-4" />
+            Обсудить решение
           </Button>
         </div>
         <div className="pb-service-device" role="img" aria-label={`${tab.device === "phone" ? "Смартфон" : tab.device === "laptop" ? "Ноутбук" : tab.device === "desktop" ? "Монитор" : "Планшет"}: ${tab.project}${tab.concept ? ", концепция интерфейса" : ", реальный сайт"}`}>
