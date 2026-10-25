@@ -10,7 +10,7 @@
 <!-- LOVABLE:END -->
 
 - Home page sections live in src/components/pinkbyte/ and are composed in src/routes/index.tsx; shared logo, buttons and reveal helpers are in primitives.tsx — keeps sections reusable for future pages.
-- Service content lives in a browser-safe data module; all four devices use the owner's compressed renders. Predecode images, animate only incoming/outgoing motion wrappers with transform and opacity, keep other devices hidden, and finish the current transition before taking only the latest requested tab to avoid raster work and click backlogs. Keep static placement and image shadows outside the animated transforms.
+- Service content lives in a browser-safe data module; all four devices use the owner's compressed renders. Predecode images, animate only incoming/outgoing motion wrappers with transform and opacity, keep idle devices painted on their own layers at opacity 0 (no display toggling), and finish the current transition before taking only the latest requested tab to avoid raster work and click backlogs. Keep static placement and image shadows outside the animated transforms.
 - Journal is a separate content route that reuses Header and Footer; shared navigation uses root-qualified home anchors so sections remain reachable from other pages.
 - Project discussion buttons share a root-mounted BriefProvider; the prototype uses session-only sequential questions and AI Elements for messages, scrolling and composition, with no AI calls or file uploads. Keep brief generation in a pure model for testing and later replacement.
 - Keep BriefContext and its consumer hook in a separate non-component module so refreshing the dialog does not recreate the context used by mounted navigation buttons.

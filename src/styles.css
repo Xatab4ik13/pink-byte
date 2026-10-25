@@ -173,7 +173,7 @@
 .pb-service-text p { max-width: 410px; }
 .pb-service-device { position: relative; align-self: stretch; min-width: 0; touch-action: pan-y; }
 .pb-service-tablet { position: absolute; width: 113%; max-width: none; height: auto; top: 50%; left: 0; transform: translateY(var(--ty, -55%)); pointer-events: none; }
-.pb-service-tablet[hidden] { display: none; }
+.pb-device-motion { will-change: transform, opacity; backface-visibility: hidden; }
 .pb-device-motion img { display: block; width: 100%; height: auto; filter: drop-shadow(0 26px 22px color-mix(in oklab, var(--ink) 16%, transparent)); }
 .pb-service-stage-tablet { grid-template-columns: minmax(0, 46fr) minmax(0, 54fr); min-height: 540px; }
 .pb-service-stage-tablet .pb-service-backdrop { inset: 24px 110px 64px 0; }
