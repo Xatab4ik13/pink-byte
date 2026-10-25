@@ -78,7 +78,7 @@ function BriefComposer({
   onSubmit,
 }: {
   textarea: React.RefObject<HTMLTextAreaElement | null>;
-  placeholder?: string;
+  placeholder: string | undefined;
   onSubmit: (message: PromptInputMessage) => void;
 }) {
   const [text, setText] = useState("");
