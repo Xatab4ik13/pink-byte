@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JournalRouteImport } from './routes/journal'
+import { Route as UslugiInternetMagazinRouteImport } from './routes/uslugi.internet-magazin'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const JournalRoute = JournalRouteImport.update({
   path: '/journal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiInternetMagazinRoute = UslugiInternetMagazinRouteImport.update({
+  id: '/uslugi/internet-magazin',
+  path: '/uslugi/internet-magazin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
+  '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
+  '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
+  '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/journal'
+  fullPaths: '/' | '/journal' | '/uslugi/internet-magazin'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/journal'
-  id: '__root__' | '/' | '/journal'
+  to: '/' | '/journal' | '/uslugi/internet-magazin'
+  id: '__root__' | '/' | '/journal' | '/uslugi/internet-magazin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   JournalRoute: typeof JournalRoute
+  UslugiInternetMagazinRoute: typeof UslugiInternetMagazinRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JournalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/internet-magazin': {
+      id: '/uslugi/internet-magazin'
+      path: '/uslugi/internet-magazin'
+      fullPath: '/uslugi/internet-magazin'
+      preLoaderRoute: typeof UslugiInternetMagazinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   JournalRoute: JournalRoute,
+  UslugiInternetMagazinRoute: UslugiInternetMagazinRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
