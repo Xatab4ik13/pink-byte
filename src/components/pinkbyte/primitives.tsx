@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import logo from "@/assets/logo.png.asset.json";
+import logoDark from "@/assets/logo-dark.png.asset.json";
 import { cn } from "@/lib/utils";
 
 export const NAV: { href: string; label: string; children?: { href: string; label: string }[] }[] = [
@@ -13,26 +14,15 @@ export const NAV: { href: string; label: string; children?: { href: string; labe
 
 export const TELEGRAM_URL = "https://t.me/noirdig";
 
-/** Original light logo, or a dark monochrome version masked by the logo's alpha. */
+/** Light logo for dark surfaces; dark logo with the lime eyes kept for light surfaces. */
 export function Logo({ tone = "light", className }: { tone?: "light" | "dark"; className?: string }) {
-  if (tone === "light") {
-    return (
-      <img src={logo.url} alt="pink byte" width={600} height={212} className={cn("h-auto", className)} />
-    );
-  }
   return (
-    <span
-      role="img"
-      aria-label="pink byte"
-      className={cn("block aspect-[600/212] bg-foreground", className)}
-      style={{
-        maskImage: `url(${logo.url})`,
-        WebkitMaskImage: `url(${logo.url})`,
-        maskSize: "contain",
-        WebkitMaskSize: "contain",
-        maskRepeat: "no-repeat",
-        WebkitMaskRepeat: "no-repeat",
-      }}
+    <img
+      src={tone === "light" ? logo.url : logoDark.url}
+      alt="pink byte"
+      width={600}
+      height={212}
+      className={cn("h-auto w-32", className)}
     />
   );
 }

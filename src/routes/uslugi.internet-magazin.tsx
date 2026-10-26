@@ -54,8 +54,10 @@ function ShopPage() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <>
-      <div id="top" className="bg-ink text-ink-foreground">
-        <Header initialActive="/#services" />
+      <div id="top" className="bg-background">
+        <Header initialActive="/#services" tone="light" />
+      </div>
+      <div className="bg-ink text-ink-foreground">
         <section className="container-pb pb-44 pt-6 md:pb-[10.75rem] md:pt-8" aria-labelledby="shop-title">
           <nav aria-label="Хлебные крошки" className="text-xs text-ink-muted">
             <Link to="/" className="hover:text-ink-foreground">Главная</Link>
