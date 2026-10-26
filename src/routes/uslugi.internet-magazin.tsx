@@ -54,8 +54,8 @@ function ShopPage() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <>
-      <div id="top" className="border-b border-border">
-        <Header initialActive="/#services" tone="light" />
+      <div id="top" className="bg-ink text-ink-foreground">
+        <Header initialActive="/#services" />
       </div>
       <main>
         <section className="container-pb pt-8 md:pt-10" aria-labelledby="shop-title">
@@ -83,6 +83,7 @@ function ShopPage() {
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                 Создаём интернет-магазины на собственном коде для бизнеса по всей России. Разрабатываем дизайн, наполняем каталог, подключаем оплату и доставку.
               </p>
+              <Button onClick={openBrief} className={`${btn.paper} bg-background text-foreground border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] hover:bg-background mt-8 h-auto px-10 py-4 text-base`}>Рассчитать стоимость магазина</Button>
             </div>
           </div>
           <figure className="mt-10">
@@ -108,7 +109,7 @@ function ShopPage() {
           </Reveal>
           <div className="relative mt-8">
             <img src={brionilux.url} width={1448} height={1024} loading="lazy" decoding="async" alt="Brionilux: каталог рамок, карточка товара, корзина и оформление заказа без регистрации" className="h-auto w-full" />
-            <Button asChild className={`${btn.ink} mt-6 h-auto px-12 py-4 text-lg md:absolute md:bottom-[9%] md:left-[22%] md:mt-0`}>
+            <Button asChild className={`${btn.paper} bg-background text-foreground border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] hover:bg-background mt-6 h-auto px-12 py-4 text-lg md:absolute md:bottom-[9%] md:left-0 md:mt-0`}>
               <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
             </Button>
           </div>
