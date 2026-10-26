@@ -20,7 +20,7 @@ export function Logo({ tone = "light", className }: { tone?: "light" | "dark"; c
     <img
       src={tone === "light" ? logo.url : logoDark.url}
       alt="pink byte"
-      width={634}
+      width={600}
       height={212}
       className={cn("h-auto w-32", className)}
     />
