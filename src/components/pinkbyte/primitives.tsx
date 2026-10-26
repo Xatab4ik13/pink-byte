@@ -2,10 +2,20 @@ import { useEffect, useRef, type ReactNode } from "react";
 import logo from "@/assets/logo.png.asset.json";
 import logoDark from "@/assets/logo-dark.png.asset.json";
 import { cn } from "@/lib/utils";
+import shopIcon from "@/assets/nav-shop.webp.asset.json";
+import corporateIcon from "@/assets/nav-corporate.webp.asset.json";
+import crmIcon from "@/assets/nav-crm.webp.asset.json";
+import appIcon from "@/assets/nav-app.webp.asset.json";
 
-export const NAV: { href: string; label: string; children?: { href: string; label: string }[] }[] = [
-  { href: "/", label: "Главная" },
-  { href: "/#services", label: "Услуги", children: [{ href: "/uslugi/internet-magazin", label: "Интернет-магазин" }] },
+export const SERVICE_LINKS = [
+  { href: "/uslugi/internet-magazin", label: "Интернет-магазин", image: shopIcon.url },
+  { href: "/uslugi/korporativny-sait", label: "Корпоративный сайт", image: corporateIcon.url },
+  { href: "/uslugi/crm-sistema", label: "CRM-система", image: crmIcon.url },
+  { href: "/uslugi/mobilnoe-prilozhenie", label: "Мобильное приложение", image: appIcon.url },
+] as const;
+
+export const NAV: { href: string; label: string; children?: typeof SERVICE_LINKS }[] = [
+  { href: "/#services", label: "Услуги", children: SERVICE_LINKS },
   { href: "/#projects", label: "Проекты" },
   { href: "/#studio", label: "Студия" },
   { href: "/journal", label: "Журнал" },
