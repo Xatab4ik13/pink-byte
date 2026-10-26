@@ -507,7 +507,8 @@
   }
   .pb-shop-products-img {
     width: calc(100% + 1.5 * clamp(1.25rem, 4vw, 2.5rem));
-    margin-inline: calc(-0.75 * clamp(1.25rem, 4vw, 2.5rem));
+    margin-inline-start: calc(-0.35 * clamp(1.25rem, 4vw, 2.5rem));
+    margin-inline-end: calc(-1.15 * clamp(1.25rem, 4vw, 2.5rem));
     max-width: none;
   }
 }
