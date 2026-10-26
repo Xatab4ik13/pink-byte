@@ -61,5 +61,5 @@
 - [x] Keep both phone CTAs white with dark text, add a thin soft graphite outline and a soft shadow so they stop blending into the page, and verify on phone and desktop.
 - [x] Add the ecommerce service page from the two mockups with compressed assets, linked from the Интернет-магазин tab.
 - [x] Enlarge the ecommerce page panel composition, crop its transparent margins into a new compressed asset, remove the 'Пример интерфейса' caption; verify no text overlap and no side scroll.
-- [ ] Audit all content pages and remove measured navigation/modal bottlenecks without altering approved visuals.
-- [ ] Verify page switching, home anchors, brief opening/typing/reopening and desktop/mobile layout; run relevant tests.
+- [x] Audit all content pages and remove measured navigation/modal bottlenecks without altering approved visuals.
+- [x] Verify page switching, home anchors, brief opening/typing/reopening and desktop/mobile layout; run relevant tests.
