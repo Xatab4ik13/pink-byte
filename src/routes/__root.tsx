@@ -12,7 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { BriefProvider } from "@/components/pinkbyte/BriefDialog";
+import { BriefProvider } from "@/components/pinkbyte/BriefProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 function NotFoundComponent() {
@@ -106,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <head>
         <HeadContent />
       </head>
