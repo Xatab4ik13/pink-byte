@@ -49,7 +49,7 @@ export function Projects() {
   return (
     <section id="projects" aria-labelledby="projects-title" className="container-pb pb-projects scroll-mt-6 pt-24 md:pt-28">
       <Reveal className="text-center">
-        <h2 id="projects-title" className="text-[36px] font-extrabold leading-[1.05] md:text-[56px] xl:text-[72px]">
+        <h2 id="projects-title" className="text-[39px] font-extrabold leading-[1.05] md:text-[60px] xl:text-[78px]">
           Проекты крупным планом.
         </h2>
       </Reveal>
