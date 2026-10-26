@@ -43,7 +43,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
                 {n.children ? (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" aria-current={isActive(n.href) ? "location" : undefined} className={`h-11 rounded-full px-3 xl:px-5 font-normal [&[data-state=open]>svg]:rotate-180 ${light ? `text-foreground hover:bg-muted hover:text-foreground data-[state=open]:bg-muted ${isActive(n.href) ? "bg-muted" : ""}` : `text-ink-foreground hover:bg-ink-border hover:text-ink-foreground data-[state=open]:bg-ink-border ${isActive(n.href) ? "bg-ink-border" : ""}`}>
+                      <Button variant="ghost" aria-current={isActive(n.href) ? "location" : undefined} className={`h-11 rounded-full px-3 xl:px-5 font-normal [&[data-state=open]>svg]:rotate-180 ${light ? "text-foreground hover:bg-muted hover:text-foreground data-[state=open]:bg-muted" : "text-ink-foreground hover:bg-ink-border hover:text-ink-foreground data-[state=open]:bg-ink-border"} ${isActive(n.href) ? (light ? "bg-muted" : "bg-ink-border") : ""}`}>
                         {n.label}<ChevronDown className="size-4 transition-transform" aria-hidden="true" />
                       </Button>
                     </DropdownMenuTrigger>
