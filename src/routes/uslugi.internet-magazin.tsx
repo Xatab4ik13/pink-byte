@@ -107,7 +107,7 @@ function ShopPage() {
             </div>
           </Reveal>
           <img src={brionilux.url} width={1448} height={1024} loading="lazy" decoding="async" alt="Brionilux: каталог рамок, карточка товара, корзина и оформление заказа без регистрации" className="mt-8 h-auto w-full" />
-          <Button asChild className={`${btn.ink} mt-6 h-auto px-12 py-4 text-lg md:relative md:-mt-[17%] md:ml-[16%]`}>
+          <Button asChild className={`${btn.ink} mt-6 h-auto px-12 py-4 text-lg md:relative md:-mt-[26%] md:ml-[12%]`}>
             <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
           </Button>
         </section>
