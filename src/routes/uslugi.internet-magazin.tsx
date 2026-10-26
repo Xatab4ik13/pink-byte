@@ -106,10 +106,12 @@ function ShopPage() {
               </ul>
             </div>
           </Reveal>
-          <img src={brionilux.url} width={1448} height={1024} loading="lazy" decoding="async" alt="Brionilux: каталог рамок, карточка товара, корзина и оформление заказа без регистрации" className="mt-8 h-auto w-full" />
-          <Button asChild className={`${btn.ink} mt-6 h-auto px-12 py-4 text-lg md:relative md:-mt-[26%] md:ml-[12%]`}>
-            <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
-          </Button>
+          <div className="relative mt-8">
+            <img src={brionilux.url} width={1448} height={1024} loading="lazy" decoding="async" alt="Brionilux: каталог рамок, карточка товара, корзина и оформление заказа без регистрации" className="h-auto w-full" />
+            <Button asChild className={`${btn.ink} mt-6 h-auto px-12 py-4 text-lg md:absolute md:bottom-[9%] md:left-[22%] md:mt-0`}>
+              <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
+            </Button>
+          </div>
         </section>
 
         <section className="container-pb pt-20 md:pt-28" aria-labelledby="included-title">
