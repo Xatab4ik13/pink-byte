@@ -10,6 +10,10 @@ import heroDevices from "@/assets/shop-hero-devices.webp.asset.json";
 import products from "@/assets/shop-products-panel-cropped.webp.asset.json";
 import costPanel from "@/assets/shop-cost-panel.webp.asset.json";
 import brionilux from "@/assets/shop-brionilux-case.webp.asset.json";
+import mCatalog from "@/assets/shop-m-catalog.webp.asset.json";
+import mCart from "@/assets/shop-m-cart.webp.asset.json";
+import mForm from "@/assets/shop-m-form.webp.asset.json";
+import mPrice from "@/assets/shop-m-price.webp.asset.json";
 
 const TITLE = "Разработка интернет-магазина от 40 000 ₽ · Pink Byte";
 const DESC =
@@ -112,7 +116,24 @@ function ShopPage() {
               </ul>
             </div>
           </Reveal>
-          <div className="relative mt-8">
+          <div className="mt-6 grid gap-6 md:hidden">
+            <figure>
+              <img src={mCatalog.url} width={691} height={1517} loading="lazy" decoding="async" alt="Brionilux: каталог рамок и карточка товара" className="mx-auto h-auto w-full max-w-md" />
+              <figcaption className="mt-2 text-base font-bold">Каталог и карточка товара</figcaption>
+            </figure>
+            <figure>
+              <figcaption><span className="block text-base font-bold">Корзина</span><span className="text-sm text-muted-foreground">Товары и количество.</span></figcaption>
+              <img src={mCart.url} width={800} height={374} loading="lazy" decoding="async" alt="Корзина Brionilux с рамкой G Plast" className="mt-2 h-auto w-full" />
+            </figure>
+            <figure>
+              <figcaption><span className="block text-base font-bold">Оформление без регистрации</span><span className="text-sm text-muted-foreground">Доставку и оплату уточнит менеджер.</span></figcaption>
+              <img src={mForm.url} width={800} height={220} loading="lazy" decoding="async" alt="Форма контактных данных для оформления заказа" className="mt-2 h-auto w-full" />
+            </figure>
+            <Button asChild className="h-auto w-full rounded-full bg-foreground py-4 text-base font-semibold text-background hover:bg-foreground/90">
+              <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
+            </Button>
+          </div>
+          <div className="relative mt-8 hidden md:block">
             <img src={brionilux.url} width={1448} height={1024} loading="lazy" decoding="async" alt="Brionilux: каталог рамок, карточка товара, корзина и оформление заказа без регистрации" className="h-auto w-full" />
             <Button asChild className={`${btn.paper} bg-background text-foreground border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] hover:bg-background mt-6 h-auto px-12 py-4 text-lg md:absolute md:bottom-[9%] md:left-0 md:mt-0`}>
               <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
@@ -120,28 +141,31 @@ function ShopPage() {
           </div>
         </section>
 
-        <section className="container-pb pt-20 md:pt-28" aria-labelledby="included-title">
+        <section className="container-pb pt-16 md:pt-28" aria-labelledby="included-title">
           <div className="flex items-start justify-between gap-6">
-            <h2 id="included-title" className="font-display text-4xl font-extrabold leading-[0.95] tracking-[-0.04em] md:text-6xl">Что входит в разработку<br className="hidden md:block" /> интернет-магазина</h2>
+            <h2 id="included-title" className="font-display text-3xl font-extrabold leading-[0.95] tracking-[-0.04em] md:text-6xl">Что входит в разработку<br className="hidden md:block" /> интернет-магазина</h2>
             <p className="hidden shrink-0 text-right text-sm text-muted-foreground md:block">Собственный код.<br />Без конструкторов.</p>
           </div>
-          <div className="mt-8 grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-stretch">
-            <ul>
+          <p className="mt-2 text-sm text-muted-foreground md:hidden">Собственный код.<br />Без конструкторов.</p>
+          <div className="mt-6 grid gap-6 md:mt-8 md:gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-stretch">
+            <ul className="order-2 lg:order-none">
               {INCLUDED.map((i) => (
-                <li key={i.title} className="border-b border-border py-6 first:pt-0 last:border-0">
-                  <h3 className="text-xl font-bold md:text-2xl">{i.title}</h3>
-                  <p className="mt-1 text-muted-foreground">{i.text}</p>
+                <li key={i.title} className="border-b border-border py-4 first:pt-0 last:border-0 md:py-6">
+                  <h3 className="text-lg font-bold md:text-2xl">{i.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground md:text-base">{i.text}</p>
                 </li>
               ))}
             </ul>
-            <figure className="relative flex flex-col lg:min-h-[42rem]">
+            <figure className="relative order-1 flex flex-col lg:order-none lg:min-h-[42rem]">
               <img src={products.url} width={943} height={796} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full pb-shop-products-img" />
+              <figcaption className="mt-2 text-xs text-muted-foreground md:hidden">Пример интерфейса</figcaption>
             </figure>
           </div>
         </section>
 
-        <section className="container-pb pt-16" aria-labelledby="price-title">
+        <section className="container-pb pt-12 md:pt-16" aria-labelledby="price-title">
           <div className="relative overflow-hidden rounded-[2rem] bg-ink text-ink-foreground">
+            <img src={mPrice.url} width={760} height={1710} loading="lazy" decoding="async" alt="" aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-auto w-full md:hidden" />
             <img src={costPanel.url} width={1800} height={631} loading="lazy" decoding="async" alt="" aria-hidden className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-right md:block" />
             <div className="relative grid gap-10 p-8 md:p-12 lg:grid-cols-[1fr_1.5fr] lg:pr-[16%]">
               <div>
