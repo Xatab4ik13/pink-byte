@@ -489,14 +489,14 @@
 /* Услуга «Интернет-магазин»: иллюстрация панелей крупнее и вровень с правым краем */
 @media (min-width: 1024px) {
   .pb-shop-products-img {
-    --pb-shop-over: min(5rem, max(0px, (100vw - 80rem) / 2 + 2rem));
+    --pb-shop-over: min(5rem, max(0px, (100vw - 81.5rem) / 2 + 2rem));
     position: absolute;
     top: -1rem;
     bottom: -4rem;
     left: 0;
     right: calc(-1 * var(--pb-shop-over));
-    width: auto;
-    height: auto;
+    width: calc(100% + var(--pb-shop-over));
+    height: calc(100% + 5rem);
     max-width: none;
     object-fit: contain;
     object-position: right center;
