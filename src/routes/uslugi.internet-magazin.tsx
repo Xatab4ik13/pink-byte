@@ -68,8 +68,8 @@ function ShopPage() {
           </nav>
           <div className="mt-6 grid gap-8 lg:grid-cols-[1.55fr_1fr] lg:items-start">
             <div>
-              <h1 id="shop-title" className="text-[clamp(1.9rem,5.6vw,5rem)] font-extrabold leading-[0.98] tracking-tight">
-                Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[-0.25em] rounded-full bg-primary align-middle" />
+              <h1 id="shop-title" className="text-[clamp(1.9rem,5.6vw,5rem)] font-black leading-[0.95] tracking-[-0.045em]">
+                Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" />
                 <br /><span className="whitespace-nowrap">интернет-магазинов</span>
               </h1>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-2xl font-bold md:text-3xl">
@@ -83,15 +83,10 @@ function ShopPage() {
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                 Создаём интернет-магазины на собственном коде для бизнеса по всей России. Разрабатываем дизайн, наполняем каталог, подключаем оплату и доставку.
               </p>
-              <div className="mt-8 flex flex-wrap items-center gap-6 lg:mt-[4.5rem]">
-                <Button onClick={openBrief} className={`${btn.ink} h-auto px-7 py-3.5`}>Обсудить проект</Button>
-                <a href="#case" className="text-sm font-semibold underline underline-offset-4">Посмотреть проект</a>
-              </div>
             </div>
           </div>
           <figure className="mt-10">
             <img src={heroDevices.url} width={1600} height={850} alt="Планшет и смартфон с демонстрационным каталогом мебели и оформлением заказа" fetchPriority="high" decoding="async" className="mx-auto h-auto w-full max-w-[1200px]" />
-            <figcaption className="mt-3 text-center text-xs text-muted-foreground">Демонстрационный интерфейс</figcaption>
           </figure>
         </section>
 
@@ -99,7 +94,7 @@ function ShopPage() {
           <Reveal className="grid gap-6 md:grid-cols-[1.2fr_1fr] md:items-end">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Проект целиком</p>
-              <h2 id="case-title" className="mt-3 text-5xl font-extrabold leading-none md:text-7xl">Brionilux</h2>
+              <h2 id="case-title" className="mt-3 text-5xl font-black leading-none tracking-[-0.04em] md:text-7xl">Brionilux</h2>
               <p className="mt-2 text-lg text-muted-foreground">Интернет-магазин электрофурнитуры</p>
             </div>
             <div>
@@ -112,14 +107,14 @@ function ShopPage() {
             </div>
           </Reveal>
           <img src={brionilux.url} width={1448} height={1024} loading="lazy" decoding="async" alt="Brionilux: каталог рамок, карточка товара, корзина и оформление заказа без регистрации" className="mt-8 h-auto w-full" />
-          <Button asChild className={`${btn.ink} mt-6 h-auto px-10 py-4 text-lg md:-mt-24 md:relative`}>
+          <Button asChild className={`${btn.ink} mt-6 h-auto px-12 py-4 text-lg md:relative md:-mt-[17%] md:ml-[16%]`}>
             <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
           </Button>
         </section>
 
         <section className="container-pb pt-20 md:pt-28" aria-labelledby="included-title">
           <div className="flex items-start justify-between gap-6">
-            <h2 id="included-title" className="text-4xl font-extrabold leading-[1.02] md:text-6xl">Что входит в разработку<br className="hidden md:block" /> интернет-магазина</h2>
+            <h2 id="included-title" className="text-4xl font-black leading-[0.95] tracking-[-0.04em] md:text-6xl">Что входит в разработку<br className="hidden md:block" /> интернет-магазина</h2>
             <p className="hidden shrink-0 text-right text-sm text-muted-foreground md:block">Собственный код.<br />Без конструкторов.</p>
           </div>
           <div className="mt-8 grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-stretch">
@@ -142,11 +137,11 @@ function ShopPage() {
             <img src={costPanel.url} width={1800} height={631} loading="lazy" decoding="async" alt="" aria-hidden className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-right md:block" />
             <div className="relative grid gap-10 p-8 md:p-12 lg:grid-cols-[1fr_1.5fr] lg:pr-[16%]">
               <div>
-                <h2 id="price-title" className="text-4xl font-extrabold leading-[1.02] md:text-5xl">Сколько стоит разработка</h2>
-                <p className="mt-4 text-5xl font-extrabold whitespace-nowrap text-primary md:text-6xl">От 40 000 ₽</p>
+                <h2 id="price-title" className="text-4xl font-black leading-[0.95] tracking-[-0.04em] md:text-6xl">Сколько стоит разработка</h2>
+                <p className="mt-4 text-5xl font-black tracking-[-0.04em] whitespace-nowrap text-primary md:text-7xl">От 40 000 ₽</p>
                 <p className="mt-2 text-2xl font-bold md:text-3xl">10 рабочих дней</p>
                 <p className="mt-2 text-sm text-ink-muted">При готовых фотографиях и описаниях товаров.</p>
-                <Button onClick={openBrief} className={`${btn.lime} mt-7 h-auto`}>Получить расчёт</Button>
+                <Button onClick={openBrief} className={`${btn.lime} mt-7 h-auto px-10 py-4`}>Получить расчёт</Button>
               </div>
               <div className="self-center">
                 <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
@@ -163,7 +158,7 @@ function ShopPage() {
 
         <section className="container-pb pt-20 md:pt-24" aria-labelledby="faq-title">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
-            <h2 id="faq-title" className="text-4xl font-extrabold leading-[1.02] md:text-6xl">Перед началом работы</h2>
+            <h2 id="faq-title" className="text-4xl font-black leading-[0.95] tracking-[-0.04em] md:text-6xl">Перед началом работы</h2>
             <div className="grid gap-3">
               {FAQ.map((item, index) => {
                 const on = open === index;

@@ -25,7 +25,7 @@ export function Contact({ title, text }: { title?: string; text?: string } = {})
             {title ?? (<>Расскажите,<br />что вы задумали.</>)}
           </h2>
           {text && <p className="mt-5 max-w-xl text-ink-muted md:text-lg">{text}</p>}
-          <Button onClick={openBrief} className={`${btn.lime} mt-8 h-auto`}>
+          <Button onClick={openBrief} className={`${btn.lime} mt-8 h-auto px-10 py-4`}>
             Обсудить проект
           </Button>
         </div>
