@@ -69,8 +69,8 @@ export function StudioSections() {
             <div key={item.question} className="pb-faq-item">
               <h3>
                 <Button variant="ghost" onClick={() => setExpanded(expanded === index ? null : index)} aria-expanded={expanded === index} aria-controls={`studio-answer-${index}`} className="pb-faq-toggle">
-                  <span>{item.question}</span>
                   <span className="pb-faq-icon" aria-hidden="true">{expanded === index ? <Minus /> : <Plus />}</span>
+                  <span>{item.question}</span>
                 </Button>
               </h3>
               <div id={`studio-answer-${index}`} aria-hidden={expanded !== index} data-open={expanded === index} className="pb-faq-reveal">
