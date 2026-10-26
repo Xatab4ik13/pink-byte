@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowUp, FileText, Paperclip, X } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,7 @@ import {
   ConversationContent,
   ConversationScrollButton,
 } from "@/components/ai-elements/conversation";
-import { Message, MessageContent } from "@/components/ai-elements/message";
+import { Message, MessageContent } from "@/components/ai-elements/message-shell";
 import {
   PromptInput,
   PromptInputButton,
@@ -21,7 +21,6 @@ import robot from "@/assets/robot-brief-seated.webp";
 import mark from "@/assets/mark-pb.png.asset.json";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
 import { Logo } from "./primitives";
-import { BriefContext } from "./brief-context";
 import { BriefContactForm } from "./BriefContactForm";
 
 function ComposerTools({ text }: { text: string }) {
@@ -106,10 +105,8 @@ function BriefComposer({
   );
 }
 
-export function BriefProvider({ children }: { children: ReactNode }) {
-  const [open, setOpen] = useState(false);
+export default function BriefDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const [answers, setAnswers] = useState<BriefAnswer[]>([]);
-  const openBrief = useCallback(() => setOpen(true), []);
   const textarea = useRef<HTMLTextAreaElement>(null);
   const step = answers.length;
   const done = step === BRIEF_QUESTIONS.length;
@@ -117,14 +114,10 @@ export function BriefProvider({ children }: { children: ReactNode }) {
   const brief = useMemo(() => createBrief(answers), [answers]);
   const progress = Math.round((answers.length / BRIEF_QUESTIONS.length) * 100);
   useEffect(() => {
-    // Decode before the first open, without delaying the initial page paint.
-    const timer = window.setTimeout(() => {
-      const image = new Image();
-      image.src = robot;
-      void image.decode().catch(() => {});
-    }, 300);
-    return () => window.clearTimeout(timer);
-  }, []);
+    if (!open || done) return;
+    const frame = requestAnimationFrame(() => textarea.current?.focus({ preventScroll: true }));
+    return () => cancelAnimationFrame(frame);
+  }, [open, step, done]);
   function submit(message: PromptInputMessage) {
     const answer = {
       text: message.text.trim(),
@@ -132,7 +125,6 @@ export function BriefProvider({ children }: { children: ReactNode }) {
     };
     if (!canSubmitAnswer(answer) || done) return;
     setAnswers((previous) => [...previous, answer]);
-    requestAnimationFrame(() => textarea.current?.focus());
   }
   function download() {
     const url = URL.createObjectURL(new Blob([brief], { type: "text/plain;charset=utf-8" }));
@@ -143,14 +135,12 @@ export function BriefProvider({ children }: { children: ReactNode }) {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
   return (
-    <BriefContext.Provider value={openBrief}>
-      {children}
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent
           className={`pb-brief-dialog gap-0 overflow-visible border-border bg-background p-0 text-foreground${done ? " pb-brief-complete" : ""}`}
           onOpenAutoFocus={(event) => {
             event.preventDefault();
-            textarea.current?.focus();
+            textarea.current?.focus({ preventScroll: true });
           }}
         >
           <div
@@ -272,6 +262,5 @@ export function BriefProvider({ children }: { children: ReactNode }) {
           </div>
         </DialogContent>
       </Dialog>
-    </BriefContext.Provider>
   );
 }

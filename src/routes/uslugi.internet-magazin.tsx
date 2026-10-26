@@ -27,6 +27,8 @@ export const Route = createFileRoute("/uslugi/internet-magazin")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: heroDevices.url },
+      { name: "twitter:image", content: heroDevices.url },
       { property: "og:url", content: "/uslugi/internet-magazin" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
