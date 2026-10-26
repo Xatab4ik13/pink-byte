@@ -118,22 +118,22 @@ function ShopPage() {
         </section>
 
         <section className="container-pb pt-20 md:pt-28" aria-labelledby="included-title">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-stretch">
-            <div>
-              <h2 id="included-title" className="text-4xl font-extrabold leading-[1.02] md:text-6xl">Что входит в разработку интернет-магазина</h2>
-              <ul className="mt-8">
-                {INCLUDED.map((i) => (
-                  <li key={i.title} className="border-b border-border py-5 last:border-0">
-                    <h3 className="text-xl font-bold">{i.title}</h3>
-                    <p className="mt-1 text-muted-foreground">{i.text}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <figure className="flex flex-col">
-              <p className="text-right text-sm text-muted-foreground">Собственный код.<br />Без конструкторов.</p>
-              <img src={products.url} width={1200} height={829} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full flex-1 object-contain lg:scale-[1.15] lg:origin-left" />
-              <figcaption className="mt-2 text-xs text-muted-foreground">Пример интерфейса</figcaption>
+          <div className="flex items-start justify-between gap-6">
+            <h2 id="included-title" className="text-4xl font-extrabold leading-[1.02] md:text-6xl">Что входит в разработку<br className="hidden md:block" /> интернет-магазина</h2>
+            <p className="hidden shrink-0 text-right text-sm text-muted-foreground md:block">Собственный код.<br />Без конструкторов.</p>
+          </div>
+          <div className="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-stretch">
+            <ul>
+              {INCLUDED.map((i) => (
+                <li key={i.title} className="border-b border-border py-6 first:pt-0 last:border-0">
+                  <h3 className="text-xl font-bold md:text-2xl">{i.title}</h3>
+                  <p className="mt-1 text-muted-foreground">{i.text}</p>
+                </li>
+              ))}
+            </ul>
+            <figure className="relative flex flex-col">
+              <img src={products.url} width={1200} height={829} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-contain lg:object-right" />
+              <figcaption className="mt-2 text-xs text-muted-foreground lg:absolute lg:bottom-0 lg:left-0">Пример интерфейса</figcaption>
             </figure>
           </div>
         </section>
@@ -180,7 +180,7 @@ function ShopPage() {
                     </h3>
                     <div id={`shop-answer-${index}`} aria-hidden={!on} data-open={on} className="pb-faq-reveal">
                       <div className="pb-faq-answer-clip">
-                        <p className="pb-faq-answer pb-5 pl-[4.25rem] pr-5 text-sm text-muted-foreground md:text-base">{item.a}</p>
+                        <div className="pb-5 pl-[4.25rem] pr-5"><p className="pb-faq-answer text-sm text-muted-foreground md:text-base">{item.a}</p></div>
                       </div>
                     </div>
                   </div>
