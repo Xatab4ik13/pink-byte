@@ -59,3 +59,4 @@
 - [x] Match the three mobile studio reference layouts with the compressed portrait cost asset; verify FAQ, cost CTA and unchanged desktop layout.
 - [x] Keep both phone CTAs white with dark text, add a thin soft graphite outline and a soft shadow so they stop blending into the page, and verify on phone and desktop.
 - [x] Add the ecommerce service page from the two mockups with compressed assets, linked from the Интернет-магазин tab.
+- [x] Enlarge the ecommerce page panel composition, crop its transparent margins into a new compressed asset, remove the 'Пример интерфейса' caption; verify no text overlap and no side scroll.
