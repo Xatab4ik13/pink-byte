@@ -7,7 +7,7 @@ import { Contact, Footer } from "@/components/pinkbyte/Closing";
 import { Reveal, btn } from "@/components/pinkbyte/primitives";
 import { useOpenBrief } from "@/components/pinkbyte/brief-context";
 import heroDevices from "@/assets/shop-hero-devices.webp.asset.json";
-import products from "@/assets/shop-products-panel.webp.asset.json";
+import products from "@/assets/shop-products-panel-cropped.webp.asset.json";
 import costPanel from "@/assets/shop-cost-panel.webp.asset.json";
 import brionilux from "@/assets/shop-brionilux-case.webp.asset.json";
 
@@ -122,7 +122,7 @@ function ShopPage() {
             <h2 id="included-title" className="text-4xl font-extrabold leading-[1.02] md:text-6xl">Что входит в разработку<br className="hidden md:block" /> интернет-магазина</h2>
             <p className="hidden shrink-0 text-right text-sm text-muted-foreground md:block">Собственный код.<br />Без конструкторов.</p>
           </div>
-          <div className="mt-8 grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch">
+          <div className="mt-8 grid gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-stretch">
             <ul>
               {INCLUDED.map((i) => (
                 <li key={i.title} className="border-b border-border py-6 first:pt-0 last:border-0">
@@ -131,8 +131,8 @@ function ShopPage() {
                 </li>
               ))}
             </ul>
-            <figure className="relative flex flex-col">
-              <img src={products.url} width={1200} height={829} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-contain lg:object-right lg:origin-right lg:scale-[1.34]" />
+            <figure className="relative flex flex-col lg:min-h-[42rem]">
+              <img src={products.url} width={943} height={796} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full pb-shop-products-img" />
             </figure>
           </div>
         </section>

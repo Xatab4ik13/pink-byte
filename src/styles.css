@@ -485,3 +485,20 @@
   .pb-contact-seat,
   .pb-contact-robot { width: min(440px, 82%); }
 }
+
+/* Услуга «Интернет-магазин»: иллюстрация панелей крупнее и вровень с правым краем */
+@media (min-width: 1024px) {
+  .pb-shop-products-img {
+    --pb-shop-over: min(5rem, max(0px, (100vw - 80rem) / 2 + 2rem));
+    position: absolute;
+    top: -1rem;
+    bottom: -4rem;
+    left: 0;
+    right: calc(-1 * var(--pb-shop-over));
+    width: auto;
+    height: auto;
+    max-width: none;
+    object-fit: contain;
+    object-position: right center;
+  }
+}
