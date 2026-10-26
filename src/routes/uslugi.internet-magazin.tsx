@@ -26,7 +26,7 @@ export const Route = createFileRoute("/uslugi/internet-magazin")({
       { property: "og:url", content: "/uslugi/internet-magazin" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/uslugi/internet-magazin" }],
+    links: [{ rel: "canonical", href: "/uslugi/internet-magazin" }, { rel: "preload", as: "image", href: heroDevices.url, fetchPriority: "high" }],
   }),
   component: ShopPage,
 });
