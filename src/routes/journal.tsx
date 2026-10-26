@@ -26,7 +26,7 @@ function Journal() {
         <Header initialActive="/journal" />
       </div>
       <main className="container-pb min-h-[60vh] py-16 md:py-24">
-        <h1 className="text-5xl font-extrabold leading-tight md:text-7xl">Журнал</h1>
+        <h1 className="font-display text-5xl font-extrabold leading-tight md:text-7xl">Журнал</h1>
         <p className="mt-10 border-t border-border pt-8 text-lg text-muted-foreground">Публикаций пока нет.</p>
       </main>
       <Footer />
