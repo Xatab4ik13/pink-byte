@@ -56,7 +56,7 @@ function ShopPage() {
     <>
       <div id="top" className="bg-ink text-ink-foreground">
         <Header initialActive="/#services" />
-        <section className="container-pb pt-6 md:pt-8" aria-labelledby="shop-title">
+        <section className="container-pb pb-44 pt-6 md:pb-[10.75rem] md:pt-8" aria-labelledby="shop-title">
           <nav aria-label="Хлебные крошки" className="text-xs text-ink-muted">
             <Link to="/" className="hover:text-ink-foreground">Главная</Link>
             <span className="mx-2">/</span>
@@ -68,7 +68,7 @@ function ShopPage() {
             <div>
               <h1 id="shop-title" className="text-[clamp(1.9rem,5.6vw,5rem)] font-black leading-[0.95] tracking-[-0.045em]">
                 Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" />
-                <br /><span className="whitespace-nowrap">интернет-магазинов</span>
+                <br /><span className="whitespace-nowrap text-primary">интернет-магазинов</span>
               </h1>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-2xl font-bold md:text-3xl">
                 <span>От 40 000 ₽</span>
@@ -88,7 +88,7 @@ function ShopPage() {
       </div>
 
       <main>
-        <section className="container-pb pt-10 md:pt-12" aria-label="Демонстрация интерфейса магазина">
+        <section className="container-pb relative z-10 -mt-20 md:-mt-28" aria-label="Демонстрация интерфейса магазина">
           <figure>
             <img src={heroDevices.url} width={1600} height={850} alt="Планшет и смартфон с демонстрационным каталогом мебели и оформлением заказа" fetchPriority="high" decoding="async" className="mx-auto h-auto w-full max-w-[1200px]" />
           </figure>
