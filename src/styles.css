@@ -419,7 +419,8 @@
 .pb-faq-reveal { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 650ms cubic-bezier(.22, 1, .36, 1), visibility 0s 650ms; }
 .pb-faq-reveal[data-open="true"] { grid-template-rows: 1fr; visibility: visible; transition-delay: 0s; }
 .pb-faq-answer-clip { min-height: 0; overflow: hidden; }
-.pb-faq-answer { padding: 0 46px 24px 48px; font-size: 16px; line-height: 1.5; color: var(--muted-foreground); }
+.pb-faq-answer { padding: 0 46px 24px 0; font-size: 16px; line-height: 1.5; color: var(--muted-foreground); }
+.pb-faq-item .pb-faq-answer { padding-left: 48px; }
 .pb-faq-reveal[data-open="true"] .pb-faq-answer { animation: pb-faq-message 760ms cubic-bezier(.34, 1.4, .5, 1) both; }
 @keyframes pb-faq-message {
   0% { opacity: 0; transform: translate3d(-24px, 8px, 0); }
