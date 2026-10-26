@@ -137,6 +137,11 @@ export function Services() {
           <Button onClick={openBrief} className={cn(btn.paper, "mt-7 h-auto self-start hover:opacity-90")}>
             Обсудить решение
           </Button>
+          {tab.id === "shop" && (
+            <a href="/uslugi/internet-magazin" className="mt-4 self-start text-sm font-semibold text-ink-foreground underline underline-offset-4 max-[900px]:text-foreground">
+              Подробнее об услуге
+            </a>
+          )}
         </div>
         <div className="pb-service-device" role="img" aria-label={`${tab.device === "phone" ? "Смартфон" : tab.device === "laptop" ? "Ноутбук" : tab.device === "desktop" ? "Монитор" : "Планшет"}: ${tab.project}${tab.concept ? ", концепция интерфейса" : ", реальный сайт"}`}>
           {DEVICES.map((d, i) => (

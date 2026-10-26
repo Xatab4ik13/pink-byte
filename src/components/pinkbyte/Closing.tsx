@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Logo, NAV, Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
 
-export function Contact() {
+export function Contact({ title, text }: { title?: string; text?: string } = {}) {
   const openBrief = useOpenBrief();
   return (
     <section id="contact" aria-labelledby="contact-title" className="container-pb scroll-mt-6 pt-10 pb-[130px] md:pb-[200px]">
@@ -22,10 +22,9 @@ export function Contact() {
         </div>
         <div className="order-1 flex flex-col items-center px-6 pt-12 text-center md:order-2 md:items-start md:self-center md:py-14 md:pr-12 md:text-left">
           <h2 id="contact-title" className="display text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.95]">
-            Расскажите,
-            <br />
-            что вы задумали.
+            {title ?? (<>Расскажите,<br />что вы задумали.</>)}
           </h2>
+          {text && <p className="mt-5 max-w-xl text-ink-muted md:text-lg">{text}</p>}
           <Button onClick={openBrief} className={`${btn.lime} mt-8 h-auto`}>
             Обсудить проект
           </Button>
