@@ -55,14 +55,14 @@ function ShopPage() {
   return (
     <>
       <div id="top" className="bg-background">
-        <Header initialActive="/#services" tone="light" />
+        <Header tone="light" />
       </div>
       <main>
         <section className="container-pb pt-8 md:pt-10" aria-labelledby="shop-title">
           <nav aria-label="Хлебные крошки" className="text-xs text-muted-foreground">
             <Link to="/" className="hover:text-foreground">Главная</Link>
             <span className="mx-2">/</span>
-            <a href="/#services" className="hover:text-foreground">Услуги</a>
+            <Link to="/" hash="services" className="hover:text-foreground">Услуги</Link>
             <span className="mx-2">/</span>
             <span>Интернет-магазины</span>
           </nav>

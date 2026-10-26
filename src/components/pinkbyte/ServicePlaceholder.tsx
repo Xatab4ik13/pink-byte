@@ -19,7 +19,7 @@ export function serviceHead(title: string, description: string) {
 export function ServicePlaceholder({ title, image }: { title: string; image: string }) {
   const openBrief = useOpenBrief();
   return <>
-    <Header initialActive="/#services" tone="light" />
+    <Header tone="light" />
     <main className="container-pb min-h-[60vh] py-12 md:py-20">
       <img src={image} width={192} height={192} alt="" className="mb-8 h-28 w-28 object-contain" />
       <h1 className="font-display text-4xl font-extrabold leading-tight md:text-6xl">{title}</h1>
