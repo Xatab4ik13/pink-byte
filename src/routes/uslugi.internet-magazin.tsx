@@ -132,7 +132,7 @@ function ShopPage() {
               ))}
             </ul>
             <figure className="relative flex flex-col">
-              <img src={products.url} width={1200} height={829} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-contain lg:object-right" />
+              <img src={products.url} width={1200} height={829} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-contain lg:object-right lg:origin-right lg:scale-[1.12]" />
               <figcaption className="mt-2 text-xs text-muted-foreground lg:absolute lg:bottom-0 lg:left-0">Пример интерфейса</figcaption>
             </figure>
           </div>
