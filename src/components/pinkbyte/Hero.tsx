@@ -37,13 +37,13 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
           <Logo tone={light ? "dark" : "light"} className="w-36 md:w-40" />
         </Link>
         <nav aria-label="Основная навигация" className="hidden lg:block">
-          <ul className={`flex gap-2 text-[15px] ${light ? "text-foreground" : "text-ink-foreground"}`}>
+          <ul className={`flex gap-1 xl:gap-2 text-[15px] ${light ? "text-foreground" : "text-ink-foreground"}`}>
             {NAV.map((n) => (
               <li key={n.href} className="group relative">
                 {n.children ? (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" aria-current={isActive(n.href) ? "location" : undefined} className={`h-11 rounded-full px-3 xl:px-5 font-display text-[22px] font-extrabold tracking-normal [&[data-state=open]>svg]:rotate-180 ${light ? "text-foreground hover:bg-muted hover:text-foreground data-[state=open]:bg-muted" : "text-ink-foreground hover:bg-ink-border hover:text-ink-foreground data-[state=open]:bg-ink-border"} ${isActive(n.href) ? (light ? "bg-muted" : "bg-ink-border") : ""}`}>
+                      <Button variant="ghost" aria-current={isActive(n.href) ? "location" : undefined} className={`h-11 rounded-full px-1 xl:px-5 font-display text-[22px] font-extrabold tracking-normal [&[data-state=open]>svg]:rotate-180 ${light ? "text-foreground hover:bg-muted hover:text-foreground data-[state=open]:bg-muted" : "text-ink-foreground hover:bg-ink-border hover:text-ink-foreground data-[state=open]:bg-ink-border"} ${isActive(n.href) ? (light ? "bg-muted" : "bg-ink-border") : ""}`}>
                         {n.label}<ChevronDown className="size-4 transition-transform" aria-hidden="true" />
                       </Button>
                     </DropdownMenuTrigger>
@@ -58,7 +58,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
                       ))}
                     </DropdownMenuContent>
                   </DropdownMenu>
-                ) : <Button asChild variant="ghost" className={`h-11 rounded-full px-3 xl:px-5 font-display text-[22px] font-extrabold tracking-normal ${light ? `text-foreground hover:bg-muted hover:text-foreground ${isActive(n.href) ? "bg-muted" : ""}` : `text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${isActive(n.href) ? "bg-ink-border" : ""}`} `}>
+                ) : <Button asChild variant="ghost" className={`h-11 rounded-full px-1 xl:px-5 font-display text-[22px] font-extrabold tracking-normal ${light ? `text-foreground hover:bg-muted hover:text-foreground ${isActive(n.href) ? "bg-muted" : ""}` : `text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${isActive(n.href) ? "bg-ink-border" : ""}`} `}>
                   <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} aria-current={isActive(n.href) ? "location" : undefined}>
                     {n.label}
                     {n.children && <ChevronDown className="size-4 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180" aria-hidden="true" />}
