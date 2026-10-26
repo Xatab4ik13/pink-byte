@@ -19,7 +19,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
     const imageTimer = window.setTimeout(() => {
       const image = new Image();
       image.src = robot;
-      void image.decode().catch(() => {});
+      void image.decode?.().catch(() => {});
     }, 300);
     return () => {
       window.clearTimeout(moduleTimer);
