@@ -59,7 +59,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 ) : <Button asChild variant="ghost" className={light ? `h-11 rounded-full px-3 xl:px-5 font-normal text-foreground hover:bg-muted hover:text-foreground ${isActive(n.href) ? "bg-muted" : ""}` : `h-11 rounded-full px-3 xl:px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${isActive(n.href) ? "bg-ink-border" : ""}`}>
-                  <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1]} aria-current={isActive(n.href) ? "location" : undefined}>
+                  <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} aria-current={isActive(n.href) ? "location" : undefined}>
                     {n.label}
                     {n.children && <ChevronDown className="size-4 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180" aria-hidden="true" />}
                   </Link>
@@ -91,7 +91,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
               <li key={n.href}>
                 {n.children ? <Button variant="ghost" aria-expanded={servicesOpen} aria-controls="mobile-services" onClick={() => setServicesOpen((v) => !v)} className={`h-12 w-full justify-between rounded-full px-4 text-lg font-normal ${light ? "hover:bg-muted" : "hover:bg-ink-border hover:text-ink-foreground"}`}>
                   {n.label}<ChevronDown className={`size-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-                </Button> : <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1]} aria-current={isActive(n.href) ? "location" : undefined} onClick={() => setOpen(false)} className={`block rounded-full px-4 py-3 text-lg ${light ? "hover:bg-muted" : "hover:bg-ink-border"}`}>
+                </Button> : <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} aria-current={isActive(n.href) ? "location" : undefined} onClick={() => setOpen(false)} className={`block rounded-full px-4 py-3 text-lg ${light ? "hover:bg-muted" : "hover:bg-ink-border"}`}>
                   {n.label}
                 </Link>}
                 {n.children && servicesOpen && <ul id="mobile-services" className="py-1">

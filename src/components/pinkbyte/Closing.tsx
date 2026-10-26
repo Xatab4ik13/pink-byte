@@ -46,7 +46,7 @@ export function Footer() {
           <ul className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
             {NAV.map((n) => (
               <li key={n.href}>
-                <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1]} className="text-foreground/80 hover:text-foreground">
+                <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} className="text-foreground/80 hover:text-foreground">
                   {n.label}
                 </Link>
               </li>
