@@ -13,7 +13,8 @@ const EYES = [
   { src: robotEyeRight.url, left: "49.7778%", top: "33.0626%", width: "14.1111%", height: "20.7657%" },
 ];
 
-export function Header({ initialActive = "/#projects" }: { initialActive?: string }) {
+export function Header({ initialActive = "/#projects", tone = "dark" }: { initialActive?: string; tone?: "dark" | "light" }) {
+  const light = tone === "light";
   const openBrief = useOpenBrief();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(initialActive);
@@ -28,27 +29,27 @@ export function Header({ initialActive = "/#projects" }: { initialActive?: strin
     <header className="container-pb relative z-30">
       <div className="flex items-center justify-between gap-4 py-5">
         <a href="/#top" aria-label="Pink Byte, на главную">
-          <Logo className="w-36 md:w-40" />
+          <Logo tone={light ? "dark" : "light"} className="w-36 md:w-40" />
         </a>
         <nav aria-label="Основная навигация" className="hidden lg:block">
-          <ul className="flex gap-2 text-[15px] text-ink-foreground">
+          <ul className={`flex gap-2 text-[15px] ${light ? "text-foreground" : "text-ink-foreground"}`}>
             {NAV.map((n) => (
               <li key={n.href}>
-                <Button asChild variant="ghost" className={`h-11 rounded-full px-3 xl:px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${active === n.href ? "bg-ink-border" : ""}`}>
+                <Button asChild variant="ghost" className={light ? `h-11 rounded-full px-3 xl:px-5 font-normal text-muted-foreground hover:bg-transparent hover:text-foreground ${active === n.href ? "font-semibold text-foreground underline decoration-primary decoration-2 underline-offset-[10px]" : ""}` : `h-11 rounded-full px-3 xl:px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${active === n.href ? "bg-ink-border" : ""}`}>
                   <a href={n.href} onClick={() => setActive(n.href)} aria-current={active === n.href ? "location" : undefined}>{n.label}</a>
                 </Button>
               </li>
             ))}
           </ul>
         </nav>
-        <Button onClick={openBrief} variant="secondary" className={`${btn.paper} hidden h-11 lg:inline-flex hover:bg-background/90`}>
+        <Button onClick={openBrief} variant="secondary" className={light ? `${btn.ink} hidden h-11 lg:inline-flex` : `${btn.paper} hidden h-11 lg:inline-flex hover:bg-background/90`}>
           Обсудить проект
         </Button>
         <Button
           type="button"
           variant="ghost"
           size="icon"
-          className="lg:hidden rounded-full text-ink-foreground hover:bg-ink-border hover:text-ink-foreground"
+          className={`lg:hidden rounded-full ${light ? "text-foreground" : "text-ink-foreground hover:bg-ink-border hover:text-ink-foreground"}`}
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Закрыть меню" : "Открыть меню"}
