@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import robotLeanSrc from "@/assets/robot-hero.webp";
 import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
@@ -6,6 +7,7 @@ import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { Logo, NAV, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 
 /* The clean base has no baked-in eyes. Only emissive RGBA eye pixels move. */
 const EYES = [
@@ -17,6 +19,7 @@ export function Header({ initialActive = "/#projects", tone = "dark" }: { initia
   const light = tone === "light";
   const openBrief = useOpenBrief();
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [active, setActive] = useState(initialActive);
   useEffect(() => {
     if (!open) return;
@@ -28,30 +31,37 @@ export function Header({ initialActive = "/#projects", tone = "dark" }: { initia
   return (
     <header className="container-pb relative z-30">
       <div className="flex items-center justify-between gap-4 py-5">
-        <a href="/#top" aria-label="Pink Byte, на главную">
+        <Link to="/" aria-label="Pink Byte, на главную">
           <Logo tone={light ? "dark" : "light"} className="w-36 md:w-40" />
-        </a>
+        </Link>
         <nav aria-label="Основная навигация" className="hidden lg:block">
           <ul className={`flex gap-2 text-[15px] ${light ? "text-foreground" : "text-ink-foreground"}`}>
             {NAV.map((n) => (
               <li key={n.href} className="group relative">
-                <Button asChild variant="ghost" className={light ? `h-11 rounded-full px-3 xl:px-5 font-normal text-foreground hover:bg-muted hover:text-foreground ${active === n.href ? "bg-muted" : ""}` : `h-11 rounded-full px-3 xl:px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${active === n.href ? "bg-ink-border" : ""}`}>
+                {n.children ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="ghost" className={`h-11 rounded-full px-3 xl:px-5 font-normal [&[data-state=open]>svg]:rotate-180 ${light ? "text-foreground hover:bg-muted hover:text-foreground data-[state=open]:bg-muted" : "text-ink-foreground hover:bg-ink-border hover:text-ink-foreground data-[state=open]:bg-ink-border"}`}>
+                        {n.label}<ChevronDown className="size-4 transition-transform" aria-hidden="true" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start" sideOffset={10} className={`w-[310px] max-w-[calc(100vw-32px)] rounded-lg p-2 shadow-lg ${light ? "border-border bg-background text-foreground" : "border-ink-border bg-ink text-ink-foreground"}`}>
+                      {n.children.map((c) => (
+                        <DropdownMenuItem key={c.href} asChild className={`cursor-pointer rounded-md p-3 ${light ? "focus:bg-muted focus:text-foreground" : "focus:bg-ink-border focus:text-ink-foreground"}`}>
+                          <Link to={c.href} className="flex min-h-16 items-center gap-4 text-sm font-semibold">
+                            <img src={c.image} width={48} height={48} alt="" className="h-12 w-12 shrink-0 object-contain" />
+                            <span>{c.label}</span>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : <Button asChild variant="ghost" className={light ? `h-11 rounded-full px-3 xl:px-5 font-normal text-foreground hover:bg-muted hover:text-foreground ${active === n.href ? "bg-muted" : ""}` : `h-11 rounded-full px-3 xl:px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${active === n.href ? "bg-ink-border" : ""}`}>
                   <a href={n.href} onClick={() => setActive(n.href)} aria-current={active === n.href ? "location" : undefined}>
                     {n.label}
                     {n.children && <ChevronDown className="size-4 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180" aria-hidden="true" />}
                   </a>
-                </Button>
-                {n.children && (
-                  <div className="invisible absolute left-0 top-full z-40 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                    <ul className={`min-w-56 rounded-2xl border p-2 shadow-lg ${light ? "border-border bg-background" : "border-ink-border bg-ink"}`}>
-                      {n.children.map((c) => (
-                        <li key={c.href}>
-                          <a href={c.href} className={`block rounded-xl px-4 py-2.5 ${light ? "text-foreground hover:bg-muted" : "text-ink-foreground hover:bg-ink-border"}`}>{c.label}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                </Button>}
               </li>
             ))}
           </ul>
@@ -73,18 +83,23 @@ export function Header({ initialActive = "/#projects", tone = "dark" }: { initia
         </Button>
       </div>
       {open && (
-        <nav id="mobile-menu" aria-label="Мобильная навигация" className="tab-fade absolute inset-x-5 top-full mt-2 rounded-3xl border border-ink-border bg-ink p-3 lg:hidden">
+        <nav id="mobile-menu" aria-label="Мобильная навигация" className={`tab-fade absolute inset-x-5 top-full mt-2 max-h-[calc(100dvh-100px)] overflow-y-auto rounded-lg border p-3 lg:hidden ${light ? "border-border bg-background text-foreground" : "border-ink-border bg-ink text-ink-foreground"}`}>
           <ul>
             {NAV.map((n) => (
               <li key={n.href}>
-                <a href={n.href} onClick={() => { setActive(n.href); setOpen(false); }} className="block rounded-2xl px-4 py-3 text-lg text-ink-foreground hover:bg-ink-border">
+                {n.children ? <Button variant="ghost" aria-expanded={servicesOpen} aria-controls="mobile-services" onClick={() => setServicesOpen((v) => !v)} className={`h-12 w-full justify-between rounded-full px-4 text-lg font-normal ${light ? "hover:bg-muted" : "hover:bg-ink-border hover:text-ink-foreground"}`}>
+                  {n.label}<ChevronDown className={`size-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
+                </Button> : <a href={n.href} onClick={() => { setActive(n.href); setOpen(false); }} className={`block rounded-full px-4 py-3 text-lg ${light ? "hover:bg-muted" : "hover:bg-ink-border"}`}>
                   {n.label}
-                </a>
-                {n.children?.map((c) => (
-                  <a key={c.href} href={c.href} onClick={() => setOpen(false)} className="block rounded-2xl py-2.5 pl-9 pr-4 text-base text-ink-muted hover:bg-ink-border hover:text-ink-foreground">
-                    {c.label}
-                  </a>
-                ))}
+                </a>}
+                {n.children && servicesOpen && <ul id="mobile-services" className="py-1">
+                  {n.children.map((c) => <li key={c.href}>
+                    <Link to={c.href} onClick={() => { setOpen(false); setServicesOpen(false); }} className={`flex min-h-16 items-center gap-3 rounded-md px-4 py-2 text-sm font-semibold ${light ? "hover:bg-muted" : "hover:bg-ink-border"}`}>
+                      <img src={c.image} alt="" width={44} height={44} className="h-11 w-11 shrink-0 object-contain" />
+                      <span>{c.label}</span>
+                    </Link>
+                  </li>)}
+                </ul>}
               </li>
             ))}
           </ul>

@@ -3,6 +3,7 @@ import { createRouter, rootRouteId } from "@tanstack/react-router";
 import { describe, expect, it } from "vitest";
 
 import { routeTree } from "@/routeTree.gen";
+import { NAV, SERVICE_LINKS } from "@/components/pinkbyte/primitives";
 
 // Match routes without running loaders or rendering: loaders may need a server or
 // network the test run lacks, and jsdom never loads the stylesheets React waits on.
@@ -17,5 +18,21 @@ describe("App routing", () => {
   it("matches the Journal page at /journal", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
     expect(router.matchRoutes("/journal").at(-1)?.routeId).toBe("/journal");
+  });
+  it("omits the separate home navigation item", () => {
+    expect(NAV.some((item) => item.href === "/")).toBe(false);
+  });
+  it("provides all four service destinations", () => {
+    expect(SERVICE_LINKS.map((item) => item.href)).toEqual([
+      "/uslugi/internet-magazin", "/uslugi/korporativny-sait",
+      "/uslugi/crm-sistema", "/uslugi/mobilnoe-prilozhenie",
+    ]);
+  });
+  it.each([
+    "/uslugi/internet-magazin", "/uslugi/korporativny-sait",
+    "/uslugi/crm-sistema", "/uslugi/mobilnoe-prilozhenie",
+  ])("matches the service page at %s", (path) => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    expect(router.matchRoutes(path).at(-1)?.routeId).toBe(path);
   });
 });

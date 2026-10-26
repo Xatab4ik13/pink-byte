@@ -1,4 +1,5 @@
 - [x] Remove the complete right-hand hero text and links, keeping the headline and robot placement.
+- [x] Replace Главная with logo navigation, add four-service image menu and three placeholder pages; verify desktop/mobile navigation.
 - [x] Remove the rectangular glow background and refine eye-only blinking.
 - [x] Verify open/closed eye states and the page in the browser.
 - [x] Slow and smooth the blink; remove unwanted glow in the left corner of the face.

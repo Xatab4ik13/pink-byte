@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as JournalRouteImport } from './routes/journal'
+import { Route as UslugiCrmSistemaRouteImport } from './routes/uslugi.crm-sistema'
 import { Route as UslugiInternetMagazinRouteImport } from './routes/uslugi.internet-magazin'
+import { Route as UslugiKorporativnySaitRouteImport } from './routes/uslugi.korporativny-sait'
+import { Route as UslugiMobilnoePrilozhenieRouteImport } from './routes/uslugi.mobilnoe-prilozhenie'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +26,87 @@ const JournalRoute = JournalRouteImport.update({
   path: '/journal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiCrmSistemaRoute = UslugiCrmSistemaRouteImport.update({
+  id: '/uslugi/crm-sistema',
+  path: '/uslugi/crm-sistema',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UslugiInternetMagazinRoute = UslugiInternetMagazinRouteImport.update({
   id: '/uslugi/internet-magazin',
   path: '/uslugi/internet-magazin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UslugiKorporativnySaitRoute = UslugiKorporativnySaitRouteImport.update({
+  id: '/uslugi/korporativny-sait',
+  path: '/uslugi/korporativny-sait',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UslugiMobilnoePrilozhenieRoute =
+  UslugiMobilnoePrilozhenieRouteImport.update({
+    id: '/uslugi/mobilnoe-prilozhenie',
+    path: '/uslugi/mobilnoe-prilozhenie',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
+  '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
+  '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
+  '/uslugi/mobilnoe-prilozhenie': typeof UslugiMobilnoePrilozhenieRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
+  '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
+  '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
+  '/uslugi/mobilnoe-prilozhenie': typeof UslugiMobilnoePrilozhenieRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/journal': typeof JournalRoute
+  '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
+  '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
+  '/uslugi/mobilnoe-prilozhenie': typeof UslugiMobilnoePrilozhenieRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/journal' | '/uslugi/internet-magazin'
+  fullPaths:
+    | '/'
+    | '/journal'
+    | '/uslugi/crm-sistema'
+    | '/uslugi/internet-magazin'
+    | '/uslugi/korporativny-sait'
+    | '/uslugi/mobilnoe-prilozhenie'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/journal' | '/uslugi/internet-magazin'
-  id: '__root__' | '/' | '/journal' | '/uslugi/internet-magazin'
+  to:
+    | '/'
+    | '/journal'
+    | '/uslugi/crm-sistema'
+    | '/uslugi/internet-magazin'
+    | '/uslugi/korporativny-sait'
+    | '/uslugi/mobilnoe-prilozhenie'
+  id:
+    | '__root__'
+    | '/'
+    | '/journal'
+    | '/uslugi/crm-sistema'
+    | '/uslugi/internet-magazin'
+    | '/uslugi/korporativny-sait'
+    | '/uslugi/mobilnoe-prilozhenie'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   JournalRoute: typeof JournalRoute
+  UslugiCrmSistemaRoute: typeof UslugiCrmSistemaRoute
   UslugiInternetMagazinRoute: typeof UslugiInternetMagazinRoute
+  UslugiKorporativnySaitRoute: typeof UslugiKorporativnySaitRoute
+  UslugiMobilnoePrilozhenieRoute: typeof UslugiMobilnoePrilozhenieRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +125,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JournalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uslugi/crm-sistema': {
+      id: '/uslugi/crm-sistema'
+      path: '/uslugi/crm-sistema'
+      fullPath: '/uslugi/crm-sistema'
+      preLoaderRoute: typeof UslugiCrmSistemaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslugi/internet-magazin': {
       id: '/uslugi/internet-magazin'
       path: '/uslugi/internet-magazin'
       fullPath: '/uslugi/internet-magazin'
       preLoaderRoute: typeof UslugiInternetMagazinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uslugi/korporativny-sait': {
+      id: '/uslugi/korporativny-sait'
+      path: '/uslugi/korporativny-sait'
+      fullPath: '/uslugi/korporativny-sait'
+      preLoaderRoute: typeof UslugiKorporativnySaitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uslugi/mobilnoe-prilozhenie': {
+      id: '/uslugi/mobilnoe-prilozhenie'
+      path: '/uslugi/mobilnoe-prilozhenie'
+      fullPath: '/uslugi/mobilnoe-prilozhenie'
+      preLoaderRoute: typeof UslugiMobilnoePrilozhenieRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +159,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   JournalRoute: JournalRoute,
+  UslugiCrmSistemaRoute: UslugiCrmSistemaRoute,
   UslugiInternetMagazinRoute: UslugiInternetMagazinRoute,
+  UslugiKorporativnySaitRoute: UslugiKorporativnySaitRoute,
+  UslugiMobilnoePrilozhenieRoute: UslugiMobilnoePrilozhenieRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
