@@ -21,7 +21,7 @@ export function Contact({ title, text }: { title?: string; text?: string } = {})
           />
         </div>
         <div className="order-1 flex flex-col items-center px-6 pt-12 text-center md:order-2 md:items-start md:self-center md:py-14 md:pr-12 md:text-left">
-          <h2 id="contact-title" className="display text-[clamp(2.5rem,5.3vw,4.5rem)] leading-[0.95]">
+          <h2 id="contact-title" className="display text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.95]">
             {title ?? (<>Расскажите,<br />что вы задумали.</>)}
           </h2>
           {text && <p className="mt-5 max-w-xl text-ink-muted md:text-lg">{text}</p>}

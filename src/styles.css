@@ -64,6 +64,7 @@
   --color-ink-muted: var(--ink-muted);
   --color-ink-border: var(--ink-border);
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", "Manrope", ui-sans-serif, system-ui, sans-serif;
   --shadow-showcase: var(--shadow-showcase);
 }
 
@@ -141,6 +142,7 @@
 }
 
 @utility display {
+  font-family: var(--font-display);
   font-weight: 800;
   letter-spacing: -0.055em;
   line-height: 0.88;
@@ -390,7 +392,7 @@
 }
 /* Seated brief robot perched on the contact card's bottom edge, legs hanging below it. */
 .pb-studio-process { padding-top: 96px; }
-.pb-studio-title { font-size: 56px; font-weight: 800; line-height: 1.06; letter-spacing: 0; }
+.pb-studio-title { font-family: var(--font-display); font-size: 52px; font-weight: 800; line-height: 1.06; letter-spacing: 0; }
 .pb-studio-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
 .pb-studio-heading > p { color: var(--muted-foreground); font-size: 18px; line-height: 1.4; padding-bottom: 4px; }
 .pb-process-image { display: block; width: 100%; height: auto; margin-top: 28px; }
@@ -404,7 +406,7 @@
 .pb-cost-image { position: absolute; inset: auto 0 0; z-index: -1; display: block; width: 100%; height: auto; }
 .pb-cost-image img { display: block; width: 100%; height: auto; }
 .pb-cost-copy { width: 49%; padding: 100px 0 28px 44px; color: var(--ink-foreground); }
-.pb-cost-copy .pb-studio-title { font-size: 47px; }
+.pb-cost-copy .pb-studio-title { font-size: 44px; }
 .pb-cost-description { font-size: 16px; line-height: 1.4; margin-top: 16px; color: var(--ink-muted); }
 .pb-cost-button { margin-top: 28px; }
 .pb-studio-faq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; padding-top: 88px; padding-bottom: 64px; }
@@ -433,14 +435,14 @@
   .pb-faq-reveal[data-open="true"] .pb-faq-answer { animation: none; }
 }
 @media (max-width: 1100px) and (min-width: 701px) {
-  .pb-studio-title { font-size: 45px; }
-  .pb-cost-copy .pb-studio-title { font-size: 39px; }
+  .pb-studio-title { font-size: 42px; }
+  .pb-cost-copy .pb-studio-title { font-size: 36px; }
   .pb-cost-copy { padding: 76px 0 24px 32px; }
   .pb-studio-faq { gap: 36px; }
 }
 @media (max-width: 700px) {
   .pb-studio-process { padding-top: 64px; }
-  .pb-studio-title { font-size: 41px; }
+  .pb-studio-title { font-size: 38px; }
   .pb-studio-heading { display: block; }
   .pb-studio-heading > p { font-size: 19px; margin-top: 18px; }
   .pb-process-image { margin: 24px -12px 0; width: calc(100% + 24px); max-width: none; }
@@ -456,27 +458,27 @@
   .pb-cost-copy { position: absolute; top: 43%; left: 0; width: 100%; padding: 0 28px 28px; color: var(--ink-foreground); }
   .pb-cost-copy .pb-cost-description { color: var(--ink-muted); }
   .pb-cost-button { width: 100%; justify-content: center; min-height: 52px; background: var(--ink-foreground); color: var(--ink); }
-  .pb-cost-copy .pb-studio-title { font-size: 35px; }
+  .pb-cost-copy .pb-studio-title { font-size: 32px; }
   .pb-cost-description { font-size: 16px; }
   .pb-cost-button { margin-top: 22px; }
   .pb-cost-image { position: absolute; inset: 0; width: 100%; height: auto; margin: 0; }
   .pb-studio-faq { grid-template-columns: minmax(0, 1fr); gap: 12px; padding-top: 56px; padding-bottom: 40px; }
   .pb-faq-art { min-width: 0; padding: 0; }
-  .pb-faq-art .pb-studio-title { font-size: 39px; }
+  .pb-faq-art .pb-studio-title { font-size: 36px; }
   .pb-faq-art img { position: static; width: 100%; max-width: 400px; margin: 8px auto 0; }
   .pb-faq-toggle { font-size: 19px; font-weight: 700; min-height: 64px; line-height: 1.2; }
   .pb-faq-toggle > span:first-child { min-width: 0; }
   .pb-faq-answer { font-size: 16px; padding-right: 40px; line-height: 1.4; }
 }
 @media (max-width: 374px) {
-  .pb-studio-heading .pb-studio-title { font-size: 37px; }
-  .pb-faq-art .pb-studio-title { font-size: 35px; }
+  .pb-studio-heading .pb-studio-title { font-size: 34px; }
+  .pb-faq-art .pb-studio-title { font-size: 32px; }
   .pb-cost-copy { padding-inline: 22px; }
-  .pb-cost-copy .pb-studio-title { font-size: 33px; }
+  .pb-cost-copy .pb-studio-title { font-size: 30px; }
   .pb-cost-description { font-size: 15px; }
 }
 @media (min-width: 390px) and (max-width: 700px) {
-  .pb-cost-copy .pb-studio-title { font-size: 39px; }
+  .pb-cost-copy .pb-studio-title { font-size: 36px; }
 }
 .pb-contact-seat,
 .pb-contact-robot { width: min(300px, 62vw); }
