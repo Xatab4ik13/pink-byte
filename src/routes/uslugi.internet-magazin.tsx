@@ -95,8 +95,7 @@ function ShopPage() {
             </div>
           </div>
           <figure className="mt-8 md:mt-10">
-            <img src={heroDevices.url} width={1600} height={850} alt="Планшет и смартфон с демонстрационным каталогом мебели и оформлением заказа" fetchPriority="high" decoding="async" className="mx-auto h-auto w-full max-w-[1200px]" />
-            <figcaption className="mt-3 text-center text-xs text-muted-foreground md:hidden">Демонстрационный интерфейс</figcaption>
+            <img src={heroDevices.url} width={1600} height={850} alt="Планшет и смартфон с демонстрационным каталогом мебели и оформлением заказа" fetchPriority="high" decoding="async" className="pb-shop-hero-devices mx-auto h-auto w-full max-w-[1200px]" />
           </figure>
         </section>
 
@@ -158,7 +157,6 @@ function ShopPage() {
             </ul>
             <figure className="relative order-1 flex flex-col lg:order-none lg:min-h-[42rem]">
               <img src={products.url} width={943} height={796} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full pb-shop-products-img" />
-              <figcaption className="mt-2 text-xs text-muted-foreground md:hidden">Пример интерфейса</figcaption>
             </figure>
           </div>
         </section>
@@ -173,7 +171,7 @@ function ShopPage() {
                 <p className="font-display mt-4 text-5xl font-extrabold tracking-[-0.04em] whitespace-nowrap text-primary md:text-7xl">От 40 000 ₽</p>
                 <p className="mt-2 text-2xl font-bold md:text-3xl">10 рабочих дней</p>
                 <p className="mt-2 text-sm text-ink-muted">При готовых фотографиях и описаниях товаров.</p>
-                <Button onClick={openBrief} className={`${btn.lime} mt-7 h-auto px-10 py-4`}>Получить расчёт</Button>
+                <Button onClick={openBrief} className={`${btn.lime} mt-7 h-auto px-10 py-4 max-md:hidden`}>Получить расчёт</Button>
               </div>
               <div className="self-center">
                 <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
@@ -184,6 +182,9 @@ function ShopPage() {
                 </ul>
                 <p className="mt-6 text-sm text-ink-muted">Итоговую стоимость рассчитаем под ваш проект.<br />Домен и хостинг оплачиваются отдельно.</p>
               </div>
+            </div>
+            <div className="relative flex justify-center px-6 pb-8 md:hidden">
+              <Button onClick={openBrief} className={`${btn.lime} h-auto rounded-full px-10 py-4 text-base`}>Получить расчёт</Button>
             </div>
           </div>
         </section>
