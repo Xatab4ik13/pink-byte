@@ -148,6 +148,16 @@
   line-height: 0.88;
 }
 
+/* Header nav labels: Inter, 15% lighter than the ExtraBold headings. */
+.pb-nav-label {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 680;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+
 @utility reveal {
   opacity: 0;
   transform: translateY(24px);
