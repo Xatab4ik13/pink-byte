@@ -54,8 +54,8 @@ function ShopPage() {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <>
-      <div id="top" className="bg-ink text-ink-foreground">
-        <Header initialActive="/#services" />
+      <div id="top" className="border-b border-border">
+        <Header initialActive="/#services" tone="light" />
       </div>
       <main>
         <section className="container-pb pt-8 md:pt-10" aria-labelledby="shop-title">
@@ -66,11 +66,11 @@ function ShopPage() {
             <span className="mx-2">/</span>
             <span>Интернет-магазины</span>
           </nav>
-          <div className="mt-6 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-start">
+          <div className="mt-6 grid gap-8 lg:grid-cols-[1.55fr_1fr] lg:items-start">
             <div>
-              <h1 id="shop-title" className="text-[clamp(2.4rem,6.4vw,5.6rem)] font-extrabold leading-[0.98] tracking-tight">
+              <h1 id="shop-title" className="text-[clamp(1.9rem,5.6vw,5rem)] font-extrabold leading-[0.98] tracking-tight">
                 Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[-0.25em] rounded-full bg-primary align-middle" />
-                <br />интернет-магазинов
+                <br /><span className="whitespace-nowrap">интернет-магазинов</span>
               </h1>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-2xl font-bold md:text-3xl">
                 <span>От 40 000 ₽</span>
@@ -83,7 +83,7 @@ function ShopPage() {
               <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                 Создаём интернет-магазины на собственном коде для бизнеса по всей России. Разрабатываем дизайн, наполняем каталог, подключаем оплату и доставку.
               </p>
-              <div className="mt-6 flex flex-wrap items-center gap-6">
+              <div className="mt-8 flex flex-wrap items-center gap-6 lg:mt-[4.5rem]">
                 <Button onClick={openBrief} className={`${btn.ink} h-auto px-7 py-3.5`}>Обсудить проект</Button>
                 <a href="#case" className="text-sm font-semibold underline underline-offset-4">Посмотреть проект</a>
               </div>
@@ -112,25 +112,28 @@ function ShopPage() {
             </div>
           </Reveal>
           <img src={brionilux.url} width={1448} height={1024} loading="lazy" decoding="async" alt="Brionilux: каталог рамок, карточка товара, корзина и оформление заказа без регистрации" className="mt-8 h-auto w-full" />
+          <Button asChild className={`${btn.ink} mt-6 h-auto px-10 py-4 text-lg md:-mt-24 md:relative`}>
+            <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
+          </Button>
         </section>
 
         <section className="container-pb pt-20 md:pt-28" aria-labelledby="included-title">
-          <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-            <div>
-              <h2 id="included-title" className="text-4xl font-extrabold leading-[1.02] md:text-6xl">Что входит в разработку интернет-магазина</h2>
-              <ul className="mt-8">
-                {INCLUDED.map((i) => (
-                  <li key={i.title} className="border-b border-border py-5 last:border-0">
-                    <h3 className="text-xl font-bold">{i.title}</h3>
-                    <p className="mt-1 text-muted-foreground">{i.text}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <figure>
-              <p className="mb-4 text-right text-sm text-muted-foreground">Собственный код.<br />Без конструкторов.</p>
-              <img src={products.url} width={1200} height={829} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full" />
-              <figcaption className="mt-2 text-xs text-muted-foreground">Пример интерфейса</figcaption>
+          <div className="flex items-start justify-between gap-6">
+            <h2 id="included-title" className="text-4xl font-extrabold leading-[1.02] md:text-6xl">Что входит в разработку<br className="hidden md:block" /> интернет-магазина</h2>
+            <p className="hidden shrink-0 text-right text-sm text-muted-foreground md:block">Собственный код.<br />Без конструкторов.</p>
+          </div>
+          <div className="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-stretch">
+            <ul>
+              {INCLUDED.map((i) => (
+                <li key={i.title} className="border-b border-border py-6 first:pt-0 last:border-0">
+                  <h3 className="text-xl font-bold md:text-2xl">{i.title}</h3>
+                  <p className="mt-1 text-muted-foreground">{i.text}</p>
+                </li>
+              ))}
+            </ul>
+            <figure className="relative flex flex-col">
+              <img src={products.url} width={1200} height={829} loading="lazy" decoding="async" alt="Объёмные стеклянные панели управления товарами" className="h-auto w-full lg:absolute lg:inset-0 lg:h-full lg:object-contain lg:object-right lg:origin-right lg:scale-[1.12]" />
+              <figcaption className="mt-2 text-xs text-muted-foreground lg:absolute lg:bottom-0 lg:left-0">Пример интерфейса</figcaption>
             </figure>
           </div>
         </section>
@@ -162,22 +165,27 @@ function ShopPage() {
         <section className="container-pb pt-20 md:pt-24" aria-labelledby="faq-title">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
             <h2 id="faq-title" className="text-4xl font-extrabold leading-[1.02] md:text-6xl">Перед началом работы</h2>
-            <div className="pb-faq-list">
-              {FAQ.map((item, index) => (
-                <div key={item.q} className="pb-faq-item">
-                  <h3>
-                    <Button variant="ghost" onClick={() => setOpen(open === index ? null : index)} aria-expanded={open === index} aria-controls={`shop-answer-${index}`} className="pb-faq-toggle">
-                      <span>{item.q}</span>
-                      <span className="pb-faq-icon" aria-hidden="true">{open === index ? <Minus /> : <Plus />}</span>
-                    </Button>
-                  </h3>
-                  <div id={`shop-answer-${index}`} aria-hidden={open !== index} data-open={open === index} className="pb-faq-reveal">
-                    <div className="pb-faq-answer-clip">
-                      <p className="pb-faq-answer">{item.a}</p>
+            <div className="grid gap-3">
+              {FAQ.map((item, index) => {
+                const on = open === index;
+                return (
+                  <div key={item.q} className="rounded-2xl border border-border bg-background">
+                    <h3>
+                      <button type="button" onClick={() => setOpen(on ? null : index)} aria-expanded={on} aria-controls={`shop-answer-${index}`} className="flex w-full items-center gap-4 px-5 py-4 text-left text-base font-medium md:text-lg">
+                        <span aria-hidden className={`grid size-8 shrink-0 place-items-center rounded-full transition-colors duration-300 ${on ? "bg-primary text-primary-foreground" : "bg-muted text-foreground"}`}>
+                          {on ? <Minus className="size-4" /> : <Plus className="size-4" />}
+                        </span>
+                        <span>{item.q}</span>
+                      </button>
+                    </h3>
+                    <div id={`shop-answer-${index}`} aria-hidden={!on} data-open={on} className="pb-faq-reveal">
+                      <div className="pb-faq-answer-clip">
+                        <div className="pb-5 pl-[4.25rem] pr-5"><p className="pb-faq-answer text-sm text-muted-foreground md:text-base">{item.a}</p></div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
