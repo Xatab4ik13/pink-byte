@@ -118,8 +118,8 @@ function ShopPage() {
           </Reveal>
           <div className="mt-6 grid gap-6 md:hidden">
             <figure>
+              <figcaption className="mb-2 text-base font-bold">Каталог и карточка товара</figcaption>
               <img src={mCatalog.url} width={691} height={1517} loading="lazy" decoding="async" alt="Brionilux: каталог рамок и карточка товара" className="mx-auto h-auto w-full max-w-md" />
-              <figcaption className="mt-2 text-base font-bold">Каталог и карточка товара</figcaption>
             </figure>
             <figure>
               <figcaption><span className="block text-base font-bold">Корзина</span><span className="text-sm text-muted-foreground">Товары и количество.</span></figcaption>
@@ -167,9 +167,9 @@ function ShopPage() {
           <div className="relative overflow-hidden rounded-[2rem] bg-ink text-ink-foreground">
             <img src={mPrice.url} width={760} height={1710} loading="lazy" decoding="async" alt="" aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-auto w-full md:hidden" />
             <img src={costPanel.url} width={1800} height={631} loading="lazy" decoding="async" alt="" aria-hidden className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-right md:block" />
-            <div className="relative grid gap-10 p-8 md:p-12 lg:grid-cols-[1fr_1.5fr] lg:pr-[16%]">
+            <div className="relative grid gap-8 p-6 md:gap-10 md:p-12 lg:grid-cols-[1fr_1.5fr] lg:pr-[16%]">
               <div>
-                <h2 id="price-title" className="font-display text-4xl font-extrabold leading-[0.95] tracking-[-0.04em] md:text-6xl">Сколько стоит разработка</h2>
+                <h2 id="price-title" className="font-display pr-16 text-[2.1rem] md:pr-0 font-extrabold leading-[0.95] tracking-[-0.04em] md:text-6xl">Сколько стоит разработка</h2>
                 <p className="font-display mt-4 text-5xl font-extrabold tracking-[-0.04em] whitespace-nowrap text-primary md:text-7xl">От 40 000 ₽</p>
                 <p className="mt-2 text-2xl font-bold md:text-3xl">10 рабочих дней</p>
                 <p className="mt-2 text-sm text-ink-muted">При готовых фотографиях и описаниях товаров.</p>
