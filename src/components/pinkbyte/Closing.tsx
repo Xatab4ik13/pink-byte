@@ -1,4 +1,5 @@
 import robotBrief from "@/assets/robot-brief-seated.webp";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Logo, NAV, Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
@@ -38,16 +39,16 @@ export function Footer() {
   return (
     <footer className="container-pb mt-16">
       <div className="flex flex-col gap-6 border-t border-border py-8 md:flex-row md:items-center md:justify-between">
-        <a href="#top" aria-label="Pink Byte, наверх">
+        <Link to="/" aria-label="Pink Byte, наверх">
           <Logo tone="dark" className="w-32" />
-        </a>
+        </Link>
         <nav aria-label="Навигация в подвале">
           <ul className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
             {NAV.map((n) => (
               <li key={n.href}>
-                <a href={n.href} className="text-foreground/80 hover:text-foreground">
+                <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} className="text-foreground/80 hover:text-foreground">
                   {n.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

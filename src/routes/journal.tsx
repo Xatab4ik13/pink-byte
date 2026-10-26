@@ -23,7 +23,7 @@ function Journal() {
   return (
     <>
       <div id="top" className="bg-ink text-ink-foreground">
-        <Header initialActive="/journal" />
+        <Header />
       </div>
       <main className="container-pb min-h-[60vh] py-16 md:py-24">
         <h1 className="font-display text-5xl font-extrabold leading-tight md:text-7xl">Журнал</h1>
