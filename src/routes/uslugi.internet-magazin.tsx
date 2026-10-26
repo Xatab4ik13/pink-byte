@@ -137,11 +137,11 @@ function ShopPage() {
 
         <section className="container-pb pt-16" aria-labelledby="price-title">
           <div className="relative overflow-hidden rounded-[2rem] bg-ink text-ink-foreground">
-            <img src={costPanel.url} width={1800} height={753} loading="lazy" decoding="async" alt="" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full object-cover object-right" />
+            <img src={costPanel.url} width={1800} height={631} loading="lazy" decoding="async" alt="" aria-hidden className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-right md:block" />
             <div className="relative grid gap-10 p-8 md:p-12 lg:grid-cols-[1fr_1.5fr] lg:pr-[16%]">
               <div>
                 <h2 id="price-title" className="text-4xl font-extrabold leading-[1.02] md:text-5xl">Сколько стоит разработка</h2>
-                <p className="mt-4 text-5xl font-extrabold text-primary md:text-6xl">От 40 000 ₽</p>
+                <p className="mt-4 text-5xl font-extrabold whitespace-nowrap text-primary md:text-6xl">От 40 000 ₽</p>
                 <p className="mt-2 text-2xl font-bold md:text-3xl">10 рабочих дней</p>
                 <p className="mt-2 text-sm text-ink-muted">При готовых фотографиях и описаниях товаров.</p>
                 <Button onClick={openBrief} className={`${btn.lime} mt-7 h-auto`}>Получить расчёт</Button>
