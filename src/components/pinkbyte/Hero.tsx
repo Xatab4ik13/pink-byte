@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import robotLeanSrc from "@/assets/robot-hero.webp";
 import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
 import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
@@ -34,10 +34,24 @@ export function Header({ initialActive = "/#projects", tone = "dark" }: { initia
         <nav aria-label="Основная навигация" className="hidden lg:block">
           <ul className={`flex gap-2 text-[15px] ${light ? "text-foreground" : "text-ink-foreground"}`}>
             {NAV.map((n) => (
-              <li key={n.href}>
-                <Button asChild variant="ghost" className={light ? `h-11 rounded-full px-3 xl:px-5 font-normal text-muted-foreground hover:bg-transparent hover:text-foreground ${active === n.href ? "font-semibold text-foreground underline decoration-primary decoration-2 underline-offset-[10px]" : ""}` : `h-11 rounded-full px-3 xl:px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${active === n.href ? "bg-ink-border" : ""}`}>
-                  <a href={n.href} onClick={() => setActive(n.href)} aria-current={active === n.href ? "location" : undefined}>{n.label}</a>
+              <li key={n.href} className="group relative">
+                <Button asChild variant="ghost" className={light ? `h-11 rounded-full px-3 xl:px-5 font-normal text-foreground hover:bg-muted hover:text-foreground ${active === n.href ? "bg-muted" : ""}` : `h-11 rounded-full px-3 xl:px-5 font-normal text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${active === n.href ? "bg-ink-border" : ""}`}>
+                  <a href={n.href} onClick={() => setActive(n.href)} aria-current={active === n.href ? "location" : undefined}>
+                    {n.label}
+                    {n.children && <ChevronDown className="size-4 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180" aria-hidden="true" />}
+                  </a>
                 </Button>
+                {n.children && (
+                  <div className="invisible absolute left-0 top-full z-40 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    <ul className={`min-w-56 rounded-2xl border p-2 shadow-lg ${light ? "border-border bg-background" : "border-ink-border bg-ink"}`}>
+                      {n.children.map((c) => (
+                        <li key={c.href}>
+                          <a href={c.href} className={`block rounded-xl px-4 py-2.5 ${light ? "text-foreground hover:bg-muted" : "text-ink-foreground hover:bg-ink-border"}`}>{c.label}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -66,6 +80,11 @@ export function Header({ initialActive = "/#projects", tone = "dark" }: { initia
                 <a href={n.href} onClick={() => { setActive(n.href); setOpen(false); }} className="block rounded-2xl px-4 py-3 text-lg text-ink-foreground hover:bg-ink-border">
                   {n.label}
                 </a>
+                {n.children?.map((c) => (
+                  <a key={c.href} href={c.href} onClick={() => setOpen(false)} className="block rounded-2xl py-2.5 pl-9 pr-4 text-base text-ink-muted hover:bg-ink-border hover:text-ink-foreground">
+                    {c.label}
+                  </a>
+                ))}
               </li>
             ))}
           </ul>
