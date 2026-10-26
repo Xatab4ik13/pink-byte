@@ -57,12 +57,12 @@ function ShopPage() {
       <div id="top" className="bg-background">
         <Header initialActive="/#services" tone="light" />
       </div>
-      <div className="bg-ink text-ink-foreground">
-        <section className="container-pb pb-44 pt-6 md:pb-[10.75rem] md:pt-8" aria-labelledby="shop-title">
-          <nav aria-label="Хлебные крошки" className="text-xs text-ink-muted">
-            <Link to="/" className="hover:text-ink-foreground">Главная</Link>
+      <main>
+        <section className="container-pb pt-8 md:pt-10" aria-labelledby="shop-title">
+          <nav aria-label="Хлебные крошки" className="text-xs text-muted-foreground">
+            <Link to="/" className="hover:text-foreground">Главная</Link>
             <span className="mx-2">/</span>
-            <a href="/#services" className="hover:text-ink-foreground">Услуги</a>
+            <a href="/#services" className="hover:text-foreground">Услуги</a>
             <span className="mx-2">/</span>
             <span>Интернет-магазины</span>
           </nav>
@@ -70,28 +70,23 @@ function ShopPage() {
             <div>
               <h1 id="shop-title" className="text-[clamp(1.9rem,5.6vw,5rem)] font-black leading-[0.95] tracking-[-0.045em]">
                 Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" />
-                <br /><span className="whitespace-nowrap text-primary">интернет-магазинов</span>
+                <br /><span className="whitespace-nowrap">интернет-магазинов</span>
               </h1>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-2xl font-bold md:text-3xl">
                 <span>От 40 000 ₽</span>
-                <span aria-hidden className="h-7 w-px bg-ink-border" />
+                <span aria-hidden className="h-7 w-px bg-border" />
                 <span>10 рабочих дней</span>
               </div>
-              <p className="mt-2 text-sm text-ink-muted">При готовых фотографиях и описаниях товаров.</p>
+              <p className="mt-2 text-sm text-muted-foreground">При готовых фотографиях и описаниях товаров.</p>
             </div>
             <div className="lg:pt-2">
-              <p className="text-base leading-relaxed text-ink-muted md:text-lg">
+              <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
                 Создаём интернет-магазины на собственном коде для бизнеса по всей России. Разрабатываем дизайн, наполняем каталог, подключаем оплату и доставку.
               </p>
               <Button onClick={openBrief} className={`${btn.paper} bg-background text-foreground border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] hover:bg-background mt-8 h-auto px-10 py-4 text-base`}>Рассчитать стоимость магазина</Button>
             </div>
           </div>
-        </section>
-      </div>
-
-      <main>
-        <section className="container-pb relative z-10 -mt-20 md:-mt-28" aria-label="Демонстрация интерфейса магазина">
-          <figure>
+          <figure className="mt-10">
             <img src={heroDevices.url} width={1600} height={850} alt="Планшет и смартфон с демонстрационным каталогом мебели и оформлением заказа" fetchPriority="high" decoding="async" className="mx-auto h-auto w-full max-w-[1200px]" />
           </figure>
         </section>
