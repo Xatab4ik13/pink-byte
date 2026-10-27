@@ -12,6 +12,9 @@ import project from "@/assets/corporate-conc-case.webp.asset.json";
 import pages from "@/assets/corporate-pages-panel-feathered.webp.asset.json";
 import cost from "@/assets/shop-cost-panel.webp.asset.json";
 import mobileCost from "@/assets/shop-m-price.webp.asset.json";
+import mHero from "@/assets/corp-m-hero.webp.asset.json";
+import mDirections from "@/assets/corp-m-directions.webp.asset.json";
+import mForm from "@/assets/corp-m-form.webp.asset.json";
 
 const PRICE = `От ${new Intl.NumberFormat("ru-RU").format(CORPORATE_OFFER.priceFrom)} ₽`;
 const TITLE = "Разработка корпоративного сайта от 30 000 ₽ · Pink Byte";
@@ -21,6 +24,12 @@ const CASE_LABELS = [
   { title: "Направления бизнеса", text: "Разные услуги, понятные разделы." },
   { title: "Информация о компании", text: "Контекст для клиентов и партнёров." },
   { title: "Формы обращений", text: "Запрос попадает к нужной команде." },
+];
+const CASE_TAGS = ["Дизайн", "Разработка", "Адаптивная версия"];
+const CASE_SCREENS = [
+  { img: mHero, width: 900, height: 589, alt: "Главный экран сайта Концентрации", title: "Главный экран", text: "Представление компании и её специализации." },
+  { img: mDirections, width: 900, height: 380, alt: "Раздел «Направления бизнеса» сайта Концентрации", title: "Направления бизнеса", text: "Отдельные разделы для каждого направления." },
+  { img: mForm, width: 900, height: 564, alt: "Форма обращения на сайте Концентрации", title: "Форма обращения", text: "Связь с компанией по нужному вопросу." },
 ];
 
 export const Route = createFileRoute("/uslugi/korporativny-sait")({
