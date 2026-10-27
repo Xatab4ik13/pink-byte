@@ -9,7 +9,7 @@ import { useOpenBrief } from "@/components/pinkbyte/brief-context";
 import { CORPORATE_OFFER, CORPORATE_INCLUDED, CORPORATE_FAQ } from "@/components/pinkbyte/corporate-data";
 import devices from "@/assets/corporate-hero-devices.webp.asset.json";
 import project from "@/assets/corporate-conc-case.webp.asset.json";
-import pages from "@/assets/corporate-pages-panel-tight.webp.asset.json";
+import pages from "@/assets/corporate-pages-panel-feathered.webp.asset.json";
 import cost from "@/assets/shop-cost-panel.webp.asset.json";
 import mobileCost from "@/assets/shop-m-price.webp.asset.json";
 
@@ -52,7 +52,7 @@ function CorporatePage() {
         <div className="mt-6 grid gap-6 md:gap-8 lg:grid-cols-[1.55fr_1fr] lg:items-start">
           <div>
             <h1 id="corporate-title" className="pb-service-title font-display font-extrabold">
-              Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" /><br />корпоративных<span className="block pt-[0.5cm]">сайтов</span>
+              Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" /><br />корпоративных<span className="block pl-4">сайтов</span>
             </h1>
             <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xl font-bold md:text-3xl">
               <span>{PRICE}</span>
@@ -81,8 +81,8 @@ function CorporatePage() {
           <p className="mt-3 max-w-3xl text-lg text-muted-foreground">Разработали сайт „Концентрации“ под ключ: дизайн, адаптивную версию и функциональность</p>
         </Reveal>
         <img src={project.url} width={1600} height={647} alt="Сайт Концентрации: главная страница, направления бизнеса и форма обращения" loading="lazy" decoding="async" className="mt-7 -ml-[7.5%] h-auto w-[115%] max-w-none" />
-        <ul className="mt-4 grid gap-5 md:grid-cols-[1.45fr_1fr_0.85fr]">
-          {CASE_LABELS.map((item) => <li key={item.title}><h3 className="text-base font-bold md:text-lg">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.text}</p></li>)}
+        <ul className="mt-4 grid gap-5 md:-mt-2 md:grid-cols-[1.45fr_1fr_0.85fr]">
+          {CASE_LABELS.map((item) => <li key={item.title} className="md:translate-x-20"><h3 className="text-base font-bold md:text-lg">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.text}</p></li>)}
         </ul>
         <Button asChild className={`${btn.paper} border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] mt-6 h-auto px-12 py-4 text-lg max-md:w-full max-md:rounded-full max-md:bg-foreground max-md:text-background max-md:text-base max-md:hover:bg-foreground/90`}>
           <a href="https://conc.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
