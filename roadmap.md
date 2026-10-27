@@ -67,3 +67,4 @@
 - [x] Verify corporate page navigation, FAQ and brief buttons on desktop/mobile and test the offer rules.
 - [x] Align corporate hero typography/button, both case sections, included illustration size and corporate cost contents with the shop page; verify desktop/mobile.
 - [x] Tune corporate heading line spacing, replace hero offer columns, enlarge case by 15%, match visible included asset scale and simplify price timing; verify.
+- [x] Move case captions up/right, restore heading line height with slight right indent, remove hard shadow perimeter on included asset; verify.
