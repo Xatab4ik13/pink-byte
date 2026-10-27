@@ -86,6 +86,11 @@ function AppPage() {
           </div>
         </Reveal>
         <img src={booking.url} width={1443} height={879} loading="lazy" decoding="async" alt="Экраны приложения Моя Бронь: поиск и фильтры, карточка отеля, бронирование и оплата" className="mt-8 h-auto w-full" />
+        <div className="mt-3 hidden grid-cols-3 text-center text-sm text-muted-foreground md:grid">
+          <span>Поиск и фильтры</span>
+          <span>Карточка отеля</span>
+          <span>Бронирование и оплата</span>
+        </div>
         <div className="mt-6 flex justify-center">
           <Button asChild className={`${outlined} h-auto px-10 py-4 text-base max-md:w-full`}>
             <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">Смотреть в App Store</a>
