@@ -12,6 +12,9 @@ import project from "@/assets/corporate-conc-case.webp.asset.json";
 import pages from "@/assets/corporate-pages-panel-feathered.webp.asset.json";
 import cost from "@/assets/shop-cost-panel.webp.asset.json";
 import mobileCost from "@/assets/shop-m-price.webp.asset.json";
+import mHero from "@/assets/corp-m-hero.webp.asset.json";
+import mDirections from "@/assets/corp-m-directions.webp.asset.json";
+import mForm from "@/assets/corp-m-form.webp.asset.json";
 
 const PRICE = `От ${new Intl.NumberFormat("ru-RU").format(CORPORATE_OFFER.priceFrom)} ₽`;
 const TITLE = "Разработка корпоративного сайта от 30 000 ₽ · Pink Byte";
@@ -21,6 +24,12 @@ const CASE_LABELS = [
   { title: "Направления бизнеса", text: "Разные услуги, понятные разделы." },
   { title: "Информация о компании", text: "Контекст для клиентов и партнёров." },
   { title: "Формы обращений", text: "Запрос попадает к нужной команде." },
+];
+const CASE_TAGS = ["Дизайн", "Разработка", "Адаптивная версия"];
+const CASE_SCREENS = [
+  { img: mHero, width: 900, height: 589, alt: "Главный экран сайта Концентрации", title: "Главный экран", text: "Представление компании и её специализации." },
+  { img: mDirections, width: 900, height: 380, alt: "Раздел «Направления бизнеса» сайта Концентрации", title: "Направления бизнеса", text: "Отдельные разделы для каждого направления." },
+  { img: mForm, width: 900, height: 564, alt: "Форма обращения на сайте Концентрации", title: "Форма обращения", text: "Связь с компанией по нужному вопросу." },
 ];
 
 export const Route = createFileRoute("/uslugi/korporativny-sait")({
@@ -75,17 +84,36 @@ function CorporatePage() {
       </section>
 
       <section id="case" className="container-pb mt-8 scroll-mt-6 border-t border-border pt-8 md:mt-10" aria-labelledby="corporate-case-title">
-        <Reveal>
+        <Reveal className="max-md:hidden">
           <h2 id="corporate-case-title" className="font-display text-3xl font-extrabold leading-none md:text-6xl">Корпоративный сайт в деталях</h2>
           <p className="mt-3 max-w-3xl text-lg text-muted-foreground">Разработали сайт „Концентрации“ под ключ: дизайн, адаптивную версию и функциональность</p>
         </Reveal>
-        <img src={project.url} width={1600} height={647} alt="Сайт Концентрации: главная страница, направления бизнеса и форма обращения" loading="lazy" decoding="async" className="mt-7 -ml-[7.5%] h-auto w-[115%] max-w-none" />
-        <ul className="mt-4 grid gap-5 md:-mt-2 md:grid-cols-[1.45fr_1fr_0.85fr]">
+        <img src={project.url} width={1600} height={647} alt="Сайт Концентрации: главная страница, направления бизнеса и форма обращения" loading="lazy" decoding="async" className="mt-7 -ml-[7.5%] h-auto w-[115%] max-w-none max-md:hidden" />
+        <ul className="mt-4 grid gap-5 max-md:hidden md:-mt-2 md:grid-cols-[1.45fr_1fr_0.85fr]">
           {CASE_LABELS.map((item) => <li key={item.title} className="lg:translate-x-20"><h3 className="text-base font-bold md:text-lg">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.text}</p></li>)}
         </ul>
-        <Button asChild className={`${btn.paper} border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] mt-6 h-auto px-12 py-4 text-lg max-md:w-full max-md:rounded-full max-md:bg-foreground max-md:text-background max-md:text-base max-md:hover:bg-foreground/90`}>
+        <Button asChild className={`${btn.paper} border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] mt-6 h-auto px-12 py-4 text-lg max-md:hidden`}>
           <a href="https://conc.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
         </Button>
+
+        <div className="md:hidden">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Корпоративный сайт в деталях</p>
+          <h2 className="font-display mt-2 text-4xl font-extrabold leading-none">Концентрация</h2>
+          <p className="mt-2 text-base text-muted-foreground">Корпоративный сайт · conc.ru</p>
+          <p className="mt-2 text-base text-muted-foreground">Разработали дизайн, адаптивную версию и функциональность под ключ.</p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {CASE_TAGS.map((tag) => <li key={tag} className="rounded-full bg-muted px-4 py-1.5 text-sm text-muted-foreground">{tag}</li>)}
+          </ul>
+          <div className="mt-6 grid gap-6">
+            {CASE_SCREENS.map((screen) => <figure key={screen.title}>
+              <img src={screen.img.url} width={screen.width} height={screen.height} alt={screen.alt} loading="lazy" decoding="async" className="h-auto w-full" />
+              <figcaption className="mt-3"><h3 className="text-lg font-bold">{screen.title}</h3><p className="mt-1 text-sm text-muted-foreground">{screen.text}</p></figcaption>
+            </figure>)}
+          </div>
+          <Button asChild className="mt-7 h-auto w-full rounded-full bg-foreground px-6 py-4 text-base font-semibold text-background hover:bg-foreground/90">
+            <a href="https://conc.ru/" target="_blank" rel="noreferrer">Посмотреть сайт</a>
+          </Button>
+        </div>
       </section>
 
       <section className="container-pb pt-16 md:pt-24" aria-labelledby="corporate-included-title">
