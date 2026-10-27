@@ -89,7 +89,7 @@ function ShopPage() {
               </p>
               <Button onClick={openBrief} className={`${btn.paper} bg-background text-foreground border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] hover:bg-background mt-8 hidden h-auto px-10 py-4 text-base md:inline-flex`}>Рассчитать стоимость магазина</Button>
               <div className="mt-6 grid gap-3 md:hidden">
-                <Button onClick={openBrief} className="h-auto w-full rounded-full bg-foreground py-4 text-base font-semibold text-background hover:bg-foreground/90">Обсудить проект</Button>
+                <Button onClick={openBrief} className="h-auto w-full whitespace-normal rounded-full bg-foreground py-4 text-base font-semibold text-background hover:bg-foreground/90">Рассчитать стоимость магазина</Button>
               </div>
             </div>
           </div>
