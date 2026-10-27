@@ -111,14 +111,10 @@ function AppPage() {
       <section className="container-pb pt-16 md:pt-20" aria-labelledby="app-stores-title">
         <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:gap-10">
           <h2 id="app-stores-title" className="font-display text-3xl font-extrabold leading-[0.95] tracking-[-0.04em] md:text-6xl">Публикация в магазинах приложений</h2>
-          <div>
-            <img src={stores.url} width={1600} height={468} loading="lazy" decoding="async" alt="App Store, Google Play и RuStore" className="h-auto w-full" />
-            <p className="mt-4 text-sm text-muted-foreground md:text-base">Подготовим приложение и отправим на проверку через ваши аккаунты разработчика. Публикация в согласованных магазинах входит в стоимость.</p>
+          <img src={stores.url} width={1600} height={468} loading="lazy" decoding="async" alt="App Store, Google Play и RuStore" className="h-auto w-full" />
+          <div className="lg:col-start-2">
+            <p className="text-sm text-muted-foreground md:text-base">Подготовим приложение и отправим на проверку через ваши аккаунты разработчика. Публикация в согласованных магазинах входит в стоимость.</p>
             <p className="mt-4 rounded-2xl border border-border px-5 py-3 text-sm text-muted-foreground">Нет аккаунтов? Поможем с регистрацией и оформлением по отдельной договорённости.</p>
-            <div className="mt-5 flex flex-wrap items-center gap-4">
-              <Button onClick={openBrief} className={`${btn.lime} h-auto px-8 py-3 max-md:w-full`}>Обсудить публикацию</Button>
-              <span className="text-sm text-muted-foreground">Решение о допуске принимает магазин.</span>
-            </div>
           </div>
         </div>
       </section>
