@@ -570,9 +570,9 @@
 .pb-drawer[data-open="true"] .pb-drawer-item { opacity: 1; transform: none; transition-delay: calc(.12s + var(--i) * .05s); }
 .pb-drawer-sub { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
 .pb-drawer-sub[data-open="true"] { grid-template-rows: 1fr; }
-.pb-drawer-foot { position: relative; display: flex; align-items: center; min-height: 5.5rem; padding: 0 1.25rem 1.25rem; }
+.pb-drawer-foot { position: relative; display: flex; align-items: center; min-height: 6.75rem; padding: 0 1.25rem 1.25rem; border-top: 1px solid transparent; }
 .pb-drawer-robot {
-  position: absolute; left: .5rem; bottom: 0; width: 9.5rem; translate: 0 38.7%;
+  position: absolute; left: .5rem; bottom: 0; width: 8.75rem; translate: 0 38.7%;
   opacity: 0; transform: translate3d(0, 12px, 0); transition: opacity .4s ease .25s, transform .5s cubic-bezier(.22,1,.36,1) .25s;
 }
 .pb-drawer[data-open="true"] .pb-drawer-robot { opacity: 1; transform: none; }
