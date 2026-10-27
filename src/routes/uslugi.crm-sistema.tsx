@@ -54,10 +54,10 @@ function CrmPage() {
               Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" /><br />
               <span className="whitespace-nowrap">CRM-систем</span> <br />на заказ
             </h1>
-            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xl font-bold md:text-3xl">
+            <div className="mt-6 flex flex-nowrap items-center gap-x-3 whitespace-nowrap text-[clamp(1rem,5vw,1.25rem)] font-bold sm:gap-x-5 md:text-3xl">
               <span>{PRICE}</span>
-              <span aria-hidden className="h-7 w-px bg-border" />
-              <span>От {CRM_OFFER.workingDaysFrom} рабочих дней</span>
+              <span aria-hidden className="h-7 w-px shrink-0 bg-border" />
+              <span>от {CRM_OFFER.workingDaysFrom} рабочих дней</span>
             </div>
             <p className="mt-2 text-sm text-muted-foreground">Точную стоимость и срок определяем по ТЗ.</p>
           </div>
