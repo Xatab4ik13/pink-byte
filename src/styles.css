@@ -603,8 +603,8 @@
 .pb-burger-float {
   position: fixed; top: 20px; right: 12px; z-index: 40;
   width: 3.5rem; height: 3.5rem;
-  border-radius: 9999px; border: 1px solid color-mix(in oklab, var(--ink-foreground) 26%, transparent);
-  background: color-mix(in oklab, var(--graphite) 88%, transparent);
+  border-radius: 9999px; border: 1px solid color-mix(in oklab, var(--ink-foreground) 38%, transparent);
+  background: color-mix(in oklab, color-mix(in oklab, var(--graphite) 78%, var(--ink-foreground)) 94%, transparent);
   -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
   box-shadow: 0 14px 34px -14px color-mix(in oklab, var(--graphite) 70%, transparent);
   color: var(--ink-foreground);
