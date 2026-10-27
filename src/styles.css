@@ -613,3 +613,8 @@
 }
 .pb-burger-float[data-show="true"] { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
 .pb-burger-float:active { transform: scale(.92); }
+
+/* Кнопки меню только на телефоне: на компьютере их выключает lg:hidden */
+@media (max-width: 1023.98px) {
+  .pb-burger, .pb-burger-float { display: grid; place-items: center; }
+}
