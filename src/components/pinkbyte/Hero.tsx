@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import robotLeanSrc from "@/assets/robot-hero.webp";
+import robotSeated from "@/assets/robot-brief-seated.webp";
 import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
 import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
 import { Button } from "@/components/ui/button";
@@ -71,45 +72,62 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
         <Button onClick={openBrief} variant="secondary" className={light ? `${btn.ink} hidden h-11 lg:inline-flex` : `${btn.paper} hidden h-11 lg:inline-flex hover:bg-background/90`}>
           Обсудить проект
         </Button>
-        <Button
+        <button
           type="button"
-          variant="ghost"
-          size="icon"
-          className={`lg:hidden rounded-full ${light ? "text-foreground" : "text-ink-foreground hover:bg-ink-border hover:text-ink-foreground"}`}
+          className={`pb-burger lg:hidden ${light ? "text-foreground" : "text-ink-foreground"}`}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? "Закрыть меню" : "Открыть меню"}
-          onClick={() => setOpen((v) => !v)}
+          aria-label="Открыть меню"
+          onClick={() => setOpen(true)}
         >
-          {open ? <X className="size-6" /> : <Menu className="size-6" />}
-        </Button>
+          <Menu className="size-9" strokeWidth={2.4} />
+        </button>
       </div>
-      {open && (
-        <nav id="mobile-menu" aria-label="Мобильная навигация" className={`tab-fade absolute inset-x-5 top-full mt-2 max-h-[calc(100dvh-100px)] overflow-y-auto rounded-lg border p-3 lg:hidden ${light ? "border-border bg-background text-foreground" : "border-ink-border bg-ink text-ink-foreground"}`}>
-          <ul>
-            {NAV.map((n) => (
-              <li key={n.href}>
-                {n.children ? <Button variant="ghost" aria-expanded={servicesOpen} aria-controls="mobile-services" onClick={() => setServicesOpen((v) => !v)} className={`h-12 w-full justify-between rounded-full px-4 pb-nav-label ${light ? "hover:bg-muted" : "hover:bg-ink-border hover:text-ink-foreground"}`}>
-                  {n.label}<ChevronDown className={`size-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-                </Button> : <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} aria-current={isActive(n.href) ? "location" : undefined} onClick={() => setOpen(false)} className={`block rounded-full px-4 py-3 pb-nav-label ${light ? "hover:bg-muted" : "hover:bg-ink-border"}`}>
-                  {n.label}
-                </Link>}
-                {n.children && servicesOpen && <ul id="mobile-services" className="py-1">
-                  {n.children.map((c) => <li key={c.href}>
-                    <Link to={c.href} onClick={() => { setOpen(false); setServicesOpen(false); }} className={`flex min-h-16 items-center gap-3 rounded-md px-4 py-2 text-sm font-semibold ${light ? "hover:bg-muted" : "hover:bg-ink-border"}`}>
-                      <img src={c.image} alt="" width={44} height={44} className="h-11 w-11 shrink-0 object-contain" />
-                      <span>{c.label}</span>
-                    </Link>
-                  </li>)}
-                </ul>}
-              </li>
-            ))}
-          </ul>
-          <Button onClick={() => { setOpen(false); openBrief(); }} variant="secondary" className={`${btn.paper} mt-3 w-full hover:bg-background/90`}>
-            Обсудить проект
-          </Button>
+      <div className="pb-drawer lg:hidden" data-open={open} aria-hidden={!open} inert={!open ? true : undefined}>
+        <button type="button" tabIndex={-1} aria-label="Закрыть меню" className="pb-drawer-backdrop" onClick={() => setOpen(false)} />
+        <nav id="mobile-menu" aria-label="Мобильная навигация" className="pb-drawer-panel text-ink-foreground">
+          <div className="pb-drawer-scroll">
+            <div className="flex items-center justify-between pb-5">
+              <Link to="/" onClick={() => setOpen(false)} aria-label="Pink Byte, на главную"><Logo tone="light" className="w-36" /></Link>
+              <button type="button" onClick={() => setOpen(false)} aria-label="Закрыть меню" className="grid size-12 place-items-center rounded-full border border-ink-border transition-colors hover:bg-ink-border">
+                <X className="size-6" />
+              </button>
+            </div>
+            <ul className="border-t border-ink-border">
+              {NAV.map((n, i) => (
+                <li key={n.href} className="pb-drawer-item border-b border-ink-border" style={{ "--i": i } as React.CSSProperties}>
+                  {n.children ? <>
+                    <button type="button" aria-expanded={servicesOpen} aria-controls="mobile-services" onClick={() => setServicesOpen((v) => !v)} className="flex w-full items-center gap-3 py-4 text-left text-xl font-bold">
+                      <span className={`size-2 rounded-full bg-primary transition-opacity ${isActive(n.href) || servicesOpen ? "opacity-100" : "opacity-0"}`} />
+                      <span className="flex-1">{n.label}</span>
+                      <ChevronDown className={`size-5 transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`} />
+                    </button>
+                    <div className="pb-drawer-sub" data-open={servicesOpen}>
+                      <ul id="mobile-services" className="overflow-hidden">
+                        {n.children.map((c) => <li key={c.href} className="border-t border-ink-border first:border-t-0">
+                          <Link to={c.href} onClick={() => { setOpen(false); setServicesOpen(false); }} className="flex min-h-16 items-center gap-4 py-2 pl-5 text-[15px] font-semibold">
+                            <img src={c.image} alt="" width={48} height={48} className="h-12 w-12 shrink-0 object-contain" />
+                            <span>{c.label}</span>
+                          </Link>
+                        </li>)}
+                      </ul>
+                    </div>
+                  </> : <Link to={n.href === "/journal" ? "/journal" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} aria-current={isActive(n.href) ? "location" : undefined} onClick={() => setOpen(false)} className="flex items-center gap-3 py-4 text-xl font-bold">
+                    <span className={`size-2 rounded-full bg-primary ${isActive(n.href) ? "opacity-100" : "opacity-0"}`} />
+                    {n.label}
+                  </Link>}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="pb-drawer-foot">
+            <img src={robotSeated} alt="" width={768} height={832} loading="lazy" decoding="async" className="pb-drawer-robot" />
+            <Button onClick={() => { setOpen(false); openBrief(); }} className={`${btn.lime} relative z-10 ml-auto h-12 px-6`}>
+              Обсудить проект
+            </Button>
+          </div>
         </nav>
-      )}
+      </div>
     </header>
   );
 }
