@@ -9,7 +9,7 @@ import { useOpenBrief } from "@/components/pinkbyte/brief-context";
 import { CORPORATE_OFFER, CORPORATE_INCLUDED, CORPORATE_FAQ } from "@/components/pinkbyte/corporate-data";
 import devices from "@/assets/corporate-hero-devices.webp.asset.json";
 import project from "@/assets/corporate-conc-case.webp.asset.json";
-import pages from "@/assets/corporate-pages-panel.webp.asset.json";
+import pages from "@/assets/corporate-pages-panel-tight.webp.asset.json";
 import cost from "@/assets/shop-cost-panel.webp.asset.json";
 import mobileCost from "@/assets/shop-m-price.webp.asset.json";
 
@@ -52,18 +52,14 @@ function CorporatePage() {
         <div className="mt-6 grid gap-6 md:gap-8 lg:grid-cols-[1.55fr_1fr] lg:items-start">
           <div>
             <h1 id="corporate-title" className="pb-service-title font-display font-extrabold">
-              Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" /><br />корпоративных сайтов
+              Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" /><br />корпоративных<span className="block pt-[0.5cm]">сайтов</span>
             </h1>
-            <dl className="mt-7 grid grid-cols-3 gap-3 md:max-w-3xl md:gap-6">
-              {[
-                { value: PRICE, label: "Стоимость разработки" },
-                { value: `От ${CORPORATE_OFFER.pagesFrom} страниц`, label: "Минимальный объём" },
-                { value: `От ${CORPORATE_OFFER.workingDaysFrom} рабочих дней`, label: "Срок запуска" },
-              ].map((item) => <div key={item.label} className="min-w-0 border-l border-border pl-3 first:border-0 first:pl-0 md:pl-6">
-                <dd className="text-base font-bold leading-tight md:text-2xl">{item.value}</dd>
-                <dt className="mt-2 text-xs leading-snug text-muted-foreground md:text-sm">{item.label}</dt>
-              </div>)}
-            </dl>
+            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xl font-bold md:text-3xl">
+              <span>{PRICE}</span>
+              <span aria-hidden className="h-7 w-px bg-border" />
+              <span>{CORPORATE_OFFER.workingDaysFrom} рабочих дней</span>
+            </div>
+            <p className="mt-2 text-sm text-muted-foreground">При готовых текстах и фотографиях.</p>
           </div>
           <div className="lg:pt-2">
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">Создаём сайты на собственном коде для компаний по всей России. Дизайн, разработка и запуск под задачи вашего бизнеса.</p>
@@ -84,7 +80,7 @@ function CorporatePage() {
           <h2 id="corporate-case-title" className="font-display text-3xl font-extrabold leading-none md:text-6xl">Корпоративный сайт в деталях</h2>
           <p className="mt-3 max-w-3xl text-lg text-muted-foreground">Разработали сайт „Концентрации“ под ключ: дизайн, адаптивную версию и функциональность</p>
         </Reveal>
-        <img src={project.url} width={1600} height={647} alt="Сайт Концентрации: главная страница, направления бизнеса и форма обращения" loading="lazy" decoding="async" className="mt-7 h-auto w-full" />
+        <img src={project.url} width={1600} height={647} alt="Сайт Концентрации: главная страница, направления бизнеса и форма обращения" loading="lazy" decoding="async" className="mt-7 -ml-[7.5%] h-auto w-[115%] max-w-none" />
         <ul className="mt-4 grid gap-5 md:grid-cols-[1.45fr_1fr_0.85fr]">
           {CASE_LABELS.map((item) => <li key={item.title}><h3 className="text-base font-bold md:text-lg">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.text}</p></li>)}
         </ul>
@@ -103,7 +99,7 @@ function CorporatePage() {
             {CORPORATE_INCLUDED.map((item) => <li key={item.title} className="border-b border-border py-4 first:pt-0 last:border-0 md:py-5"><h3 className="text-lg font-bold md:text-2xl">{item.title}</h3><p className="mt-1 max-w-md text-sm text-muted-foreground md:text-base">{item.text}</p></li>)}
           </ul>
           <figure className="relative order-1 flex flex-col lg:order-none lg:min-h-[42rem]">
-            <img src={pages.url} width={1100} height={826} loading="lazy" decoding="async" alt="Объёмная панель управления страницами сайта с редактором текста и изображений" className="pb-shop-products-img h-auto w-full" />
+            <img src={pages.url} width={835} height={795} loading="lazy" decoding="async" alt="Объёмная панель управления страницами сайта с редактором текста и изображений" className="pb-shop-products-img h-auto w-full" />
           </figure>
         </div>
       </section>
@@ -116,8 +112,8 @@ function CorporatePage() {
             <div>
               <h2 id="corporate-price-title" className="font-display pr-16 text-[2.1rem] font-extrabold leading-[0.95] md:pr-0 md:text-6xl">Сколько стоит разработка</h2>
               <p className="font-display mt-4 whitespace-nowrap text-5xl font-extrabold text-primary md:text-7xl">{PRICE}</p>
-              <p className="mt-2 text-2xl font-bold md:text-3xl">От {CORPORATE_OFFER.pagesFrom} страниц · От {CORPORATE_OFFER.workingDaysFrom} рабочих дней</p>
-              <p className="mt-2 max-w-md text-sm text-ink-muted">Объём работ, подключения и срок фиксируем до начала разработки.</p>
+              <p className="mt-2 text-2xl font-bold md:text-3xl">{CORPORATE_OFFER.workingDaysFrom} рабочих дней</p>
+              <p className="mt-2 text-sm text-ink-muted">При готовых текстах и фотографиях.</p>
               <Button onClick={openBrief} className={`${btn.lime} mt-7 h-auto px-10 py-4 max-md:hidden`}>Получить расчёт</Button>
             </div>
             <div className="self-center">
