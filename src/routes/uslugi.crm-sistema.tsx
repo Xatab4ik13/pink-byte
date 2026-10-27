@@ -94,7 +94,7 @@ function CrmPage() {
             {CRM_INCLUDED.map((i) => <li key={i.title} className="border-b border-border py-4 first:pt-0 last:border-0 md:py-6"><h3 className="text-lg font-bold md:text-2xl">{i.title}</h3><p className="mt-1 text-sm text-muted-foreground md:text-base">{i.text}</p></li>)}
           </ul>
           <figure className="relative order-1 flex flex-col lg:order-none lg:min-h-[42rem]">
-            <img src={access.url} width={1200} height={819} loading="lazy" decoding="async" alt="Объёмные панели прав доступа по ролям и импорта клиентов" className="pb-shop-products-img h-auto w-full" />
+            <img src={access.url} width={816} height={819} loading="lazy" decoding="async" alt="Объёмные панели прав доступа по ролям и импорта клиентов" className="pb-shop-products-img h-auto w-full" />
           </figure>
         </div>
       </section>
