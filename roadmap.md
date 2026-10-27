@@ -63,3 +63,5 @@
 - [x] Enlarge the ecommerce page panel composition, crop its transparent margins into a new compressed asset, remove the 'Пример интерфейса' caption; verify no text overlap and no side scroll.
 - [x] Audit all content pages and remove measured navigation/modal bottlenecks without altering approved visuals.
 - [x] Verify page switching, home anchors, brief opening/typing/reopening and desktop/mobile layout; run relevant tests.
+- [x] Create the corporate website service page from supplied references and optimize its three transparent assets.
+- [x] Verify corporate page navigation, FAQ and brief buttons on desktop/mobile and test the offer rules.
