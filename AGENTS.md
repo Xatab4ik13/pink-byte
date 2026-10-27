@@ -27,3 +27,4 @@
 - Brief robot uses a dedicated edited sitting render, separate from home assets, with its seat line aligned to the modal bottom; a CSS mouth layer animates briefly per question without moving the body.
 - Brief questions and answers stay inside the scrollable AI Elements conversation, with the composer and summary separate; this keeps the transcript readable without overlays or moving the seated robot.
 - Brief completion uses a separate contact form and a public validated server function; contact details and the brief are stored in an RLS-locked table, and downloading unlocks only after a successful submission with consent.
+- Keep mobile-only controls hidden with a max-width media query instead of relying on a Tailwind lg:hidden utility alone: rules written outside @layer in src/styles.css win over Tailwind utilities, so a custom display value silently re-shows the element on desktop.

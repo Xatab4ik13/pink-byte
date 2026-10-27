@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import robotLeanSrc from "@/assets/robot-hero.webp";
@@ -22,6 +22,23 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
   const openBrief = useOpenBrief();
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const [stuck, setStuck] = useState(false);
+  useEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    let raf = 0;
+    const check = () => { raf = 0; setStuck(el.getBoundingClientRect().bottom < 12); };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(check); };
+    check();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
   const location = useRouterState({ select: (state) => state.location });
   const isActive = (href: string) => navigationActive(location.pathname, location.hash, href);
   useEffect(() => {
@@ -35,7 +52,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
   }, [open]);
 
   return (
-    <header className="container-pb relative z-30">
+    <header ref={headerRef} className="container-pb relative z-30">
       <div className="flex items-center justify-between gap-4 py-5">
         <Link to="/" aria-label="Pink Byte, на главную">
           <Logo tone={light ? "dark" : "light"} className="w-36 md:w-40" />
@@ -79,6 +96,17 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
           type="button"
           className={`pb-burger lg:hidden ${light ? "text-foreground" : "text-ink-foreground"}`}
           aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label="Открыть меню"
+          onClick={() => setOpen(true)}
+        >
+          <Menu className="size-9" strokeWidth={2.4} />
+        </button>
+        <button
+          type="button"
+          className="pb-burger-float lg:hidden"
+          data-show={stuck && !open}
+          aria-expanded={false}
           aria-controls="mobile-menu"
           aria-label="Открыть меню"
           onClick={() => setOpen(true)}

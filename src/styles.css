@@ -547,7 +547,7 @@
 }
 
 /* Мобильное боковое меню */
-.pb-burger { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; margin-right: -0.5rem; border-radius: 9999px; transition: transform .2s ease; }
+.pb-burger { width: 3.5rem; height: 3.5rem; margin-right: -0.5rem; border-radius: 9999px; transition: transform .2s ease; }
 .pb-burger:active { transform: scale(.92); }
 .pb-drawer { position: fixed; inset: 0; z-index: 60; pointer-events: none; visibility: hidden; transition: visibility 0s linear .5s; }
 .pb-drawer[data-open="true"] { pointer-events: auto; visibility: visible; transition-delay: 0s; }
@@ -597,4 +597,24 @@
     background: transparent !important;
     border: none !important;
   }
+}
+
+/* Плавающая кнопка меню: остаётся наверху, когда шапка ушла из вида */
+.pb-burger-float {
+  position: fixed; top: 20px; right: 12px; z-index: 40;
+  width: 3.5rem; height: 3.5rem;
+  border-radius: 9999px; border: 1px solid color-mix(in oklab, var(--ink-foreground) 38%, transparent);
+  background: color-mix(in oklab, color-mix(in oklab, var(--graphite) 78%, var(--ink-foreground)) 94%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow: 0 14px 34px -14px color-mix(in oklab, var(--graphite) 70%, transparent);
+  color: var(--ink-foreground);
+  opacity: 0; visibility: hidden; transform: translate3d(0, -10px, 0) scale(.9);
+  transition: opacity .3s ease, transform .45s cubic-bezier(.22,1,.36,1), visibility 0s linear .45s;
+}
+.pb-burger-float[data-show="true"] { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.pb-burger-float:active { transform: scale(.92); }
+
+/* Кнопки меню только на телефоне: на компьютере их выключает lg:hidden */
+@media (max-width: 1023.98px) {
+  .pb-burger, .pb-burger-float { display: grid; place-items: center; }
 }
