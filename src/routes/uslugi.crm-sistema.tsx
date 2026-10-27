@@ -52,7 +52,7 @@ function CrmPage() {
           <div>
             <h1 id="crm-title" className="pb-service-title font-display font-extrabold">
               Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" /><br />
-              <span className="whitespace-nowrap">CRM-систем</span> <br className="md:hidden" />на заказ
+              <span className="whitespace-nowrap">CRM-систем</span> <br />на заказ
             </h1>
             <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xl font-bold md:text-3xl">
               <span>{PRICE}</span>
