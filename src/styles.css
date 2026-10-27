@@ -547,7 +547,7 @@
 }
 
 /* Мобильное боковое меню */
-.pb-burger { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; margin-right: -0.5rem; border-radius: 9999px; transition: transform .2s ease; }
+.pb-burger { width: 3.5rem; height: 3.5rem; margin-right: -0.5rem; border-radius: 9999px; transition: transform .2s ease; }
 .pb-burger:active { transform: scale(.92); }
 .pb-drawer { position: fixed; inset: 0; z-index: 60; pointer-events: none; visibility: hidden; transition: visibility 0s linear .5s; }
 .pb-drawer[data-open="true"] { pointer-events: auto; visibility: visible; transition-delay: 0s; }
@@ -602,7 +602,7 @@
 /* Плавающая кнопка меню: остаётся наверху, когда шапка ушла из вида */
 .pb-burger-float {
   position: fixed; top: 20px; right: 12px; z-index: 40;
-  display: grid; place-items: center; width: 3.5rem; height: 3.5rem;
+  width: 3.5rem; height: 3.5rem;
   border-radius: 9999px; border: 1px solid color-mix(in oklab, var(--ink-foreground) 26%, transparent);
   background: color-mix(in oklab, var(--graphite) 88%, transparent);
   -webkit-backdrop-filter: blur(10px) saturate(1.2); backdrop-filter: blur(10px) saturate(1.2);
