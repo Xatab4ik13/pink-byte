@@ -41,7 +41,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
             {NAV.map((n) => (
               <li key={n.href} className="group relative">
                 {n.children ? (
-                  <DropdownMenu>
+                  <DropdownMenu modal={false}>
                     <DropdownMenuTrigger asChild>
                       <Button variant="ghost" aria-current={isActive(n.href) ? "location" : undefined} className={`h-11 rounded-full px-1 xl:px-5 pb-nav-label [&[data-state=open]>svg]:rotate-180 ${light ? "text-foreground hover:bg-muted hover:text-foreground data-[state=open]:bg-muted" : "text-ink-foreground hover:bg-ink-border hover:text-ink-foreground data-[state=open]:bg-ink-border"} ${isActive(n.href) ? (light ? "bg-muted" : "bg-ink-border") : ""}`}>
                         {n.label}<ChevronDown className="size-4 transition-transform" aria-hidden="true" />
