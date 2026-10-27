@@ -72,7 +72,7 @@ function ShopPage() {
           </nav>
           <div className="mt-6 grid gap-6 md:gap-8 lg:grid-cols-[1.55fr_1fr] lg:items-start">
             <div>
-              <h1 id="shop-title" className="font-display text-[clamp(2.6rem,5.6vw,5rem)] font-extrabold leading-[0.95] tracking-[-0.045em]">
+              <h1 id="shop-title" className="pb-service-title font-display font-extrabold">
                 Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" />
                 <br /><span className="md:hidden">интернет-<br />магазинов</span><span className="hidden whitespace-nowrap md:inline">интернет-магазинов</span>
               </h1>
@@ -100,19 +100,10 @@ function ShopPage() {
         </section>
 
         <section id="case" className="container-pb scroll-mt-6 border-t border-border pt-10 mt-12" aria-labelledby="case-title">
-          <Reveal className="grid gap-6 md:grid-cols-[1.2fr_1fr] md:items-end">
+          <Reveal>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Проект целиком</p>
-              <h2 id="case-title" className="font-display mt-3 text-5xl font-extrabold leading-none tracking-[-0.04em] md:text-7xl">Brionilux</h2>
-              <p className="mt-2 text-lg text-muted-foreground">Интернет-магазин электрофурнитуры</p>
-            </div>
-            <div>
-              <p className="text-muted-foreground">Разработали дизайн и сайт, наполнили каталог.</p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {["Дизайн", "Разработка", "Наполнение"].map((t) => (
-                  <li key={t} className="rounded-full bg-muted px-4 py-2 text-sm">{t}</li>
-                ))}
-              </ul>
+              <h2 id="case-title" className="font-display text-3xl font-extrabold leading-none md:text-6xl">Интернет-магазин в деталях</h2>
+              <p className="mt-3 max-w-3xl text-lg text-muted-foreground">Разработали интернет-магазин Brionilux под ключ: дизайн, адаптивную версию и функциональность</p>
             </div>
           </Reveal>
           <div className="mt-6 grid gap-6 md:hidden">
@@ -134,7 +125,7 @@ function ShopPage() {
           </div>
           <div className="relative mt-8 hidden md:block">
             <img src={brionilux.url} width={1448} height={1024} loading="lazy" decoding="async" alt="Brionilux: каталог рамок, карточка товара, корзина и оформление заказа без регистрации" className="h-auto w-full" />
-            <Button asChild className={`${btn.paper} bg-background text-foreground border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] hover:bg-background mt-6 h-auto px-12 py-4 text-lg md:absolute md:bottom-[9%] md:left-0 md:mt-0`}>
+            <Button asChild className={`${btn.paper} bg-background text-foreground border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] hover:bg-background mt-6 h-auto px-12 py-4 text-lg`}>
               <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
             </Button>
           </div>

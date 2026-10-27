@@ -15,6 +15,7 @@
 - Journal is a separate content route that reuses Header and Footer; shared navigation uses root-qualified home anchors so sections remain reachable from other pages.
 - Service navigation uses a shared browser-safe link list with optimized CDN image pointers; unfinished services reuse ServicePlaceholder on separate routes so navigation never leads to missing pages.
 - Corporate service content and offer rules live in a browser-safe data module with focused offer tests; its standalone route reuses the existing header, contact block, FAQ motion and brief opener to keep navigation and interactions consistent.
+- Service pages share the pb-service-title typography and the shop illustration sizing; corporate cost items derive from CORPORATE_INCLUDED so the offer and its presentation remain consistent.
 - Navigation highlighting derives from the router pathname/hash, never a default selected item; all internal header, footer and service links use TanStack Link and intent preloading to avoid full document reloads.
 - Project discussion buttons share a root-mounted BriefProvider; the prototype uses session-only sequential questions and AI Elements for messages, scrolling and composition, with no AI calls or file uploads. Keep brief generation in a pure model for testing and later replacement.
 - Keep BriefContext and its consumer hook in a separate non-component module so refreshing the dialog does not recreate the context used by mounted navigation buttons.

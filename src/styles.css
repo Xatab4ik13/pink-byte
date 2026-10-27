@@ -157,20 +157,20 @@
   line-height: 1;
 }
 
-/* Corporate service keeps a two-line headline on desktop and whole devices on phones. */
-.pb-corporate-title { font-size: 56px; line-height: 1; letter-spacing: 0; }
+/* Service pages share heading typography and retain whole devices on phones. */
+.pb-service-title { font-size: 64px; line-height: 0.95; letter-spacing: 0; }
 @media (min-width: 1280px) {
-  .pb-corporate-title { font-size: 62px; }
+  .pb-service-title { font-size: 80px; }
 }
 @media (max-width: 1023px) {
-  .pb-corporate-title { font-size: 48px; }
+  .pb-service-title { font-size: 56px; }
 }
 @media (max-width: 767px) {
-  .pb-corporate-title { font-size: 38px; }
+  .pb-service-title { font-size: 41.6px; }
   .pb-corporate-devices { width: calc(100% + 2 * clamp(1.25rem, 4vw, 2.5rem)); max-width: none; margin-inline: calc(-1 * clamp(1.25rem, 4vw, 2.5rem)); }
 }
 @media (max-width: 374px) {
-  .pb-corporate-title { font-size: 33px; }
+  .pb-service-title { font-size: 38px; }
 }
 
 
