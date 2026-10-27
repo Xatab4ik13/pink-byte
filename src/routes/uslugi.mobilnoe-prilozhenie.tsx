@@ -71,7 +71,7 @@ function AppPage() {
           </div>
         </div>
         <figure className="mt-6 md:mt-8">
-          <img src={phones.url} width={1151} height={963} alt="Два смартфона с интерфейсом онлайн-записи: каталог услуг и выбор даты" fetchPriority="high" decoding="async" className="mx-auto h-auto w-full max-w-[820px]" />
+          <img src={phones.url} width={1151} height={963} alt="Два смартфона с интерфейсом онлайн-записи: каталог услуг и выбор даты" fetchPriority="high" decoding="async" className="mx-auto h-auto w-full max-w-[820px] [mask-image:radial-gradient(ellipse_70%_72%_at_50%_48%,#000_60%,transparent_100%)]" />
         </figure>
       </section>
 
