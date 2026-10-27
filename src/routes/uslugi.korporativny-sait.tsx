@@ -49,10 +49,10 @@ function CorporatePage() {
           <span className="hidden md:inline"><Link to="/" className="hover:text-foreground">Главная</Link><span className="mx-2">/</span></span>
           <Link to="/" hash="services" className="hover:text-foreground">Услуги</Link><span className="mx-2">/</span><span>Корпоративный сайт</span>
         </nav>
-        <div className="mt-6 grid gap-7 lg:grid-cols-[minmax(0,3fr)_minmax(0,1fr)] lg:gap-10">
+        <div className="mt-6 grid gap-6 md:gap-8 lg:grid-cols-[1.55fr_1fr] lg:items-start">
           <div>
-            <h1 id="corporate-title" className="pb-corporate-title font-display font-extrabold">
-              Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.8em] rounded-full bg-primary align-middle" /><br />корпоративных сайтов
+            <h1 id="corporate-title" className="pb-service-title font-display font-extrabold">
+              Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" /><br />корпоративных сайтов
             </h1>
             <dl className="mt-7 grid grid-cols-3 gap-3 md:max-w-3xl md:gap-6">
               {[
@@ -67,7 +67,11 @@ function CorporatePage() {
           </div>
           <div className="lg:pt-2">
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">Создаём сайты на собственном коде для компаний по всей России. Дизайн, разработка и запуск под задачи вашего бизнеса.</p>
-            <Button onClick={openBrief} className={`${btn.ink} mt-6 h-auto w-full py-4 text-base`}>Обсудить проект</Button>
+            <Button onClick={openBrief} className={`${btn.paper} border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] mt-8 hidden h-auto max-w-full whitespace-normal px-10 py-4 text-base md:inline-flex`}>Рассчитать стоимость корпоративного сайта</Button>
+            <div className="mt-6 grid gap-3 md:hidden">
+              <Button onClick={openBrief} className="h-auto w-full whitespace-normal rounded-full bg-foreground px-6 py-4 text-base font-semibold text-background hover:bg-foreground/90">Рассчитать стоимость корпоративного сайта</Button>
+              <a href="#case" className="mx-auto text-sm font-semibold underline underline-offset-4">Посмотреть проект</a>
+            </div>
           </div>
         </div>
         <figure className="mt-6 md:mt-8">
@@ -76,15 +80,17 @@ function CorporatePage() {
       </section>
 
       <section id="case" className="container-pb mt-8 scroll-mt-6 border-t border-border pt-8 md:mt-10" aria-labelledby="corporate-case-title">
-        <Reveal className="grid gap-5 md:grid-cols-[1.3fr_0.8fr_auto] md:items-end">
-          <div><h2 id="corporate-case-title" className="font-display text-4xl font-extrabold leading-none md:text-6xl">Проект целиком</h2><p className="mt-3 text-lg text-muted-foreground">Концентрация · conc.ru</p></div>
-          <p className="text-muted-foreground">Разработали корпоративный сайт под ключ.</p>
-          <Button asChild variant="link" className="h-auto justify-start p-0 text-foreground underline underline-offset-4"><a href="https://conc.ru/" target="_blank" rel="noreferrer">Открыть conc.ru</a></Button>
+        <Reveal>
+          <h2 id="corporate-case-title" className="font-display text-3xl font-extrabold leading-none md:text-6xl">Корпоративный сайт в деталях</h2>
+          <p className="mt-3 max-w-3xl text-lg text-muted-foreground">Разработали сайт „Концентрации“ под ключ: дизайн, адаптивную версию и функциональность</p>
         </Reveal>
         <img src={project.url} width={1600} height={647} alt="Сайт Концентрации: главная страница, направления бизнеса и форма обращения" loading="lazy" decoding="async" className="mt-7 h-auto w-full" />
         <ul className="mt-4 grid gap-5 md:grid-cols-[1.45fr_1fr_0.85fr]">
           {CASE_LABELS.map((item) => <li key={item.title}><h3 className="text-base font-bold md:text-lg">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.text}</p></li>)}
         </ul>
+        <Button asChild className={`${btn.paper} border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] mt-6 h-auto px-12 py-4 text-lg max-md:w-full max-md:rounded-full max-md:bg-foreground max-md:text-background max-md:text-base max-md:hover:bg-foreground/90`}>
+          <a href="https://conc.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
+        </Button>
       </section>
 
       <section className="container-pb pt-16 md:pt-24" aria-labelledby="corporate-included-title">
@@ -92,29 +98,40 @@ function CorporatePage() {
           <h2 id="corporate-included-title" className="font-display text-3xl font-extrabold leading-[1.02] md:text-5xl lg:text-6xl">Что входит в разработку<br className="hidden md:block" /> корпоративного сайта</h2>
           <p className="shrink-0 text-sm text-muted-foreground md:pt-3 md:text-right">Собственный код.<br />Без конструкторов.</p>
         </div>
-        <div className="mt-7 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="mt-6 grid gap-6 md:mt-8 md:gap-8 lg:grid-cols-[0.62fr_1.38fr] lg:items-stretch">
           <ul className="order-2 lg:order-none">
             {CORPORATE_INCLUDED.map((item) => <li key={item.title} className="border-b border-border py-4 first:pt-0 last:border-0 md:py-5"><h3 className="text-lg font-bold md:text-2xl">{item.title}</h3><p className="mt-1 max-w-md text-sm text-muted-foreground md:text-base">{item.text}</p></li>)}
           </ul>
-          <img src={pages.url} width={1100} height={826} loading="lazy" decoding="async" alt="Объёмная панель управления страницами сайта с редактором текста и изображений" className="order-1 h-auto w-full lg:order-none" />
+          <figure className="relative order-1 flex flex-col lg:order-none lg:min-h-[42rem]">
+            <img src={pages.url} width={1100} height={826} loading="lazy" decoding="async" alt="Объёмная панель управления страницами сайта с редактором текста и изображений" className="pb-shop-products-img h-auto w-full" />
+          </figure>
         </div>
       </section>
 
       <section className="container-pb pt-12 md:pt-16" aria-labelledby="corporate-price-title">
         <div className="relative overflow-hidden rounded-[2rem] bg-ink text-ink-foreground">
-          <picture><source media="(max-width: 767px)" srcSet={mobileCost.url} /><img src={cost.url} width={1800} height={631} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute inset-0 h-full w-full object-cover object-right" /></picture>
-          <div className="relative grid gap-8 p-6 md:p-10 lg:grid-cols-[1.15fr_1fr] lg:gap-12 lg:pr-[18%]">
+          <img src={mobileCost.url} width={760} height={1710} loading="lazy" decoding="async" alt="" aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-auto w-full md:hidden" />
+          <img src={cost.url} width={1800} height={631} loading="lazy" decoding="async" alt="" aria-hidden className="pointer-events-none absolute inset-0 hidden h-full w-full object-cover object-right md:block" />
+          <div className="relative grid gap-8 p-6 md:gap-10 md:p-12 lg:grid-cols-[1fr_1.5fr] lg:pr-[16%]">
             <div>
-              <h2 id="corporate-price-title" className="font-display text-3xl font-extrabold leading-none md:text-5xl">Стоимость<br />корпоративного сайта</h2>
-              <p className="font-display mt-3 whitespace-nowrap text-4xl font-extrabold text-primary md:text-6xl">{PRICE}</p>
-              <p className="mt-3 text-lg font-bold md:text-xl">От {CORPORATE_OFFER.pagesFrom} страниц · От {CORPORATE_OFFER.workingDaysFrom} рабочих дней</p>
+              <h2 id="corporate-price-title" className="font-display pr-16 text-[2.1rem] font-extrabold leading-[0.95] md:pr-0 md:text-6xl">Сколько стоит разработка</h2>
+              <p className="font-display mt-4 whitespace-nowrap text-5xl font-extrabold text-primary md:text-7xl">{PRICE}</p>
+              <p className="mt-2 text-2xl font-bold md:text-3xl">От {CORPORATE_OFFER.pagesFrom} страниц · От {CORPORATE_OFFER.workingDaysFrom} рабочих дней</p>
               <p className="mt-2 max-w-md text-sm text-ink-muted">Объём работ, подключения и срок фиксируем до начала разработки.</p>
-              <Button onClick={openBrief} className={`${btn.lime} mt-5 h-auto px-10 py-4 max-md:hidden`}>Обсудить проект</Button>
+              <Button onClick={openBrief} className={`${btn.lime} mt-7 h-auto px-10 py-4 max-md:hidden`}>Получить расчёт</Button>
             </div>
-            <ul className="grid content-center gap-5 border-t border-ink-border pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
-              {EXTRAS.map((item) => <li key={item} className="flex items-start gap-4 text-sm md:text-base"><span aria-hidden className="mt-1.5 size-3 shrink-0 rounded-full border-[3px] border-primary" />{item}</li>)}
-            </ul>
-            <Button onClick={openBrief} className={`${btn.lime} mx-auto h-auto px-10 py-4 md:hidden`}>Обсудить проект</Button>
+            <div className="self-center">
+              <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+                {CORPORATE_INCLUDED.map((item) => <li key={item.title} className="flex items-start gap-3 text-sm md:text-base"><span aria-hidden className="mt-1.5 size-2.5 shrink-0 rounded-full bg-primary shadow-[0_0_10px_var(--lime)]" />{item.title}</li>)}
+              </ul>
+              <ul className="mt-8 grid gap-4 border-t border-ink-border pt-6 sm:grid-cols-3">
+                {EXTRAS.map((item) => <li key={item} className="flex items-start gap-3 text-sm md:text-base"><span aria-hidden className="mt-1.5 size-2.5 shrink-0 rounded-full bg-primary shadow-[0_0_10px_var(--lime)]" />{item}</li>)}
+              </ul>
+              <p className="mt-6 text-sm text-ink-muted">Итоговую стоимость рассчитаем под ваш проект.<br />Домен и хостинг оплачиваются отдельно.</p>
+            </div>
+          </div>
+          <div className="relative flex justify-center px-6 pb-8 md:hidden">
+            <Button onClick={openBrief} className={`${btn.lime} h-auto rounded-full px-10 py-4 text-base`}>Получить расчёт</Button>
           </div>
         </div>
       </section>
