@@ -514,6 +514,9 @@
   .pb-contact-seat,
   .pb-contact-robot { width: min(440px, 82%); }
 }
+/* Пока открыто боковое меню, робот на странице уступает место роботу в меню */
+.pb-contact-robot { transition: opacity .3s ease; }
+html.pb-menu-open .pb-contact-robot { opacity: 0; }
 
 /* Услуга «Интернет-магазин»: мобильные иллюстрации крупнее, в край экрана */
 @media (max-width: 767.98px) {

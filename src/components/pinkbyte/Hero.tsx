@@ -48,7 +48,8 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
     const html = document.documentElement;
     const prev = html.style.overflow;
     html.style.overflow = "hidden";
-    return () => { window.removeEventListener("keydown", onKey); html.style.overflow = prev; };
+    html.classList.add("pb-menu-open");
+    return () => { window.removeEventListener("keydown", onKey); html.style.overflow = prev; html.classList.remove("pb-menu-open"); };
   }, [open]);
 
   return (
