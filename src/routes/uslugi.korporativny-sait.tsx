@@ -82,7 +82,7 @@ function CorporatePage() {
         </Reveal>
         <img src={project.url} width={1600} height={647} alt="Сайт Концентрации: главная страница, направления бизнеса и форма обращения" loading="lazy" decoding="async" className="mt-7 -ml-[7.5%] h-auto w-[115%] max-w-none" />
         <ul className="mt-4 grid gap-5 md:-mt-2 md:grid-cols-[1.45fr_1fr_0.85fr]">
-          {CASE_LABELS.map((item) => <li key={item.title} className="md:translate-x-20"><h3 className="text-base font-bold md:text-lg">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.text}</p></li>)}
+          {CASE_LABELS.map((item) => <li key={item.title} className="lg:translate-x-20"><h3 className="text-base font-bold md:text-lg">{item.title}</h3><p className="mt-1 text-sm text-muted-foreground">{item.text}</p></li>)}
         </ul>
         <Button asChild className={`${btn.paper} border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] mt-6 h-auto px-12 py-4 text-lg max-md:w-full max-md:rounded-full max-md:bg-foreground max-md:text-background max-md:text-base max-md:hover:bg-foreground/90`}>
           <a href="https://conc.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
