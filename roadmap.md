@@ -65,4 +65,4 @@
 - [x] Verify page switching, home anchors, brief opening/typing/reopening and desktop/mobile layout; run relevant tests.
 - [x] Create the corporate website service page from supplied references and optimize its three transparent assets.
 - [x] Verify corporate page navigation, FAQ and brief buttons on desktop/mobile and test the offer rules.
-- [ ] Align corporate hero typography/button, both case sections, included illustration size and corporate cost contents with the shop page; verify desktop/mobile.
+- [x] Align corporate hero typography/button, both case sections, included illustration size and corporate cost contents with the shop page; verify desktop/mobile.
