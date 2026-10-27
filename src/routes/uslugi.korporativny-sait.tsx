@@ -63,9 +63,9 @@ function CorporatePage() {
           </div>
           <div className="lg:pt-2">
             <p className="text-base leading-relaxed text-muted-foreground md:text-lg">Создаём сайты на собственном коде для компаний по всей России. Дизайн, разработка и запуск под задачи вашего бизнеса.</p>
-            <Button onClick={openBrief} className={`${btn.paper} border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] mt-8 hidden h-auto max-w-full whitespace-normal px-10 py-4 text-base md:inline-flex`}>Рассчитать стоимость корпоративного сайта</Button>
+            <Button onClick={openBrief} className={`${btn.paper} border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] mt-8 hidden h-auto max-w-full whitespace-normal px-10 py-4 text-base md:inline-flex`}>Рассчитать стоимость сайта</Button>
             <div className="mt-6 grid gap-3 md:hidden">
-              <Button onClick={openBrief} className="h-auto w-full whitespace-normal rounded-full bg-foreground px-6 py-4 text-base font-semibold text-background hover:bg-foreground/90">Рассчитать стоимость корпоративного сайта</Button>
+              <Button onClick={openBrief} className="h-auto w-full whitespace-normal rounded-full bg-foreground px-6 py-4 text-base font-semibold text-background hover:bg-foreground/90">Рассчитать стоимость сайта</Button>
               <a href="#case" className="mx-auto text-sm font-semibold underline underline-offset-4">Посмотреть проект</a>
             </div>
           </div>
