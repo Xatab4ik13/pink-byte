@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import robotLeanSrc from "@/assets/robot-hero.webp";
@@ -28,7 +28,10 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    const html = document.documentElement;
+    const prev = html.style.overflow;
+    html.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); html.style.overflow = prev; };
   }, [open]);
 
   return (
@@ -95,7 +98,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
             </div>
             <ul className="border-t border-ink-border">
               {NAV.map((n, i) => (
-                <li key={n.href} className="pb-drawer-item border-b border-ink-border" style={{ "--i": i } as React.CSSProperties}>
+                <li key={n.href} className="pb-drawer-item border-b border-ink-border" style={{ "--i": i } as CSSProperties}>
                   {n.children ? <>
                     <button type="button" aria-expanded={servicesOpen} aria-controls="mobile-services" onClick={() => setServicesOpen((v) => !v)} className="flex w-full items-center gap-3 py-4 text-left text-xl font-bold">
                       <span className={`size-2 rounded-full bg-primary transition-opacity ${isActive(n.href) || servicesOpen ? "opacity-100" : "opacity-0"}`} />

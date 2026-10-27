@@ -545,3 +545,37 @@
     object-position: right center;
   }
 }
+
+/* Мобильное боковое меню */
+.pb-burger { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; margin-right: -0.5rem; border-radius: 9999px; transition: transform .2s ease; }
+.pb-burger:active { transform: scale(.92); }
+.pb-drawer { position: fixed; inset: 0; z-index: 60; pointer-events: none; visibility: hidden; transition: visibility 0s linear .5s; }
+.pb-drawer[data-open="true"] { pointer-events: auto; visibility: visible; transition-delay: 0s; }
+.pb-drawer-backdrop { position: absolute; inset: 0; background: color-mix(in oklab, var(--graphite) 55%, transparent); opacity: 0; transition: opacity .4s ease; }
+.pb-drawer[data-open="true"] .pb-drawer-backdrop { opacity: 1; }
+.pb-drawer-panel {
+  position: absolute; top: .75rem; right: .75rem; bottom: 5.5rem; width: min(360px, calc(100vw - 3.5rem));
+  display: flex; flex-direction: column; border-radius: 1.5rem; border: 1px solid var(--ink-border);
+  background:
+    radial-gradient(120% 55% at 110% 100%, color-mix(in oklab, var(--lime) 22%, transparent), transparent 60%),
+    radial-gradient(80% 40% at -10% 0%, color-mix(in oklab, var(--ink-foreground) 9%, transparent), transparent 70%),
+    linear-gradient(160deg, color-mix(in oklab, var(--graphite) 88%, var(--ink-foreground)) 0%, var(--graphite) 55%);
+  box-shadow: 0 30px 80px -20px color-mix(in oklab, var(--graphite) 80%, transparent);
+  transform: translate3d(calc(100% + 1rem), 0, 0); will-change: transform;
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
+}
+.pb-drawer[data-open="true"] .pb-drawer-panel { transform: none; }
+.pb-drawer-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 1.25rem 1.25rem .5rem; overscroll-behavior: contain; }
+.pb-drawer-item { opacity: 0; transform: translate3d(24px,0,0); transition: opacity .3s ease, transform .45s cubic-bezier(.22,1,.36,1); }
+.pb-drawer[data-open="true"] .pb-drawer-item { opacity: 1; transform: none; transition-delay: calc(.12s + var(--i) * .05s); }
+.pb-drawer-sub { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
+.pb-drawer-sub[data-open="true"] { grid-template-rows: 1fr; }
+.pb-drawer-foot { position: relative; display: flex; align-items: center; min-height: 5.5rem; padding: 0 1.25rem 1.25rem; }
+.pb-drawer-robot {
+  position: absolute; left: .5rem; bottom: 0; width: 9.5rem; translate: 0 38.7%;
+  opacity: 0; transform: translate3d(0, 12px, 0); transition: opacity .4s ease .25s, transform .5s cubic-bezier(.22,1,.36,1) .25s;
+}
+.pb-drawer[data-open="true"] .pb-drawer-robot { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .pb-drawer-panel, .pb-drawer-item, .pb-drawer-robot, .pb-drawer-backdrop, .pb-drawer-sub { transition: none; }
+}
