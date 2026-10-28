@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as OKompaniiRouteImport } from './routes/o-kompanii'
 import { Route as UslugiCrmSistemaRouteImport } from './routes/uslugi.crm-sistema'
 import { Route as UslugiInternetMagazinRouteImport } from './routes/uslugi.internet-magazin'
 import { Route as UslugiKorporativnySaitRouteImport } from './routes/uslugi.korporativny-sait'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OKompaniiRoute = OKompaniiRouteImport.update({
+  id: '/o-kompanii',
+  path: '/o-kompanii',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UslugiCrmSistemaRoute = UslugiCrmSistemaRouteImport.update({
@@ -51,6 +57,7 @@ const UslugiMobilnoePrilozhenieRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
+  '/o-kompanii': typeof OKompaniiRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
+  '/o-kompanii': typeof OKompaniiRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
+  '/o-kompanii': typeof OKompaniiRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blog'
+    | '/o-kompanii'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/blog'
+    | '/o-kompanii'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blog'
+    | '/o-kompanii'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -103,6 +115,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRoute
+  OKompaniiRoute: typeof OKompaniiRoute
   UslugiCrmSistemaRoute: typeof UslugiCrmSistemaRoute
   UslugiInternetMagazinRoute: typeof UslugiInternetMagazinRoute
   UslugiKorporativnySaitRoute: typeof UslugiKorporativnySaitRoute
@@ -123,6 +136,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/o-kompanii': {
+      id: '/o-kompanii'
+      path: '/o-kompanii'
+      fullPath: '/o-kompanii'
+      preLoaderRoute: typeof OKompaniiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/uslugi/crm-sistema': {
@@ -159,6 +179,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRoute,
+  OKompaniiRoute: OKompaniiRoute,
   UslugiCrmSistemaRoute: UslugiCrmSistemaRoute,
   UslugiInternetMagazinRoute: UslugiInternetMagazinRoute,
   UslugiKorporativnySaitRoute: UslugiKorporativnySaitRoute,
