@@ -11,7 +11,7 @@ import brionilux from "@/assets/slide-gold.webp.asset.json";
 import conc from "@/assets/corporate-conc-case.webp.asset.json";
 import chinar from "@/assets/slide-chinar.webp.asset.json";
 import citymebel from "@/assets/slide-citymebel.webp.asset.json";
-import bron from "@/assets/app-hero-phones.webp.asset.json";
+import bron from "@/assets/app-booking-panels.webp.asset.json";
 import nikitsky from "@/assets/slide-nikitsky.webp.asset.json";
 
 const TITLE = "Портфолио Pink Byte · сайты и приложения, которые мы разработали";
@@ -86,7 +86,7 @@ function PortfolioPage() {
             <Reveal key={w.title} className="min-w-0">
               <article>
                 <button type="button" onClick={() => open(w)} className="block w-full overflow-hidden rounded-2xl bg-ink" aria-label={`${w.title}, увеличить`}>
-                  <img src={w.src} alt={`${w.title}: ${w.desc}`} loading="lazy" decoding="async" className={cn("aspect-video w-full", w.cat === "corp" && w.src === conc.url ? "object-contain" : "object-cover", " transition-transform duration-500 hover:scale-[1.02]")} />
+                  <img src={w.src} alt={`${w.title}: ${w.desc}`} loading="lazy" decoding="async" className={cn("aspect-video w-full", w.src === conc.url || w.src === bron.url ? "object-contain" : "object-cover", " transition-transform duration-500 hover:scale-[1.02]")} />
                 </button>
                 <div className="mt-4 flex items-start justify-between gap-4">
                   <div>
