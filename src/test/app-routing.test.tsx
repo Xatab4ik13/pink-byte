@@ -15,9 +15,9 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
-  it("matches the Journal page at /journal", () => {
+  it("matches the Blog page at /blog", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
-    expect(router.matchRoutes("/journal").at(-1)?.routeId).toBe("/journal");
+    expect(router.matchRoutes("/blog").at(-1)?.routeId).toBe("/blog");
   });
   it("omits the separate home navigation item", () => {
     expect(NAV.some((item) => item.href === "/")).toBe(false);
