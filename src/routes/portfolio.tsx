@@ -69,7 +69,7 @@ function PortfolioPage() {
             <p className="mt-5 text-2xl font-semibold leading-tight md:text-4xl">Сайты и приложения, которые мы разработали.</p>
             <p className="mt-4 max-w-md text-lg text-muted-foreground">В каждом кейсе: задача, интерфейсы и выполненная работа.</p>
           </div>
-          <img src={folio.url} alt="Папка с макетами сайтов и приложений" width={1200} height={845} fetchPriority="high" decoding="async" className="w-full lg:-mr-6 lg:w-[calc(100%+1.5rem)]" />
+          <img src={folio.url} alt="Папка с макетами сайтов и приложений" width={1200} height={845} fetchPriority="high" decoding="async" className="w-full lg:-mr-8 lg:w-[calc(100%+2rem)]" />
         </div>
 
         <div role="tablist" aria-label="Категории проектов" className="mt-10 flex gap-3 overflow-x-auto pb-1 [scrollbar-width:none]">
