@@ -63,14 +63,7 @@ function ShopPage() {
       </div>
       <main>
         <section className="container-pb pt-8 md:pt-10" aria-labelledby="shop-title">
-          <nav aria-label="Хлебные крошки" className="text-xs text-muted-foreground">
-            <span className="hidden md:inline"><Link to="/" className="hover:text-foreground">Главная</Link>
-            <span className="mx-2">/</span></span>
-            <Link to="/" hash="services" className="hover:text-foreground">Услуги</Link>
-            <span className="mx-2">/</span>
-            <span>Интернет-магазины</span>
-          </nav>
-          <div className="mt-6 grid gap-6 md:gap-8 lg:grid-cols-[1.55fr_1fr] lg:items-start">
+          <div className="grid gap-6 md:gap-8 lg:grid-cols-[1.55fr_1fr] lg:items-start">
             <div>
               <h1 id="shop-title" className="pb-service-title font-display font-extrabold">
                 Разработка <span aria-hidden className="ml-2 inline-block h-[0.12em] w-[0.9em] translate-y-[0.05em] rounded-full bg-primary align-middle" />
