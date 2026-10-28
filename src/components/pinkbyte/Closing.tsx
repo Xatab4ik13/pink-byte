@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Logo, NAV, Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
+import { navigationTarget } from "./navigation-model";
 
 export function Contact({ title, text }: { title?: string; text?: string } = {}) {
   const openBrief = useOpenBrief();
@@ -46,7 +47,7 @@ export function Footer() {
           <ul className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
             {NAV.map((n) => (
               <li key={n.href}>
-                <Link to={n.href === "/blog" ? "/blog" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} className="text-foreground/80 hover:text-foreground">
+                <Link {...navigationTarget(n.href)} activeOptions={{ exact: true, includeHash: true }} className="text-foreground/80 hover:text-foreground">
                   {n.label}
                 </Link>
               </li>

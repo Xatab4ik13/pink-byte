@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Logo, NAV, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { navigationActive } from "./navigation-model";
+import { navigationActive, navigationTarget } from "./navigation-model";
 
 /* The clean base has no baked-in eyes. Only emissive RGBA eye pixels move. */
 const EYES = [
@@ -81,7 +81,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
                     </DropdownMenuContent>
                   </DropdownMenu>
                 ) : <Button asChild variant="ghost" className={`h-11 rounded-full px-1 xl:px-5 pb-nav-label ${light ? `text-foreground hover:bg-muted hover:text-foreground ${isActive(n.href) ? "bg-muted" : ""}` : `text-ink-foreground hover:bg-ink-border hover:text-ink-foreground ${isActive(n.href) ? "bg-ink-border" : ""}`} `}>
-                  <Link to={n.href === "/blog" ? "/blog" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} aria-current={isActive(n.href) ? "location" : undefined}>
+                  <Link {...navigationTarget(n.href)} activeOptions={{ exact: true, includeHash: true }} aria-current={isActive(n.href) ? "location" : undefined}>
                     {n.label}
                     {n.children && <ChevronDown className="size-4 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180" aria-hidden="true" />}
                   </Link>
@@ -144,7 +144,7 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
                         </li>)}
                       </ul>
                     </div>
-                  </> : <Link to={n.href === "/blog" ? "/blog" : "/"} hash={n.href.split("#")[1] ?? ""} activeOptions={{ exact: true, includeHash: true }} aria-current={isActive(n.href) ? "location" : undefined} onClick={() => setOpen(false)} className="flex items-center gap-3 py-4 text-xl font-bold">
+                  </> : <Link {...navigationTarget(n.href)} activeOptions={{ exact: true, includeHash: true }} aria-current={isActive(n.href) ? "location" : undefined} onClick={() => setOpen(false)} className="flex items-center gap-3 py-4 text-xl font-bold">
                     <span className={`size-2 rounded-full bg-primary ${isActive(n.href) ? "opacity-100" : "opacity-0"}`} />
                     {n.label}
                   </Link>}
