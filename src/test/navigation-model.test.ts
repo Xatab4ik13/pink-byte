@@ -19,6 +19,9 @@ describe("Navigation location", () => {
   it("links Blog to its page instead of home", () => {
     expect(navigationTarget("/blog")).toEqual({ to: "/blog", hash: "" });
   });
+  it("links Portfolio to its page", () => {
+    expect(navigationTarget("/portfolio")).toEqual({ to: "/portfolio", hash: "" });
+  });
   it("keeps anchor items on the home page", () => {
     expect(navigationTarget("/#projects")).toEqual({ to: "/", hash: "projects" });
     expect(navigationTarget("/#contact")).toEqual({ to: "/", hash: "contact" });
