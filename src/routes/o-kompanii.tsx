@@ -66,7 +66,7 @@ function AboutPage() {
   return <>
     <div id="top" className="relative z-10 bg-ink text-ink-foreground">
       <Header />
-      <section className="container-pb pb-8 pt-6 md:pt-8" aria-labelledby="about-title">
+      <section className="container-pb pb-0 pt-6 md:pt-8" aria-labelledby="about-title">
         <nav aria-label="Хлебные крошки" className="text-xs text-ink-foreground/70">
           <Link to="/" className="hover:text-ink-foreground">Главная</Link><span className="mx-2">/</span><span>О компании</span>
         </nav>
@@ -86,13 +86,13 @@ function AboutPage() {
         </div>
         <picture>
           <source media="(max-width: 767px)" srcSet={teamMobile.url} />
-          <img src={team.url} width={1920} height={720} alt="Команда Pink Byte обсуждает интерфейс проекта у монитора" fetchPriority="high" decoding="async" className="mt-10 h-auto w-full rounded-3xl object-cover grayscale" />
+          <img src={team.url} width={1920} height={720} alt="Команда Pink Byte обсуждает интерфейс проекта у монитора" fetchPriority="high" decoding="async" className="relative -mb-[clamp(3.5rem,9vw,8rem)] mt-10 h-auto w-full rounded-3xl object-cover grayscale shadow-2xl" />
         </picture>
       </section>
     </div>
 
     <main>
-      <section className="container-pb pt-10" aria-label="Принципы работы">
+      <section className="container-pb pt-[calc(clamp(3.5rem,9vw,8rem)+2.5rem)]" aria-label="Принципы работы">
         <ul className="grid gap-6 border-b border-border pb-10 md:grid-cols-3 md:gap-0">
           {FACTS.map((f, i) => (
             <li key={f.title} className={i ? "md:border-l md:border-border md:pl-8" : "md:pr-8"}>
@@ -148,12 +148,12 @@ function AboutPage() {
       <Projects title={<>Наш подход<br />виден в работе.</>} text="Показываем интерфейсы и решения, которые разработали для заказчиков." />
 
       <section className="container-pb pt-16 md:pt-24" aria-labelledby="handoff-title">
-        <div className="grid items-center gap-6 overflow-hidden rounded-3xl bg-muted p-6 md:grid-cols-[1.1fr_1fr] md:p-12">
+        <div className="grid items-center gap-6 overflow-hidden rounded-3xl bg-muted p-6 md:grid-cols-[0.9fr_1.2fr] md:p-12">
           <div>
             <h2 id="handoff-title" className="font-display text-3xl font-extrabold leading-[1.02] md:text-5xl">Передаём проект.<br />Помогаем начать работу.</h2>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">Вы получаете исходный код и обучение работе с готовым продуктом. В течение месяца исправляем ошибки и вносим небольшие правки, которые могли остаться незамеченными при приёмке.</p>
           </div>
-          <img src={handoff.url} width={1200} height={800} alt="Три панели: исходный код, обучение и поддержка" loading="lazy" decoding="async" className="h-auto w-full" />
+          <img src={handoff.url} width={1200} height={800} alt="Три панели: исходный код, обучение и поддержка" loading="lazy" decoding="async" className="-mx-4 h-auto w-[calc(100%+2rem)] max-w-none md:-my-6 md:-mr-10 md:ml-0 md:w-[calc(100%+2.5rem)] md:scale-110" />
         </div>
       </section>
 
