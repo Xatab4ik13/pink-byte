@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/pinkbyte/Hero";
