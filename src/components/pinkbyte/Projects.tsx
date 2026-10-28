@@ -15,7 +15,7 @@ const SLIDES = [
   { src: gold.url, title: "Brionilux", desc: "Интернет-магазин розеток и выключателей" },
 ];
 
-export function Projects({ title, text }: { title?: string; text?: string } = {}) {
+export function Projects({ title, text }: { title?: React.ReactNode; text?: string } = {}) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [position, setPosition] = useState(1);
   const [animate, setAnimate] = useState(true);
