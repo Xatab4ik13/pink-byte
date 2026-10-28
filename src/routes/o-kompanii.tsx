@@ -66,7 +66,7 @@ function AboutPage() {
   return <>
     <div id="top" className="relative z-10 bg-ink text-ink-foreground">
       <Header />
-      <section className="container-pb pb-0 pt-6 md:pt-8" aria-labelledby="about-title">
+      <section className="container-pb pb-px pt-6 md:pt-8" aria-labelledby="about-title">
         <nav aria-label="Хлебные крошки" className="text-xs text-ink-foreground/70">
           <Link to="/" className="hover:text-ink-foreground">Главная</Link><span className="mx-2">/</span><span>О компании</span>
         </nav>
@@ -84,9 +84,9 @@ function AboutPage() {
             </Button>
           </div>
         </div>
-        <picture>
+        <picture className="block">
           <source media="(max-width: 767px)" srcSet={teamMobile.url} />
-          <img src={team.url} width={1920} height={720} alt="Команда Pink Byte обсуждает интерфейс проекта у монитора" fetchPriority="high" decoding="async" className="relative -mb-[clamp(3.5rem,9vw,8rem)] mt-10 h-auto w-full rounded-3xl object-cover grayscale shadow-2xl" />
+          <img src={team.url} width={1920} height={720} alt="Команда Pink Byte обсуждает интерфейс проекта у монитора" fetchPriority="high" decoding="async" className="relative -mb-[clamp(3.5rem,9vw,8rem)] mt-10 block h-auto w-full rounded-3xl object-cover grayscale shadow-2xl" />
         </picture>
       </section>
     </div>
