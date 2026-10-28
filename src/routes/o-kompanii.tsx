@@ -72,8 +72,7 @@ function AboutPage() {
         </nav>
         <div className="mt-8 grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-end">
           <div>
-            <p className="text-sm font-medium text-ink-foreground/80">О компании Pink Byte</p>
-            <h1 id="about-title" className="display mt-3 text-[clamp(2.6rem,6.5vw,6rem)] leading-[0.95]">
+            <h1 id="about-title" className="display text-[clamp(2.6rem,6.5vw,6rem)] leading-[0.95]">
               Люди, которые делают сложное <span className="text-primary">удобным.</span>
             </h1>
           </div>
