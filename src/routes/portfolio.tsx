@@ -61,7 +61,7 @@ function PortfolioPage() {
     <Header tone="light" />
     <main>
       <section className="container-pb pt-6 md:pt-10" aria-labelledby="portfolio-title">
-        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)] lg:gap-6">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-6 xl:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
           <div>
             <h1 id="portfolio-title" className="pb-service-title flex items-center gap-4 font-display font-extrabold">
               Портфолио <span aria-hidden className="h-2 w-14 rounded-full bg-primary" />
