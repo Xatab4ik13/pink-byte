@@ -18,7 +18,7 @@ export const NAV: { href: string; label: string; children?: typeof SERVICE_LINKS
   { href: "/#services", label: "Услуги", children: SERVICE_LINKS },
   { href: "/#projects", label: "Портфолио" },
   { href: "/#studio", label: "О компании" },
-  { href: "/journal", label: "Блог" },
+  { href: "/blog", label: "Блог" },
   { href: "/#contact", label: "Контакты" },
 ];
 
