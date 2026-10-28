@@ -75,7 +75,7 @@ function PortfolioPage() {
         <div role="tablist" aria-label="Категории проектов" className="mt-10 flex gap-3 overflow-x-auto pb-1 [scrollbar-width:none]">
           {FILTERS.map((f) => (
             <button key={f.id} role="tab" aria-selected={filter === f.id} type="button" onClick={() => setFilter(f.id)}
-              className={cn("shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors", filter === f.id ? "bg-primary text-primary-foreground" : "bg-secondary text-foreground hover:bg-muted")}>
+              className={cn("shrink-0 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors", filter === f.id ? "bg-primary text-primary-foreground" : "border border-foreground/15 bg-background text-foreground hover:border-foreground/40")}>
               {f.label}
             </button>
           ))}
@@ -86,13 +86,13 @@ function PortfolioPage() {
             <Reveal key={w.title} className="min-w-0">
               <article>
                 <button type="button" onClick={() => open(w)} className="block w-full overflow-hidden rounded-2xl bg-ink" aria-label={`${w.title}, увеличить`}>
-                  <img src={w.src} alt={`${w.title}: ${w.desc}`} loading="lazy" decoding="async" className="aspect-video w-full object-cover transition-transform duration-500 hover:scale-[1.02]" />
+                  <img src={w.src} alt={`${w.title}: ${w.desc}`} loading="lazy" decoding="async" className={cn("aspect-video w-full", w.cat === "corp" && w.src === conc.url ? "object-contain" : "object-cover", " transition-transform duration-500 hover:scale-[1.02]")} />
                 </button>
                 <div className="mt-4 flex items-start justify-between gap-4">
                   <div>
                     <h2 className="text-2xl font-extrabold">{w.title}</h2>
                     <p className="mt-1 text-muted-foreground">{w.desc}</p>
-                    <span className="mt-3 inline-block rounded-full bg-secondary px-3 py-1 text-sm text-muted-foreground">{TAG[w.cat]}</span>
+                    <span className="mt-3 inline-block rounded-full border border-foreground/15 px-3 py-1 text-sm text-muted-foreground">{TAG[w.cat]}</span>
                   </div>
                   {w.to
                     ? <Link to={w.to} preload="intent" className="shrink-0 pt-2 text-sm font-semibold underline underline-offset-4">Смотреть кейс</Link>
