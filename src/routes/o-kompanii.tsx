@@ -76,7 +76,7 @@ function AboutPage() {
           <div className="max-w-md">
             <p className="text-lg leading-[1.4]">Pink Byte: студия разработки сайтов и приложений. Создаём корпоративные сайты, интернет-магазины, CRM-системы и мобильные приложения для бизнеса по всей России.</p>
             <Button asChild className={`${btn.paper} mt-6 h-auto px-8 py-3.5 text-base`}>
-              <Link to="/" hash="projects">Посмотреть портфолио</Link>
+              <Link to="/portfolio">Посмотреть портфолио</Link>
             </Button>
           </div>
         </div>
