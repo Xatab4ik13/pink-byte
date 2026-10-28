@@ -61,7 +61,7 @@ function PortfolioPage() {
     <Header tone="light" />
     <main>
       <section className="container-pb pt-6 md:pt-10" aria-labelledby="portfolio-title">
-        <div className="grid items-center gap-8 lg:grid-cols-[1fr_1.1fr]">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-6 xl:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
           <div>
             <h1 id="portfolio-title" className="pb-service-title flex items-center gap-4 font-display font-extrabold">
               Портфолио <span aria-hidden className="h-2 w-14 rounded-full bg-primary" />
@@ -69,7 +69,7 @@ function PortfolioPage() {
             <p className="mt-5 text-2xl font-semibold leading-tight md:text-4xl">Сайты и приложения, которые мы разработали.</p>
             <p className="mt-4 max-w-md text-lg text-muted-foreground">В каждом кейсе: задача, интерфейсы и выполненная работа.</p>
           </div>
-          <img src={folio.url} alt="Папка с макетами сайтов и приложений" width={1200} height={845} fetchPriority="high" decoding="async" className="w-full" />
+          <img src={folio.url} alt="Папка с макетами сайтов и приложений" width={1200} height={845} fetchPriority="high" decoding="async" className="w-full lg:-mr-8 lg:max-w-none lg:w-[calc(100%_+_2rem)]" />
         </div>
 
         <div role="tablist" aria-label="Категории проектов" className="mt-10 flex gap-3 overflow-x-auto pb-1 [scrollbar-width:none]">
