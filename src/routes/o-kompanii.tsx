@@ -67,10 +67,7 @@ function AboutPage() {
     <div id="top" className="relative z-10 bg-ink text-ink-foreground">
       <Header />
       <section className="container-pb pb-px pt-6 md:pt-8" aria-labelledby="about-title">
-        <nav aria-label="Хлебные крошки" className="text-xs text-ink-foreground/70">
-          <Link to="/" className="hover:text-ink-foreground">Главная</Link><span className="mx-2">/</span><span>О компании</span>
-        </nav>
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:items-end">
           <div>
             <h1 id="about-title" className="display text-[clamp(2.6rem,6.5vw,6rem)] leading-[0.95]">
               Люди, которые делают сложное <span className="text-primary">удобным.</span>
