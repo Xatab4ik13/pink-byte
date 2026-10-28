@@ -15,7 +15,7 @@ const SLIDES = [
   { src: gold.url, title: "Brionilux", desc: "Интернет-магазин розеток и выключателей" },
 ];
 
-export function Projects() {
+export function Projects({ title, text }: { title?: string; text?: string } = {}) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [position, setPosition] = useState(1);
   const [animate, setAnimate] = useState(true);
@@ -48,11 +48,18 @@ export function Projects() {
 
   return (
     <section id="projects" aria-labelledby="projects-title" className="container-pb pb-projects scroll-mt-6 pt-24 md:pt-28">
-      <Reveal className="text-center">
-        <h2 id="projects-title" className="font-display text-[36px] font-extrabold leading-[1.05] md:text-[56px] xl:text-[72px]">
-          Проекты крупным планом.
-        </h2>
-      </Reveal>
+      {title ? (
+        <Reveal className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
+          <h2 id="projects-title" className="font-display text-[36px] font-extrabold leading-[1.05] md:text-[56px]">{title}</h2>
+          {text && <p className="max-w-sm text-base text-muted-foreground md:text-right">{text}</p>}
+        </Reveal>
+      ) : (
+        <Reveal className="text-center">
+          <h2 id="projects-title" className="font-display text-[36px] font-extrabold leading-[1.05] md:text-[56px] xl:text-[72px]">
+            Проекты крупным планом.
+          </h2>
+        </Reveal>
+      )}
 
       <div className="relative mt-8 md:mt-10" role="region" aria-roledescription="карусель" aria-label="Проекты" onKeyDown={(e) => {
         if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
