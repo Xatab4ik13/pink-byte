@@ -17,7 +17,7 @@ export const SERVICE_LINKS = [
 export const NAV: { href: string; label: string; children?: typeof SERVICE_LINKS }[] = [
   { href: "/#services", label: "Услуги", children: SERVICE_LINKS },
   { href: "/#projects", label: "Портфолио" },
-  { href: "/#studio", label: "О компании" },
+  { href: "/o-kompanii", label: "О компании" },
   { href: "/blog", label: "Блог" },
   { href: "/#contact", label: "Контакты" },
 ];
