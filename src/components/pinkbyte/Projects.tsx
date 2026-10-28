@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ const SLIDES = [
   { src: gold.url, title: "Brionilux", desc: "Интернет-магазин розеток и выключателей" },
 ];
 
-export function Projects({ title, text }: { title?: React.ReactNode; text?: string } = {}) {
+export function Projects({ title, text }: { title?: ReactNode; text?: string } = {}) {
   const dialog = useRef<HTMLDialogElement>(null);
   const [position, setPosition] = useState(1);
   const [animate, setAnimate] = useState(true);

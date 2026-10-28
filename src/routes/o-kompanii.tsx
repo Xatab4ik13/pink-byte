@@ -145,7 +145,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <Projects title="Наш подход виден в работе." text="Показываем интерфейсы и решения, которые разработали для заказчиков." />
+      <Projects title={<>Наш подход<br />виден в работе.</>} text="Показываем интерфейсы и решения, которые разработали для заказчиков." />
 
       <section className="container-pb pt-16 md:pt-24" aria-labelledby="handoff-title">
         <div className="grid items-center gap-6 overflow-hidden rounded-3xl bg-muted p-6 md:grid-cols-[1.1fr_1fr] md:p-12">
@@ -157,7 +157,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <Contact title="Расскажите, что вы задумали." text="Обсудим задачу, необходимые функции и объём разработки." />
+      <Contact text="Обсудим задачу, необходимые функции и объём разработки." />
     </main>
     <Footer />
   </>;
