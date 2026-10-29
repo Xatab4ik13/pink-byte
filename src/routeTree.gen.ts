@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogRouteImport } from './routes/blog'
+import { Route as KontaktyRouteImport } from './routes/kontakty'
 import { Route as OKompaniiRouteImport } from './routes/o-kompanii'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as UslugiCrmSistemaRouteImport } from './routes/uslugi.crm-sistema'
@@ -26,6 +27,11 @@ const IndexRoute = IndexRouteImport.update({
 const BlogRoute = BlogRouteImport.update({
   id: '/blog',
   path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktyRoute = KontaktyRouteImport.update({
+  id: '/kontakty',
+  path: '/kontakty',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OKompaniiRoute = OKompaniiRouteImport.update({
@@ -63,6 +69,7 @@ const UslugiMobilnoePrilozhenieRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
+  '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
+  '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRoute
+  '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blog'
+    | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
     | '/uslugi/crm-sistema'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/blog'
+    | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
     | '/uslugi/crm-sistema'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blog'
+    | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
     | '/uslugi/crm-sistema'
@@ -127,6 +139,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRoute: typeof BlogRoute
+  KontaktyRoute: typeof KontaktyRoute
   OKompaniiRoute: typeof OKompaniiRoute
   PortfolioRoute: typeof PortfolioRoute
   UslugiCrmSistemaRoute: typeof UslugiCrmSistemaRoute
@@ -149,6 +162,13 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakty': {
+      id: '/kontakty'
+      path: '/kontakty'
+      fullPath: '/kontakty'
+      preLoaderRoute: typeof KontaktyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/o-kompanii': {
@@ -199,6 +219,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRoute,
+  KontaktyRoute: KontaktyRoute,
   OKompaniiRoute: OKompaniiRoute,
   PortfolioRoute: PortfolioRoute,
   UslugiCrmSistemaRoute: UslugiCrmSistemaRoute,
