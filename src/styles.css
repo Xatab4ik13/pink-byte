@@ -518,6 +518,21 @@
 .pb-contact-robot { transition: opacity .3s ease; }
 html.pb-menu-open .pb-contact-robot { opacity: 0; }
 
+/* Страница «Контакты»: робот сидит на перекладине, ноги свисают вниз */
+.pb-contacts-beam {
+  position: absolute;
+  top: 61.3%;
+  left: -16%;
+  width: 132%;
+  height: 20px;
+  translate: 0 -50%;
+  border-radius: 999px;
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--ink-foreground) 22%, var(--ink)) 0%,
+    color-mix(in oklab, var(--ink-foreground) 6%, var(--ink)) 100%);
+  box-shadow: 0 22px 34px -20px color-mix(in oklab, var(--graphite) 92%, transparent);
+}
+
 /* Услуга «Интернет-магазин»: мобильные иллюстрации крупнее, в край экрана */
 @media (max-width: 767.98px) {
   .pb-shop-hero-devices {
