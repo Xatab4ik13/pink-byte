@@ -5,9 +5,10 @@ export function navigationActive(pathname: string, hash: string, href: string): 
 }
 
 /** Resolves a NAV href to a typed Link target: hash links go home, page links keep their path. */
-export function navigationTarget(href: string): { to: "/" | "/blog" | "/o-kompanii" | "/portfolio"; hash: string } {
+export function navigationTarget(href: string): { to: "/" | "/blog" | "/o-kompanii" | "/portfolio" | "/kontakty"; hash: string } {
   if (href === "/blog") return { to: "/blog", hash: "" };
   if (href === "/o-kompanii") return { to: "/o-kompanii", hash: "" };
   if (href === "/portfolio") return { to: "/portfolio", hash: "" };
+  if (href === "/kontakty") return { to: "/kontakty", hash: "" };
   return { to: "/", hash: href.split("#")[1] ?? "" };
 }

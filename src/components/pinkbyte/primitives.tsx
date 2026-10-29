@@ -19,7 +19,7 @@ export const NAV: { href: string; label: string; children?: typeof SERVICE_LINKS
   { href: "/portfolio", label: "Портфолио" },
   { href: "/o-kompanii", label: "О компании" },
   { href: "/blog", label: "Блог" },
-  { href: "/#contact", label: "Контакты" },
+  { href: "/kontakty", label: "Контакты" },
 ];
 
 export const TELEGRAM_URL = "https://t.me/noirdig";
