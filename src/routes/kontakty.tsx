@@ -10,7 +10,7 @@ import { Footer } from "@/components/pinkbyte/Closing";
 import { Reveal, SERVICE_LINKS, btn } from "@/components/pinkbyte/primitives";
 import { useOpenBrief } from "@/components/pinkbyte/brief-context";
 import { cn } from "@/lib/utils";
-import robotSeated from "@/assets/robot-brief-seated.webp";
+import bubbles from "@/assets/contacts-bubbles.webp.asset.json";
 import whatsappIcon from "@/assets/whatsapp-icon.webp.asset.json";
 import telegramIcon from "@/assets/telegram-icon.webp.asset.json";
 import maxIcon from "@/assets/max-icon.webp.asset.json";
@@ -74,16 +74,15 @@ function ContactsPage() {
               Работаем онлайн с заказчиками по всей России.
             </p>
           </div>
-          <div className="relative mx-auto w-[min(300px,78vw)] md:w-[min(420px,86%)]">
-            <div aria-hidden className="pb-contacts-beam" />
+          <div className="relative mx-auto w-[min(320px,84vw)] md:w-[min(520px,94%)]">
             <img
-              src={robotSeated}
-              alt="Робот Pink Byte сидит на перекладине и приветственно поднимает руку"
-              width={768}
-              height={832}
+              src={bubbles.url}
+              alt="Два объёмных речевых пузыря: тёмный с тремя лаймовыми точками и светлый с двумя строками"
+              width={961}
+              height={914}
               fetchPriority="high"
               decoding="async"
-              className="relative z-10 block h-auto w-full"
+              className="block h-auto w-full"
             />
           </div>
         </div>
