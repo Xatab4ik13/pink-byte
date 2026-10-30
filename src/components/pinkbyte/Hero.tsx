@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import robotLeanSrc from "@/assets/robot-hero.webp";
 import robotSeated from "@/assets/robot-brief-seated.webp";
 import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
 import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { Logo, NAV, btn } from "./primitives";
+import { CHANNELS, PHONE_HREF, PHONE_LABEL } from "./company-data";
 import { useOpenBrief } from "./brief-context";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { navigationActive, navigationTarget } from "./navigation-model";
@@ -151,6 +152,24 @@ export function Header({ tone = "dark" }: { tone?: "dark" | "light" }) {
                 </li>
               ))}
             </ul>
+            <div className="pb-drawer-contacts" style={{ "--i": NAV.length } as CSSProperties}>
+              <a href={PHONE_HREF} className="pb-drawer-phone">
+                <Phone className="size-5" aria-hidden="true" />
+                {PHONE_LABEL}
+              </a>
+              <ul className="pb-drawer-channels" aria-label="Мессенджеры и почта">
+                {CHANNELS.map((c) => {
+                  const img = <img src={c.icon.url} alt="" width={40} height={40} loading="lazy" decoding="async" className="size-10 object-contain" />;
+                  return (
+                    <li key={c.name}>
+                      {c.href
+                        ? <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" aria-label={c.name} title={c.name} className="inline-flex rounded-full transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">{img}</a>
+                        : <span title={`${c.name}: скоро`} className="inline-flex">{img}</span>}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
           <div className="pb-drawer-foot">
             <img src={robotSeated} alt="" width={768} height={832} loading="lazy" decoding="async" className="pb-drawer-robot" />
