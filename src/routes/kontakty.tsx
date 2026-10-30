@@ -7,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Header } from "@/components/pinkbyte/Hero";
 import { Footer } from "@/components/pinkbyte/Closing";
-import { Reveal, SERVICE_LINKS, btn } from "@/components/pinkbyte/primitives";
+import { Reveal, SERVICE_LINKS, TELEGRAM_URL, btn } from "@/components/pinkbyte/primitives";
 import { useOpenBrief } from "@/components/pinkbyte/brief-context";
 import { cn } from "@/lib/utils";
 import bubbles from "@/assets/contacts-bubbles-v2.webp.asset.json";
@@ -22,10 +22,10 @@ const DESC =
 
 /* Адреса каналов пришлём позже: достаточно вписать href, и ссылка станет рабочей. */
 const CHANNELS = [
-  { name: "WhatsApp", action: "Открыть чат", icon: whatsappIcon, href: "" },
-  { name: "Telegram", action: "Открыть чат", icon: telegramIcon, href: "" },
-  { name: "MAX", action: "Открыть чат", icon: maxIcon, href: "" },
-  { name: "Почта", action: "Отправить письмо", icon: mailIcon, href: "" },
+  { name: "WhatsApp", icon: whatsappIcon, href: "" },
+  { name: "Telegram", icon: telegramIcon, href: TELEGRAM_URL },
+  { name: "MAX", icon: maxIcon, href: "" },
+  { name: "Почта", icon: mailIcon, href: "" },
 ];
 
 const CONSENT_TEXT =
@@ -103,15 +103,29 @@ function ContactsPage() {
       <section className="container-pb pt-32 pb-4 md:pt-44" aria-labelledby="channels-title">
         <h2 id="channels-title" className="font-display text-4xl font-extrabold leading-none md:text-6xl">Напишите нам.</h2>
         <ul className="mt-10 grid grid-cols-2 gap-y-10 lg:mt-14 lg:grid-cols-4 lg:gap-y-0">
-          {CHANNELS.map((channel, index) => (
-            <li key={channel.name} className={cn("flex flex-col items-center px-3 text-center", index > 0 && "lg:border-l lg:border-border")}>
+          {CHANNELS.map((channel, index) => {
+            const icon = (
               <img src={channel.icon.url} width={128} height={128} alt="" loading="lazy" decoding="async" className="h-24 w-24 object-contain md:h-28 md:w-28" />
-              <h3 className="mt-4 text-lg font-bold md:text-xl">{channel.name}</h3>
-              {channel.href
-                ? <a href={channel.href} target="_blank" rel="noreferrer" className="mt-2 text-sm underline underline-offset-4">{channel.action}</a>
-                : <span className="mt-2 text-sm underline underline-offset-4">{channel.action}</span>}
-            </li>
-          ))}
+            );
+            return (
+              <li key={channel.name} className={cn("flex flex-col items-center px-3 text-center", index > 0 && "lg:border-l lg:border-border")}>
+                {channel.href ? (
+                  <a
+                    href={channel.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={channel.name}
+                    className="inline-flex rounded-full transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4"
+                  >
+                    {icon}
+                  </a>
+                ) : (
+                  icon
+                )}
+                <h3 className="mt-4 text-lg font-bold md:text-xl">{channel.name}</h3>
+              </li>
+            );
+          })}
         </ul>
       </section>
 
