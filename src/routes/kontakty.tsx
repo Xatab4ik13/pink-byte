@@ -7,26 +7,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Header } from "@/components/pinkbyte/Hero";
 import { Footer } from "@/components/pinkbyte/Closing";
-import { Reveal, SERVICE_LINKS, TELEGRAM_URL, btn } from "@/components/pinkbyte/primitives";
+import { Reveal, SERVICE_LINKS, btn } from "@/components/pinkbyte/primitives";
 import { useOpenBrief } from "@/components/pinkbyte/brief-context";
+import { CHANNELS, EMAIL, PHONE_HREF, PHONE_LABEL, REQUISITES } from "@/components/pinkbyte/company-data";
 import { cn } from "@/lib/utils";
 import bubbles from "@/assets/contacts-bubbles-v2.webp.asset.json";
-import whatsappIcon from "@/assets/whatsapp-icon.webp.asset.json";
-import telegramIcon from "@/assets/telegram-icon.webp.asset.json";
-import maxIcon from "@/assets/max-icon.webp.asset.json";
-import mailIcon from "@/assets/mail-icon.webp.asset.json";
 
 const TITLE = "Контакты Pink Byte · сайты, CRM и приложения под заказ";
 const DESC =
   "Свяжитесь со студией Pink Byte в мессенджерах, по почте или через форму заявки. Разрабатываем корпоративные сайты, интернет-магазины, CRM-системы и мобильные приложения.";
-
-/* Адреса каналов пришлём позже: достаточно вписать href, и ссылка станет рабочей. */
-const CHANNELS = [
-  { name: "WhatsApp", icon: whatsappIcon, href: "" },
-  { name: "Telegram", icon: telegramIcon, href: TELEGRAM_URL },
-  { name: "MAX", icon: maxIcon, href: "" },
-  { name: "Почта", icon: mailIcon, href: "" },
-];
 
 const CONSENT_TEXT =
   "Разрешаю студии Pink Byte получить и хранить мои имя, контакты, описание задачи и приложенные материалы для оценки проекта и обратной связи. Согласие не распространяется на рекламные рассылки. Отозвать согласие можно в Telegram: @noirdig.";
@@ -123,6 +112,8 @@ function ContactsPage() {
                   icon
                 )}
                 <h3 className="mt-4 text-lg font-bold md:text-xl">{channel.name}</h3>
+                {channel.name === "WhatsApp" && <a href={PHONE_HREF} className="mt-1 text-sm text-muted-foreground hover:text-foreground">{PHONE_LABEL}</a>}
+                {channel.name === "Почта" && <a href={`mailto:${EMAIL}`} className="mt-1 text-sm text-muted-foreground hover:text-foreground">{EMAIL}</a>}
               </li>
             );
           })}
@@ -244,7 +235,7 @@ function ContactsPage() {
         </Reveal>
       </section>
 
-      <section className="container-pb pt-12 pb-4 md:pt-16" aria-labelledby="legal-title">
+      <section id="rekvizity" className="container-pb scroll-mt-6 pt-12 pb-4 md:pt-16" aria-labelledby="legal-title">
         <div className="border-t border-border">
           <h2>
             <Button
@@ -262,7 +253,14 @@ function ContactsPage() {
           </h2>
           <div id="legal-details" aria-hidden={!legalOpen} data-open={legalOpen} className="pb-faq-reveal">
             <div className="pb-faq-answer-clip">
-              <p className="pb-faq-answer max-w-2xl">Реквизиты студии уточняются и появятся здесь позже.</p>
+              <dl className="pb-faq-answer grid max-w-4xl gap-x-10 gap-y-4 pb-6 sm:grid-cols-2">
+                {REQUISITES.map((r) => (
+                  <div key={r.label}>
+                    <dt className="text-sm text-muted-foreground">{r.label}</dt>
+                    <dd className="mt-1 font-medium break-words">{r.value}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
           <div className="border-t border-border" />
