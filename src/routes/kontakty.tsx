@@ -136,14 +136,23 @@ function ContactsPage() {
               </p>
             </div>
             <form
-              onSubmit={(event) => {
+              onSubmit={async (event) => {
                 event.preventDefault();
                 if (!consent) {
                   setNotice("Нужно согласие на обработку персональных данных.");
                   return;
                 }
+                if (pending) return;
                 setNotice("");
-                setSent(true);
+                setPending(true);
+                try {
+                  await send({ data: { name, contact, service, about, files, consent: true } });
+                  setSent(true);
+                } catch {
+                  setNotice("Заявка не отправлена. Попробуйте ещё раз или напишите нам в Telegram.");
+                } finally {
+                  setPending(false);
+                }
               }}
             >
               <div className="grid gap-5 sm:grid-cols-2">
@@ -230,8 +239,8 @@ function ContactsPage() {
               </div>
 
               <div className="mt-7 flex flex-wrap items-center gap-4">
-                <Button type="submit" className={`${btn.ink} h-auto px-10 py-4`}>Отправить сообщение</Button>
-                {sent && <p role="status" className="text-sm text-muted-foreground">Форма пока прототип: данные никуда не отправляются.</p>}
+                <Button type="submit" disabled={pending} className={`${btn.ink} h-auto px-10 py-4`}>{pending ? "Отправляем..." : "Отправить сообщение"}</Button>
+                {sent && <p role="status" className="text-sm text-muted-foreground">Заявка принята. Мы свяжемся с вами в ближайшее время.</p>}
                 {notice && <p role="alert" className="text-sm text-destructive">{notice}</p>}
               </div>
             </form>
