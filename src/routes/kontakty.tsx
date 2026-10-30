@@ -88,7 +88,7 @@ function ContactsPage() {
         </div>
       </section>
       <section className="container-pb">
-        <Reveal className="relative z-10 -mb-20 flex flex-col items-start justify-between gap-4 rounded-[2rem] border border-ink-border p-4 md:-mb-24 md:flex-row md:items-center md:p-6">
+        <Reveal className="relative z-10 -mb-20 flex flex-col items-start justify-between gap-4 rounded-[2rem] border border-ink-border bg-ink p-4 md:-mb-24 md:flex-row md:items-center md:p-6">
           <div>
             <h2 className="font-display text-2xl font-extrabold leading-tight md:text-4xl">Составим ТЗ бесплатно.</h2>
             <p className="mt-3 text-sm text-ink-muted md:text-base">Ответьте на вопросы о проекте и получите ТЗ за 10 минут.</p>
@@ -100,7 +100,7 @@ function ContactsPage() {
     </div>
 
     <main className="bg-background">
-      <section className="container-pb pt-14 pb-4 md:pt-20" aria-labelledby="channels-title">
+      <section className="container-pb pt-32 pb-4 md:pt-44" aria-labelledby="channels-title">
         <h2 id="channels-title" className="font-display text-4xl font-extrabold leading-none md:text-6xl">Напишите нам.</h2>
         <ul className="mt-10 grid grid-cols-2 gap-y-10 lg:mt-14 lg:grid-cols-4 lg:gap-y-0">
           {CHANNELS.map((channel, index) => (
