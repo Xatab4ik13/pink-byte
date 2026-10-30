@@ -46,9 +46,9 @@ const Shot = ({ src, alt, w, h }: { src: string; alt: string; w: number; h: numb
   <img src={src} alt={alt} width={w} height={h} loading="lazy" decoding="async" className="h-auto w-full rounded-2xl border border-border shadow-[0_24px_60px_-30px_color-mix(in_oklab,var(--ink)_45%,transparent)]" />
 );
 
-const Block = ({ src, alt, title, children }: { src: string; alt: string; title: string; children: React.ReactNode }) => (
+const Block = ({ src, alt, title, w = 1440, h = 900, children }: { src: string; alt: string; title: string; w?: number; h?: number; children: React.ReactNode }) => (
   <section className="container-pb mt-16">
-    <Reveal><Shot src={src} w={1440} h={900} alt={alt} /></Reveal>
+    <Reveal><Shot src={src} w={w} h={h} alt={alt} /></Reveal>
     <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_1.4fr]">
       <h2 className="font-display text-3xl font-extrabold md:text-5xl">{title}</h2>
       <p className="text-lg leading-relaxed text-muted-foreground">{children}</p>

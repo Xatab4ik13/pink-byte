@@ -27,7 +27,7 @@ const FILTERS: { id: Cat | "all"; label: string }[] = [
 ];
 const TAG: Record<Cat, string> = { shop: "Интернет-магазин", corp: "Корпоративный сайт", app: "Мобильное приложение" };
 
-const WORKS: { title: string; desc: string; cat: Cat; src: string; to?: "/portfolio/brionilux" | "/portfolio/chinar" | "/portfolio/citymebel" | "/portfolio/konczentracziya" | "/portfolio/nikitsky-6" | "/uslugi/korporativny-sait" | "/uslugi/mobilnoe-prilozhenie" }[] = [
+const WORKS: { title: string; desc: string; cat: Cat; src: string; to?: "/portfolio/brionilux" | "/portfolio/chinar" | "/portfolio/citymebel" | "/portfolio/konczentracziya" | "/portfolio/nikitsky-6" | "/portfolio/moya-bron" | "/uslugi/korporativny-sait" | "/uslugi/mobilnoe-prilozhenie" }[] = [
   { title: "Brionilux", desc: "Интернет-магазин электрофурнитуры", cat: "shop", src: brionilux.url, to: "/portfolio/brionilux" },
   { title: "Концентрация", desc: "Сайт компании в области химии и фармацевтики", cat: "corp", src: conc.url, to: "/portfolio/konczentracziya" },
   { title: "CHINAR", desc: "Сайт центра китайского языка", cat: "corp", src: chinar.url, to: "/portfolio/chinar" },
