@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { createFileRoute } from "@tanstack/react-router";
 import { ChevronDown, Minus, Paperclip, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,6 @@ import { Footer } from "@/components/pinkbyte/Closing";
 import { Reveal, SERVICE_LINKS, btn } from "@/components/pinkbyte/primitives";
 import { useOpenBrief } from "@/components/pinkbyte/brief-context";
 import { CHANNELS, EMAIL, PHONE_HREF, PHONE_LABEL, REQUISITES } from "@/components/pinkbyte/company-data";
-import { submitContactRequest } from "@/components/pinkbyte/contact-form.functions";
 import { cn } from "@/lib/utils";
 import bubbles from "@/assets/contacts-bubbles-v2.webp.asset.json";
 
@@ -46,8 +44,6 @@ function ContactsPage() {
   const [consent, setConsent] = useState(false);
   const [notice, setNotice] = useState("");
   const [sent, setSent] = useState(false);
-  const [pending, setPending] = useState(false);
-  const send = useServerFn(submitContactRequest);
   const [legalOpen, setLegalOpen] = useState(false);
 
   return <>
@@ -136,23 +132,14 @@ function ContactsPage() {
               </p>
             </div>
             <form
-              onSubmit={async (event) => {
+              onSubmit={(event) => {
                 event.preventDefault();
                 if (!consent) {
                   setNotice("Нужно согласие на обработку персональных данных.");
                   return;
                 }
-                if (pending) return;
                 setNotice("");
-                setPending(true);
-                try {
-                  await send({ data: { name, contact, service, about, files, consent: true } });
-                  setSent(true);
-                } catch {
-                  setNotice("Заявка не отправлена. Попробуйте ещё раз или напишите нам в Telegram.");
-                } finally {
-                  setPending(false);
-                }
+                setSent(true);
               }}
             >
               <div className="grid gap-5 sm:grid-cols-2">
@@ -239,8 +226,8 @@ function ContactsPage() {
               </div>
 
               <div className="mt-7 flex flex-wrap items-center gap-4">
-                <Button type="submit" disabled={pending} className={`${btn.ink} h-auto px-10 py-4`}>{pending ? "Отправляем..." : "Отправить сообщение"}</Button>
-                {sent && <p role="status" className="text-sm text-muted-foreground">Заявка принята. Мы свяжемся с вами в ближайшее время.</p>}
+                <Button type="submit" className={`${btn.ink} h-auto px-10 py-4`}>Отправить сообщение</Button>
+                {sent && <p role="status" className="text-sm text-muted-foreground">Форма пока прототип: данные никуда не отправляются.</p>}
                 {notice && <p role="alert" className="text-sm text-destructive">{notice}</p>}
               </div>
             </form>
