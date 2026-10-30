@@ -15,6 +15,7 @@ import { Route as KontaktyRouteImport } from './routes/kontakty'
 import { Route as OKompaniiRouteImport } from './routes/o-kompanii'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as PortfolioBrioniluxRouteImport } from './routes/portfolio_.brionilux'
+import { Route as PortfolioChinarRouteImport } from './routes/portfolio_.chinar'
 import { Route as UslugiCrmSistemaRouteImport } from './routes/uslugi.crm-sistema'
 import { Route as UslugiInternetMagazinRouteImport } from './routes/uslugi.internet-magazin'
 import { Route as UslugiKorporativnySaitRouteImport } from './routes/uslugi.korporativny-sait'
@@ -50,6 +51,11 @@ const PortfolioBrioniluxRoute = PortfolioBrioniluxRouteImport.update({
   path: '/portfolio/brionilux',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortfolioChinarRoute = PortfolioChinarRouteImport.update({
+  id: '/portfolio_/chinar',
+  path: '/portfolio/chinar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UslugiCrmSistemaRoute = UslugiCrmSistemaRouteImport.update({
   id: '/uslugi/crm-sistema',
   path: '/uslugi/crm-sistema',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
   '/portfolio/brionilux': typeof PortfolioBrioniluxRoute
+  '/portfolio/chinar': typeof PortfolioChinarRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
   '/portfolio/brionilux': typeof PortfolioBrioniluxRoute
+  '/portfolio/chinar': typeof PortfolioChinarRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
   '/portfolio_/brionilux': typeof PortfolioBrioniluxRoute
+  '/portfolio_/chinar': typeof PortfolioChinarRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/o-kompanii'
     | '/portfolio'
     | '/portfolio/brionilux'
+    | '/portfolio/chinar'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/o-kompanii'
     | '/portfolio'
     | '/portfolio/brionilux'
+    | '/portfolio/chinar'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/o-kompanii'
     | '/portfolio'
     | '/portfolio_/brionilux'
+    | '/portfolio_/chinar'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   OKompaniiRoute: typeof OKompaniiRoute
   PortfolioRoute: typeof PortfolioRoute
   PortfolioBrioniluxRoute: typeof PortfolioBrioniluxRoute
+  PortfolioChinarRoute: typeof PortfolioChinarRoute
   UslugiCrmSistemaRoute: typeof UslugiCrmSistemaRoute
   UslugiInternetMagazinRoute: typeof UslugiInternetMagazinRoute
   UslugiKorporativnySaitRoute: typeof UslugiKorporativnySaitRoute
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortfolioBrioniluxRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio_/chinar': {
+      id: '/portfolio_/chinar'
+      path: '/portfolio/chinar'
+      fullPath: '/portfolio/chinar'
+      preLoaderRoute: typeof PortfolioChinarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslugi/crm-sistema': {
       id: '/uslugi/crm-sistema'
       path: '/uslugi/crm-sistema'
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   OKompaniiRoute: OKompaniiRoute,
   PortfolioRoute: PortfolioRoute,
   PortfolioBrioniluxRoute: PortfolioBrioniluxRoute,
+  PortfolioChinarRoute: PortfolioChinarRoute,
   UslugiCrmSistemaRoute: UslugiCrmSistemaRoute,
   UslugiInternetMagazinRoute: UslugiInternetMagazinRoute,
   UslugiKorporativnySaitRoute: UslugiKorporativnySaitRoute,

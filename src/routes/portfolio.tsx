@@ -27,10 +27,10 @@ const FILTERS: { id: Cat | "all"; label: string }[] = [
 ];
 const TAG: Record<Cat, string> = { shop: "Интернет-магазин", corp: "Корпоративный сайт", app: "Мобильное приложение" };
 
-const WORKS: { title: string; desc: string; cat: Cat; src: string; to?: "/portfolio/brionilux" | "/uslugi/korporativny-sait" | "/uslugi/mobilnoe-prilozhenie" }[] = [
+const WORKS: { title: string; desc: string; cat: Cat; src: string; to?: "/portfolio/brionilux" | "/portfolio/chinar" | "/uslugi/korporativny-sait" | "/uslugi/mobilnoe-prilozhenie" }[] = [
   { title: "Brionilux", desc: "Интернет-магазин электрофурнитуры", cat: "shop", src: brionilux.url, to: "/portfolio/brionilux" },
   { title: "Концентрация", desc: "Сайт компании в области химии и фармацевтики", cat: "corp", src: conc.url, to: "/uslugi/korporativny-sait" },
-  { title: "CHINAR", desc: "Сайт центра китайского языка", cat: "corp", src: chinar.url },
+  { title: "CHINAR", desc: "Сайт центра китайского языка", cat: "corp", src: chinar.url, to: "/portfolio/chinar" },
   { title: "CityMebel MSK", desc: "Сайт мебели на заказ", cat: "corp", src: citymebel.url },
   { title: "Моя Бронь", desc: "Приложение для бронирования отелей", cat: "app", src: bron.url, to: "/uslugi/mobilnoe-prilozhenie" },
   { title: "Никитский-6", desc: "Сайт клубного дома в Москве", cat: "corp", src: nikitsky.url },
