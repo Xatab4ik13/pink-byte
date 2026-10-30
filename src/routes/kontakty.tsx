@@ -60,7 +60,7 @@ function ContactsPage() {
   return <>
     <div id="top" className="bg-ink text-ink-foreground">
       <Header />
-      <section className="container-pb pt-3 pb-4 md:pt-2 md:pb-5" aria-labelledby="contacts-title">
+      <section className="container-pb pt-3 pb-4 md:pt-2 md:pb-5 lg:pt-14 lg:pb-[79px] xl:pb-[66px] 2xl:pt-16 2xl:pb-[100px]" aria-labelledby="contacts-title">
         <div className="grid gap-4 md:gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <h1 id="contacts-title" className="pb-service-title font-display font-extrabold">
