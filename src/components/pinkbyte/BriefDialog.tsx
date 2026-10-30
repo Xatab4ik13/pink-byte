@@ -162,7 +162,7 @@ export default function BriefDialog({ open, onOpenChange }: { open: boolean; onO
               <Logo className="w-28" />
               <DialogTitle className="display mt-6 text-[44px]">
                 Обсудим
-                <br />
+                <br />{" "}
                 ваш <span className="text-primary">проект.</span>
               </DialogTitle>
               <DialogDescription className="mt-4 text-sm leading-relaxed text-ink-muted">
