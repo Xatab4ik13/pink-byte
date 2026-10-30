@@ -32,7 +32,7 @@ const WORKS: { title: string; desc: string; cat: Cat; src: string; to?: "/portfo
   { title: "Концентрация", desc: "Сайт компании в области химии и фармацевтики", cat: "corp", src: conc.url, to: "/portfolio/konczentracziya" },
   { title: "CHINAR", desc: "Сайт центра китайского языка", cat: "corp", src: chinar.url, to: "/portfolio/chinar" },
   { title: "CityMebel MSK", desc: "Сайт мебели на заказ", cat: "corp", src: citymebel.url, to: "/portfolio/citymebel" },
-  { title: "Моя Бронь", desc: "Приложение для бронирования отелей", cat: "app", src: bron.url, to: "/uslugi/mobilnoe-prilozhenie" },
+  { title: "Моя Бронь", desc: "Приложение для бронирования отелей", cat: "app", src: bron.url, to: "/portfolio/moya-bron" },
   { title: "Никитский-6", desc: "Сайт клубного дома в Москве", cat: "corp", src: nikitsky.url, to: "/portfolio/nikitsky-6" },
 ];
 
