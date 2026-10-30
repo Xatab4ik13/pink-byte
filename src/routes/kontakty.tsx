@@ -74,11 +74,11 @@ function ContactsPage() {
               Работаем онлайн с заказчиками по всей России.
             </p>
           </div>
-          <div className="relative mx-auto w-[min(220px,70vw)] md:w-[min(390px,74%)]">
+          <div className="relative mx-auto w-full">
             <img
               src={bubbles.url}
               alt="Два объёмных речевых пузыря: тёмный с тремя лаймовыми точками и светлый с двумя строками"
-              width={961}
+              width={1721}
               height={914}
               fetchPriority="high"
               decoding="async"
