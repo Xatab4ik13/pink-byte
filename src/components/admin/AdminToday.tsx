@@ -1,0 +1,41 @@
+import { useState, type ReactNode } from 'react';
+import { ArrowRight, Bell, CalendarDays, Check, CircleCheck, Coins, FileText, Folder, ListChecks, MoreHorizontal, Plus, ShieldCheck, UserRound } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import tray from '@/assets/crm-decision-tray.webp.asset.json';
+import { initialTasks, money, payments, projects } from './mock-data';
+
+export function Panel({ title, action, children, className = '' }: { title: string; action?: ReactNode; children: ReactNode; className?: string }) {
+  return <section className={`crm-panel ${className}`}><div className="crm-panel-heading"><h2>{title}</h2>{action}</div>{children}</section>;
+}
+export function AdminToday({ openCreate, openReview, notify, search }: { openCreate: () => void; openReview: () => void; notify: (message: string) => void; search: string }) {
+  const [tasks, setTasks] = useState(initialTasks);
+  const [tab, setTab] = useState('Сегодня');
+  const visibleTasks = tasks.slice(0, tab === 'Сегодня' ? 4 : tab === 'На неделе' ? 8 : 12).filter(task => `${task.title} ${task.project}`.toLowerCase().includes(search.toLowerCase()));
+  const filteredProjects = projects.filter(project => project.name.toLowerCase().includes(search.toLowerCase()));
+  const total = payments.reduce((sum, payment) => sum + payment.amount, 0);
+  const metrics = [
+    { icon: FileText, label: 'Новые заявки', value: '3', note: 'Нужно связаться' },
+    { icon: Folder, label: 'Проекты в работе', value: '4', note: 'Дизайн и разработка' },
+    { icon: Coins, label: 'Ближайшие оплаты', value: money(total), note: 'Ожидаемые поступления' },
+    { icon: ShieldCheck, label: 'На проверке у агентов', value: '2', note: 'Открыть результаты' },
+  ];
+  return <div className="crm-today crm-enter">
+    <div className="crm-page-heading"><div><h1>Сегодня</h1><p className="crm-desktop-copy">Заявки, проекты и решения, которые ждут внимания.</p><p className="crm-mobile-date">30 октября</p></div><div className="crm-heading-actions"><span>30 октября 2026</span><Button onClick={openCreate} className="crm-button"><Plus />Создать</Button></div></div>
+    <div className="crm-metrics">{metrics.map(({ icon: Icon, label, value, note }, index) => <div className={`crm-metric crm-metric-${index}`} key={label}><span className="crm-icon-tile"><Icon /></span><div><span className="crm-metric-label">{label}</span><strong>{value}</strong><span className="crm-metric-note">{note}</span></div></div>)}</div>
+    <div className="crm-dashboard-grid">
+      <Panel title="Мои задачи" className="crm-tasks" action={<Button className="crm-button" size="sm" onClick={openCreate}><Plus />Добавить</Button>}>
+        <div className="crm-tabs">{['Сегодня', 'На неделе', 'Все'].map((label, index) => <Button key={label} variant="ghost" size="sm" aria-pressed={tab === label} onClick={() => setTab(label)}>{label} ({[4, 8, 12][index]})</Button>)}</div>
+        <div className="crm-task-list">{visibleTasks.map(task => <div className={`crm-task ${task.done ? 'crm-task-done' : ''}`} key={task.id}><Button variant="ghost" className="crm-check" role="checkbox" aria-label={task.title} aria-checked={task.done} onClick={() => setTasks(current => current.map(item => item.id === task.id ? { ...item, done: !item.done } : item))}>{task.done && <Check />}</Button><div className="crm-task-copy"><strong>{task.title}</strong><small className="crm-task-description">{task.description}</small><small className="crm-task-mobile-project">{task.project}</small></div><span className="crm-task-project"><Folder />{task.project}</span><span className={`crm-badge crm-badge-${task.tone}`}>{task.due}</span></div>)}{visibleTasks.length === 0 && <p className="crm-empty">Ничего не найдено</p>}</div>
+      </Panel>
+      <section className="crm-decisions"><div><h2>Нужны решения</h2><p>2 материала от агентов готовы<br />к проверке.</p><Button variant="outline" className="crm-button crm-decision-button" onClick={openReview}>Посмотреть<ArrowRight /></Button></div><img src={tray.url} alt="Материалы на проверке" width={214} height={157} /></section>
+      <Panel title="Ближайшие оплаты" className="crm-payments" action={<Button variant="link" size="sm" className="crm-text-link" onClick={() => notify('Все ближайшие оплаты показаны в этом блоке')}>Все оплаты<ArrowRight /></Button>}><div>{payments.map(payment => <div className="crm-payment" key={payment.project}><span>{payment.project}</span><strong>{money(payment.amount)}</strong><small>{payment.note}</small></div>)}</div><div className="crm-payment-total"><strong>Итого ожидаемых поступлений</strong><strong>{money(total)}</strong></div></Panel>
+      <Panel title="Проекты в работе" className="crm-projects" action={<Button variant="link" size="sm" className="crm-text-link" onClick={() => notify('Экран проектов появится в третьей итерации')}>Все проекты<ArrowRight /></Button>}><div className="crm-table-wrap"><table><thead><tr><th>Проект</th><th>Этап</th><th>Ближайший срок</th><th>Ответственный</th><th /></tr></thead><tbody>{filteredProjects.map(project => <tr key={project.name}><td><div className="crm-project-name"><span className="crm-avatar">{project.name[0]}</span><div><strong>{project.name}</strong><small>{project.type}</small></div></div></td><td><span className={`crm-badge crm-badge-${project.tone}`}><i />{project.stage}</span></td><td>{project.deadline}</td><td><span className="crm-owner"><span className="crm-avatar"><UserRound /></span>{project.owner}</span></td><td><Button variant="ghost" size="icon-xs" aria-label={`Действия: ${project.name}`} onClick={() => notify(`${project.name}: ${project.stage.toLowerCase()}, срок ${project.deadline}`)}><MoreHorizontal /></Button></td></tr>)}</tbody></table>{filteredProjects.length === 0 && <p className="crm-empty">Ничего не найдено</p>}</div></Panel>
+      <Panel title="Последние события" className="crm-events" action={<Button variant="link" size="sm" className="crm-text-link" onClick={() => notify('Показаны все события за сегодня')}>Все события<ArrowRight /></Button>}><div className="crm-timeline">{[{ icon: FileText, title: 'Новая заявка с сайта', detail: 'Корпоративный сайт', note: 'Имя: Олег · Контакт указан в заявке', time: '10:24' }, { icon: ListChecks, title: 'ТЗ заполнено', detail: 'Магазин света', note: 'Агент подготовил техническое задание.', time: '09:17' }, { icon: FileText, title: 'Черновик предложения готов', detail: 'Нужна проверка', note: 'Агент AI подготовил черновик КП.', time: 'Вчера, 18:42' }].map(({ icon: Icon, ...event }) => <div className="crm-event" key={event.title}><span className="crm-icon-tile"><Icon /></span><div><strong>{event.title}</strong><small>{event.detail}</small><p>{event.note}</p></div><time>{event.time}</time></div>)}</div></Panel>
+    </div>
+  </div>;
+}
+
+export function ReviewPreview({ notify }: { notify: (message: string) => void }) {
+  const [result, setResult] = useState('');
+  return <div className="crm-review"><span className="crm-subtle">Подготовка предложений</span><h2>Магазин декора</h2><span className="crm-badge crm-badge-violet">На проверке</span><Panel title="Черновик предложения"><p>Интернет-магазин: каталог, корзина, оплата и доставка.</p><h3>Нужно уточнить</h3><p>Количество товаров и необходимые интеграции.</p><p>Стоимость не согласована.</p></Panel><Panel title="На основе"><p><FileText size={16} />Ответы из ТЗ</p><p><FileText size={16} />Условия студии</p></Panel><label className="crm-field">Комментарий к правкам<textarea placeholder="Напишите комментарий..." /></label>{result ? <p className="crm-review-result"><CircleCheck />{result}</p> : <><Button className="crm-button" onClick={() => { setResult('Черновик утверждён'); notify('Черновик утверждён. Клиенту ничего не отправлено.'); }}>Утвердить черновик</Button><Button variant="outline" className="crm-button" onClick={() => setResult('Черновик возвращён с замечанием')}>Вернуть с замечанием</Button></>}<small className="crm-subtle">Отправка клиенту: отдельное действие.</small></div>;
+}
