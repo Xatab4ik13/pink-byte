@@ -73,7 +73,7 @@
 - [ ] Wire real contact channels and requisites: awaiting the owner's phone numbers, messenger links and legal details.
 - [x] Make the mobile brief full-screen; verified simulated keyboard viewport resizing, sending, closing/reopening, contact inputs and unchanged desktop geometry. Native phone keyboard still needs an on-device check.
 - [x] SEO iteration 1: researched seven Russian agency/product competitors, checked four robots/sitemap pairs and Semrush ru samples; reported evidence and limitations.
-- [ ] SEO iteration 2: research Yandex Wordstat queries across Russia; blocked pending Wordstat CSV exports or verified current API access. Public interface returned no query figures; legacy API failed TLS hostname verification; no frequencies obtained or substituted.
-- [x] Additional requested research: analyzed 26 Google Russia keyword candidates and six seed topics through Semrush; saved separate demand/difficulty report and page groups without changing site or articles. Wordstat remains blocked separately.
-- [ ] SEO iteration 3: remove all existing blog articles, preserve /blog and verify removed URL responses.
+- [-] SEO iteration 2 closed without data: owner dropped Yandex Wordstat after the public interface returned no figures and the legacy API failed TLS verification; Google demand research via Semrush stands as the separate keyword source.
+- [x] SEO iteration 3: removed all six blog articles, their data module, article route and six cover assets; kept /blog layout, header, contact block and navigation; verified /blog returns 200 with no article links and every removed /blog/<slug> returns 404.
 - [ ] SEO iteration 4: audit the updated site and production pinkbyte.pro; report strengths, missing elements and prioritized recommendations without unsolicited fixes.
+
