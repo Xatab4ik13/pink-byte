@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/pinkbyte/Hero";
@@ -55,7 +55,8 @@ function PortfolioPage() {
   const [view, setView] = useState<(typeof WORKS)[number] | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const list = WORKS.filter((w) => filter === "all" || w.cat === filter);
-  const open = (w: (typeof WORKS)[number]) => { setView(w); dialog.current?.showModal(); };
+  const navigate = useNavigate();
+  const open = (w: (typeof WORKS)[number]) => { if (w.to) { navigate({ to: w.to }); return; } setView(w); dialog.current?.showModal(); };
 
   return <>
     <Header tone="light" />
