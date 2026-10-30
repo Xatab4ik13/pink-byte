@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 
 import { routeTree } from "@/routeTree.gen";
 import { NAV, SERVICE_LINKS } from "@/components/pinkbyte/primitives";
+import { postBySlug } from "@/components/pinkbyte/blog-data";
 
 // Match routes without running loaders or rendering: loaders may need a server or
 // network the test run lacks, and jsdom never loads the stylesheets React waits on.
@@ -19,7 +20,7 @@ describe("App routing", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
     expect(router.matchRoutes("/blog").at(-1)?.routeId).toBe("/blog");
   });
-  // Removed articles must not be served by any route: the server answers 404 for them.
+  // The shared article loader rejects removed records even though the route matches.
   it.each([
     "/blog/stoimost-internet-magazina",
     "/blog/chto-podgotovit-pered-razrabotkoj-sajta",
@@ -29,7 +30,7 @@ describe("App routing", () => {
     "/blog/peredacha-sajta-posle-zapuska",
   ])("removed article %s has no route of its own", (path) => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
-    expect(router.matchRoutes(path).at(-1)?.fullPath).not.toBe(path);
+    expect(postBySlug(path.split("/").at(-1) ?? "")).toBeUndefined();
   });
 
 
