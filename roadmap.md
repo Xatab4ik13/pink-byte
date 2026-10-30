@@ -75,5 +75,5 @@
 - [x] SEO iteration 1: researched seven Russian agency/product competitors, checked four robots/sitemap pairs and Semrush ru samples; reported evidence and limitations.
 - [-] SEO iteration 2 closed without data: owner dropped Yandex Wordstat after the public interface returned no figures and the legacy API failed TLS verification; Google demand research via Semrush stands as the separate keyword source.
 - [x] SEO iteration 3: removed all six blog articles, their data module, article route and six cover assets; kept /blog layout, header, contact block and navigation; verified /blog returns 200 with no article links and every removed /blog/<slug> returns 404.
-- [ ] SEO iteration 4: audit the updated site and production pinkbyte.pro; report strengths, missing elements and prioritized recommendations without unsolicited fixes.
+- [x] SEO iteration 4: audited 15 production pages and updated local version; checked metadata, redirects, robots/sitemap, deleted URLs, mobile rendering and laboratory loading; recorded priorities without site changes. Search indexing and real search traffic remain unverified without webmaster access; production still needs the owner's regular deploy.
 
