@@ -19,6 +19,7 @@ import { Route as PortfolioBrioniluxRouteImport } from './routes/portfolio_.brio
 import { Route as PortfolioChinarRouteImport } from './routes/portfolio_.chinar'
 import { Route as PortfolioCitymebelRouteImport } from './routes/portfolio_.citymebel'
 import { Route as PortfolioKonczentracziyaRouteImport } from './routes/portfolio_.konczentracziya'
+import { Route as PortfolioNikitsky6RouteImport } from './routes/portfolio_.nikitsky-6'
 import { Route as UslugiCrmSistemaRouteImport } from './routes/uslugi.crm-sistema'
 import { Route as UslugiInternetMagazinRouteImport } from './routes/uslugi.internet-magazin'
 import { Route as UslugiKorporativnySaitRouteImport } from './routes/uslugi.korporativny-sait'
@@ -75,6 +76,11 @@ const PortfolioKonczentracziyaRoute =
     path: '/portfolio/konczentracziya',
     getParentRoute: () => rootRouteImport,
   } as any)
+const PortfolioNikitsky6Route = PortfolioNikitsky6RouteImport.update({
+  id: '/portfolio_/nikitsky-6',
+  path: '/portfolio/nikitsky-6',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UslugiCrmSistemaRoute = UslugiCrmSistemaRouteImport.update({
   id: '/uslugi/crm-sistema',
   path: '/uslugi/crm-sistema',
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/portfolio/chinar': typeof PortfolioChinarRoute
   '/portfolio/citymebel': typeof PortfolioCitymebelRoute
   '/portfolio/konczentracziya': typeof PortfolioKonczentracziyaRoute
+  '/portfolio/nikitsky-6': typeof PortfolioNikitsky6Route
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/portfolio/chinar': typeof PortfolioChinarRoute
   '/portfolio/citymebel': typeof PortfolioCitymebelRoute
   '/portfolio/konczentracziya': typeof PortfolioKonczentracziyaRoute
+  '/portfolio/nikitsky-6': typeof PortfolioNikitsky6Route
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -141,6 +149,7 @@ export interface FileRoutesById {
   '/portfolio_/chinar': typeof PortfolioChinarRoute
   '/portfolio_/citymebel': typeof PortfolioCitymebelRoute
   '/portfolio_/konczentracziya': typeof PortfolioKonczentracziyaRoute
+  '/portfolio_/nikitsky-6': typeof PortfolioNikitsky6Route
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/portfolio/chinar'
     | '/portfolio/citymebel'
     | '/portfolio/konczentracziya'
+    | '/portfolio/nikitsky-6'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -175,6 +185,7 @@ export interface FileRouteTypes {
     | '/portfolio/chinar'
     | '/portfolio/citymebel'
     | '/portfolio/konczentracziya'
+    | '/portfolio/nikitsky-6'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
     | '/portfolio_/chinar'
     | '/portfolio_/citymebel'
     | '/portfolio_/konczentracziya'
+    | '/portfolio_/nikitsky-6'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -208,6 +220,7 @@ export interface RootRouteChildren {
   PortfolioChinarRoute: typeof PortfolioChinarRoute
   PortfolioCitymebelRoute: typeof PortfolioCitymebelRoute
   PortfolioKonczentracziyaRoute: typeof PortfolioKonczentracziyaRoute
+  PortfolioNikitsky6Route: typeof PortfolioNikitsky6Route
   UslugiCrmSistemaRoute: typeof UslugiCrmSistemaRoute
   UslugiInternetMagazinRoute: typeof UslugiInternetMagazinRoute
   UslugiKorporativnySaitRoute: typeof UslugiKorporativnySaitRoute
@@ -286,6 +299,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortfolioKonczentracziyaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio_/nikitsky-6': {
+      id: '/portfolio_/nikitsky-6'
+      path: '/portfolio/nikitsky-6'
+      fullPath: '/portfolio/nikitsky-6'
+      preLoaderRoute: typeof PortfolioNikitsky6RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslugi/crm-sistema': {
       id: '/uslugi/crm-sistema'
       path: '/uslugi/crm-sistema'
@@ -328,6 +348,7 @@ const rootRouteChildren: RootRouteChildren = {
   PortfolioChinarRoute: PortfolioChinarRoute,
   PortfolioCitymebelRoute: PortfolioCitymebelRoute,
   PortfolioKonczentracziyaRoute: PortfolioKonczentracziyaRoute,
+  PortfolioNikitsky6Route: PortfolioNikitsky6Route,
   UslugiCrmSistemaRoute: UslugiCrmSistemaRoute,
   UslugiInternetMagazinRoute: UslugiInternetMagazinRoute,
   UslugiKorporativnySaitRoute: UslugiKorporativnySaitRoute,
