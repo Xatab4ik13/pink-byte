@@ -2,7 +2,8 @@ import type React from "react";
 import robotBrief from "@/assets/robot-brief-seated.webp";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Logo, NAV, Reveal, btn } from "./primitives";
+import { Logo, NAV, Reveal, SERVICE_LINKS, btn } from "./primitives";
+import { CHANNELS, COMPANY_SHORT, EMAIL, INN, OGRNIP, PHONE_HREF, PHONE_LABEL } from "./company-data";
 import { useOpenBrief } from "./brief-context";
 import { navigationTarget } from "./navigation-model";
 
@@ -38,23 +39,57 @@ export function Contact({ title, text, buttonLabel }: { title?: React.ReactNode;
 }
 
 export function Footer() {
+  const pages = NAV.filter((n) => !n.children);
   return (
     <footer className="container-pb mt-16">
-      <div className="flex flex-col gap-6 border-t border-border py-8 md:flex-row md:items-center md:justify-between">
-        <Link to="/" aria-label="Pink Byte, наверх">
-          <Logo tone="dark" className="w-32" />
-        </Link>
-        <nav aria-label="Навигация в подвале">
-          <ul className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
-            {NAV.map((n) => (
+      <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-border py-12 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr] lg:gap-8">
+        <div className="col-span-2 lg:col-span-1">
+          <Link to="/" aria-label="Pink Byte, на главную">
+            <Logo tone="dark" className="w-32" />
+          </Link>
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
+            Студия разработки сайтов, CRM-систем и мобильных приложений. Работаем с заказчиками по всей России.
+          </p>
+        </div>
+        <nav aria-label="Услуги">
+          <p className="text-sm font-bold">Услуги</p>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            {SERVICE_LINKS.map((s) => (
+              <li key={s.href}><Link to={s.href} className="text-foreground/75 transition-colors hover:text-foreground">{s.label}</Link></li>
+            ))}
+          </ul>
+        </nav>
+        <nav aria-label="Студия">
+          <p className="text-sm font-bold">Студия</p>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            {pages.map((n) => (
               <li key={n.href}>
-                <Link {...navigationTarget(n.href)} activeOptions={{ exact: true, includeHash: true }} className="text-foreground/80 hover:text-foreground">
-                  {n.label}
-                </Link>
+                <Link {...navigationTarget(n.href)} className="text-foreground/75 transition-colors hover:text-foreground">{n.label}</Link>
               </li>
             ))}
           </ul>
         </nav>
+        <div className="col-span-2 lg:col-span-1">
+          <p className="text-sm font-bold">Связаться</p>
+          <a href={PHONE_HREF} className="mt-4 block font-display text-xl font-extrabold hover:text-foreground/75">{PHONE_LABEL}</a>
+          <a href={`mailto:${EMAIL}`} className="mt-1 block text-sm text-foreground/75 hover:text-foreground">{EMAIL}</a>
+          <ul className="mt-5 flex gap-3" aria-label="Мессенджеры и почта">
+            {CHANNELS.map((c) => {
+              const img = <img src={c.icon.url} alt="" width={44} height={44} loading="lazy" decoding="async" className="size-11 object-contain" />;
+              return (
+                <li key={c.name}>
+                  {c.href
+                    ? <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" aria-label={c.name} title={c.name} className="inline-flex rounded-full transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">{img}</a>
+                    : <span title={`${c.name}: скоро`} className="inline-flex">{img}</span>}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+      <div className="flex flex-col gap-2 border-t border-border py-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
+        <p>© {new Date().getFullYear()} Pink Byte · {COMPANY_SHORT} · ИНН {INN} · ОГРНИП {OGRNIP}</p>
+        <Link to="/kontakty" hash="rekvizity" className="underline-offset-4 hover:text-foreground hover:underline">Реквизиты</Link>
       </div>
     </footer>
   );
