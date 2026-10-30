@@ -23,6 +23,15 @@ jobs:
         env:
           NITRO_PRESET: node-server
 
+      - name: Bundle images into build
+        run: |
+          ORIGIN="https://id-preview--87a5a531-92e6-4b0d-9230-d4357af8a4b7.lovable.app"
+          for f in src/assets/*.asset.json; do
+            url=$(jq -r .url "$f")
+            mkdir -p ".output/public$(dirname "$url")"
+            curl -fsSL --retry 3 "$ORIGIN$url" -o ".output/public$url"
+          done
+
       - name: Upload build to server
         uses: burnett01/rsync-deployments@7.0.1
         with:
