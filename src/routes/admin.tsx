@@ -3,9 +3,10 @@ import { AdminApp } from '@/components/admin/AdminApp';
 import adminCss from '@/components/admin/admin.css?url';
 
 export const Route = createFileRoute('/admin')({
-  head: () => ({
+  validateSearch: (search: Record<string, unknown>): { section: 'today' | 'sales' } => ({ section: search.section === 'sales' ? 'sales' : 'today' }),
+  head: ({ match }) => ({
     meta: [
-      { title: 'Сегодня · Pink Byte CRM' },
+      { title: `${match.search.section === 'sales' ? 'Продажи' : 'Сегодня'} · Pink Byte CRM` },
       { name: 'description', content: 'Рабочее пространство Pink Byte: заявки, проекты, задачи и решения.' },
       { property: 'og:title', content: 'Pink Byte CRM · рабочее пространство' },
       { property: 'og:description', content: 'Проекты, задачи и решения студии Pink Byte.' },
