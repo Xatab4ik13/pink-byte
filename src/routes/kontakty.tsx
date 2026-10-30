@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { createFileRoute } from "@tanstack/react-router";
 import { ChevronDown, Minus, Paperclip, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ import { Footer } from "@/components/pinkbyte/Closing";
 import { Reveal, SERVICE_LINKS, btn } from "@/components/pinkbyte/primitives";
 import { useOpenBrief } from "@/components/pinkbyte/brief-context";
 import { CHANNELS, EMAIL, PHONE_HREF, PHONE_LABEL, REQUISITES } from "@/components/pinkbyte/company-data";
+import { submitContactRequest } from "@/components/pinkbyte/contact-form.functions";
 import { cn } from "@/lib/utils";
 import bubbles from "@/assets/contacts-bubbles-v2.webp.asset.json";
 
@@ -44,6 +46,8 @@ function ContactsPage() {
   const [consent, setConsent] = useState(false);
   const [notice, setNotice] = useState("");
   const [sent, setSent] = useState(false);
+  const [pending, setPending] = useState(false);
+  const send = useServerFn(submitContactRequest);
   const [legalOpen, setLegalOpen] = useState(false);
 
   return <>
