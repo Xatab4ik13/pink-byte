@@ -392,7 +392,7 @@
 .pb-send svg { transition: transform .25s ease; }
 .pb-send:disabled { opacity: .35 !important; color: var(--ink-foreground) !important; }
 @media (max-width: 640px) {
-  .pb-brief-dialog { left: 0; top: var(--brief-viewport-top, 0px); width: 100%; max-width: none; height: var(--brief-viewport-height, 100dvh); max-height: none; transform: none; translate: none; border: 0; border-radius: 0; overflow: hidden; animation: none; padding-top: env(safe-area-inset-top, 0px); }
+  .pb-brief-dialog { --tw-translate-x: 0px; --tw-translate-y: 0px; left: 0; top: var(--brief-viewport-top, 0px); width: 100%; max-width: none; height: var(--brief-viewport-height, 100dvh); max-height: none; transform: none; translate: 0px 0px !important; border: 0; border-radius: 0; overflow: hidden; animation: none; padding-top: env(safe-area-inset-top, 0px); }
   .pb-brief-dialog > button { top: calc(12px + env(safe-area-inset-top, 0px)); right: 12px; width: 44px; height: 44px; z-index: 30; }
   .pb-brief-robot { width: 128px; left: -10px; bottom: -53px; }
   .pb-brief-layout { flex-direction: column; border-radius: 0; }
