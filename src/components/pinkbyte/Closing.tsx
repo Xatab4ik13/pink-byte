@@ -1,3 +1,4 @@
+import type React from "react";
 import robotBrief from "@/assets/robot-brief-seated.webp";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
@@ -5,7 +6,7 @@ import { Logo, NAV, Reveal, btn } from "./primitives";
 import { useOpenBrief } from "./brief-context";
 import { navigationTarget } from "./navigation-model";
 
-export function Contact({ title, text }: { title?: string; text?: string } = {}) {
+export function Contact({ title, text, buttonLabel }: { title?: React.ReactNode; text?: string; buttonLabel?: string } = {}) {
   const openBrief = useOpenBrief();
   return (
     <section id="contact" aria-labelledby="contact-title" className="container-pb scroll-mt-6 pt-10 pb-[130px] md:pb-[200px]">
@@ -28,7 +29,7 @@ export function Contact({ title, text }: { title?: string; text?: string } = {})
           </h2>
           {text && <p className="mt-5 max-w-xl text-ink-muted md:text-lg">{text}</p>}
           <Button onClick={openBrief} className={`${btn.lime} mt-8 h-auto px-10 py-4`}>
-            Обсудить проект
+            {buttonLabel ?? "Обсудить проект"}
           </Button>
         </div>
       </Reveal>
