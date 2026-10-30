@@ -14,6 +14,7 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as KontaktyRouteImport } from './routes/kontakty'
 import { Route as OKompaniiRouteImport } from './routes/o-kompanii'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
 import { Route as PortfolioBrioniluxRouteImport } from './routes/portfolio_.brionilux'
 import { Route as PortfolioChinarRouteImport } from './routes/portfolio_.chinar'
 import { Route as PortfolioCitymebelRouteImport } from './routes/portfolio_.citymebel'
@@ -48,6 +49,11 @@ const OKompaniiRoute = OKompaniiRouteImport.update({
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog_/$slug',
+  path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortfolioBrioniluxRoute = PortfolioBrioniluxRouteImport.update({
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/brionilux': typeof PortfolioBrioniluxRoute
   '/portfolio/chinar': typeof PortfolioChinarRoute
   '/portfolio/citymebel': typeof PortfolioCitymebelRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/brionilux': typeof PortfolioBrioniluxRoute
   '/portfolio/chinar': typeof PortfolioChinarRoute
   '/portfolio/citymebel': typeof PortfolioCitymebelRoute
@@ -144,6 +152,7 @@ export interface FileRoutesById {
   '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
+  '/blog_/$slug': typeof BlogSlugRoute
   '/portfolio_/brionilux': typeof PortfolioBrioniluxRoute
   '/portfolio_/chinar': typeof PortfolioChinarRoute
   '/portfolio_/citymebel': typeof PortfolioCitymebelRoute
@@ -163,6 +172,7 @@ export interface FileRouteTypes {
     | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
+    | '/blog/$slug'
     | '/portfolio/brionilux'
     | '/portfolio/chinar'
     | '/portfolio/citymebel'
@@ -180,6 +190,7 @@ export interface FileRouteTypes {
     | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
+    | '/blog/$slug'
     | '/portfolio/brionilux'
     | '/portfolio/chinar'
     | '/portfolio/citymebel'
@@ -197,6 +208,7 @@ export interface FileRouteTypes {
     | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
+    | '/blog_/$slug'
     | '/portfolio_/brionilux'
     | '/portfolio_/chinar'
     | '/portfolio_/citymebel'
@@ -215,6 +227,7 @@ export interface RootRouteChildren {
   KontaktyRoute: typeof KontaktyRoute
   OKompaniiRoute: typeof OKompaniiRoute
   PortfolioRoute: typeof PortfolioRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   PortfolioBrioniluxRoute: typeof PortfolioBrioniluxRoute
   PortfolioChinarRoute: typeof PortfolioChinarRoute
   PortfolioCitymebelRoute: typeof PortfolioCitymebelRoute
@@ -262,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog_/$slug': {
+      id: '/blog_/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portfolio_/brionilux': {
@@ -343,6 +363,7 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktyRoute: KontaktyRoute,
   OKompaniiRoute: OKompaniiRoute,
   PortfolioRoute: PortfolioRoute,
+  BlogSlugRoute: BlogSlugRoute,
   PortfolioBrioniluxRoute: PortfolioBrioniluxRoute,
   PortfolioChinarRoute: PortfolioChinarRoute,
   PortfolioCitymebelRoute: PortfolioCitymebelRoute,
