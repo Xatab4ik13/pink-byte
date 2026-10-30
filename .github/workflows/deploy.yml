@@ -20,6 +20,8 @@ jobs:
       - run: bun install
 
       - run: bun run build
+        env:
+          NITRO_PRESET: node-server
 
       - name: Upload build to server
         uses: burnett01/rsync-deployments@7.0.1
