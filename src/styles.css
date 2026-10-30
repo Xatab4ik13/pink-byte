@@ -579,7 +579,8 @@ html.pb-menu-open .pb-contact-robot { opacity: 0; }
 .pb-drawer[data-open="true"] .pb-drawer-contacts { opacity: 1; transform: none; transition-delay: calc(.12s + var(--i) * .05s); }
 .pb-drawer-phone { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink-foreground); transition: color .2s ease; }
 .pb-drawer-phone:hover { color: var(--lime); }
-.pb-drawer-channels { display: flex; gap: .75rem; margin-top: .9rem; }
+.pb-drawer-channels { display: flex; justify-content: space-between; align-items: center; gap: .5rem; margin-top: 1rem; }
+.pb-drawer-channels li { flex: 0 1 auto; min-width: 0; display: flex; justify-content: center; }
 .pb-drawer-foot { position: relative; display: flex; align-items: center; min-height: 6.75rem; padding: 0 1.25rem 1.25rem; border-top: 1px solid transparent; }
 .pb-drawer-robot {
   position: absolute; left: .5rem; bottom: 0; width: 8.75rem;
