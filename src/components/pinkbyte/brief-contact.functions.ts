@@ -4,8 +4,8 @@ import { briefContactSchema } from "./brief-contact-model";
 export const submitBriefContact = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => briefContactSchema.parse(input))
   .handler(async ({ data }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data: row, error } = await supabaseAdmin
+    const { getDbClient } = await import("./db.server");
+    const { data: row, error } = await getDbClient()
       .from("brief_submissions")
       .insert({
         name: data.name,
