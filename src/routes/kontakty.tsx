@@ -94,7 +94,7 @@ function ContactsPage() {
             <p className="mt-3 text-sm text-ink-muted md:text-base">Ответьте на вопросы о проекте и получите ТЗ за 10 минут.</p>
             <p className="mt-1 text-sm text-ink-muted md:text-base">Оформим вашу идею в требования к разработке.</p>
           </div>
-          <Button onClick={openBrief} className={`${btn.lime} shrink-0 h-auto px-10 py-4`}>Оставить ТЗ</Button>
+          <Button onClick={openBrief} className={`${btn.lime} shrink-0 h-auto px-10 py-4`}>К заявке</Button>
         </Reveal>
       </section>
     </div>
