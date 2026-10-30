@@ -1,4 +1,6 @@
 @import "tailwindcss" source(none);
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/manrope/wght.css";
 @source "../src";
 @import "tw-animate-css";
 
@@ -63,8 +65,8 @@
   --color-ink-foreground: var(--ink-foreground);
   --color-ink-muted: var(--ink-muted);
   --color-ink-border: var(--ink-border);
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Inter", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter Variable", "Inter", "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
   --shadow-showcase: var(--shadow-showcase);
 }
 
