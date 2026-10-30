@@ -42,8 +42,8 @@ export function Footer() {
   const pages = NAV.filter((n) => !n.children);
   return (
     <footer className="container-pb mt-16">
-      <div className="grid gap-10 border-t border-border py-12 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr] lg:gap-8">
-        <div>
+      <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-border py-12 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr] lg:gap-8">
+        <div className="col-span-2 lg:col-span-1">
           <Link to="/" aria-label="Pink Byte, на главную">
             <Logo tone="dark" className="w-32" />
           </Link>
@@ -69,7 +69,7 @@ export function Footer() {
             ))}
           </ul>
         </nav>
-        <div>
+        <div className="col-span-2 lg:col-span-1">
           <p className="text-sm font-bold">Связаться</p>
           <a href={PHONE_HREF} className="mt-4 block font-display text-xl font-extrabold hover:text-foreground/75">{PHONE_LABEL}</a>
           <a href={`mailto:${EMAIL}`} className="mt-1 block text-sm text-foreground/75 hover:text-foreground">{EMAIL}</a>
@@ -80,7 +80,7 @@ export function Footer() {
                 <li key={c.name}>
                   {c.href
                     ? <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" aria-label={c.name} title={c.name} className="inline-flex rounded-full transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">{img}</a>
-                    : <span title={`${c.name}: скоро`} className="inline-flex opacity-60">{img}</span>}
+                    : <span title={`${c.name}: скоро`} className="inline-flex">{img}</span>}
                 </li>
               );
             })}
