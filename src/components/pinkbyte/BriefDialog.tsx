@@ -22,6 +22,7 @@ import mark from "@/assets/mark-pb.png.asset.json";
 import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from "./brief-model";
 import { Logo } from "./primitives";
 import { BriefContactForm } from "./BriefContactForm";
+import { useBriefViewport } from "./use-brief-viewport";
 
 function ComposerTools({ text }: { text: string }) {
   const attachments = usePromptInputAttachments();
@@ -95,6 +96,7 @@ function BriefComposer({
           ref={textarea}
           aria-label="Ваш ответ"
           placeholder={placeholder}
+          enterKeyHint="send"
           value={text}
           onChange={(event) => setText(event.target.value)}
           className="min-h-12 max-h-24 px-4 text-sm"
@@ -108,13 +110,15 @@ function BriefComposer({
 export default function BriefDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const [answers, setAnswers] = useState<BriefAnswer[]>([]);
   const textarea = useRef<HTMLTextAreaElement>(null);
+  const dialog = useRef<HTMLDivElement>(null);
+  useBriefViewport(open, dialog);
   const step = answers.length;
   const done = step === BRIEF_QUESTIONS.length;
   const current = BRIEF_QUESTIONS[step];
   const brief = useMemo(() => createBrief(answers), [answers]);
   const progress = Math.round((answers.length / BRIEF_QUESTIONS.length) * 100);
   useEffect(() => {
-    if (!open || done) return;
+    if (!open || done || window.matchMedia("(max-width: 640px)").matches) return;
     const frame = requestAnimationFrame(() => textarea.current?.focus({ preventScroll: true }));
     return () => cancelAnimationFrame(frame);
   }, [open, step, done]);
@@ -137,10 +141,13 @@ export default function BriefDialog({ open, onOpenChange }: { open: boolean; onO
   return (
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent
+          ref={dialog}
           className={`pb-brief-dialog gap-0 overflow-visible border-border bg-background p-0 text-foreground${done ? " pb-brief-complete" : ""}`}
           onOpenAutoFocus={(event) => {
             event.preventDefault();
-            textarea.current?.focus({ preventScroll: true });
+            if (!window.matchMedia("(max-width: 640px)").matches) {
+              textarea.current?.focus({ preventScroll: true });
+            }
           }}
         >
           <div
@@ -155,7 +162,7 @@ export default function BriefDialog({ open, onOpenChange }: { open: boolean; onO
               <Logo className="w-28" />
               <DialogTitle className="display mt-6 text-[44px]">
                 Обсудим
-                <br />
+                <br />{" "}
                 ваш <span className="text-primary">проект.</span>
               </DialogTitle>
               <DialogDescription className="mt-4 text-sm leading-relaxed text-ink-muted">

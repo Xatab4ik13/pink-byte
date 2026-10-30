@@ -71,3 +71,4 @@
 - [x] Add the contacts page from the supplied mockup with four optimized transparent icons, chrome speech-bubble hero art, mock form and requisites accordion; verify desktop/mobile, navigation and brief CTA.
 - [x] Shorten the contacts dark hero band to the mockup proportion and keep the brief promo inside the first phone screen; verify across widths.
 - [ ] Wire real contact channels and requisites: awaiting the owner's phone numbers, messenger links and legal details.
+- [x] Make the mobile brief full-screen; verified simulated keyboard viewport resizing, sending, closing/reopening, contact inputs and unchanged desktop geometry. Native phone keyboard still needs an on-device check.

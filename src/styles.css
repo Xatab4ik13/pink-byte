@@ -392,14 +392,19 @@
 .pb-send svg { transition: transform .25s ease; }
 .pb-send:disabled { opacity: .35 !important; color: var(--ink-foreground) !important; }
 @media (max-width: 640px) {
-  .pb-brief-dialog { width: calc(100vw - 24px); height: min(737px, calc(100dvh - 120px)); border-radius: 16px; }
+  .pb-brief-dialog { --tw-translate-x: 0px; --tw-translate-y: 0px; left: 0; top: var(--brief-viewport-top, 0px); width: 100%; max-width: none; height: var(--brief-viewport-height, 100dvh); max-height: none; transform: none; translate: 0px 0px !important; border: 0; border-radius: 0; overflow: hidden; animation: none; padding-top: env(safe-area-inset-top, 0px); }
+  .pb-brief-dialog > button { top: calc(12px + env(safe-area-inset-top, 0px)); right: 12px; width: 44px; height: 44px; z-index: 30; }
   .pb-brief-robot { width: 128px; left: -10px; bottom: -53px; }
-  .pb-brief-layout { flex-direction: column; }
-  .pb-brief-stage { width: auto; padding: 20px 18px 16px; }
-  .pb-brief-stage h2 { font-size: 30px; margin-top: 10px; }
+  .pb-brief-layout { flex-direction: column; border-radius: 0; }
+  .pb-brief-stage { width: auto; padding: 14px 64px 12px 18px; }
+  .pb-brief-stage h2 { font-size: 20px; margin-top: 8px; }
+  .pb-brief-stage h2 br { display: none; }
   .pb-brief-stage > p, .pb-brief-notes { display: none; }
-  .pb-brief-main { padding: 14px 16px 16px; }
-  .pb-brief-composer { margin: 0 -16px -16px; padding: 10px 12px 12px 110px !important; }
+  .pb-brief-main { padding: 10px 16px 16px; overflow: hidden; }
+  .pb-brief-main > div:first-child { padding-bottom: 10px; }
+  .pb-brief-main [role="log"] > div { overscroll-behavior-y: contain; -webkit-overflow-scrolling: touch; }
+  .pb-brief-composer { margin: 0 -16px -16px; padding: 10px 12px max(12px, env(safe-area-inset-bottom, 0px)) 110px !important; }
+  .pb-brief-composer textarea, .pb-brief-contact-fields input { font-size: 16px; }
   .pb-brief-attach span { display: none; }
   .pb-brief-complete .pb-brief-stage { padding: 14px 18px; }
   .pb-brief-complete .pb-brief-stage h2 { display: none; }
