@@ -47,6 +47,42 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_submissions: {
+        Row: {
+          about: string
+          consent: boolean
+          consent_version: string
+          contact: string
+          created_at: string
+          files: string[]
+          id: string
+          name: string
+          service: string | null
+        }
+        Insert: {
+          about: string
+          consent?: boolean
+          consent_version?: string
+          contact: string
+          created_at?: string
+          files?: string[]
+          id?: string
+          name: string
+          service?: string | null
+        }
+        Update: {
+          about?: string
+          consent?: boolean
+          consent_version?: string
+          contact?: string
+          created_at?: string
+          files?: string[]
+          id?: string
+          name?: string
+          service?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
