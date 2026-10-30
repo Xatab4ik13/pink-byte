@@ -570,11 +570,16 @@ html.pb-menu-open .pb-contact-robot { opacity: 0; }
   transition: transform .5s cubic-bezier(.22,1,.36,1);
 }
 .pb-drawer[data-open="true"] .pb-drawer-panel { transform: none; }
-.pb-drawer-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 1.25rem 1.25rem .5rem; overscroll-behavior: contain; }
+.pb-drawer-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 1.25rem 1.25rem .5rem; overscroll-behavior: contain; display: flex; flex-direction: column; }
 .pb-drawer-item { opacity: 0; transform: translate3d(24px,0,0); transition: opacity .3s ease, transform .45s cubic-bezier(.22,1,.36,1); }
 .pb-drawer[data-open="true"] .pb-drawer-item { opacity: 1; transform: none; transition-delay: calc(.12s + var(--i) * .05s); }
 .pb-drawer-sub { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s ease; }
 .pb-drawer-sub[data-open="true"] { grid-template-rows: 1fr; }
+.pb-drawer-contacts { margin-top: auto; padding-top: 1.25rem; opacity: 0; transform: translate3d(24px,0,0); transition: opacity .3s ease, transform .45s cubic-bezier(.22,1,.36,1); }
+.pb-drawer[data-open="true"] .pb-drawer-contacts { opacity: 1; transform: none; transition-delay: calc(.12s + var(--i) * .05s); }
+.pb-drawer-phone { display: inline-flex; align-items: center; gap: .55rem; font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; letter-spacing: -.01em; color: var(--ink-foreground); transition: color .2s ease; }
+.pb-drawer-phone:hover { color: var(--lime); }
+.pb-drawer-channels { display: flex; gap: .75rem; margin-top: .9rem; }
 .pb-drawer-foot { position: relative; display: flex; align-items: center; min-height: 6.75rem; padding: 0 1.25rem 1.25rem; border-top: 1px solid transparent; }
 .pb-drawer-robot {
   position: absolute; left: .5rem; bottom: 0; width: 8.75rem;
@@ -582,7 +587,7 @@ html.pb-menu-open .pb-contact-robot { opacity: 0; }
 }
 .pb-drawer[data-open="true"] .pb-drawer-robot { opacity: 1; transform: translate3d(0, 38.7%, 0); }
 @media (prefers-reduced-motion: reduce) {
-  .pb-drawer-panel, .pb-drawer-item, .pb-drawer-robot, .pb-drawer-backdrop, .pb-drawer-sub { transition: none; }
+  .pb-drawer-panel, .pb-drawer-item, .pb-drawer-robot, .pb-drawer-backdrop, .pb-drawer-sub, .pb-drawer-contacts { transition: none; }
 }
 
 /* Мобильная версия: полосы прокрутки скрыты полностью */

@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import robotLeanSrc from "@/assets/robot-hero.webp";
 import robotSeated from "@/assets/robot-brief-seated.webp";
 import robotEyeLeft from "@/assets/robot-gaze-eye-0.png.asset.json";
 import robotEyeRight from "@/assets/robot-gaze-eye-1.png.asset.json";
 import { Button } from "@/components/ui/button";
 import { Logo, NAV, btn } from "./primitives";
+import { CHANNELS, PHONE_HREF, PHONE_LABEL } from "./company-data";
 import { useOpenBrief } from "./brief-context";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { navigationActive, navigationTarget } from "./navigation-model";
