@@ -76,4 +76,5 @@
 - [-] SEO iteration 2 closed without data: owner dropped Yandex Wordstat after the public interface returned no figures and the legacy API failed TLS verification; Google demand research via Semrush stands as the separate keyword source.
 - [x] SEO iteration 3: removed all six blog articles, their data module, article route and six cover assets; kept /blog layout, header, contact block and navigation; verified /blog returns 200 with no article links and every removed /blog/<slug> returns 404.
 - [x] SEO iteration 4: audited 15 production pages and updated local version; checked metadata, redirects, robots/sitemap, deleted URLs, mobile rendering and laboratory loading; recorded priorities without site changes. Search indexing and real search traffic remain unverified without webmaster access; production still needs the owner's regular deploy.
+- [ ] Publish ten original illustrated Russian articles across all four services, grounded in audit and competitor/demand research; restore blog search/filter and verify article SEO, links, old URL 404s and mobile reading without unrelated site changes.
 
