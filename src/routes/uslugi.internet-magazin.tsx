@@ -112,13 +112,13 @@ function ShopPage() {
               <img src={mForm.url} width={800} height={220} loading="lazy" decoding="async" alt="Форма контактных данных для оформления заказа" className="mt-2 h-auto w-full" />
             </figure>
             <Button asChild className="h-auto w-full rounded-full bg-foreground py-4 text-base font-semibold text-background hover:bg-foreground/90">
-              <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
+              <a href="https://brionilux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
             </Button>
           </div>
           <div className="relative mt-8 hidden md:block">
             <img src={brionilux.url} width={1448} height={1024} loading="lazy" decoding="async" alt="Brionilux: каталог рамок, карточка товара, корзина и оформление заказа без регистрации" className="h-auto w-full" />
             <Button asChild className={`${btn.paper} bg-background text-foreground border border-foreground/70 shadow-[0_14px_30px_-16px_color-mix(in_oklab,var(--ink)_55%,transparent)] hover:bg-background mt-6 h-auto px-12 py-4 text-lg`}>
-              <a href="https://brionulux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
+              <a href="https://brionilux.ru/" target="_blank" rel="noreferrer">Смотреть проект</a>
             </Button>
           </div>
         </section>
