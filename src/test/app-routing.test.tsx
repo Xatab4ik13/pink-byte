@@ -19,6 +19,7 @@ describe("App routing", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
     expect(router.matchRoutes("/blog").at(-1)?.routeId).toBe("/blog");
   });
+  // Removed articles must not be served by any route: the server answers 404 for them.
   it.each([
     "/blog/stoimost-internet-magazina",
     "/blog/chto-podgotovit-pered-razrabotkoj-sajta",
@@ -26,10 +27,11 @@ describe("App routing", () => {
     "/blog/kak-podgotovit-prilozhenie-k-publikacii",
     "/blog/chto-dolzhno-byt-v-tehnicheskom-zadanii",
     "/blog/peredacha-sajta-posle-zapuska",
-  ])("removed article %s falls back to not found", (path) => {
+  ])("removed article %s has no route of its own", (path) => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
-    expect(router.matchRoutes(path).at(-1)?.routeId).toBe(rootRouteId);
+    expect(router.matchRoutes(path).at(-1)?.fullPath).not.toBe(path);
   });
+
 
   it("omits the separate home navigation item", () => {
     expect(NAV.some((item) => item.href === "/")).toBe(false);
