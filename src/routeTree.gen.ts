@@ -14,6 +14,7 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as KontaktyRouteImport } from './routes/kontakty'
 import { Route as OKompaniiRouteImport } from './routes/o-kompanii'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as PortfolioBrioniluxRouteImport } from './routes/portfolio_.brionilux'
 import { Route as UslugiCrmSistemaRouteImport } from './routes/uslugi.crm-sistema'
 import { Route as UslugiInternetMagazinRouteImport } from './routes/uslugi.internet-magazin'
 import { Route as UslugiKorporativnySaitRouteImport } from './routes/uslugi.korporativny-sait'
@@ -44,6 +45,11 @@ const PortfolioRoute = PortfolioRouteImport.update({
   path: '/portfolio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortfolioBrioniluxRoute = PortfolioBrioniluxRouteImport.update({
+  id: '/portfolio_/brionilux',
+  path: '/portfolio/brionilux',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UslugiCrmSistemaRoute = UslugiCrmSistemaRouteImport.update({
   id: '/uslugi/crm-sistema',
   path: '/uslugi/crm-sistema',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
+  '/portfolio/brionilux': typeof PortfolioBrioniluxRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
+  '/portfolio/brionilux': typeof PortfolioBrioniluxRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
+  '/portfolio_/brionilux': typeof PortfolioBrioniluxRoute
   '/uslugi/crm-sistema': typeof UslugiCrmSistemaRoute
   '/uslugi/internet-magazin': typeof UslugiInternetMagazinRoute
   '/uslugi/korporativny-sait': typeof UslugiKorporativnySaitRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
+    | '/portfolio/brionilux'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
+    | '/portfolio/brionilux'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
+    | '/portfolio_/brionilux'
     | '/uslugi/crm-sistema'
     | '/uslugi/internet-magazin'
     | '/uslugi/korporativny-sait'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   KontaktyRoute: typeof KontaktyRoute
   OKompaniiRoute: typeof OKompaniiRoute
   PortfolioRoute: typeof PortfolioRoute
+  PortfolioBrioniluxRoute: typeof PortfolioBrioniluxRoute
   UslugiCrmSistemaRoute: typeof UslugiCrmSistemaRoute
   UslugiInternetMagazinRoute: typeof UslugiInternetMagazinRoute
   UslugiKorporativnySaitRoute: typeof UslugiKorporativnySaitRoute
@@ -185,6 +198,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PortfolioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portfolio_/brionilux': {
+      id: '/portfolio_/brionilux'
+      path: '/portfolio/brionilux'
+      fullPath: '/portfolio/brionilux'
+      preLoaderRoute: typeof PortfolioBrioniluxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uslugi/crm-sistema': {
       id: '/uslugi/crm-sistema'
       path: '/uslugi/crm-sistema'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktyRoute: KontaktyRoute,
   OKompaniiRoute: OKompaniiRoute,
   PortfolioRoute: PortfolioRoute,
+  PortfolioBrioniluxRoute: PortfolioBrioniluxRoute,
   UslugiCrmSistemaRoute: UslugiCrmSistemaRoute,
   UslugiInternetMagazinRoute: UslugiInternetMagazinRoute,
   UslugiKorporativnySaitRoute: UslugiKorporativnySaitRoute,
