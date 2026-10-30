@@ -60,21 +60,21 @@ function ContactsPage() {
   return <>
     <div id="top" className="bg-ink text-ink-foreground">
       <Header />
-      <section className="container-pb pt-3 pb-5 md:pt-6 md:pb-6" aria-labelledby="contacts-title">
-        <div className="grid gap-5 md:gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <section className="container-pb pt-3 pb-4 md:pt-6 md:pb-6" aria-labelledby="contacts-title">
+        <div className="grid gap-4 md:gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <h1 id="contacts-title" className="pb-service-title font-display font-extrabold">
               Контакты
               <span className="block text-primary">Pink Byte</span>
             </h1>
-            <p className="mt-4 max-w-lg text-lg leading-relaxed text-ink-muted md:mt-6 md:text-xl">
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-ink-muted md:mt-6 md:text-xl">
               Разрабатываем корпоративные сайты, интернет-магазины, CRM-системы и мобильные приложения.
             </p>
-            <p className="mt-3 max-w-lg text-lg leading-relaxed text-ink-muted md:mt-4 md:text-xl">
+            <p className="mt-3 max-w-lg text-base leading-relaxed text-ink-muted md:mt-4 md:text-xl">
               Работаем онлайн с заказчиками по всей России.
             </p>
           </div>
-          <div className="relative mx-auto w-[min(260px,74vw)] md:w-[min(390px,74%)]">
+          <div className="relative mx-auto w-[min(220px,70vw)] md:w-[min(390px,74%)]">
             <img
               src={bubbles.url}
               alt="Два объёмных речевых пузыря: тёмный с тремя лаймовыми точками и светлый с двумя строками"
@@ -87,7 +87,7 @@ function ContactsPage() {
           </div>
         </div>
       </section>
-      <section className="container-pb pb-7 md:pb-9">
+      <section className="container-pb pb-5 md:pb-9">
         <Reveal className="flex flex-col items-start justify-between gap-4 rounded-[2rem] border border-ink-border p-4 md:flex-row md:items-center md:p-6">
           <div>
             <h2 className="font-display text-2xl font-extrabold leading-tight md:text-4xl">Составим ТЗ бесплатно.</h2>
