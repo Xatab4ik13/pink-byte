@@ -19,6 +19,18 @@ describe("App routing", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
     expect(router.matchRoutes("/blog").at(-1)?.routeId).toBe("/blog");
   });
+  it.each([
+    "/blog/stoimost-internet-magazina",
+    "/blog/chto-podgotovit-pered-razrabotkoj-sajta",
+    "/blog/gotovaya-crm-ili-svoya",
+    "/blog/kak-podgotovit-prilozhenie-k-publikacii",
+    "/blog/chto-dolzhno-byt-v-tehnicheskom-zadanii",
+    "/blog/peredacha-sajta-posle-zapuska",
+  ])("removed article %s falls back to not found", (path) => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    expect(router.matchRoutes(path).at(-1)?.routeId).toBe(rootRouteId);
+  });
+
   it("omits the separate home navigation item", () => {
     expect(NAV.some((item) => item.href === "/")).toBe(false);
   });
