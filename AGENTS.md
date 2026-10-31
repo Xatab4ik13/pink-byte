@@ -32,3 +32,5 @@
 - Blog articles live in a browser-safe editorial data module with stable slugs and explicit publication dates; /blog provides search and category filtering, and the un-nested /blog/$slug loader rejects unknown records and supplies per-article head metadata and BlogPosting JSON-LD, keeping list and article rendering independent.
 - The site is deployed by building directly on the production server: git pull, bun install, NITRO_PRESET=node-server bun run build, then restart the pinkbyte systemd unit (nginx proxies 127.0.0.1:3000, certbot handles HTTPS). GitHub Actions is not used; the npm registry is reachable from the current server, so no CI build step or deploy key is needed.
 - CRM UI lives in src/components/admin under /admin, with scoped light-theme tokens and local mock state only; keep it independent of public studio sections and backend integrations. Search-param navigation keeps mock screens mounted so drafts survive switching sections.
+
+- CRM task lists and payment totals on Today and the operations views share root-owned session-only mock state, so edits remain consistent across navigation; content edits never modify the public website.

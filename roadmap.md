@@ -81,5 +81,5 @@
 - [x] CRM iteration 2: five-column sales funnel and mobile sales, search/filter, create/edit/move/complete mock deals and preserved state across screen navigation; 20 tests and desktop/mobile end-to-end flows passed.
 - [x] CRM iteration 3: reference project detail with stage rail, task creation/completion/editing, material approval, mock payment balance, reminders and handover; 24 tests and desktop/mobile flows passed, all tabs without overflow.
 - [x] CRM iteration 4: agent overview, mock runs, knowledge and connections views, editable demo settings and mobile result review; shared pending counter updates after approval/return, 28 tests and desktop/mobile flows passed.
-- [ ] CRM iteration 5: remaining admin views, final animation and cross-screen consistency review.
+- [x] CRM iteration 5: added tasks, clients, finance, content and settings mock views; Today shares task/payment state, mobile More and create controls work, reduced motion respected. 39 tests and nine-section desktop/mobile flows passed without runtime errors or overflow.
 
