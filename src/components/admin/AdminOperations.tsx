@@ -1,4 +1,4 @@
-import { useState, type Dispatch, type SetStateAction, type FormEvent } from 'react';
+import { useEffect, useState, type Dispatch, type SetStateAction, type FormEvent } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Check, ChevronRight, Coins, FileText, Folder, Plus, Search, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,16 +8,17 @@ import { Panel } from './AdminToday';
 import { money, projects } from './mock-data';
 import { sectionLabels, outstandingAmount, type AdminSection, type WorkspaceTask, type WorkspacePayment } from './workspace-model';
 
-type Props = { section: AdminSection; search: string; tasks: WorkspaceTask[]; setTasks: Dispatch<SetStateAction<WorkspaceTask[]>>; payments: WorkspacePayment[]; setPayments: Dispatch<SetStateAction<WorkspacePayment[]>>; openCreate: () => void; notify: (message: string) => void };
+type Props = { createRequest: number; section: AdminSection; search: string; tasks: WorkspaceTask[]; setTasks: Dispatch<SetStateAction<WorkspaceTask[]>>; payments: WorkspacePayment[]; setPayments: Dispatch<SetStateAction<WorkspacePayment[]>>; openCreate: () => void; notify: (message: string) => void };
 const initialClients = projects.map((project, index) => ({ id: index + 1, name: project.name, person: ['Олег', 'Мария', 'Алексей', 'Анна'][index], contact: 'Контакт не указан', note: '', project: project.name }));
 const initialContent = [{ id: 1, title: 'Главная', type: 'Страница', published: true }, { id: 2, title: 'Интернет-магазин', type: 'Услуга', published: true }, { id: 3, title: 'Корпоративный сайт', type: 'Услуга', published: true }, { id: 4, title: 'CRM и автоматизация', type: 'Услуга', published: true }, { id: 5, title: 'Мобильное приложение', type: 'Услуга', published: true }, { id: 6, title: 'Новая статья', type: 'Статья', published: false }];
-export function AdminOperations({ section, search, tasks, setTasks, payments, setPayments, openCreate, notify }: Props) {
+export function AdminOperations({ createRequest, section, search, tasks, setTasks, payments, setPayments, openCreate, notify }: Props) {
   const [taskFilter, setTaskFilter] = useState('active');
   const [localSearch, setLocalSearch] = useState('');
   const [clients, setClients] = useState(initialClients);
   const [clientId, setClientId] = useState<number | 'new' | null>(null);
   const [content, setContent] = useState(initialContent);
   const [contentId, setContentId] = useState<number | 'new' | null>(null);
+  useEffect(() => { if (!createRequest) return; if (section === 'clients') setClientId('new'); if (section === 'content') setContentId('new'); }, [createRequest]);
   const [settings, setSettings] = useState({ studio: 'Pink Byte', name: 'Андрей', notifications: true, digest: false });
   const query = `${search} ${localSearch}`.trim().toLowerCase();
   const matches = (text: string) => query.split(/\s+/).every(word => text.toLowerCase().includes(word));
