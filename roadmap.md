@@ -78,7 +78,7 @@
 - [x] SEO iteration 4: audited 15 production pages and updated local version; checked metadata, redirects, robots/sitemap, deleted URLs, mobile rendering and laboratory loading; recorded priorities without site changes. Search indexing and real search traffic remain unverified without webmaster access; production still needs the owner's regular deploy.
 - [x] Added ten original illustrated Russian articles across all four services grounded in audit and competitor/demand research; restored search/filter, tested 31 rules, all ten article metadata/mobile images and service links, and six old URL 404s. Live availability awaits the owner's regular server update; no ranking guarantees or unrelated fixes.
 - [x] CRM iteration 1: isolated /admin shell and Today dashboard, desktop/mobile reference layout, local task creation/completion, notifications and draft review; desktop/mobile flows verified, no overflow or runtime errors, 15 routing tests passed.
-- [ ] CRM iteration 2: sales funnel and mobile sales, local deal interactions.
+- [x] CRM iteration 2: five-column sales funnel and mobile sales, search/filter, create/edit/move/complete mock deals and preserved state across screen navigation; 20 tests and desktop/mobile end-to-end flows passed.
 - [ ] CRM iteration 3: project detail, tasks, materials, payments and handover mock interactions.
 - [ ] CRM iteration 4: agents overview and mobile result review, mock runs and review actions.
 - [ ] CRM iteration 5: remaining admin views, final animation and cross-screen consistency review.
