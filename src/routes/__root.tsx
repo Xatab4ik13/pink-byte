@@ -82,6 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Pink Byte · разработка сайтов и веб-сервисов" },
       { name: "theme-color", content: "#121613" },
+      { name: "yandex-verification", content: "99f6bd4ccf68f38b" },
     ],
     links: [
       {
