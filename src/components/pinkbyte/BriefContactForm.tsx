@@ -29,6 +29,7 @@ export function BriefContactForm({ brief, onDownload }: { brief: string; onDownl
         setError("");
         try {
           await send({ data: { name, email, phone, consent, brief } });
+          reachGoal("brief_submit");
           setSaved(true);
         } catch {
           setError("Заявка не отправлена. Ваши данные сохранены в форме, попробуйте ещё раз.");

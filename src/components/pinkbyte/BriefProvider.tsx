@@ -1,6 +1,7 @@
 import { lazy, Suspense, useCallback, useEffect, useState, type ReactNode } from "react";
 import robot from "@/assets/robot-brief-seated.webp";
 import { BriefContext } from "./brief-context";
+import { reachGoal } from "@/lib/metrika";
 
 const loadDialog = () => import("./BriefDialog");
 const BriefDialog = lazy(loadDialog);
@@ -11,6 +12,7 @@ export function BriefProvider({ children }: { children: ReactNode }) {
   const openBrief = useCallback(() => {
     setReady(true);
     setOpen(true);
+    reachGoal("brief_open");
   }, []);
 
   useEffect(() => {
