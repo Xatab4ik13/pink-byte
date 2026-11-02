@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { reachGoal } from "@/lib/metrika";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowUpRight, Check, Download, LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
