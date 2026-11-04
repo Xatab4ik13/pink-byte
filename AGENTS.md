@@ -34,3 +34,4 @@
 - CRM UI lives in src/components/admin under /admin with scoped light-theme tokens and session-only mock state, independent of public studio sections and backend; search-param navigation keeps mock screens mounted so drafts survive switching, and task or payment edits stay shared across views.
 
 - Dashboard leads with the manager task list: urgency comes from due-date parsing in workspace-model (overdue, today, week, later), and person-filter counts are computed on the selected list so counts match the visible rows.
+- CRM access: /admin lives under the client-only _authenticated gate with email/password sign-in at /auth; roles are in public.user_roles (admin, manager) checked via has_role, and section visibility comes from staff-access.ts so UI rules stay testable.
