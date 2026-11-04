@@ -10,11 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as KontaktyRouteImport } from './routes/kontakty'
 import { Route as OKompaniiRouteImport } from './routes/o-kompanii'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
 import { Route as PortfolioBrioniluxRouteImport } from './routes/portfolio_.brionilux'
 import { Route as PortfolioChinarRouteImport } from './routes/portfolio_.chinar'
@@ -30,11 +30,6 @@ import { Route as UslugiMobilnoePrilozhenieRouteImport } from './routes/uslugi.m
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -55,6 +50,11 @@ const OKompaniiRoute = OKompaniiRouteImport.update({
 const PortfolioRoute = PortfolioRouteImport.update({
   id: '/portfolio',
   path: '/portfolio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/_authenticated/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -117,11 +117,11 @@ const UslugiMobilnoePrilozhenieRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/blog': typeof BlogRoute
   '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/brionilux': typeof PortfolioBrioniluxRoute
   '/portfolio/chinar': typeof PortfolioChinarRoute
@@ -136,11 +136,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/blog': typeof BlogRoute
   '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/portfolio/brionilux': typeof PortfolioBrioniluxRoute
   '/portfolio/chinar': typeof PortfolioChinarRoute
@@ -156,11 +156,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin': typeof AdminRoute
   '/blog': typeof BlogRoute
   '/kontakty': typeof KontaktyRoute
   '/o-kompanii': typeof OKompaniiRoute
   '/portfolio': typeof PortfolioRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/blog_/$slug': typeof BlogSlugRoute
   '/portfolio_/brionilux': typeof PortfolioBrioniluxRoute
   '/portfolio_/chinar': typeof PortfolioChinarRoute
@@ -177,11 +177,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/admin'
     | '/blog'
     | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
+    | '/admin'
     | '/blog/$slug'
     | '/portfolio/brionilux'
     | '/portfolio/chinar'
@@ -196,11 +196,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/admin'
     | '/blog'
     | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
+    | '/admin'
     | '/blog/$slug'
     | '/portfolio/brionilux'
     | '/portfolio/chinar'
@@ -215,11 +215,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/admin'
     | '/blog'
     | '/kontakty'
     | '/o-kompanii'
     | '/portfolio'
+    | '/_authenticated/admin'
     | '/blog_/$slug'
     | '/portfolio_/brionilux'
     | '/portfolio_/chinar'
@@ -235,11 +235,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminRoute: typeof AdminRoute
   BlogRoute: typeof BlogRoute
   KontaktyRoute: typeof KontaktyRoute
   OKompaniiRoute: typeof OKompaniiRoute
   PortfolioRoute: typeof PortfolioRoute
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   BlogSlugRoute: typeof BlogSlugRoute
   PortfolioBrioniluxRoute: typeof PortfolioBrioniluxRoute
   PortfolioChinarRoute: typeof PortfolioChinarRoute
@@ -260,13 +260,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -295,6 +288,13 @@ declare module '@tanstack/react-router' {
       path: '/portfolio'
       fullPath: '/portfolio'
       preLoaderRoute: typeof PortfolioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog_/$slug': {
@@ -379,11 +379,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminRoute: AdminRoute,
   BlogRoute: BlogRoute,
   KontaktyRoute: KontaktyRoute,
   OKompaniiRoute: OKompaniiRoute,
   PortfolioRoute: PortfolioRoute,
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   BlogSlugRoute: BlogSlugRoute,
   PortfolioBrioniluxRoute: PortfolioBrioniluxRoute,
   PortfolioChinarRoute: PortfolioChinarRoute,
