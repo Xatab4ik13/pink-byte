@@ -7,6 +7,8 @@ import { IconArrow as ArrowRight, IconCheck as Check, IconCoins as Coins, IconDo
 import { CountUp } from './CountUp';
 import iconTasks from '@/assets/crm-icon-tasks.webp';
 import iconLeads from '@/assets/crm-icon-leads.webp';
+import iconDebt from '@/assets/crm-icon-debt.webp';
+import iconReview from '@/assets/crm-icon-review.webp';
 import { Button } from '@/components/ui/button';
 import tray from '@/assets/crm-decision-tray.webp.asset.json';
 import { money, projects } from './mock-data';
@@ -43,8 +45,8 @@ export function AdminToday({ openCreate, openReview, notify, search, reviewCount
   const metrics = [
     { icon: ListChecks, img: iconTasks, label: owner === 'all' ? 'Задачи в работе' : `Задачи · ${owner}`, value: String(open.length), note: `Просрочено: ${open.filter(isOverdueTask).length}` },
     { icon: IconLead, img: iconLeads, label: 'Новые заявки', value: String(newLeads), note: `В переговорах: ${talks}` },
-    { icon: Coins, label: 'Долг клиентов', value: money(debt), note: `по ${leads.filter(lead => lead.contract).length} договорам` },
-    { icon: ShieldCheck, label: 'На проверке у агентов', value: String(reviewCount), note: 'Открыть результаты' },
+    { icon: Coins, img: iconDebt, label: 'Долг клиентов', value: money(debt), note: `по ${leads.filter(lead => lead.contract).length} договорам` },
+    { icon: ShieldCheck, img: iconReview, label: 'На проверке у агентов', value: String(reviewCount), note: 'Открыть результаты' },
   ];
   return <div className="crm-today crm-enter">
     <div className="crm-page-heading"><div><h1>Дашборд</h1><p className="crm-desktop-copy">Задачи команды, заявки и деньги в одном месте.</p><p className="crm-mobile-date">30 октября</p></div><div className="crm-heading-actions"><span>30 октября 2026</span><Button onClick={openCreate} className="crm-button"><Plus />Создать</Button></div></div>
