@@ -5,6 +5,8 @@ import type { Dispatch, SetStateAction } from 'react';
 import { CircleCheck, FileText } from 'lucide-react';
 import { IconArrow as ArrowRight, IconCheck as Check, IconCoins as Coins, IconDoc, IconFolder as Folder, IconLead, IconMore as MoreHorizontal, IconPlus as Plus, IconReview as ShieldCheck, IconSpark, IconTasks as ListChecks, IconUser as UserRound } from './crm-icons';
 import { CountUp } from './CountUp';
+import iconTasks from '@/assets/crm-icon-tasks.webp';
+import iconLeads from '@/assets/crm-icon-leads.webp';
 import { Button } from '@/components/ui/button';
 import tray from '@/assets/crm-decision-tray.webp.asset.json';
 import { money, projects } from './mock-data';
@@ -39,14 +41,14 @@ export function AdminToday({ openCreate, openReview, notify, search, reviewCount
   const received = leads.reduce((sum, lead) => sum + paidAmount(lead), 0);
   const total = outstandingAmount(payments);
   const metrics = [
-    { icon: ListChecks, label: owner === 'all' ? 'Задачи в работе' : `Задачи · ${owner}`, value: String(open.length), note: `Просрочено: ${open.filter(isOverdueTask).length}` },
-    { icon: IconLead, label: 'Новые заявки', value: String(newLeads), note: `В переговорах: ${talks}` },
+    { icon: ListChecks, img: iconTasks, label: owner === 'all' ? 'Задачи в работе' : `Задачи · ${owner}`, value: String(open.length), note: `Просрочено: ${open.filter(isOverdueTask).length}` },
+    { icon: IconLead, img: iconLeads, label: 'Новые заявки', value: String(newLeads), note: `В переговорах: ${talks}` },
     { icon: Coins, label: 'Долг клиентов', value: money(debt), note: `по ${leads.filter(lead => lead.contract).length} договорам` },
     { icon: ShieldCheck, label: 'На проверке у агентов', value: String(reviewCount), note: 'Открыть результаты' },
   ];
   return <div className="crm-today crm-enter">
     <div className="crm-page-heading"><div><h1>Дашборд</h1><p className="crm-desktop-copy">Задачи команды, заявки и деньги в одном месте.</p><p className="crm-mobile-date">30 октября</p></div><div className="crm-heading-actions"><span>30 октября 2026</span><Button onClick={openCreate} className="crm-button"><Plus />Создать</Button></div></div>
-    <div className="crm-kpi-strip">{metrics.map(({ icon: Icon, label, value, note }, index) => <div className={`crm-kpi crm-kpi-${index} crm-reveal`} style={{ animationDelay: `${index * 60}ms` }} key={label}><span className="crm-kpi-icon"><Icon /></span><div><span>{label}</span><strong><CountUp value={value} /></strong><small>{note}</small></div></div>)}</div>
+    <div className="crm-kpi-strip">{metrics.map(({ icon: Icon, img, label, value, note }: { icon: typeof ListChecks; img?: string; label: string; value: string; note: string }, index) => <div className={`crm-kpi crm-kpi-${index} crm-reveal`} style={{ animationDelay: `${index * 60}ms` }} key={label}><span className={`crm-kpi-icon ${img ? 'has-art' : ''}`}>{img ? <img src={img} alt="" width={44} height={44} /> : <Icon />}</span><div><span>{label}</span><strong><CountUp value={value} /></strong><small>{note}</small></div></div>)}</div>
     <div className="crm-dashboard-main">
       <Panel title="Задачи" className="crm-tasks crm-reveal" action={<Button className="crm-button" size="sm" onClick={openCreate}><Plus />Добавить</Button>}>
         <div className="crm-task-toolbar">
