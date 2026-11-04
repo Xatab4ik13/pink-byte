@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ArrowRight, FileSignature, UserRound, XCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { money } from './mock-data';
-import { debtAmount, funnelStages, paidAmount, paymentPlan, sourceCounts, stageCounts, type Lead } from './dashboard-model';
+import { funnelStages, paymentPlan, sourceCounts, stageCounts, type Lead } from './dashboard-model';
 
 export function DashboardFunnel({ leads, setLeads, notify }: { leads: Lead[]; setLeads: (update: (current: Lead[]) => Lead[]) => void; notify: (message: string) => void }) {
   const [stage, setStage] = useState(1);
@@ -22,7 +22,7 @@ export function DashboardFunnel({ leads, setLeads, notify }: { leads: Lead[]; se
       <small>{lead.service} · {lead.sourceDetail ?? lead.source}</small>
       <p className="crm-lead-note"><UserRound />{lead.manager}: {lead.note}</p>
       {lead.amount > 0 && <div className="crm-lead-pay"><span>{money(lead.amount)} · {lead.scheme}</span><div className="crm-lead-parts">{paymentPlan(lead.amount, lead.scheme).map((part, index) => <i key={index} className={index < lead.paidParts ? 'is-paid' : ''} title={money(part)} />)}</div>{lead.contract && <span className="crm-lead-contract"><FileSignature />Договор</span>}</div>}
-      {stage < funnelStages.length - 1 && <div className="crm-lead-actions"><Button size="sm" className="crm-button" onClick={() => advance(lead)}>{funnelStages[stage + 1]}<ArrowRight /></Button>{stage <= 1 && <Button size="sm" variant="ghost" onClick={() => reject(lead)}>Отказ</Button>}</div>}
+      {stage < funnelStages.length - 1 && <div className="crm-lead-actions"><Button size="sm" className="crm-button" onClick={() => advance(lead)}>{funnelStages[stage + 1]}<ArrowRight /></Button>{stage <= 1 && <Button size="sm" variant="outline" onClick={() => reject(lead)}>Отказ</Button>}</div>}
     </article>)}{visible.length === 0 && <p className="crm-empty">На этом этапе пусто</p>}</div>
   </section>;
 }
@@ -31,12 +31,9 @@ export function DashboardSources({ leads }: { leads: Lead[] }) {
   const sources = sourceCounts(leads);
   const max = Math.max(1, ...sources.map(item => item.count));
   const regular = leads.filter(lead => lead.kind === 'regular').length;
-  const debt = leads.filter(lead => lead.contract).reduce((sum, lead) => sum + debtAmount(lead), 0);
-  const received = leads.reduce((sum, lead) => sum + paidAmount(lead), 0);
   return <section className="crm-panel crm-sources">
     <div className="crm-panel-heading"><h2>Откуда клиенты</h2></div>
-    <div className="crm-source-list">{sources.map(({ source, count }) => <div className="crm-source" key={source}><span>{source}</span><div><i style={{ width: `${(count / max) * 100}%` }} /></div><strong>{count}</strong></div>)}</div>
+    <div className="crm-source-list">{sources.map(({ source, count }) => { const pct = (count / max) * 100; return <div className="crm-source" key={source}><span>{source}</span><div className="crm-source-bar"><i style={{ width: `${pct}%` }} /><strong style={{ left: `${pct}%` }}>{count}</strong></div></div>; })}</div>
     <div className="crm-source-split"><div><strong>{leads.length - regular}</strong><span>новых</span></div><div><strong>{regular}</strong><span>постоянных</span></div></div>
-    <div className="crm-source-money"><div><span>Получено</span><strong>{money(received)}</strong></div><div><span>Долг по договорам</span><strong className="crm-debt">{money(debt)}</strong></div></div>
   </section>;
 }
