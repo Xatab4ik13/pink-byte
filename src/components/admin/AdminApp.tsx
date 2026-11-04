@@ -15,7 +15,7 @@ import { sectionLabels, type AdminSection, type WorkspaceTask } from './workspac
 import { initialReviews, pendingReviews, resolveReview } from './agents-model';
 
 const navigation: { label: string; icon: typeof Folder; section: AdminSection }[] = [
-  { label: 'Сегодня', icon: CalendarDays, section: 'today' }, { label: 'Продажи', icon: ChartNoAxesColumnIncreasing, section: 'sales' },
+  { label: 'Дашборд', icon: CalendarDays, section: 'today' }, { label: 'Продажи', icon: ChartNoAxesColumnIncreasing, section: 'sales' },
   { label: 'Проекты', icon: Folder, section: 'project' }, { label: 'Задачи', icon: ListChecks, section: 'tasks' },
   { label: 'Клиенты', icon: Users, section: 'clients' }, { label: 'Финансы', icon: Coins, section: 'finance' }, { label: 'Агенты', icon: Bot, section: 'agents' },
   { label: 'Контент сайта', icon: FileText, section: 'content' }, { label: 'Настройки', icon: Settings, section: 'settings' },
