@@ -204,3 +204,10 @@
 .crm-today .crm-button:hover svg[class*=pb-icon]:has(path[d^="M12 5.5v13"]){transform:rotate(90deg)}
 .crm-today .crm-kpi-icon.has-art{background:var(--crm-light)!important;width:52px;height:52px;border-radius:12px}
 .crm-today .crm-kpi-icon.has-art img{width:40px;height:40px;object-fit:contain}
+/* Uniform icon plates for all four KPI blocks */
+.crm-today .crm-kpi-icon,.crm-today .crm-kpi-0 .crm-kpi-icon{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--crm-light)!important;box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--crm-dark) 8%,transparent)}
+.crm-today .crm-kpi-icon svg,.crm-today .crm-kpi-0 .crm-kpi-icon svg{width:26px;height:26px;color:var(--crm-dark)}
+.crm-today .crm-kpi-icon .pb-icon-accent{fill:var(--primary)}
+.crm-today .crm-kpi-icon.has-art img{display:block;width:34px;height:34px;object-fit:contain}
+.crm-today .crm-kpi-1 .crm-kpi-icon.has-art img{width:38px;height:38px;transform:translateY(1px)}
+.crm-today .crm-kpi{align-items:center}
