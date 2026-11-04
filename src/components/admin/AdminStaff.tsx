@@ -10,7 +10,7 @@ type Member = { id: string; email: string; name: string; role: StaffRole };
 
 /** Отдельный клиент без сохранения сессии: регистрация сотрудника не выкидывает админа из аккаунта. */
 function signupClient() {
-  return createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY, {
+  return createClient(import.meta.env['VITE_SUPABASE_URL'], import.meta.env['VITE_SUPABASE_PUBLISHABLE_KEY'], {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false, storageKey: 'pb-staff-signup' },
   });
 }
