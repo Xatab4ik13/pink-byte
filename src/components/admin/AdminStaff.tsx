@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { useRouteContext } from '@tanstack/react-router';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Panel } from './AdminToday';
@@ -14,7 +15,8 @@ function signupClient() {
   });
 }
 
-export function AdminStaff({ selfId }: { selfId: string }) {
+export function AdminStaff() {
+  const selfId = useRouteContext({ from: '/_authenticated' }).staff.id;
   const [members, setMembers] = useState<Member[]>([]);
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
