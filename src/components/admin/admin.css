@@ -225,3 +225,5 @@
 .crm-today .crm-funnel-stage i,.crm-today .crm-funnel-stage[aria-pressed=true] i{background:var(--stage)}
 .crm-today .crm-funnel-stage::after{background:color-mix(in oklab,var(--stage) 18%,var(--background))}
 .crm-today .crm-funnel-list .crm-lead{border-left:3px solid var(--stage)}
+.crm-today .crm-funnel-stage .crm-stage-dot{display:block;width:8px!important;height:8px!important;min-width:0;padding:0;margin:0;border:0;border-radius:50%;background:var(--stage)!important;box-shadow:none}
+.crm-today .crm-funnel-stage i{max-width:calc(100% - 20px)}
