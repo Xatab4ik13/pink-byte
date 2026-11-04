@@ -13,7 +13,7 @@ export const MAX_CHAT =
 
 export const CHANNELS = [
   { name: "WhatsApp", icon: whatsappIcon, href: `https://wa.me/${PHONE_DIGITS}` },
-  { name: "Telegram", icon: telegramIcon, href: "https://t.me/noirdig" },
+  { name: "Telegram", icon: telegramIcon, href: "https://t.me/pinkbyt" },
   { name: "MAX", icon: maxIcon, href: MAX_CHAT },
   { name: "Почта", icon: mailIcon, href: `mailto:${EMAIL}` },
 ];

@@ -22,7 +22,7 @@ export const NAV: { href: string; label: string; children?: typeof SERVICE_LINKS
   { href: "/kontakty", label: "Контакты" },
 ];
 
-export const TELEGRAM_URL = "https://t.me/noirdig";
+export const TELEGRAM_URL = "https://t.me/pinkbyt";
 
 /** Light logo for dark surfaces; dark logo with the lime eyes kept for light surfaces. */
 export function Logo({ tone = "light", className }: { tone?: "light" | "dark"; className?: string }) {
