@@ -8,11 +8,13 @@ export const PHONE_LABEL = "+7 (999) 216-76-76";
 export const PHONE_HREF = `tel:+${PHONE_DIGITS}`;
 export const EMAIL = "info@pinkbyte.pro";
 
-/* Пустой href у MAX: ссылка появится, когда будет адрес. */
+export const MAX_CHAT =
+  "https://max.ru/u/f9LHodD0cOLBwIyoEd-ExnzQMqCzTx9VtKyn2HKENvXJMpsSyVQZz6EjQ4s";
+
 export const CHANNELS = [
   { name: "WhatsApp", icon: whatsappIcon, href: `https://wa.me/${PHONE_DIGITS}` },
   { name: "Telegram", icon: telegramIcon, href: "https://t.me/noirdig" },
-  { name: "MAX", icon: maxIcon, href: "" },
+  { name: "MAX", icon: maxIcon, href: MAX_CHAT },
   { name: "Почта", icon: mailIcon, href: `mailto:${EMAIL}` },
 ];
 
