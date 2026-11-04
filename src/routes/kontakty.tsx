@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { submitContactRequest } from "@/components/pinkbyte/brief-contact.functions";
 import { ChevronDown, Minus, Paperclip, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -45,6 +47,8 @@ function ContactsPage() {
   const [notice, setNotice] = useState("");
   const [sent, setSent] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
+  const [sending, setSending] = useState(false);
+  const sendRequest = useServerFn(submitContactRequest);
 
   return <>
     <div id="top" className="bg-ink text-ink-foreground">
@@ -139,7 +143,14 @@ function ContactsPage() {
                   return;
                 }
                 setNotice("");
-                setSent(true);
+                setSending(true);
+                sendRequest({ data: { name, contact, service, about, fileNames: files, consent: true } })
+                  .then(() => {
+                    setSent(true);
+                    setName(""); setContact(""); setService(""); setAbout(""); setFiles([]); setConsent(false);
+                  })
+                  .catch(() => setNotice("Не удалось отправить. Попробуйте ещё раз или напишите нам в Telegram."))
+                  .finally(() => setSending(false));
               }}
             >
               <div className="grid gap-5 sm:grid-cols-2">
@@ -226,8 +237,8 @@ function ContactsPage() {
               </div>
 
               <div className="mt-7 flex flex-wrap items-center gap-4">
-                <Button type="submit" className={`${btn.ink} h-auto px-10 py-4`}>Отправить сообщение</Button>
-                {sent && <p role="status" className="text-sm text-muted-foreground">Форма пока прототип: данные никуда не отправляются.</p>}
+                <Button type="submit" disabled={sending} className={`${btn.ink} h-auto px-10 py-4`}>{sending ? "Отправляем…" : "Отправить сообщение"}</Button>
+                {sent && <p role="status" className="text-sm text-muted-foreground">Спасибо! Заявка отправлена, мы свяжемся с вами.</p>}
                 {notice && <p role="alert" className="text-sm text-destructive">{notice}</p>}
               </div>
             </form>

@@ -47,6 +47,45 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_requests: {
+        Row: {
+          about: string | null
+          consent_version: string
+          contact: string
+          created_at: string
+          file_names: string[]
+          id: string
+          name: string
+          read_at: string | null
+          service: string | null
+          status: string
+        }
+        Insert: {
+          about?: string | null
+          consent_version?: string
+          contact: string
+          created_at?: string
+          file_names?: string[]
+          id?: string
+          name: string
+          read_at?: string | null
+          service?: string | null
+          status?: string
+        }
+        Update: {
+          about?: string | null
+          consent_version?: string
+          contact?: string
+          created_at?: string
+          file_names?: string[]
+          id?: string
+          name?: string
+          read_at?: string | null
+          service?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
       contact_submissions: {
         Row: {
           about: string
