@@ -10,12 +10,12 @@ export function DashboardFunnel({ leads, setLeads, notify }: { leads: Lead[]; se
   const max = Math.max(1, ...counts);
   const lost = leads.filter(lead => lead.lost).length;
   const visible = leads.filter(lead => !lead.lost && lead.stage === stage);
-  const advance = (lead: Lead) => { setLeads(current => current.map(item => item.id === lead.id ? { ...item, stage: Math.min(item.stage + 1, funnelStages.length - 1) } : item)); notify(`${lead.name}: ${funnelStages[Math.min(lead.stage + 1, funnelStages.length - 1)].toLowerCase()}`); };
+  const advance = (lead: Lead) => { setLeads(current => current.map(item => item.id === lead.id ? { ...item, stage: Math.min(item.stage + 1, funnelStages.length - 1) } : item)); notify(`${lead.name}: ${(funnelStages[Math.min(lead.stage + 1, funnelStages.length - 1)] ?? "").toLowerCase()}`); };
   const reject = (lead: Lead) => { setLeads(current => current.map(item => item.id === lead.id ? { ...item, lost: true } : item)); notify(`${lead.name}: отказ`); };
   return <section className="crm-panel crm-funnel">
     <div className="crm-panel-heading"><h2>Воронка</h2><span className="crm-funnel-lost"><XCircle />Отказы: {lost}</span></div>
     <div className="crm-funnel-stages">{funnelStages.map((label, index) => <button type="button" key={label} aria-pressed={stage === index} onClick={() => setStage(index)} className="crm-funnel-stage">
-      <span>{label}</span><strong>{counts[index]}</strong><i style={{ width: `${(counts[index] / max) * 100}%` }} />
+      <span>{label}</span><strong>{counts[index]}</strong><i style={{ width: `${((counts[index] ?? 0) / max) * 100}%` }} />
     </button>)}</div>
     <div className="crm-funnel-list" key={stage}>{visible.map(lead => <article className="crm-lead" key={lead.id}>
       <div className="crm-lead-top"><strong>{lead.name}</strong><span className={`crm-badge ${lead.kind === 'regular' ? 'crm-badge-violet' : 'crm-badge-lime'}`}>{lead.kind === 'regular' ? 'Постоянный' : 'Новый'}</span></div>
