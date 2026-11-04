@@ -15,6 +15,13 @@
       "when": 1793805194933,
       "tag": "0001_crm_auth_roles",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793805717692,
+      "tag": "0002_admin_confirm_staff",
+      "breakpoints": true
     }
   ]
 }
