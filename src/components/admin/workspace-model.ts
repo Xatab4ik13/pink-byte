@@ -13,7 +13,7 @@ const MONTHS = ['января', 'февраля', 'марта', 'апреля', 
 export function dueDate(due: string) {
   const match = /^(\d{1,2}) (\S+)/.exec(due);
   if (!match) return null;
-  const month = MONTHS.indexOf(match[2]);
+  const month = MONTHS.indexOf(match[2] ?? '');
   return month < 0 ? null : new Date(2026, month, Number(match[1]));
 }
 
