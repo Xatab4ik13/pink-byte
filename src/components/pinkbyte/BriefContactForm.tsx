@@ -122,7 +122,7 @@ export function BriefContactForm({ brief, onDownload }: { brief: string; onDownl
                   <p className="mt-2">
                     Разрешаю студии Pink Byte получить и хранить мои имя, почту, телефон и ответы из
                     брифа для оценки задачи и обратной связи. Согласие не распространяется на
-                    рекламные рассылки. Для отзыва согласия можно обратиться в Telegram: @noirdig.
+                    рекламные рассылки. Для отзыва согласия можно обратиться в Telegram: @pinkbyt.
                   </p>
                 </details>
               </div>
