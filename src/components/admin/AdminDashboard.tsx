@@ -16,7 +16,7 @@ export function DashboardFunnel({ leads, setLeads, notify }: { leads: Lead[]; se
   return <section className="crm-panel crm-funnel crm-reveal" style={{ animationDelay: '180ms' }}>
     <div className="crm-panel-heading"><h2>Воронка</h2><span className="crm-funnel-lost"><XCircle />Отказы: {lost}</span></div>
     <div className="crm-funnel-stages">{funnelStages.map((label, index) => <button type="button" key={label} aria-pressed={stage === index} onClick={() => setStage(index)} className={`crm-funnel-stage crm-stage-${index}`}>
-      <span><b className="crm-stage-dot" />{label}</span><strong><CountUp value={String(counts[index] ?? 0)} duration={400} /></strong><i style={{ width: `${((counts[index] ?? 0) / max) * 100}%` }} />
+      <span><b className="crm-fdot" />{label}</span><strong><CountUp value={String(counts[index] ?? 0)} duration={400} /></strong><i style={{ width: `${((counts[index] ?? 0) / max) * 100}%` }} />
     </button>)}</div>
     <div className={`crm-funnel-list crm-stage-${stage}`} key={stage}>{visible.map(lead => <article className="crm-lead" key={lead.id}>
       <div className="crm-lead-top"><strong>{lead.name}</strong><span className={`crm-badge ${lead.kind === 'regular' ? 'crm-badge-violet' : 'crm-badge-lime'}`}>{lead.kind === 'regular' ? 'Постоянный' : 'Новый'}</span></div>

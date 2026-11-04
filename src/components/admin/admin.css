@@ -221,9 +221,9 @@
 .crm-today .crm-funnel-stage:hover{transform:none;background:color-mix(in oklab,var(--stage) 14%,var(--background))}
 .crm-today .crm-funnel-stage[aria-pressed=true]{background:color-mix(in oklab,var(--stage) 20%,var(--background));border-color:var(--stage);color:var(--foreground)}
 .crm-today .crm-funnel-stage span{display:flex;align-items:center;gap:6px;color:var(--foreground)}
-.crm-stage-dot{width:8px;height:8px;border-radius:50%;background:var(--stage);flex-shrink:0}
+
 .crm-today .crm-funnel-stage i,.crm-today .crm-funnel-stage[aria-pressed=true] i{background:var(--stage)}
 .crm-today .crm-funnel-stage::after{background:color-mix(in oklab,var(--stage) 18%,var(--background))}
 .crm-today .crm-funnel-list .crm-lead{border-left:3px solid var(--stage)}
-.crm-today .crm-funnel-stage .crm-stage-dot{display:block;width:8px!important;height:8px!important;min-width:0;padding:0;margin:0;border:0;border-radius:50%;background:var(--stage)!important;box-shadow:none}
+.crm-today .crm-funnel-stage .crm-fdot{flex-shrink:0;display:block;width:8px!important;height:8px!important;min-width:0;padding:0;margin:0;border:0;border-radius:50%;background:var(--stage)!important;box-shadow:none}
 .crm-today .crm-funnel-stage i{max-width:calc(100% - 20px)}
