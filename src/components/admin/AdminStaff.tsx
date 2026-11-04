@@ -44,7 +44,7 @@ export function AdminStaff() {
     setBusy(true); setMessage('');
     const { data: signup, error } = await signupClient().auth.signUp({ email, password, options: { data: { full_name: name } } });
     const userId = signup.user?.identities?.length ? signup.user.id : null;
-    if (error || !userId) { setBusy(false); setMessage('Не удалось создать аккаунт. Возможно, эта почта уже зарегистрирована.'); return; }
+    if (error || !userId) { setBusy(false); setMessage(error?.code === 'weak_password' ? 'Пароль слишком простой или есть в утёкших базах. Придумайте другой.' : 'Не удалось создать аккаунт. Возможно, эта почта уже зарегистрирована.'); return; }
     const { error: roleError } = await supabase.rpc('admin_add_staff', { _user_id: userId, _role: role, _full_name: name });
     setBusy(false);
     if (roleError) { setMessage('Аккаунт создан, но роль не назначена. Попробуйте ещё раз.'); return; }

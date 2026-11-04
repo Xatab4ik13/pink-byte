@@ -17,7 +17,7 @@ export function AdminPassword() {
     setBusy(true);
     const { error } = await supabase.auth.updateUser({ password: next, current_password: current } as { password: string });
     setBusy(false);
-    if (error) { setMessage('Не удалось сменить пароль. Проверьте текущий пароль.'); return; }
+    if (error) { setMessage(error.code === 'weak_password' ? 'Новый пароль слишком простой или есть в утёкших базах.' : 'Не удалось сменить пароль. Проверьте текущий пароль.'); return; }
     form.reset(); setMessage('Пароль изменён.');
   };
   return <Panel title="Пароль"><form className="crm-create-form" onSubmit={submit}>
