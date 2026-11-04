@@ -23,6 +23,16 @@ import { BRIEF_QUESTIONS, canSubmitAnswer, createBrief, type BriefAnswer } from 
 import { Logo } from "./primitives";
 import { BriefContactForm } from "./BriefContactForm";
 import { useBriefViewport } from "./use-brief-viewport";
+import { useServerFn } from "@tanstack/react-start";
+import { AGENT_GREETING, AGENT_LIMITS, userMessageCount, type AgentMessage } from "./brief-agent-model";
+import { askBriefAgent } from "./brief-agent.functions";
+
+function toAgentMessages(chat: { role: "user" | "assistant"; text: string; error?: boolean }[]): AgentMessage[] {
+  // Skip the local greeting and error notices; the model sees only the real dialog.
+  return chat
+    .filter((item, index) => !item.error && !(index === 0 && item.role === "assistant"))
+    .map((item) => ({ role: item.role, content: item.text.trim() || "Файлы" }));
+}
 
 function ComposerTools({ text }: { text: string }) {
   const attachments = usePromptInputAttachments();
@@ -107,16 +117,61 @@ function BriefComposer({
   );
 }
 
+type ChatItem = { role: "user" | "assistant"; text: string; files?: string[]; error?: boolean };
+
 export default function BriefDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+  const [mode, setMode] = useState<"agent" | "fixed">("agent");
   const [answers, setAnswers] = useState<BriefAnswer[]>([]);
+  const [chat, setChat] = useState<ChatItem[]>([{ role: "assistant", text: AGENT_GREETING }]);
+  const [agentBrief, setAgentBrief] = useState<string | null>(null);
+  const [agentProgress, setAgentProgress] = useState(0);
+  const [thinking, setThinking] = useState(false);
+  const ask = useServerFn(askBriefAgent);
   const textarea = useRef<HTMLTextAreaElement>(null);
   const dialog = useRef<HTMLDivElement>(null);
   useBriefViewport(open, dialog);
-  const step = answers.length;
-  const done = step === BRIEF_QUESTIONS.length;
-  const current = BRIEF_QUESTIONS[step];
-  const brief = useMemo(() => createBrief(answers), [answers]);
-  const progress = Math.round((answers.length / BRIEF_QUESTIONS.length) * 100);
+  const agent = mode === "agent";
+  const step = agent ? chat.length : answers.length;
+  const done = agent ? agentBrief !== null : answers.length === BRIEF_QUESTIONS.length;
+  const current = agent ? undefined : BRIEF_QUESTIONS[answers.length];
+  const fixedBrief = useMemo(() => createBrief(answers), [answers]);
+  const brief = agent ? (agentBrief ?? "") : fixedBrief;
+  const progress = agent
+    ? agentProgress
+    : Math.round((answers.length / BRIEF_QUESTIONS.length) * 100);
+  const limitReached = agent && userMessageCount(toAgentMessages(chat)) >= AGENT_LIMITS.maxUserMessages;
+
+  async function submitAgent(answer: BriefAnswer) {
+    const text = [answer.text, answer.files.length ? `Файлы: ${answer.files.join(", ")}` : ""]
+      .filter(Boolean)
+      .join("\n")
+      .slice(0, AGENT_LIMITS.maxMessageChars);
+    const next: ChatItem[] = [...chat, { role: "user", text: answer.text, files: answer.files }];
+    setChat(next);
+    setThinking(true);
+    const history = toAgentMessages(next);
+    history[history.length - 1] = { role: "user", content: text || "Файлы" };
+    try {
+      const result = await ask({ data: { messages: history } });
+      if (!result.ok && result.reason === "not_configured" && chat.length === 1) {
+        // Bot not connected yet: continue with the fixed questions.
+        setMode("fixed");
+        setAnswers([answer]);
+        return;
+      }
+      if (!result.ok) throw new Error();
+      setChat((list) => [...list, { role: "assistant", text: result.reply.reply }]);
+      setAgentProgress((p) => Math.max(p, result.reply.progress));
+      if (result.reply.done && result.reply.brief) setAgentBrief(result.reply.brief);
+    } catch {
+      setChat((list) => [
+        ...list,
+        { role: "assistant", text: "Не получилось ответить. Отправьте сообщение ещё раз.", error: true },
+      ]);
+    } finally {
+      setThinking(false);
+    }
+  }
   useEffect(() => {
     if (!open || done || window.matchMedia("(max-width: 640px)").matches) return;
     const frame = requestAnimationFrame(() => textarea.current?.focus({ preventScroll: true }));
@@ -127,8 +182,9 @@ export default function BriefDialog({ open, onOpenChange }: { open: boolean; onO
       text: message.text.trim(),
       files: message.files.map((f) => f.filename || "Файл"),
     };
-    if (!canSubmitAnswer(answer) || done) return;
-    setAnswers((previous) => [...previous, answer]);
+    if (!canSubmitAnswer(answer) || done || thinking || limitReached) return;
+    if (agent) void submitAgent(answer);
+    else setAnswers((previous) => [...previous, answer]);
   }
   function download() {
     const url = URL.createObjectURL(new Blob([brief], { type: "text/plain;charset=utf-8" }));
@@ -223,6 +279,31 @@ export default function BriefDialog({ open, onOpenChange }: { open: boolean; onO
                             <p className="whitespace-pre-wrap break-words">{brief}</p>
                           </MessageContent>
                         </Message>
+                      ) : agent ? (
+                        chat.map((item, index) => (
+                          <Message
+                            key={index}
+                            from={item.role}
+                            className={index === chat.length - 1 && item.role === "assistant" ? "pb-chat-current" : undefined}
+                            aria-live={item.role === "assistant" ? "polite" : undefined}
+                          >
+                            <MessageContent
+                              className={
+                                item.role === "user"
+                                  ? "pb-bubble-user pb-msg-in-right"
+                                  : "pb-bubble-bot pb-msg-in-left"
+                              }
+                            >
+                              <p className="whitespace-pre-wrap break-words">{item.text}</p>
+                              {item.files?.map((name, k) => (
+                                <span key={k} className="flex items-center gap-2 text-xs">
+                                  <FileText className="size-3 shrink-0" />
+                                  {name}
+                                </span>
+                              ))}
+                            </MessageContent>
+                          </Message>
+                        ))
                       ) : answers.length ? (
                         answers.map((answer, index) => (
                           <div key={index} className="space-y-4">
@@ -247,7 +328,19 @@ export default function BriefDialog({ open, onOpenChange }: { open: boolean; onO
                           </div>
                         ))
                       ) : null}
-                      {!done && (
+                      {agent && thinking && (
+                        <Message from="assistant" aria-live="polite">
+                          <MessageContent className="pb-bubble-bot pb-msg-in-left">
+                            <p className="text-ink-muted">Робот печатает…</p>
+                          </MessageContent>
+                        </Message>
+                      )}
+                      {agent && limitReached && !thinking && !done && (
+                        <p className="text-center text-xs text-muted-foreground">
+                          Лимит сообщений исчерпан. Оставьте контакты на странице контактов, мы свяжемся с вами.
+                        </p>
+                      )}
+                      {!done && !agent && (
                         <Message
                           key={step}
                           from="assistant"
@@ -262,7 +355,11 @@ export default function BriefDialog({ open, onOpenChange }: { open: boolean; onO
                     </ConversationContent>
                     <ConversationScrollButton />
                   </Conversation>
-                  <BriefComposer textarea={textarea} placeholder={current?.placeholder} onSubmit={submit} />
+                  <BriefComposer
+                    textarea={textarea}
+                    placeholder={agent ? "Напишите ответ…" : current?.placeholder}
+                    onSubmit={submit}
+                  />
                 </>
               )}
             </div>
