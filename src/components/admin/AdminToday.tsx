@@ -25,7 +25,9 @@ export function AdminToday({ openCreate, openReview, notify, search, reviewCount
   const open = mine.filter(task => !task.done);
   const urgentCount = open.filter(isUrgentTask).length;
   const weekCount = open.filter(task => taskHorizon(task) !== 'later').length;
-  const visible = sortTasks(open.filter(task => tab === 'all' ? true : tab === 'urgent' ? isUrgentTask(task) : taskHorizon(task) !== 'later')).filter(task => `${task.title} ${task.project} ${task.owner}`.toLowerCase().includes(search.toLowerCase()));
+  const inTab = (task: WorkspaceTask) => tab === 'all' ? true : tab === 'urgent' ? isUrgentTask(task) : taskHorizon(task) !== 'later';
+  const visible = sortTasks(open.filter(inTab)).filter(task => `${task.title} ${task.project} ${task.owner}`.toLowerCase().includes(search.toLowerCase()));
+  const ownerCount = (value: string) => (value === 'all' ? tasks : tasks.filter(task => task.owner === value)).filter(task => !task.done && inTab(task)).length;
   const groups = groupTitles.map(group => ({ ...group, items: visible.filter(task => taskHorizon(task) === group.key) })).filter(group => group.items.length);
   const newLeads = leads.filter(lead => !lead.lost && lead.stage === 0).length;
   const talks = leads.filter(lead => !lead.lost && lead.stage === 1).length;
@@ -45,7 +47,7 @@ export function AdminToday({ openCreate, openReview, notify, search, reviewCount
       <Panel title="Задачи" className="crm-tasks" action={<Button className="crm-button" size="sm" onClick={openCreate}><Plus />Добавить</Button>}>
         <div className="crm-task-toolbar">
           <div className="crm-tabs">{tabs.map(({ key, label }) => <Button key={key} variant="ghost" size="sm" aria-pressed={tab === key} onClick={() => setTab(key)}>{label} ({key === 'urgent' ? urgentCount : key === 'week' ? weekCount : open.length})</Button>)}</div>
-          <div className="crm-owner-bar"><span>Кто делает</span>{['all', ...taskOwners].map(value => <Button key={value} variant="ghost" size="sm" aria-pressed={owner === value} onClick={() => setOwner(value)}>{value === 'all' ? 'Все' : value}<b>{value === 'all' ? tasks.filter(task => !task.done).length : tasks.filter(task => !task.done && task.owner === value).length}</b></Button>)}</div>
+          <div className="crm-owner-bar"><span>Кто делает</span>{['all', ...taskOwners].map(value => <Button key={value} variant="ghost" size="sm" aria-pressed={owner === value} onClick={() => setOwner(value)}>{value === 'all' ? 'Все' : value}<b>{ownerCount(value)}</b></Button>)}</div>
         </div>
         <div className="crm-task-list">{groups.map(group => <div className="crm-task-group" key={group.key}>
           <div className={`crm-task-group-title ${group.key === 'overdue' ? 'is-overdue' : ''}`}>{group.label}<b>{group.items.length}</b></div>
