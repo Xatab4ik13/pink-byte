@@ -37,7 +37,7 @@ export function AdminToday({ openCreate, openReview, notify, search, reviewCount
   const metrics = [
     { icon: ListChecks, label: owner === 'all' ? 'Задачи в работе' : `Задачи · ${owner}`, value: String(open.length), note: `Просрочено: ${open.filter(isOverdueTask).length}` },
     { icon: FileText, label: 'Новые заявки', value: String(newLeads), note: `В переговорах: ${talks}` },
-    { icon: Coins, label: 'Долг клиентов', value: money(debt), note: `Ближайшие оплаты: ${money(total)}` },
+    { icon: Coins, label: 'Долг клиентов', value: money(debt), note: `по ${leads.filter(lead => lead.contract).length} договорам` },
     { icon: ShieldCheck, label: 'На проверке у агентов', value: String(reviewCount), note: 'Открыть результаты' },
   ];
   return <div className="crm-today crm-enter">
@@ -63,10 +63,9 @@ export function AdminToday({ openCreate, openReview, notify, search, reviewCount
       <div className="crm-today-rail">
         <section className="crm-decisions"><div><h2>Нужны решения</h2><p>{reviewCount} материала от агентов готовы<br />к проверке.</p><Button variant="outline" className="crm-button crm-decision-button" onClick={openReview}>Посмотреть<ArrowRight /></Button></div><img src={tray.url} alt="Материалы на проверке" width={214} height={157} /></section>
         <Panel title="Деньги" className="crm-money" action={<Button variant="link" size="sm" className="crm-text-link" asChild><Link to="/admin" search={{ section: 'finance' }}>Все оплаты<ArrowRight /></Link></Button>}>
-          <div className="crm-money-split"><div><span>Получено</span><strong>{money(received)}</strong></div><div><span>Долг клиентов</span><strong className="crm-debt">{money(debt)}</strong></div></div>
+          <div className="crm-money-split"><div><span>Получено</span><strong>{money(received)}</strong></div><div><span>Ожидается</span><strong>{money(total)}</strong></div></div>
           <div>{payments.filter(payment => !payment.paid).map(payment => <div className="crm-payment" key={payment.project}><span>{payment.project}</span><strong>{money(payment.amount)}</strong><small>{payment.note}</small></div>)}</div>
-          <div className="crm-payment-total"><strong>Итого ожидаемых поступлений</strong><strong>{money(total)}</strong></div>
-        </Panel>
+                  </Panel>
         <DashboardSources leads={leads} />
       </div>
     </div>
