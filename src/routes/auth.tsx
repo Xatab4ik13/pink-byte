@@ -6,7 +6,7 @@ import { Logo } from '@/components/pinkbyte/primitives';
 import adminCss from '@/components/admin/admin.css?url';
 
 export const Route = createFileRoute('/auth')({
-  validateSearch: (search: Record<string, unknown>) => ({ denied: search['denied'] ? 1 : undefined }),
+  validateSearch: (search: Record<string, unknown>): { denied?: 1 } => (search['denied'] ? { denied: 1 } : {}),
   head: () => ({
     meta: [
       { title: 'Вход · Pink Byte CRM' },
