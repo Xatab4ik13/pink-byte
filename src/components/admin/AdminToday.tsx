@@ -1,44 +1,76 @@
 import { useState, type ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
-import { outstandingAmount, type WorkspacePayment, type WorkspaceTask } from './workspace-model';
+import { isOverdueTask, isUrgentTask, outstandingAmount, sortTasks, taskHorizon, taskOwners, type TaskHorizon, type WorkspacePayment, type WorkspaceTask } from './workspace-model';
 import type { Dispatch, SetStateAction } from 'react';
-import { ArrowRight, Bell, CalendarDays, Check, CircleCheck, Coins, FileText, Folder, ListChecks, MoreHorizontal, Plus, ShieldCheck, UserRound } from 'lucide-react';
+import { ArrowRight, Check, CircleCheck, Coins, FileText, Folder, ListChecks, MoreHorizontal, Plus, ShieldCheck, UserRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import tray from '@/assets/crm-decision-tray.webp.asset.json';
 import { money, projects } from './mock-data';
 import { DashboardFunnel, DashboardSources } from './AdminDashboard';
-import { debtAmount, initialLeads } from './dashboard-model';
+import { debtAmount, initialLeads, paidAmount } from './dashboard-model';
 
 export function Panel({ title, action, children, className = '' }: { title: string; action?: ReactNode; children: ReactNode; className?: string }) {
   return <section className={`crm-panel ${className}`}><div className="crm-panel-heading"><h2>{title}</h2>{action}</div>{children}</section>;
 }
+
+const tabs = [{ key: 'urgent', label: 'Срочно' }, { key: 'week', label: 'На неделе' }, { key: 'all', label: 'Все' }] as const;
+type TaskTab = typeof tabs[number]['key'];
+const groupTitles: { key: TaskHorizon; label: string }[] = [{ key: 'overdue', label: 'Просрочено' }, { key: 'today', label: 'Сегодня' }, { key: 'week', label: 'На неделе' }, { key: 'later', label: 'Позже' }];
+
 export function AdminToday({ openCreate, openReview, notify, search, reviewCount, tasks, setTasks, payments }: { tasks: WorkspaceTask[]; setTasks: Dispatch<SetStateAction<WorkspaceTask[]>>; payments: WorkspacePayment[]; openCreate: () => void; openReview: () => void; notify: (message: string) => void; search: string; reviewCount: number }) {
-  const [tab, setTab] = useState('Сегодня');
+  const [tab, setTab] = useState<TaskTab>('urgent');
+  const [owner, setOwner] = useState('all');
   const [leads, setLeads] = useState(initialLeads);
+  const mine = owner === 'all' ? tasks : tasks.filter(task => task.owner === owner);
+  const open = mine.filter(task => !task.done);
+  const urgentCount = open.filter(isUrgentTask).length;
+  const weekCount = open.filter(task => taskHorizon(task) !== 'later').length;
+  const visible = sortTasks(open.filter(task => tab === 'all' ? true : tab === 'urgent' ? isUrgentTask(task) : taskHorizon(task) !== 'later')).filter(task => `${task.title} ${task.project} ${task.owner}`.toLowerCase().includes(search.toLowerCase()));
+  const groups = groupTitles.map(group => ({ ...group, items: visible.filter(task => taskHorizon(task) === group.key) })).filter(group => group.items.length);
   const newLeads = leads.filter(lead => !lead.lost && lead.stage === 0).length;
   const talks = leads.filter(lead => !lead.lost && lead.stage === 1).length;
   const debt = leads.filter(lead => lead.contract).reduce((sum, lead) => sum + debtAmount(lead), 0);
-  const visibleTasks = tasks.slice(0, tab === 'Сегодня' ? 4 : tab === 'На неделе' ? 8 : tasks.length).filter(task => `${task.title} ${task.project}`.toLowerCase().includes(search.toLowerCase()));
-  const filteredProjects = projects.filter(project => project.name.toLowerCase().includes(search.toLowerCase()));
+  const received = leads.reduce((sum, lead) => sum + paidAmount(lead), 0);
   const total = outstandingAmount(payments);
   const metrics = [
+    { icon: ListChecks, label: owner === 'all' ? 'Задачи в работе' : `Задачи · ${owner}`, value: String(open.length), note: `Просрочено: ${open.filter(isOverdueTask).length}` },
     { icon: FileText, label: 'Новые заявки', value: String(newLeads), note: `В переговорах: ${talks}` },
-    { icon: Folder, label: 'Проекты в работе', value: String(leads.filter(lead => !lead.lost && (lead.stage === 3 || lead.stage === 4)).length), note: 'Разработка и тестирование' },
     { icon: Coins, label: 'Долг клиентов', value: money(debt), note: `Ближайшие оплаты: ${money(total)}` },
     { icon: ShieldCheck, label: 'На проверке у агентов', value: String(reviewCount), note: 'Открыть результаты' },
   ];
   return <div className="crm-today crm-enter">
-    <div className="crm-page-heading"><div><h1>Дашборд</h1><p className="crm-desktop-copy">Заявки, проекты и решения, которые ждут внимания.</p><p className="crm-mobile-date">30 октября</p></div><div className="crm-heading-actions"><span>30 октября 2026</span><Button onClick={openCreate} className="crm-button"><Plus />Создать</Button></div></div>
-    <div className="crm-metrics">{metrics.map(({ icon: Icon, label, value, note }, index) => <div className={`crm-metric crm-metric-${index}`} key={label}><span className="crm-icon-tile"><Icon /></span><div><span className="crm-metric-label">{label}</span><strong>{value}</strong><span className="crm-metric-note">{note}</span></div></div>)}</div>
-    <div className="crm-dashboard-top"><DashboardFunnel leads={leads} setLeads={setLeads} notify={notify} /><DashboardSources leads={leads} /></div>
-    <div className="crm-dashboard-grid">
-      <Panel title="Мои задачи" className="crm-tasks" action={<Button className="crm-button" size="sm" onClick={openCreate}><Plus />Добавить</Button>}>
-        <div className="crm-tabs">{['Сегодня', 'На неделе', 'Все'].map((label, index) => <Button key={label} variant="ghost" size="sm" aria-pressed={tab === label} onClick={() => setTab(label)}>{label} ({tasks.slice(0, index === 0 ? 4 : index === 1 ? 8 : tasks.length).length})</Button>)}</div>
-        <div className="crm-task-list">{visibleTasks.map(task => <div className={`crm-task ${task.done ? 'crm-task-done' : ''}`} key={task.id}><Button variant="ghost" className="crm-check" role="checkbox" aria-label={task.title} aria-checked={task.done} onClick={() => setTasks(current => current.map(item => item.id === task.id ? { ...item, done: !item.done } : item))}>{task.done && <Check />}</Button><div className="crm-task-copy"><strong>{task.title}</strong><small className="crm-task-description">{task.description}</small><small className="crm-task-mobile-project">{task.project}</small></div><span className="crm-task-project"><Folder />{task.project}</span><span className={`crm-badge crm-badge-${task.tone}`}>{task.due}</span></div>)}{visibleTasks.length === 0 && <p className="crm-empty">Ничего не найдено</p>}</div>
+    <div className="crm-page-heading"><div><h1>Дашборд</h1><p className="crm-desktop-copy">Задачи команды, заявки и деньги в одном месте.</p><p className="crm-mobile-date">30 октября</p></div><div className="crm-heading-actions"><span>30 октября 2026</span><Button onClick={openCreate} className="crm-button"><Plus />Создать</Button></div></div>
+    <div className="crm-kpi-strip">{metrics.map(({ icon: Icon, label, value, note }, index) => <div className={`crm-kpi crm-kpi-${index}`} key={label}><span className="crm-kpi-icon"><Icon /></span><div><span>{label}</span><strong>{value}</strong><small>{note}</small></div></div>)}</div>
+    <div className="crm-dashboard-main">
+      <Panel title="Задачи" className="crm-tasks" action={<Button className="crm-button" size="sm" onClick={openCreate}><Plus />Добавить</Button>}>
+        <div className="crm-task-toolbar">
+          <div className="crm-tabs">{tabs.map(({ key, label }) => <Button key={key} variant="ghost" size="sm" aria-pressed={tab === key} onClick={() => setTab(key)}>{label} ({key === 'urgent' ? urgentCount : key === 'week' ? weekCount : open.length})</Button>)}</div>
+          <div className="crm-owner-bar"><span>Кто делает</span>{['all', ...taskOwners].map(value => <Button key={value} variant="ghost" size="sm" aria-pressed={owner === value} onClick={() => setOwner(value)}>{value === 'all' ? 'Все' : value}<b>{value === 'all' ? tasks.filter(task => !task.done).length : tasks.filter(task => !task.done && task.owner === value).length}</b></Button>)}</div>
+        </div>
+        <div className="crm-task-list">{groups.map(group => <div className="crm-task-group" key={group.key}>
+          <div className={`crm-task-group-title ${group.key === 'overdue' ? 'is-overdue' : ''}`}>{group.label}<b>{group.items.length}</b></div>
+          {group.items.map(task => <div className={`crm-task ${task.done ? 'crm-task-done' : ''} ${taskHorizon(task) === 'overdue' ? 'is-overdue' : ''}`} key={task.id}>
+            <Button variant="ghost" className="crm-check" role="checkbox" aria-label={task.title} aria-checked={task.done} onClick={() => setTasks(current => current.map(item => item.id === task.id ? { ...item, done: !item.done } : item))}>{task.done && <Check />}</Button>
+            <div className="crm-task-copy"><strong>{task.title}</strong><small className="crm-task-description">{task.description}</small><small className="crm-task-mobile-project">{task.project} · {task.owner}</small></div>
+            <span className="crm-task-project"><Folder />{task.project}</span>
+            <span className="crm-task-owner"><span className="crm-avatar">{task.owner[0]}</span>{task.owner}</span>
+            <span className={`crm-badge crm-badge-${task.tone}`}>{task.due}</span>
+          </div>)}
+        </div>)}{visible.length === 0 && <p className="crm-empty">Задач в этом списке нет</p>}</div>
       </Panel>
-      <section className="crm-decisions"><div><h2>Нужны решения</h2><p>{reviewCount} материала от агентов готовы<br />к проверке.</p><Button variant="outline" className="crm-button crm-decision-button" onClick={openReview}>Посмотреть<ArrowRight /></Button></div><img src={tray.url} alt="Материалы на проверке" width={214} height={157} /></section>
-      <Panel title="Ближайшие оплаты" className="crm-payments" action={<Button variant="link" size="sm" className="crm-text-link" asChild><Link to="/admin" search={{ section: 'finance' }}>Все оплаты<ArrowRight /></Link></Button>}><div>{payments.filter(payment => !payment.paid).map(payment => <div className="crm-payment" key={payment.project}><span>{payment.project}</span><strong>{money(payment.amount)}</strong><small>{payment.note}</small></div>)}</div><div className="crm-payment-total"><strong>Итого ожидаемых поступлений</strong><strong>{money(total)}</strong></div></Panel>
-      <Panel title="Проекты в работе" className="crm-projects" action={<Button variant="link" size="sm" className="crm-text-link" asChild><Link to="/admin" search={{ section: 'project' }}>Все проекты<ArrowRight /></Link></Button>}><div className="crm-table-wrap"><table><thead><tr><th>Проект</th><th>Этап</th><th>Ближайший срок</th><th>Ответственный</th><th /></tr></thead><tbody>{filteredProjects.map(project => <tr key={project.name}><td><div className="crm-project-name"><span className="crm-avatar">{project.name[0]}</span><div><strong>{project.name}</strong><small>{project.type}</small></div></div></td><td><span className={`crm-badge crm-badge-${project.tone}`}><i />{project.stage}</span></td><td>{project.deadline}</td><td><span className="crm-owner"><span className="crm-avatar"><UserRound /></span>{project.owner}</span></td><td><Button variant="ghost" size="icon-xs" aria-label={`Действия: ${project.name}`} onClick={() => notify(`${project.name}: ${project.stage.toLowerCase()}, срок ${project.deadline}`)}><MoreHorizontal /></Button></td></tr>)}</tbody></table>{filteredProjects.length === 0 && <p className="crm-empty">Ничего не найдено</p>}</div></Panel>
+      <div className="crm-today-rail">
+        <section className="crm-decisions"><div><h2>Нужны решения</h2><p>{reviewCount} материала от агентов готовы<br />к проверке.</p><Button variant="outline" className="crm-button crm-decision-button" onClick={openReview}>Посмотреть<ArrowRight /></Button></div><img src={tray.url} alt="Материалы на проверке" width={214} height={157} /></section>
+        <Panel title="Деньги" className="crm-money" action={<Button variant="link" size="sm" className="crm-text-link" asChild><Link to="/admin" search={{ section: 'finance' }}>Все оплаты<ArrowRight /></Link></Button>}>
+          <div className="crm-money-split"><div><span>Получено</span><strong>{money(received)}</strong></div><div><span>Долг клиентов</span><strong className="crm-debt">{money(debt)}</strong></div></div>
+          <div>{payments.filter(payment => !payment.paid).map(payment => <div className="crm-payment" key={payment.project}><span>{payment.project}</span><strong>{money(payment.amount)}</strong><small>{payment.note}</small></div>)}</div>
+          <div className="crm-payment-total"><strong>Итого ожидаемых поступлений</strong><strong>{money(total)}</strong></div>
+        </Panel>
+        <DashboardSources leads={leads} />
+      </div>
+    </div>
+    <DashboardFunnel leads={leads} setLeads={setLeads} notify={notify} />
+    <div className="crm-dashboard-grid">
+      <Panel title="Проекты в работе" className="crm-projects" action={<Button variant="link" size="sm" className="crm-text-link" asChild><Link to="/admin" search={{ section: 'project' }}>Все проекты<ArrowRight /></Link></Button>}><div className="crm-table-wrap"><table><thead><tr><th>Проект</th><th>Этап</th><th>Ближайший срок</th><th>Ответственный</th><th /></tr></thead><tbody>{projects.filter(project => project.name.toLowerCase().includes(search.toLowerCase())).map(project => <tr key={project.name}><td><div className="crm-project-name"><span className="crm-avatar">{project.name[0]}</span><div><strong>{project.name}</strong><small>{project.type}</small></div></div></td><td><span className={`crm-badge crm-badge-${project.tone}`}><i />{project.stage}</span></td><td>{project.deadline}</td><td><span className="crm-owner"><span className="crm-avatar"><UserRound /></span>{project.owner}</span></td><td><Button variant="ghost" size="icon-xs" aria-label={`Действия: ${project.name}`} onClick={() => notify(`${project.name}: ${project.stage.toLowerCase()}, срок ${project.deadline}`)}><MoreHorizontal /></Button></td></tr>)}</tbody></table>{!projects.some(project => project.name.toLowerCase().includes(search.toLowerCase())) && <p className="crm-empty">Ничего не найдено</p>}</div></Panel>
       <Panel title="Последние события" className="crm-events" action={<Button variant="link" size="sm" className="crm-text-link" onClick={() => notify('Показаны все события за сегодня')}>Все события<ArrowRight /></Button>}><div className="crm-timeline">{[{ icon: FileText, title: 'Новая заявка с сайта', detail: 'Корпоративный сайт', note: 'Имя: Олег · Контакт указан в заявке', time: '10:24' }, { icon: ListChecks, title: 'ТЗ заполнено', detail: 'Магазин света', note: 'Агент подготовил техническое задание.', time: '09:17' }, { icon: FileText, title: 'Черновик предложения готов', detail: 'Нужна проверка', note: 'Агент AI подготовил черновик КП.', time: 'Вчера, 18:42' }].map(({ icon: Icon, ...event }) => <div className="crm-event" key={event.title}><span className="crm-icon-tile"><Icon /></span><div><strong>{event.title}</strong><small>{event.detail}</small><p>{event.note}</p></div><time>{event.time}</time></div>)}</div></Panel>
     </div>
   </div>;
