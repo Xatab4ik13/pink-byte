@@ -127,7 +127,11 @@
 .crm-funnel-stage span{font-size:10px}
 .crm-funnel-stage strong{font-size:20px}
 .crm-funnel-lost{font-size:12px;font-weight:600}
-.crm-funnel-list{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.crm-funnel-list{grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.crm-lead{grid-column:span 2}
+.crm-funnel-stage{padding-bottom:17px}
+.crm-funnel-stage::after{content:'';position:absolute;left:10px;right:10px;bottom:6px;height:4px;border-radius:2px;background:var(--border)}
+.crm-funnel-stage i{left:10px;bottom:6px;height:4px;border-radius:2px;z-index:1}
 .crm-lead{padding:10px 11px;gap:5px}
 .crm-lead-top strong{font-size:13px}
 .crm-lead small{font-size:11px}
@@ -143,7 +147,7 @@
 .crm-source-split{margin-top:10px}
 .crm-source-split strong{font-size:20px}
 @media(max-width:1100px) and (min-width:701px){.crm-kpi-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.crm-dashboard-main{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}.crm-task{grid-template-columns:22px minmax(0,1fr) minmax(0,110px) auto}.crm-task-owner{display:none}}
-@media(max-width:700px){.crm-kpi-strip{grid-template-columns:1fr 1fr;gap:8px}.crm-kpi{padding:10px}.crm-kpi small{display:none}.crm-kpi strong{font-size:20px}.crm-dashboard-main{display:flex;flex-direction:column;gap:12px}.crm-task-toolbar{gap:10px}.crm-owner-bar{width:100%;overflow-x:auto;scrollbar-width:none}.crm-app .crm-owner-bar button{font-size:12px}.crm-task{grid-template-columns:24px minmax(0,1fr) auto;min-height:58px}.crm-task-owner{display:none}.crm-task-copy strong{font-size:13px}.crm-task-group-title{font-size:10px}.crm-funnel-stages{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.crm-funnel-list{grid-template-columns:minmax(0,1fr)}.crm-lead{grid-column:auto}.crm-kpi-strip{grid-template-columns:1fr 1fr;gap:8px}.crm-kpi{padding:10px}.crm-kpi small{display:none}.crm-kpi strong{font-size:20px}.crm-dashboard-main{display:flex;flex-direction:column;gap:12px}.crm-task-toolbar{gap:10px}.crm-owner-bar{width:100%;overflow-x:auto;scrollbar-width:none}.crm-app .crm-owner-bar button{font-size:12px}.crm-task{grid-template-columns:24px minmax(0,1fr) auto;min-height:58px}.crm-task-owner{display:none}.crm-task-copy strong{font-size:13px}.crm-task-group-title{font-size:10px}.crm-funnel-stages{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* Dashboard v2 polish: readable labels, no duplicate money, looser toolbar */
 .crm-funnel-stage span{font-size:11px;color:var(--foreground);font-weight:600}
@@ -156,3 +160,8 @@
 .crm-task{min-height:56px}
 .crm-task-group+.crm-task-group{margin-top:14px}
 .crm-money-split{margin-bottom:12px}
+
+.crm-source{grid-template-columns:92px minmax(0,1fr);gap:10px;padding-right:22px}
+.crm-source .crm-source-bar{position:relative;height:20px;border-radius:6px;background:var(--muted);overflow:visible}
+.crm-source .crm-source-bar i{position:absolute;left:0;top:0;bottom:0;height:auto;border-radius:6px}
+.crm-source .crm-source-bar strong{position:absolute;top:50%;transform:translateY(-50%);margin-left:7px;text-align:left;font-size:11px;font-weight:700;white-space:nowrap}

@@ -33,7 +33,7 @@ export function DashboardSources({ leads }: { leads: Lead[] }) {
   const regular = leads.filter(lead => lead.kind === 'regular').length;
   return <section className="crm-panel crm-sources">
     <div className="crm-panel-heading"><h2>Откуда клиенты</h2></div>
-    <div className="crm-source-list">{sources.map(({ source, count }) => <div className="crm-source" key={source}><span>{source}</span><div><i style={{ width: `${(count / max) * 100}%` }} /></div><strong>{count}</strong></div>)}</div>
+    <div className="crm-source-list">{sources.map(({ source, count }) => { const pct = (count / max) * 100; return <div className="crm-source" key={source}><span>{source}</span><div className="crm-source-bar"><i style={{ width: `${pct}%` }} /><strong style={{ left: `${pct}%` }}>{count}</strong></div></div>; })}</div>
     <div className="crm-source-split"><div><strong>{leads.length - regular}</strong><span>новых</span></div><div><strong>{regular}</strong><span>постоянных</span></div></div>
   </section>;
 }
