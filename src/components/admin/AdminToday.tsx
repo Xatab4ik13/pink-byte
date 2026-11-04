@@ -6,24 +6,31 @@ import { ArrowRight, Bell, CalendarDays, Check, CircleCheck, Coins, FileText, Fo
 import { Button } from '@/components/ui/button';
 import tray from '@/assets/crm-decision-tray.webp.asset.json';
 import { money, projects } from './mock-data';
+import { DashboardFunnel, DashboardSources } from './AdminDashboard';
+import { debtAmount, initialLeads } from './dashboard-model';
 
 export function Panel({ title, action, children, className = '' }: { title: string; action?: ReactNode; children: ReactNode; className?: string }) {
   return <section className={`crm-panel ${className}`}><div className="crm-panel-heading"><h2>{title}</h2>{action}</div>{children}</section>;
 }
 export function AdminToday({ openCreate, openReview, notify, search, reviewCount, tasks, setTasks, payments }: { tasks: WorkspaceTask[]; setTasks: Dispatch<SetStateAction<WorkspaceTask[]>>; payments: WorkspacePayment[]; openCreate: () => void; openReview: () => void; notify: (message: string) => void; search: string; reviewCount: number }) {
   const [tab, setTab] = useState('Сегодня');
+  const [leads, setLeads] = useState(initialLeads);
+  const newLeads = leads.filter(lead => !lead.lost && lead.stage === 0).length;
+  const talks = leads.filter(lead => !lead.lost && lead.stage === 1).length;
+  const debt = leads.filter(lead => lead.contract).reduce((sum, lead) => sum + debtAmount(lead), 0);
   const visibleTasks = tasks.slice(0, tab === 'Сегодня' ? 4 : tab === 'На неделе' ? 8 : tasks.length).filter(task => `${task.title} ${task.project}`.toLowerCase().includes(search.toLowerCase()));
   const filteredProjects = projects.filter(project => project.name.toLowerCase().includes(search.toLowerCase()));
   const total = outstandingAmount(payments);
   const metrics = [
-    { icon: FileText, label: 'Новые заявки', value: '3', note: 'Нужно связаться' },
-    { icon: Folder, label: 'Проекты в работе', value: '4', note: 'Дизайн и разработка' },
-    { icon: Coins, label: 'Ближайшие оплаты', value: money(total), note: 'Ожидаемые поступления' },
+    { icon: FileText, label: 'Новые заявки', value: String(newLeads), note: `В переговорах: ${talks}` },
+    { icon: Folder, label: 'Проекты в работе', value: String(leads.filter(lead => !lead.lost && (lead.stage === 3 || lead.stage === 4)).length), note: 'Разработка и тестирование' },
+    { icon: Coins, label: 'Долг клиентов', value: money(debt), note: `Ближайшие оплаты: ${money(total)}` },
     { icon: ShieldCheck, label: 'На проверке у агентов', value: String(reviewCount), note: 'Открыть результаты' },
   ];
   return <div className="crm-today crm-enter">
-    <div className="crm-page-heading"><div><h1>Сегодня</h1><p className="crm-desktop-copy">Заявки, проекты и решения, которые ждут внимания.</p><p className="crm-mobile-date">30 октября</p></div><div className="crm-heading-actions"><span>30 октября 2026</span><Button onClick={openCreate} className="crm-button"><Plus />Создать</Button></div></div>
+    <div className="crm-page-heading"><div><h1>Дашборд</h1><p className="crm-desktop-copy">Заявки, проекты и решения, которые ждут внимания.</p><p className="crm-mobile-date">30 октября</p></div><div className="crm-heading-actions"><span>30 октября 2026</span><Button onClick={openCreate} className="crm-button"><Plus />Создать</Button></div></div>
     <div className="crm-metrics">{metrics.map(({ icon: Icon, label, value, note }, index) => <div className={`crm-metric crm-metric-${index}`} key={label}><span className="crm-icon-tile"><Icon /></span><div><span className="crm-metric-label">{label}</span><strong>{value}</strong><span className="crm-metric-note">{note}</span></div></div>)}</div>
+    <div className="crm-dashboard-top"><DashboardFunnel leads={leads} setLeads={setLeads} notify={notify} /><DashboardSources leads={leads} /></div>
     <div className="crm-dashboard-grid">
       <Panel title="Мои задачи" className="crm-tasks" action={<Button className="crm-button" size="sm" onClick={openCreate}><Plus />Добавить</Button>}>
         <div className="crm-tabs">{['Сегодня', 'На неделе', 'Все'].map((label, index) => <Button key={label} variant="ghost" size="sm" aria-pressed={tab === label} onClick={() => setTab(label)}>{label} ({tasks.slice(0, index === 0 ? 4 : index === 1 ? 8 : tasks.length).length})</Button>)}</div>
