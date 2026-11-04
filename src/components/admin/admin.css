@@ -211,3 +211,7 @@
 .crm-today .crm-kpi-icon.has-art img{display:block;width:34px;height:34px;object-fit:contain}
 .crm-today .crm-kpi-1 .crm-kpi-icon.has-art img{width:38px;height:38px;transform:translateY(1px)}
 .crm-today .crm-kpi{align-items:center}
+/* KPI art icons: transparent on graphite, no hover motion */
+.crm-today .crm-kpi,.crm-today .crm-kpi:hover{transform:none;box-shadow:none;transition:none}
+.crm-today .crm-kpi-icon.has-art,.crm-today .crm-kpi:hover .crm-kpi-icon{background:transparent!important;box-shadow:none;width:60px;height:60px;transform:none}
+.crm-today .crm-kpi-icon.has-art img,.crm-today .crm-kpi-1 .crm-kpi-icon.has-art img{width:56px;height:56px;transform:none}
