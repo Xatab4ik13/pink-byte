@@ -49,7 +49,7 @@ export function AdminToday({ openCreate, openReview, notify, search, reviewCount
     { icon: ShieldCheck, img: iconReview, label: 'На проверке у агентов', value: String(reviewCount), note: 'Открыть результаты' },
   ];
   return <div className="crm-today crm-enter">
-    <div className="crm-page-heading"><div><h1>Дашборд</h1><p className="crm-desktop-copy">Задачи команды, заявки и деньги в одном месте.</p><p className="crm-mobile-date">30 октября</p></div><div className="crm-heading-actions"><span>30 октября 2026</span><Button onClick={openCreate} className="crm-button"><Plus />Создать</Button></div></div>
+    <div className="crm-page-heading"><div><h1>Дашборд</h1><p className="crm-mobile-date">30 октября</p></div><div className="crm-heading-actions"><span>30 октября 2026</span><Button onClick={openCreate} className="crm-button"><Plus />Создать</Button></div></div>
     <div className="crm-kpi-strip">{metrics.map(({ icon: Icon, img, label, value, note }: { icon: typeof ListChecks; img?: string; label: string; value: string; note: string }, index) => <div className={`crm-kpi crm-kpi-${index} crm-reveal`} style={{ animationDelay: `${index * 60}ms` }} key={label}><span className={`crm-kpi-icon ${img ? 'has-art' : ''}`}>{img ? <img src={img} alt="" width={44} height={44} /> : <Icon />}</span><div><span>{label}</span><strong><CountUp value={value} /></strong><small>{note}</small></div></div>)}</div>
     <div className="crm-dashboard-main">
       <Panel title="Задачи" className="crm-tasks crm-reveal" action={<Button className="crm-button" size="sm" onClick={openCreate}><Plus />Добавить</Button>}>
