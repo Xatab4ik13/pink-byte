@@ -3,9 +3,8 @@ import telegramIcon from "@/assets/telegram-icon.webp.asset.json";
 import maxIcon from "@/assets/max-icon.webp.asset.json";
 import mailIcon from "@/assets/mail-icon.webp.asset.json";
 
-/* Телефон пока пример: заменить PHONE_DIGITS на реальный номер. */
-const PHONE_DIGITS = "79990000000";
-export const PHONE_LABEL = "+7 (999) 000-00-00";
+const PHONE_DIGITS = "79992167676";
+export const PHONE_LABEL = "+7 (999) 216-76-76";
 export const PHONE_HREF = `tel:+${PHONE_DIGITS}`;
 export const EMAIL = "info@pinkbyte.pro";
 
