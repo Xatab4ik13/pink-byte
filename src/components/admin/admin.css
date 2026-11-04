@@ -191,7 +191,6 @@
 .crm-today .crm-tabs button[aria-pressed=true]{background:var(--crm-dark)!important;color:var(--crm-light)}
 .crm-today .crm-tabs button,.crm-today .crm-owner-bar button{transition:background .2s,transform .15s}.crm-today .crm-tabs button:active,.crm-today .crm-owner-bar button:active,.crm-today .crm-button:active{transform:scale(.96)}
 .crm-today .crm-button svg,.crm-today .crm-text-link svg{transition:transform .2s}.crm-today .crm-button:hover svg,.crm-today .crm-text-link:hover svg{transform:translateX(3px)}
-.crm-today .crm-button:hover svg.pb-icon:only-child,.crm-today .crm-button:hover svg:first-child{transform:rotate(90deg)}
 .crm-today .crm-icon-tile{background:var(--crm-dark);color:var(--crm-light);transition:transform .25s}.crm-today .crm-event:hover .crm-icon-tile{transform:scale(1.1)}
 .crm-today .crm-funnel-stage,.crm-today .crm-lead,.crm-today .crm-payment{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .2s}
 .crm-today .crm-lead:hover{transform:translateY(-2px);box-shadow:0 12px 24px -18px color-mix(in oklab,var(--crm-dark) 80%,transparent)}
@@ -202,3 +201,4 @@
 .crm-reveal{animation:crm-reveal .5s cubic-bezier(.2,.8,.2,1) both}
 @keyframes crm-reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.crm-reveal{animation:none}.crm-today *{transition:none!important}}
+.crm-today .crm-button:hover svg[class*=pb-icon]:has(path[d^="M12 5.5v13"]){transform:rotate(90deg)}
