@@ -21,7 +21,7 @@ const navigation: { label: string; icon: typeof Folder; section: AdminSection }[
   { label: 'Контент сайта', icon: FileText, section: 'content' }, { label: 'Настройки', icon: Settings, section: 'settings' },
 ];
 export function AdminApp() {
-  const { section } = useSearch({ from: '/admin' });
+  const { section } = useSearch({ from: '/_authenticated/admin' });
   const isSales = section === 'sales';
   const isProject = section === 'project';
   const isAgents = section === 'agents';

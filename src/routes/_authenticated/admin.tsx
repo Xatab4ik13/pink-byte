@@ -3,7 +3,7 @@ import { AdminApp } from '@/components/admin/AdminApp';
 import { parseAdminSection, sectionLabels } from '@/components/admin/workspace-model';
 import adminCss from '@/components/admin/admin.css?url';
 
-export const Route = createFileRoute('/admin')({
+export const Route = createFileRoute('/_authenticated/admin')({
   validateSearch: (search: Record<string, unknown>) => ({ section: parseAdminSection(search['section']) }),
   head: ({ match }) => ({
     meta: [
