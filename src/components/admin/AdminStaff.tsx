@@ -16,7 +16,8 @@ function signupClient() {
 }
 
 export function AdminStaff() {
-  const selfId = useRouteContext({ from: '/_authenticated' }).staff.id;
+  const staff = useRouteContext({ from: '/_authenticated' }).staff;
+  const selfId = staff.id;
   const [members, setMembers] = useState<Member[]>([]);
   const [message, setMessage] = useState('');
   const [busy, setBusy] = useState(false);
@@ -30,7 +31,7 @@ export function AdminStaff() {
       return { id: r.user_id, role: r.role, email: p?.email ?? '', name: p?.full_name || p?.email || '' };
     }));
   }, []);
-  useEffect(() => { void load(); }, [load]);
+  useEffect(() => { if (staff.role === 'admin') void load(); }, [load, staff.role]);
 
   const create = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -57,6 +58,7 @@ export function AdminStaff() {
     setMessage(error ? 'Не удалось закрыть доступ.' : `Доступ для ${member.email} закрыт.`); void load();
   };
 
+  if (staff.role !== 'admin') return null;
   return <Panel title="Сотрудники">
     <ul className="crm-staff-list">{members.map(m => <li key={`${m.id}-${m.role}`}>
       <span><strong>{m.name}</strong><small>{m.email} · {roleLabels[m.role]}</small></span>
