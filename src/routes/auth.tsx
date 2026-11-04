@@ -37,7 +37,7 @@ function AuthPage() {
     navigate({ to: '/admin', search: { section: 'today' }, replace: true });
   };
   return <main className="crm-app crm-auth">
-    <form className="crm-auth-card" onSubmit={submit}>
+    <form className="crm-auth-card" method="post" action="/auth" onSubmit={submit}>
       <Logo tone="dark" />
       <h1>Вход в CRM</h1>
       <label className="crm-field">Почта<input name="email" type="email" autoComplete="email" required maxLength={255} /></label>
